@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Mastery - Interactive Tutorials</title>
+    <title>AndLearn - Interactive JavaScript Tutorials</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,8 +15,11 @@
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <h2>🚀 JS Mastery</h2>
+                <h2>📚 AndLearn</h2>
                 <p>Interactive JavaScript Tutorials</p>
+                <div class="creator-info">
+                    <small>Created by Luka Partenadze</small>
+                </div>
             </div>
             <ul class="tutorial-list">
                 <li class="tutorial-item active" data-tutorial="variables">
@@ -55,54 +58,54 @@
                 </div>
             </header>
 
-            <div class="content-body">
-                <!-- Tutorial Content -->
-                <section class="tutorial-section">
-                    <div class="tutorial-content" id="tutorialContent">
-                        <!-- Dynamic content will be loaded here -->
-                    </div>
-                </section>
+            <!-- Tutorial Content -->
+            <section class="tutorial-section">
+                <div class="tutorial-content" id="tutorialContent">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </section>
 
-                <!-- Interactive Code Editor -->
-                <section class="code-section">
-                    <div class="code-editor-container">
-                        <div class="editor-header">
-                            <h3>💻 Try it Yourself</h3>
-                            <div class="editor-actions">
-                                <button class="btn-small" id="copyCodeBtn">📋 Copy</button>
-                                <button class="btn-small" id="clearCodeBtn">🗑️ Clear</button>
-                            </div>
-                        </div>
-                        <div class="editor-wrapper">
-                            <textarea id="codeEditor" class="code-editor" placeholder="// Start coding here...
-console.log('Hello, JavaScript!');">
-                            </textarea>
-                        </div>
-                    </div>
+            <!-- Practice Task -->
+            <section class="practice-section" id="practiceSection">
+                <div class="practice-header">
+                    <h3>🎯 Practice Task</h3>
+                </div>
+                <div class="practice-content" id="practiceContent">
+                    <!-- Dynamic practice content will be loaded here -->
+                </div>
+            </section>
 
-                    <!-- Output Console -->
-                    <div class="console-container">
-                        <div class="console-header">
-                            <h3>📺 Output</h3>
-                            <button class="btn-small" id="clearConsoleBtn">🧹 Clear</button>
-                        </div>
-                        <div class="console-output" id="consoleOutput">
-                            <div class="console-line">Welcome to JavaScript Mastery! 🎉</div>
-                            <div class="console-line">Start coding to see results...</div>
+            <!-- Interactive Code Editor -->
+            <section class="code-editor-section">
+                <div class="code-editor-container">
+                    <div class="editor-header">
+                        <h3>💻 Try it Yourself</h3>
+                        <div class="editor-actions">
+                            <button class="btn-small" id="copyCodeBtn">📋 Copy</button>
+                            <button class="btn-small" id="clearCodeBtn">🗑️ Clear</button>
                         </div>
                     </div>
-                </section>
+                    <div class="editor-wrapper">
+                        <textarea id="codeEditor" class="code-editor" placeholder="// Start coding here...
+// Try the examples above or write your own code!
 
-                <!-- Practice Task -->
-                <section class="practice-section" id="practiceSection">
-                    <div class="practice-header">
-                        <h3>🎯 Practice Task</h3>
+console.log('Hello, World!');"></textarea>
                     </div>
-                    <div class="practice-content" id="practiceContent">
-                        <!-- Dynamic practice content will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Output Console -->
+            <section class="console-section">
+                <div class="console-container">
+                    <div class="console-header">
+                        <h3>📺 Output</h3>
+                        <button class="btn-small" id="clearConsoleBtn">🧹 Clear</button>
                     </div>
-                </section>
-            </div>
+                    <div class="console-output" id="consoleOutput">
+                        <!-- Console output will appear here when code is run -->
+                    </div>
+                </div>
+            </section>
 
             <!-- Navigation -->
             <div class="content-navigation">

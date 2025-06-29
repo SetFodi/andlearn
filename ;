@@ -24,17 +24,6 @@ let adults = (user) => user.age >= 18
 console.log(users.filter(adults))
 
 // reduce
-let numbers3 = [2,4, 6, 7, 12]
+let numbesr3 = [2,4, 6, 7, 12]
 let sum = (total, num) => total + num
-console.log(numbers3.reduce(sum))
-
-
-// tasks
-
-let numbers4 = [1,2,3,4,5]
-let squared2 = (num) => num * num
-console.log(numbers4.map(squared))
-
-let numbers5 = [1,2,3,4,5]
-let numbersGreaterThan3 = (num) => num > 3
-console.log(numbers5.filter(numbersGreaterThan3))
+consolelog(numbers3.reduce(sum))

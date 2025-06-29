@@ -46,23 +46,12 @@ let profile = {
 };
 
 console.log(profile);</code></pre>
-                        <p>Try modifying these variables in the code editor!</p>
+                        <p>Try copying this code to the editor below and run it!</p>
                     `
                 }
             ]
         },
-        startingCode: `let name = "Luka";
-let age = 20;
-let isDeveloper = true;
-
-let hobbies = ["Football", "Gaming", "Coding"];
-let profile = {
-    name: "Luka",
-    age: 20,
-    isDeveloper: true
-};
-
-console.log(profile);`,
+        startingCode: ``,
         practice: {
             title: "Try This",
             description: "Practice creating your own variables with different data types.",
@@ -115,21 +104,12 @@ const oddOrEven = (num) => num % 2 === 0 ? "Even" : "Odd";
 console.log(greet("Luka"));
 console.log(squareNumber(5));
 console.log(oddOrEven(5));</code></pre>
+                        <p>Copy this code to the editor and try it out!</p>
                     `
                 }
             ]
         },
-        startingCode: `function greet(name) {
-    return "Hello " + name;
-}
-
-console.log(greet("Luka"));
-
-const squareNumber = (number) => number * number;
-console.log(squareNumber(5));
-
-const oddOrEven = (num) => num % 2 === 0 ? "Even" : "Odd";
-console.log(oddOrEven(5));`,
+        startingCode: ``,
         practice: {
             title: "Try This",
             description: "Create your own functions for basic operations.",
@@ -190,30 +170,12 @@ for (let i = 0; i < numbers.length; i++) {
     sum += numbers[i];
 }
 console.log("Sum:", sum);</code></pre>
+                        <p>Try this example in the editor below!</p>
                     `
                 }
             ]
         },
-        startingCode: `// For loop example
-for (let i = 0; i <= 5; i++) {
-    console.log(i);
-}
-
-// Conditional example
-let number = 5;
-if (number > 0) {
-    console.log("Number is positive");
-} else if (number < 0) {
-    console.log("Number is negative");
-} else {
-    console.log("Number is zero");
-}
-
-// Array loop example
-let numbers = [1, 2, 3, 4, 5, 6];
-for (let i = 0; i < numbers.length; i++) {
-    console.log(numbers[i]);
-}`,
+        startingCode: ``,
         practice: {
             title: "Try This",
             description: "Practice with loops and conditionals.",
@@ -286,28 +248,12 @@ profile.contact = {
 };
 
 console.log(profile);</code></pre>
+                        <p>Copy this to the editor and see how objects work!</p>
                     `
                 }
             ]
         },
-        startingCode: `let hobbies = ["Football", "Gaming", "Coding"];
-console.log("Original:", hobbies);
-
-hobbies.push("Reading");
-console.log("After push:", hobbies);
-
-hobbies.pop();
-console.log("After pop:", hobbies);
-
-let profile = {
-    name: "Luka",
-    age: 20,
-    isDeveloper: true
-};
-
-console.log("Profile:", profile);
-profile.age = 21;
-console.log("Updated age:", profile.age);`,
+        startingCode: ``,
         practice: {
             title: "Try This",
             description: "Practice working with arrays and objects.",
@@ -377,29 +323,12 @@ function createUser(name, age) {
 let user = createUser("Luka", 20);
 user.addHobby("Coding");
 console.log(user);</code></pre>
+                        <p>Try this advanced example in the editor!</p>
                     `
                 }
             ]
         },
-        startingCode: `function addHobby(hobbies, newHobby) {
-    hobbies.push(newHobby);
-    return hobbies;
-}
-
-let hobbies = ["Football", "Gaming"];
-console.log(addHobby(hobbies, "Coding"));
-
-function updateAge(profile, newAge) {
-    profile.age = newAge;
-    return profile;
-}
-
-let profile = {
-    name: "Luka",
-    age: 20
-};
-
-console.log(updateAge(profile, 21));`,
+        startingCode: ``,
         practice: {
             title: "Try This",
             description: "Build functions that work with data structures.",
@@ -433,10 +362,6 @@ const clearConsoleBtn = document.getElementById('clearConsoleBtn');
 document.addEventListener('DOMContentLoaded', function() {
     loadTutorial(currentTutorial);
     setupEventListeners();
-    
-    // Welcome message
-    addToConsole('Welcome to JavaScript Mastery! 🎉', 'info');
-    addToConsole('Click "Run Code" to execute your JavaScript code.', 'info');
 });
 
 // Setup Event Listeners
@@ -500,7 +425,7 @@ function loadTutorial(tutorialKey) {
     });
     tutorialContent.innerHTML = contentHTML;
 
-    // Load starting code
+    // Clear code editor (start fresh)
     codeEditor.value = tutorial.startingCode;
 
     // Load practice task
@@ -515,6 +440,9 @@ function loadTutorial(tutorialKey) {
             💡 Remember: There's no right or wrong way - just experiment and have fun learning!
         </p>
     `;
+
+    // Clear console
+    clearConsole();
 
     // Update navigation
     updateNavigation();
@@ -531,8 +459,6 @@ function loadTutorial(tutorialKey) {
 // Switch Tutorial
 function switchTutorial(tutorialKey) {
     loadTutorial(tutorialKey);
-    clearConsole();
-    addToConsole(`Switched to: ${tutorials[tutorialKey].title}`, 'info');
 }
 
 // Update Active Navigation Item
@@ -576,6 +502,11 @@ function runCode() {
     const code = codeEditor.value;
     clearConsole();
     
+    if (!code.trim()) {
+        addToConsole('Write some code first, then click Run! 🚀', 'info');
+        return;
+    }
+    
     // Create a safe console for capturing output
     const capturedLogs = [];
     const originalConsole = console.log;
@@ -611,10 +542,17 @@ function resetCode() {
     const tutorial = tutorials[currentTutorial];
     codeEditor.value = tutorial.startingCode;
     clearConsole();
-    addToConsole('Code reset to original example', 'info');
+    if (tutorial.startingCode.trim()) {
+        addToConsole('Code reset to original example', 'info');
+    }
 }
 
 function copyCode() {
+    if (!codeEditor.value.trim()) {
+        addToConsole('No code to copy! Write something first 📝', 'info');
+        return;
+    }
+    
     codeEditor.select();
     navigator.clipboard.writeText(codeEditor.value).then(() => {
         addToConsole('Code copied to clipboard! 📋', 'info');
@@ -627,7 +565,7 @@ function copyCode() {
 
 function clearCode() {
     codeEditor.value = '';
-    addToConsole('Code editor cleared', 'info');
+    clearConsole();
 }
 
 function clearConsole() {

@@ -43,6 +43,18 @@ body {
     font-size: 0.9rem;
 }
 
+.creator-info {
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.creator-info small {
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-style: italic;
+}
+
 .tutorial-list {
     list-style: none;
     padding: 1rem 0;
@@ -165,19 +177,19 @@ body {
     background: #e2e8f0;
 }
 
-/* Content Body */
-.content-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+/* Section Styles */
+.tutorial-section,
+.practice-section,
+.code-editor-section,
+.console-section {
+    background: white;
     margin-bottom: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .tutorial-section {
-    background: white;
     padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .tutorial-section h2 {
@@ -217,87 +229,9 @@ body {
     color: #1e40af;
 }
 
-.code-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.code-editor-container,
-.console-container {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.editor-header,
-.console-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 1rem;
-    background: #f8fafc;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-.editor-header h3,
-.console-header h3 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #1e293b;
-}
-
-.editor-actions {
-    display: flex;
-    gap: 0.4rem;
-}
-
-.code-editor {
-    width: 100%;
-    height: 180px;
-    padding: 1rem;
-    border: none;
-    background: #1e293b;
-    color: #e2e8f0;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    font-size: 0.85rem;
-    line-height: 1.4;
-    resize: none;
-    outline: none;
-}
-
-.console-output {
-    height: 140px;
-    padding: 1rem;
-    background: #0f172a;
-    color: #22d3ee;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    font-size: 0.8rem;
-    overflow-y: auto;
-    line-height: 1.4;
-}
-
-.console-line {
-    margin-bottom: 0.3rem;
-}
-
-.console-line.error {
-    color: #f87171;
-}
-
-.console-line.info {
-    color: #60a5fa;
-}
-
 /* Practice Section */
 .practice-section {
-    grid-column: 1 / -1;
-    background: white;
     padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-top: 1rem;
 }
 
 .practice-header {
@@ -331,24 +265,112 @@ body {
     line-height: 1.5;
 }
 
-.practice-hint {
-    background: #fffbeb;
-    padding: 1rem;
-    border-radius: 6px;
-    margin: 1rem 0;
-    border-left: 3px solid #f59e0b;
-}
-
-.practice-hint h5 {
-    color: #1e293b;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-}
-
 .practice-description {
     color: #64748b;
     margin-bottom: 1rem;
     line-height: 1.6;
+}
+
+/* Code Editor Section */
+.code-editor-section {
+    overflow: hidden;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.editor-header h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.editor-actions {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.code-editor {
+    width: 100%;
+    height: 200px;
+    padding: 1rem;
+    border: none;
+    background: #1e293b;
+    color: #e2e8f0;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    resize: none;
+    outline: none;
+}
+
+.code-editor::placeholder {
+    color: #64748b;
+    opacity: 0.7;
+}
+
+/* Console Section */
+.console-section {
+    overflow: hidden;
+}
+
+.console-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.console-header h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.console-output {
+    height: 150px;
+    padding: 1rem;
+    background: #0f172a;
+    color: #22d3ee;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.8rem;
+    overflow-y: auto;
+    line-height: 1.4;
+    position: relative;
+}
+
+.console-output:empty::before {
+    content: '// Output will appear here when you run code...';
+    color: #475569;
+    opacity: 0.5;
+    font-style: italic;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    pointer-events: none;
+}
+
+.console-line {
+    margin-bottom: 0.3rem;
+}
+
+.console-line.error {
+    color: #f87171;
+}
+
+.console-line.info {
+    color: #60a5fa;
 }
 
 /* Navigation */
@@ -413,10 +435,6 @@ code[class*="language-"] {
     .sidebar {
         width: 100%;
         padding: 1rem 0;
-    }
-    
-    .content-body {
-        grid-template-columns: 1fr;
     }
     
     .content-header {
