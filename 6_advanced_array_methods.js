@@ -38,3 +38,7 @@ console.log(numbers4.map(squared))
 let numbers5 = [1,2,3,4,5]
 let numbersGreaterThan3 = (num) => num > 3
 console.log(numbers5.filter(numbersGreaterThan3))
+
+let numbers6 = [1,2,3,4,5]
+let totalNumbers = (total, num) => total + num;
+console.log(numbers6.reduce(totalNumbers))

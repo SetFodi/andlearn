@@ -20,6 +20,18 @@
                 <div class="creator-info">
                     <small>Created by Luka Partenadze</small>
                 </div>
+                
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <div class="language-option active" data-lang="en">
+                        <span class="flag">🇺🇸</span>
+                        <span class="lang-name">English</span>
+                    </div>
+                    <div class="language-option" data-lang="ka">
+                        <span class="flag">🇬🇪</span>
+                        <span class="lang-name">ქართული</span>
+                    </div>
+                </div>
             </div>
             <ul class="tutorial-list">
                 <li class="tutorial-item active" data-tutorial="variables">
@@ -52,10 +64,6 @@
                     <h1 id="tutorialTitle">Variables in JavaScript</h1>
                     <p id="tutorialDescription">Learn the fundamentals of JavaScript variables, data types, and basic syntax.</p>
                 </div>
-                <div class="header-actions">
-                    <button class="btn btn-secondary" id="resetBtn">🔄 Reset</button>
-                    <button class="btn btn-primary" id="runCodeBtn">▶️ Run Code</button>
-                </div>
             </header>
 
             <!-- Tutorial Content -->
@@ -81,6 +89,8 @@
                     <div class="editor-header">
                         <h3>💻 Try it Yourself</h3>
                         <div class="editor-actions">
+                            <button class="btn btn-primary" id="runCodeBtn">▶️ Run Code</button>
+                            <button class="btn btn-secondary" id="resetBtn">🔄 Reset</button>
                             <button class="btn-small" id="copyCodeBtn">📋 Copy</button>
                             <button class="btn-small" id="clearCodeBtn">🗑️ Clear</button>
                         </div>
