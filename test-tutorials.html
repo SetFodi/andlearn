@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tutorial Test</title>
+</head>
+<body>
+    <h1>Tutorial Keys Test</h1>
+    <div id="output"></div>
+    
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const output = document.getElementById('output');
+            const keys = Object.keys(tutorials);
+            
+            output.innerHTML = `
+                <h2>Found ${keys.length} tutorials:</h2>
+                <ul>
+                    ${keys.map(key => `<li>${key}: ${tutorials[key].title.en}</li>`).join('')}
+                </ul>
+            `;
+            
+            console.log('All tutorial keys:', keys);
+            keys.forEach(key => {
+                console.log(`${key}:`, tutorials[key] ? '✓' : '✗');
+            });
+        });
+    </script>
+</body>
+</html> 
