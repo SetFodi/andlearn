@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <button id="addTaskButton">Add Task</button>
+    <ul id="taskList"></ul>
+        <script>
+let addButton = document.getElementById("addTaskButton");
+let taskList = document.getElementById("taskList");
+
+addButton.addEventListener("click", () => {
+    let newTask = document.createElement("li");
+    newTask.textContent = "New Task";
+    taskList.appendChild(newTask);
+});
+        </script>
+</body>
+</html>
