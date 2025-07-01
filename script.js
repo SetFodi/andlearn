@@ -2146,6 +2146,825 @@ async function loadMultipleUsers() {
                 en: "1. Create a promise that resolves with your favorite quote after 2 seconds\n2. Use fetch to load data from a public API (like JSONPlaceholder)\n3. Write an async function that loads and displays user information\n4. Handle errors gracefully with try/catch\n5. Load multiple pieces of data simultaneously with Promise.all"
             }
         }
+    },
+
+    advanced_arrays: {
+        title: {
+            en: "Advanced Array Methods"
+        },
+        description: {
+            en: "Master powerful array methods like map, filter, and reduce - your data manipulation superpowers!"
+        },
+        content: {
+            sections: [
+                {
+                    title: {
+                        en: "🚀 The Power Trio: map, filter, reduce"
+                    },
+                    content: {
+                        en: `
+                            <h3>These three methods will change how you think about arrays!</h3>
+                            <p>Think of them as your personal data assistants - each one specializes in a different task!</p>
+                            
+                            <h4>🗺️ map() - The Transformer</h4>
+                            <p>Takes every item and transforms it into something new. Like a factory conveyor belt!</p>
+                            
+                            <h4>🔍 filter() - The Selector</h4>
+                            <p>Keeps only the items that pass your test. Like a quality control inspector!</p>
+                            
+                            <h4>🔄 reduce() - The Combiner</h4>
+                            <p>Takes all items and combines them into a single result. Like a blender!</p>
+                            
+                            <pre><code class="language-javascript">// Example: Working with numbers
+let numbers = [1, 2, 3, 4, 5];
+
+// map: Square each number
+let squared = numbers.map(num => num * num);
+console.log("Original:", numbers);     // [1, 2, 3, 4, 5]
+console.log("Squared:", squared);      // [1, 4, 9, 16, 25]
+
+// filter: Keep only even numbers
+let evens = numbers.filter(num => num % 2 === 0);
+console.log("Even numbers:", evens);   // [2, 4]
+
+// reduce: Add all numbers together
+let total = numbers.reduce((sum, num) => sum + num, 0);
+console.log("Total:", total);          // 15</code></pre>
+                            <p>✨ <em>These methods don't change the original array - they create new ones!</em></p>
+                        `
+                    }
+                },
+                {
+                    title: {
+                        en: "💡 Real-World Examples"
+                    },
+                    content: {
+                        en: `
+                            <h3>See how powerful these methods are with real scenarios!</h3>
+                            
+                            <pre><code class="language-javascript">// Working with shopping prices
+let prices = [90, 45, 30, 120, 75];
+
+// Apply 10% discount to all prices
+let discounted = prices.map(price => price * 0.9);
+console.log("Discounted prices:", discounted);
+
+// Find expensive items (over $50)
+let expensive = prices.filter(price => price > 50);
+console.log("Expensive items:", expensive);
+
+// Calculate total cost
+let totalCost = prices.reduce((total, price) => total + price, 0);
+console.log("Total cost:", totalCost);
+
+// Working with people data
+let people = [
+    { name: "Luka", age: 20, hobby: "coding" },
+    { name: "Anna", age: 17, hobby: "music" },
+    { name: "Sami", age: 22, hobby: "sports" },
+    { name: "Toni", age: 16, hobby: "art" }
+];
+
+// Get just the names
+let names = people.map(person => person.name);
+console.log("Names:", names);
+
+// Find adults (18 or older)
+let adults = people.filter(person => person.age >= 18);
+console.log("Adults:", adults);
+
+// Calculate average age
+let averageAge = people.reduce((sum, person) => sum + person.age, 0) / people.length;
+console.log("Average age:", averageAge);
+
+// Chain methods together for power!
+let adultNames = people
+    .filter(person => person.age >= 18)
+    .map(person => person.name);
+console.log("Adult names:", adultNames);</code></pre>
+                            <p>🔗 <em>You can chain these methods together for super powerful data processing!</em></p>
+                        `
+                    }
+                },
+                {
+                    title: {
+                        en: "🎯 Practice Makes Perfect"
+                    },
+                    content: {
+                        en: `
+                            <h3>Try these examples to master array methods!</h3>
+                            
+                            <pre><code class="language-javascript">// Product inventory example
+let products = [
+    { name: "Laptop", price: 1200, category: "electronics" },
+    { name: "Book", price: 25, category: "education" },
+    { name: "Phone", price: 800, category: "electronics" },
+    { name: "Notebook", price: 5, category: "education" },
+    { name: "Headphones", price: 200, category: "electronics" }
+];
+
+// Get all product names
+let productNames = products.map(product => product.name);
+console.log("Products:", productNames);
+
+// Find electronics
+let electronics = products.filter(product => product.category === "electronics");
+console.log("Electronics:", electronics);
+
+// Calculate total inventory value
+let totalValue = products.reduce((total, product) => total + product.price, 0);
+console.log("Total inventory value: $" + totalValue);
+
+// Get expensive electronics (over $500)
+let expensiveElectronics = products
+    .filter(product => product.category === "electronics")
+    .filter(product => product.price > 500)
+    .map(product => product.name);
+console.log("Expensive electronics:", expensiveElectronics);
+
+// Create price summary
+let priceSummary = products.map(product => ({
+    name: product.name,
+    priceCategory: product.price > 100 ? "expensive" : "affordable"
+}));
+console.log("Price summary:", priceSummary);</code></pre>
+                            <p>🎯 <em>Practice with your own data - the possibilities are endless!</em></p>
+                        `
+                    }
+                }
+            ]
+        },
+        startingCode: ``,
+        practice: {
+            title: {
+                en: "Become an Array Master!"
+            },
+            description: {
+                en: "Use map, filter, and reduce to transform and analyze data like a pro!"
+            },
+            task: {
+                en: "1. Create an array of numbers and use map() to double each one\n2. Use filter() to find numbers greater than 10\n3. Use reduce() to find the sum of all numbers\n4. Create an array of student objects with names and grades\n5. Use array methods to find students with grades above 80 and get their names"
+            }
+        }
+    },
+
+    api: {
+        title: {
+            en: "API Requests"
+        },
+        description: {
+            en: "Learn to communicate with the internet! Fetch data from servers and build connected applications."
+        },
+        content: {
+            sections: [
+                {
+                    title: {
+                        en: "🌐 What are APIs?"
+                    },
+                    content: {
+                        en: `
+                            <h3>APIs are like waiters in a restaurant - they take your order and bring you what you need!</h3>
+                            <p>When you want data from the internet (weather, user info, posts), you ask an API to get it for you!</p>
+                            
+                            <h4>🍕 Think of it like ordering food:</h4>
+                            <ul>
+                                <li><strong>You</strong> are the customer (your JavaScript code)</li>
+                                <li><strong>API</strong> is the waiter (middleman)</li>
+                                <li><strong>Server</strong> is the kitchen (where data lives)</li>
+                                <li><strong>Response</strong> is your food (the data you get back)</li>
+                            </ul>
+                            
+                            <h4>📋 Common HTTP Methods:</h4>
+                            <ul>
+                                <li><strong>GET</strong> - Ask for data (like reading a menu)</li>
+                                <li><strong>POST</strong> - Send new data (like placing an order)</li>
+                                <li><strong>PUT</strong> - Update existing data (like changing your order)</li>
+                                <li><strong>DELETE</strong> - Remove data (like canceling your order)</li>
+                            </ul>
+                            
+                            <p>🌟 <em>APIs let your app talk to other apps and services all over the world!</em></p>
+                        `
+                    }
+                },
+                {
+                    title: {
+                        en: "📥 Making GET Requests"
+                    },
+                    content: {
+                        en: `
+                            <h3>GET requests are like asking "Can I have some data, please?"</h3>
+                            
+                            <pre><code class="language-javascript">// Basic GET request to get a post
+console.log("=== Fetching a Post ===");
+
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(response => {
+        console.log("Response received!", response.status);
+        return response.json();
+    })
+    .then(data => {
+        console.log("Post title:", data.title);
+        console.log("Post body:", data.body);
+        console.log("Author ID:", data.userId);
+    })
+    .catch(error => {
+        console.error("Oops! Something went wrong:", error);
+    });
+
+// Modern way with async/await
+async function getPost() {
+    try {
+        console.log("\\n=== Getting Post with Async/Await ===");
+        
+        let response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+        
+        if (!response.ok) {
+            throw new Error("Failed to fetch post");
+        }
+        
+        let post = await response.json();
+        console.log("Post loaded:", post.title);
+        
+        // Get the author info too
+        let userResponse = await fetch(\`https://jsonplaceholder.typicode.com/users/\${post.userId}\`);
+        let user = await userResponse.json();
+        
+        console.log("Author:", user.name);
+        console.log("Author email:", user.email);
+        
+    } catch (error) {
+        console.log("Error loading post:", error.message);
+    }
+}
+
+// Call the function
+getPost();
+
+// Getting multiple posts
+async function getAllPosts() {
+    try {
+        console.log("\\n=== Loading All Posts ===");
+        
+        let response = await fetch("https://jsonplaceholder.typicode.com/posts");
+        let posts = await response.json();
+        
+        console.log(\`Found \${posts.length} posts!\`);
+        
+        // Show first 3 posts
+        posts.slice(0, 3).forEach(post => {
+            console.log(\`- \${post.title}\`);
+        });
+        
+    } catch (error) {
+        console.log("Error loading posts:", error.message);
+    }
+}
+
+getAllPosts();</code></pre>
+                            <p>📥 <em>GET requests are perfect for loading data to display in your app!</em></p>
+                        `
+                    }
+                },
+                {
+                    title: {
+                        en: "📤 Sending Data with POST"
+                    },
+                    content: {
+                        en: `
+                            <h3>POST requests are like submitting a form or creating new content!</h3>
+                            
+                            <pre><code class="language-javascript">// Creating a new post
+async function createPost() {
+    try {
+        console.log("=== Creating a New Post ===");
+        
+        let newPost = {
+            title: "My Amazing Post",
+            body: "This is the content of my awesome post!",
+            userId: 1
+        };
+        
+        let response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+            method: "POST",
+            body: JSON.stringify(newPost),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        });
+        
+        if (response.ok) {
+            let createdPost = await response.json();
+            console.log("Post created successfully!");
+            console.log("New post ID:", createdPost.id);
+            console.log("Title:", createdPost.title);
+        } else {
+            console.log("Failed to create post");
+        }
+        
+    } catch (error) {
+        console.log("Error creating post:", error.message);
+    }
+}
+
+createPost();
+
+// Sending user data
+async function createUser() {
+    try {
+        console.log("\\n=== Creating a New User ===");
+        
+        let newUser = {
+            name: "Luka Partenadze",
+            username: "luka_dev",
+            email: "luka@example.com",
+            phone: "555-1234",
+            website: "lukadev.com"
+        };
+        
+        let response = await fetch("https://jsonplaceholder.typicode.com/users", {
+            method: "POST",
+            body: JSON.stringify(newUser),
+            headers: {
+                "Content-type": "application/json"
+            }
+        });
+        
+        let result = await response.json();
+        console.log("User created:", result.name);
+        console.log("User ID:", result.id);
+        
+    } catch (error) {
+        console.log("Error creating user:", error.message);
+    }
+}
+
+createUser();</code></pre>
+                            <p>📤 <em>Use POST to create new data - like user accounts, posts, or comments!</em></p>
+                        `
+                    }
+                },
+                {
+                    title: {
+                        en: "🗑️ DELETE and Error Handling"
+                    },
+                    content: {
+                        en: `
+                            <h3>Sometimes you need to remove data or handle when things go wrong!</h3>
+                            
+                            <pre><code class="language-javascript">// Deleting a post
+async function deletePost(postId) {
+    try {
+        console.log(\`=== Deleting Post \${postId} ===\`);
+        
+        let response = await fetch(\`https://jsonplaceholder.typicode.com/posts/\${postId}\`, {
+            method: "DELETE"
+        });
+        
+        if (response.ok) {
+            console.log("Post deleted successfully!");
+        } else {
+            console.log("Failed to delete post");
+        }
+        
+    } catch (error) {
+        console.log("Error deleting post:", error.message);
+    }
+}
+
+deletePost(1);
+
+// Comprehensive error handling
+async function safeApiCall(url) {
+    try {
+        console.log("\\n=== Safe API Call ===");
+        console.log("Calling:", url);
+        
+        let response = await fetch(url);
+        
+        // Check if request was successful
+        if (!response.ok) {
+            throw new Error(\`HTTP error! status: \${response.status}\`);
+        }
+        
+        let data = await response.json();
+        console.log("Success! Got data:", data);
+        return data;
+        
+    } catch (error) {
+        // Handle different types of errors
+        if (error.name === 'TypeError') {
+            console.log("Network error - check your internet connection");
+        } else if (error.message.includes('404')) {
+            console.log("Data not found - the resource doesn't exist");
+        } else if (error.message.includes('500')) {
+            console.log("Server error - try again later");
+        } else {
+            console.log("Something went wrong:", error.message);
+        }
+        
+        // Return fallback data
+        return { error: true, message: error.message };
+    }
+}
+
+// Test with good and bad URLs
+safeApiCall("https://jsonplaceholder.typicode.com/posts/1");
+safeApiCall("https://jsonplaceholder.typicode.com/posts/999999"); // This will fail
+
+// Real-world example: Loading user profiles safely
+async function loadUserProfile(userId) {
+    console.log(\`\\n=== Loading User \${userId} Profile ===\`);
+    
+    let user = await safeApiCall(\`https://jsonplaceholder.typicode.com/users/\${userId}\`);
+    
+    if (user.error) {
+        console.log("Using default user data");
+        return { name: "Unknown User", email: "no-email" };
+    }
+    
+    console.log("User loaded:", user.name);
+    return user;
+}
+
+loadUserProfile(1);
+loadUserProfile(999); // This will use fallback</code></pre>
+                            <p>🛡️ <em>Always plan for when things go wrong - good error handling makes reliable apps!</em></p>
+                        `
+                    }
+                }
+            ]
+        },
+        startingCode: ``,
+        practice: {
+            title: {
+                en: "Build Connected Apps!"
+            },
+            description: {
+                en: "Practice making real API calls and handling responses like a pro developer!"
+            },
+            task: {
+                en: "1. Use fetch to get a list of users from JSONPlaceholder\n2. Create a POST request to add a new user\n3. Try getting a specific user by ID and handle if they don't exist\n4. Build a function that loads and displays user posts\n5. Add proper error handling for network failures"
+            }
+        }
+    },
+
+    error_handling: {
+        title: {
+            en: "Error Handling"
+        },
+        description: {
+            en: "Learn to handle errors gracefully! Build robust applications that work even when things go wrong."
+        },
+        content: {
+            sections: [
+                {
+                    title: {
+                        en: "🚨 Why Errors Happen and Why We Care"
+                    },
+                    content: {
+                        en: `
+                            <h3>Errors are like flat tires - they're gonna happen, so let's be prepared!</h3>
+                            <p>Good programmers don't avoid errors, they plan for them! It's like having a first aid kit - you hope you won't need it, but you're glad it's there!</p>
+                            
+                            <h4>🎯 Common Types of Errors:</h4>
+                            <ul>
+                                <li><strong>Syntax Errors</strong> - Typos in your code (like missing brackets)</li>
+                                <li><strong>Runtime Errors</strong> - Code breaks while running (like dividing by zero)</li>
+                                <li><strong>Logical Errors</strong> - Code runs but does wrong thing (like adding instead of multiplying)</li>
+                                <li><strong>Network Errors</strong> - Internet problems (like server is down)</li>
+                            </ul>
+                            
+                            <h4>🛡️ Why Error Handling Matters:</h4>
+                            <ul>
+                                <li>Keeps your app running smoothly</li>
+                                <li>Gives users helpful messages instead of scary errors</li>
+                                <li>Helps you fix problems faster</li>
+                                <li>Makes your app look professional</li>
+                            </ul>
+                            
+                            <p>💡 <em>Think of error handling as being a good host - when something goes wrong, you handle it gracefully!</em></p>
+                        `
+                    }
+                },
+                {
+                    title: {
+                        en: "🛠️ Try/Catch - Your Error Safety Net"
+                    },
+                    content: {
+                        en: `
+                            <h3>Try/catch is like having a safety net when you're learning to ride a bike!</h3>
+                            
+                            <pre><code class="language-javascript">// Basic try/catch example
+console.log("=== Basic Error Handling ===");
+
+try {
+    // Try to do something that might fail
+    let result = 10 / 0; // This is fine in JavaScript
+    console.log("Division result:", result);
+    
+    // This will cause an error
+    let invalidJSON = "{ this is not valid JSON }";
+    let parsed = JSON.parse(invalidJSON);
+    console.log("Parsed JSON:", parsed);
+    
+} catch (error) {
+    // If anything goes wrong, we end up here
+    console.log("Oops! Something went wrong:", error.message);
+    console.log("But the app keeps running! 🎉");
+}
+
+console.log("Program continues normally...");
+
+// Real-world example: Safe data parsing
+function safelyParseJSON(jsonString) {
+    try {
+        let data = JSON.parse(jsonString);
+        console.log("Successfully parsed:", data);
+        return data;
+    } catch (error) {
+        console.log("Invalid JSON provided:", error.message);
+        console.log("Returning empty object instead");
+        return {}; // Fallback value
+    }
+}
+
+// Test with good and bad JSON
+console.log("\\n=== Testing JSON Parsing ===");
+safelyParseJSON('{"name": "Luka", "age": 20}'); // This works
+safelyParseJSON('{ invalid json }'); // This fails gracefully
+
+// Validation with error handling
+function validateAge(age) {
+    try {
+        // Check if age is a number
+        if (typeof age !== 'number') {
+            throw new Error("Age must be a number!");
+        }
+        
+        // Check if age is reasonable
+        if (age < 0) {
+            throw new Error("Age cannot be negative!");
+        }
+        
+        if (age > 150) {
+            throw new Error("Age seems too high!");
+        }
+        
+        console.log(\`Age \${age} is valid! ✅\`);
+        return true;
+        
+    } catch (error) {
+        console.log("Age validation failed:", error.message);
+        return false;
+    }
+}
+
+// Test age validation
+console.log("\\n=== Age Validation Tests ===");
+validateAge(25);      // Valid
+validateAge("25");    // Invalid type
+validateAge(-5);      // Invalid value
+validateAge(200);     // Invalid value</code></pre>
+                            <p>🛠️ <em>Try/catch lets you test risky code safely and handle problems gracefully!</em></p>
+                        `
+                    }
+                },
+                {
+                    title: {
+                        en: "🔍 Debugging and Console Techniques"
+                    },
+                    content: {
+                        en: `
+                            <h3>Debugging is like being a detective - follow the clues to solve the mystery!</h3>
+                            
+                            <pre><code class="language-javascript">// Console techniques for debugging
+console.log("=== Debugging Techniques ===");
+
+// 1. Strategic console.log placement
+function calculateTotal(items) {
+    console.log("calculateTotal called with:", items);
+    
+    let total = 0;
+    
+    for (let i = 0; i < items.length; i++) {
+        console.log(\`Processing item \${i}:\`, items[i]);
+        total = total + items[i].price;
+        console.log(\`Running total:\`, total);
+    }
+    
+    console.log("Final total:", total);
+    return total;
+}
+
+// Test with some data
+let shoppingCart = [
+    { name: "Laptop", price: 1000 },
+    { name: "Mouse", price: 25 },
+    { name: "Keyboard", price: 75 }
+];
+
+calculateTotal(shoppingCart);
+
+// 2. Console.table for complex data
+console.log("\\n=== Shopping Cart (table view) ===");
+console.table(shoppingCart);
+
+// 3. Debugging logical errors
+function findLargestNumber(numbers) {
+    console.log("Finding largest in:", numbers);
+    
+    let largest = 0; // BUG: This won't work with negative numbers!
+    
+    for (let num of numbers) {
+        console.log(\`Comparing \${num} with current largest \${largest}\`);
+        if (num > largest) {
+            largest = num;
+            console.log(\`New largest: \${largest}\`);
+        }
+    }
+    
+    return largest;
+}
+
+// This will show the bug!
+console.log("\\n=== Finding Largest Number (with bug) ===");
+let testNumbers = [-5, -2, -10, -1];
+let result = findLargestNumber(testNumbers);
+console.log("Result:", result, "(This should be -1, not 0!)");
+
+// Fixed version
+function findLargestNumberFixed(numbers) {
+    if (numbers.length === 0) return null;
+    
+    let largest = numbers[0]; // Start with first number, not 0
+    
+    for (let num of numbers) {
+        if (num > largest) {
+            largest = num;
+        }
+    }
+    
+    return largest;
+}
+
+console.log("\\n=== Fixed Version ===");
+let fixedResult = findLargestNumberFixed(testNumbers);
+console.log("Fixed result:", fixedResult);
+
+// 4. Error object properties
+try {
+    throw new Error("This is a custom error");
+} catch (error) {
+    console.log("\\n=== Error Object Properties ===");
+    console.log("Error message:", error.message);
+    console.log("Error name:", error.name);
+    console.log("Error stack:", error.stack);
+}</code></pre>
+                            <p>🔍 <em>Good debugging is like leaving breadcrumbs - trace your code's path to find problems!</em></p>
+                        `
+                    }
+                },
+                {
+                    title: {
+                        en: "🌐 Async Error Handling"
+                    },
+                    content: {
+                        en: `
+                            <h3>Handling errors in async code - when things go wrong on the internet!</h3>
+                            
+                            <pre><code class="language-javascript">// Async error handling with try/catch
+async function loadUserData(userId) {
+    try {
+        console.log(\`=== Loading User \${userId} ===\`);
+        
+        // Simulate API call that might fail
+        if (userId <= 0) {
+            throw new Error("User ID must be positive");
+        }
+        
+        let response = await fetch(\`https://jsonplaceholder.typicode.com/users/\${userId}\`);
+        
+        // Check if the request was successful
+        if (!response.ok) {
+            throw new Error(\`Failed to load user: \${response.status} \${response.statusText}\`);
+        }
+        
+        let user = await response.json();
+        console.log("User loaded successfully:", user.name);
+        return user;
+        
+    } catch (error) {
+        console.log("Failed to load user:", error.message);
+        
+        // Return fallback data
+        return {
+            id: userId,
+            name: "Unknown User",
+            email: "no-email@example.com",
+            error: true
+        };
+    }
+}
+
+// Test with valid and invalid user IDs
+async function testUserLoading() {
+    console.log("=== Testing User Loading ===");
+    
+    // This should work
+    let user1 = await loadUserData(1);
+    console.log("User 1:", user1.name);
+    
+    // This should fail gracefully
+    let user999 = await loadUserData(999);
+    console.log("User 999:", user999.name);
+    
+    // This should also fail gracefully
+    let userNegative = await loadUserData(-1);
+    console.log("User -1:", userNegative.name);
+}
+
+testUserLoading();
+
+// Multiple async operations with error handling
+async function loadMultipleUsers() {
+    try {
+        console.log("\\n=== Loading Multiple Users ===");
+        
+        // Load multiple users, some might fail
+        let userPromises = [
+            loadUserData(1),
+            loadUserData(2),
+            loadUserData(999), // This will fail
+            loadUserData(3)
+        ];
+        
+        // Wait for all to complete (even if some fail)
+        let users = await Promise.allSettled(userPromises);
+        
+        console.log("All requests completed!");
+        
+        users.forEach((result, index) => {
+            if (result.status === 'fulfilled') {
+                console.log(\`User \${index + 1}: \${result.value.name}\`);
+            } else {
+                console.log(\`User \${index + 1}: Failed - \${result.reason.message}\`);
+            }
+        });
+        
+    } catch (error) {
+        console.log("Unexpected error:", error.message);
+    }
+}
+
+loadMultipleUsers();
+
+// Graceful degradation example
+async function displayUserProfile(userId) {
+    try {
+        console.log(\`\\n=== Displaying Profile for User \${userId} ===\`);
+        
+        let user = await loadUserData(userId);
+        
+        if (user.error) {
+            // User data failed to load, show minimal info
+            console.log("⚠️  Limited profile available");
+            console.log("Name: Unknown User");
+            console.log("Status: Offline");
+        } else {
+            // Full profile available
+            console.log("✅ Full profile loaded");
+            console.log("Name:", user.name);
+            console.log("Email:", user.email);
+            console.log("Status: Online");
+        }
+        
+    } catch (error) {
+        console.log("❌ Could not display profile:", error.message);
+        console.log("Please try again later");
+    }
+}
+
+// Test profile display
+displayUserProfile(1);  // Should show full profile
+displayUserProfile(999); // Should show limited profile</code></pre>
+                            <p>🌐 <em>Async error handling keeps your app working even when the internet has bad days!</em></p>
+                        `
+                    }
+                }
+            ]
+        },
+        startingCode: ``,
+        practice: {
+            title: {
+                en: "Build Bulletproof Code!"
+            },
+            description: {
+                en: "Practice handling all the ways code can break and keep your apps running smoothly!"
+            },
+            task: {
+                en: "1. Create a function that safely divides two numbers (handle division by zero)\n2. Write a function that validates email addresses with proper error messages\n3. Build an async function that loads data with retry logic when it fails\n4. Create a calculator that handles invalid inputs gracefully\n5. Build a form validator that gives helpful error messages for each field"
+            }
+        }
     }
 };
 
