@@ -1,19 +1,57 @@
 // Application State
 let currentLanguage = 'en';
+let currentTheme = 'light';
 
-// Translation Service
-class TranslationService {
+// Theme Management
+class ThemeManager {
     constructor() {
-        this.cache = new Map();
-        this.preTranslated = new Map();
-        this.initializePreTranslations();
+        this.currentTheme = localStorage.getItem('theme') || 'light';
+        this.init();
     }
 
-    initializePreTranslations() {
-        // Pre-translated common terms for instant loading
-        const translations = {
+    init() {
+        this.applyTheme(this.currentTheme);
+        this.setupToggle();
+    }
+
+    applyTheme(theme) {
+        this.currentTheme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }
+
+    toggle() {
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.classList.add('switching');
+            setTimeout(() => {
+                themeToggle.classList.remove('switching');
+            }, 600);
+        }
+        
+        const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        this.applyTheme(newTheme);
+    }
+
+    setupToggle() {
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => this.toggle());
+        }
+    }
+}
+
+// Comprehensive Translation Service
+class TranslationService {
+    constructor() {
+        this.translations = this.initializeTranslations();
+    }
+
+    initializeTranslations() {
+        return {
+            // Navigation and UI
             'Variables': 'ცვლადები',
-            'Functions': 'ფუნქციები',
+            'Functions': 'ფუნქციები', 
             'Control Flow': 'მართვის ნაკადი',
             'Arrays & Objects': 'მასივები და ობიექტები',
             'Advanced Functions': 'პროგრესული ფუნქციები',
@@ -23,7 +61,7 @@ class TranslationService {
             'Events & Advanced DOM': 'მოვლენები და პროგრესული DOM',
             'Async JavaScript': 'ასინქრონული JavaScript',
             
-            // Common words
+            // Common UI elements
             'Practice Task': 'პრაქტიკული ამოცანა',
             'Try it Yourself': 'სცადეთ თავად',
             'Output': 'შედეგი',
@@ -45,88 +83,227 @@ class TranslationService {
             'Learn TypeScript - JavaScript with superpowers! Add types to catch errors before they happen.': 'შეისწავლეთ TypeScript - JavaScript ზეძალებით! დაამატეთ ტიპები შეცდომების დაჭერისთვის მანამ სანამ ისინი მოხდება.',
             'Learn to control web pages! Make your websites interactive by changing content, styles, and responding to user actions.': 'ისწავლეთ ვებ გვერდების კონტროლი! გახადეთ თქვენი ვებსაიტები ინტერაქტიული კონტენტის, სტილებისა და მომხმარებლის მოქმედებებზე რეაგირებით.',
             'Master advanced DOM techniques! Create, modify, and remove elements dynamically for truly interactive experiences.': 'დაეუფლეთ DOM-ის პროგრესულ ტექნიკებს! შექმენით, შეცვალეთ და ამოიღეთ ელემენტები დინამიურად ნამდვილად ინტერაქტიული გამოცდილებისთვის.',
-            'Master asynchronous programming! Handle API calls, promises, and async operations like a pro.': 'დაეუფლეთ ასინქრონულ პროგრამირებას! მართეთ API გამოძახებები, პრომისები და ასინქრონული ოპერაციები როგორც პროფესიონალი.'
-        };
-
-        Object.entries(translations).forEach(([en, ka]) => {
-            this.preTranslated.set(`${en}_en_ka`, ka);
-        });
-    }
-
-    async translate(text, fromLang = 'en', toLang = 'ka') {
-        // Create cache key
-        const cacheKey = `${text}_${fromLang}_${toLang}`;
-        
-        // Check pre-translated first (instant)
-        if (this.preTranslated.has(cacheKey)) {
-            return this.preTranslated.get(cacheKey);
-        }
-        
-        // Check cache
-        if (this.cache.has(cacheKey)) {
-            return this.cache.get(cacheKey);
-        }
-
-        // For short text, try LibreTranslate (faster than MyMemory)
-        if (text.length < 500) {
-            try {
-                const response = await fetch('https://libretranslate.de/translate', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        q: text,
-                        source: fromLang,
-                        target: toLang,
-                        format: 'text'
-                    })
-                });
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    const translation = data.translatedText;
-                    this.cache.set(cacheKey, translation);
-                    return translation;
-                }
-            } catch (error) {
-                console.warn('LibreTranslate failed, trying fallback');
-            }
-        }
-
-        // Fallback to MyMemory for longer text
-        try {
-            const response = await fetch(
-                `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromLang}|${toLang}`
-            );
-            const data = await response.json();
+            'Master asynchronous programming! Handle API calls, promises, and async operations like a pro.': 'დაეუფლეთ ასინქრონულ პროგრამირებას! მართეთ API გამოძახებები, პრომისები და ასინქრონული ოპერაციები როგორც პროფესიონალი.',
             
-            if (data.responseStatus === 200) {
-                const translation = data.responseData.translatedText;
-                this.cache.set(cacheKey, translation);
-                return translation;
-            }
-        } catch (error) {
-            console.warn('Translation API error, using original text:', error);
-        }
-        
-        // If all fails, return original text
-        return text;
+            // Tutorial content translations
+            'Variables in JavaScript': 'ცვლადები JavaScript-ში',
+            'Let\'s learn about variables - think of them as boxes where you can store different things!': 'ვისწავლოთ ცვლადები - წარმოიდგინეთ ისინი, როგორც ყუთები, სადაც შეგიძლიათ შეინახოთ სხვადასხვა ნივთები!',
+            
+            // Section headers
+            '📦 What are Variables?': '📦 რა არის ცვლადები?',
+            '🎭 Different Types of Data': '🎭 მონაცემების სხვადასხვა ტიპები',
+            '💻 Let\'s Practice!': '💻 ვიპრაქტიკოთ!',
+            
+            // Detailed content
+            'Variables are like labeled boxes that store information': 'ცვლადები არის ეტიკეტირებული ყუთები, რომლებიც ინახავენ ინფორმაციას',
+            'Imagine you have boxes in your room. Each box has a label and stores something different. Variables work the same way!': 'წარმოიდგინეთ, რომ თქვენს ოთახში გაქვთ ყუთები. ყოველ ყუთს აქვს ეტიკეტი და ინახავს რაღაც განსხვავებულს. ცვლადები იგივენაირად მუშაობენ!',
+            'In JavaScript, we create variables using these keywords:': 'JavaScript-ში ცვლადებს ვქმნით ამ საკვანძო სიტყვებით:',
+            'for things that might change (like your age)': 'რამისთვისაც, რაც შეიძლება შეიცვალოს (როგორც თქვენი ასაკი)',
+            'for things that stay the same (like your name)': 'რამისთვისაც, რაც იგივე რჩება (როგორც თქვენი სახელი)',
+            'old way (we don\'t use this anymore)': 'ძველი გზა (ამას ახლა აღარ ვიყენებთ)',
+            'Think of \'let\' as a box you can put new things in, and \'const\' as a box that\'s sealed shut!': 'წარმოიდგინეთ \'let\' როგორც ყუთი, რომელშიც ახალი ნივთების ჩადება შეგიძლიათ, ხოლო \'const\' როგორც ყუთი, რომელიც დალუქულია!',
+            
+            'JavaScript can store different types of information:': 'JavaScript-ს შეუძლია შეინახოს ინფორმაციის სხვადასხვა ტიპები:',
+            'Text (String)': 'ტექსტი (String)',
+            'Words and sentences:': 'სიტყვები და წინადადებები:',
+            'Numbers': 'რიცხვები',
+            'Any number:': 'ნებისმიერი რიცხვი:',
+            'True/False (Boolean)': 'მართალი/ცრუ (Boolean)',
+            'Yes or no answers:': 'კი ან არა პასუხები:',
+            'Lists (Array)': 'სიები (Array)',
+            'Multiple items:': 'მრავალი ელემენტი:',
+            'Objects': 'ობიექტები',
+            'Complex information:': 'რთული ინფორმაცია:',
+            'Think of it like different types of containers - some hold text, some hold numbers, some hold lists of things!': 'წარმოიდგინეთ, როგორც კონტეინერების სხვადასხვა ტიპები - ზოგი ინახავს ტექსტს, ზოგი რიცხვებს, ზოგი ნივთების სიებს!',
+            
+            // Practice content
+            'Create a variable for your name using const': 'შექმენით ცვლადი თქვენი სახელისთვის const-ის გამოყენებით',
+            'Create a variable for your age using let': 'შექმენით ცვლადი თქვენი ასაკისთვის let-ის გამოყენებით',
+            'Print both to the console': 'დაპრინტეთ ორივე კონსოლში',
+            
+            // Common phrases and words
+            'Create': 'შექმენით',
+            'Try': 'სცადეთ',
+            'Example': 'მაგალითი',
+            'Result': 'შედეგი',
+            'Note': 'შენიშვნა',
+            'Important': 'მნიშვნელოვანი',
+            'Remember': 'გახსოვდეთ',
+            'Tip': 'რჩევა',
+            'Exercise': 'ვარჯიში',
+            'Solution': 'გამოსავალი',
+            'Explanation': 'განმარტება',
+            'Code': 'კოდი',
+            'Output': 'გამოტანა',
+            'Input': 'შეყვანა',
+            'Function': 'ფუნქცია',
+            'Variable': 'ცვლადი',
+            'Array': 'მასივი',
+            'Object': 'ობიექტი',
+            'String': 'სტრინგი',
+            'Number': 'რიცხვი',
+            'Boolean': 'ბულეანი',
+            'Error': 'შეცდომა',
+            'Success': 'წარმატება',
+            'Complete': 'დასრულება',
+            'Start': 'დაწყება',
+            'Finish': 'დამთავრება',
+            'Continue': 'გაგრძელება',
+            'Back': 'უკან',
+            'Forward': 'წინ',
+            'Up': 'ზევით',
+            'Down': 'ქვევით',
+            'Left': 'მარცხნივ',
+            'Right': 'მარჯვნივ',
+            'Save': 'შენახვა',
+            'Load': 'ჩატვირთვა',
+            'Edit': 'რედაქტირება',
+            'Delete': 'წაშლა',
+            'Add': 'დამატება',
+            'Remove': 'ამოღება',
+            'Update': 'განახლება',
+            'Refresh': 'განახლება',
+            'Submit': 'გაგზავნა',
+            'Cancel': 'გაუქმება',
+            'Confirm': 'დადასტურება',
+            'Close': 'დახურვა',
+            'Open': 'გახსნა',
+            'Show': 'ჩვენება',
+            'Hide': 'დამალვა',
+            'Enable': 'ჩართვა',
+            'Disable': 'გამორთვა',
+            'On': 'ჩართული',
+            'Off': 'გამორთული',
+            'Yes': 'კი',
+            'No': 'არა',
+            'OK': 'კარგი',
+            'Done': 'დასრულებული',
+            'Loading': 'იტვირთება',
+            'Please wait': 'გთხოვთ, მოითმინოთ',
+            'Thank you': 'გმადლობთ',
+            'Welcome': 'კეთილი იყოს თქვენი მობრძანება',
+            'Hello': 'გამარჯობა',
+            'Goodbye': 'ნახვამდის',
+            'Good morning': 'დილა მშვიდობისა',
+            'Good afternoon': 'დღე მშვიდობისა',
+            'Good evening': 'საღამო მშვიდობისა',
+            'Good night': 'ღამე მშვიდობისა',
+            'Help': 'დახმარება',
+            'About': 'შესახებ',
+            'Contact': 'კონტაქტი',
+            'Home': 'მთავარი',
+            'Profile': 'პროფილი',
+            'Settings': 'პარამეტრები',
+            'Search': 'ძებნა',
+            'Filter': 'ფილტრი',
+            'Sort': 'დალაგება',
+            'View': 'ნახვა',
+            'Print': 'ბეჭდვა',
+            'Download': 'ჩამოტვირთვა',
+            'Upload': 'ატვირთვა',
+            'Share': 'გაზიარება',
+            'Like': 'მოწონება',
+            'Comment': 'კომენტარი',
+            'Reply': 'პასუხი',
+            'Follow': 'გაყოლა',
+            'Unfollow': 'გაყოლის გაუქმება',
+            'Subscribe': 'გამოწერა',
+            'Unsubscribe': 'გამოწერის გაუქმება',
+            
+            // More comprehensive tutorial content
+            'Variables are the building blocks of programming': 'ცვლადები არის პროგრამირების მშენებლობითი ბლოკები',
+            'They allow us to store and manipulate data': 'ისინი საშუალებას გვაძლევს შევინახოთ და ვმართოთ მონაცემები',
+            'Every variable has a name and a value': 'ყოველ ცვლადს აქვს სახელი და მნიშვნელობა',
+            'We can change the value of variables declared with let': 'შეგვიძლია შევცვალოთ let-ით გამოცხადებული ცვლადების მნიშვნელობა',
+            'Variables declared with const cannot be changed': 'const-ით გამოცხადებული ცვლადები არ შეიძლება შეიცვალოს',
+            'Use meaningful names for your variables': 'გამოიყენეთ მნიშვნელოვანი სახელები თქვენი ცვლადებისთვის',
+            'Variable names should describe what they contain': 'ცვლადების სახელები უნდა აღწერდეს იმას, რასაც შეიცავენ',
+            
+            // Theme toggle
+            'Light Mode': 'ღია რეჟიმი',
+            'Dark Mode': 'მუქი რეჟიმი'
+        };
     }
 
-    async translateBatch(texts, fromLang = 'en', toLang = 'ka') {
-        // Translate multiple texts efficiently
-        const results = await Promise.allSettled(
-            texts.map(text => this.translate(text, fromLang, toLang))
-        );
+    translate(text, fromLang = 'en', toLang = 'ka') {
+        if (fromLang === toLang) return text;
         
-        return results.map((result, index) => 
-            result.status === 'fulfilled' ? result.value : texts[index]
-        );
+        // Check for exact match
+        if (this.translations[text]) {
+            return this.translations[text];
+        }
+        
+        // Try to find partial matches for longer text
+        let translatedText = text;
+        Object.entries(this.translations).forEach(([en, ka]) => {
+            translatedText = translatedText.replace(new RegExp(en.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), ka);
+        });
+        
+        return translatedText;
+    }
+
+    async translateElement(element, targetLang = 'ka') {
+        if (!element) return;
+        
+        const originalText = element.getAttribute('data-original-text') || element.textContent;
+        element.setAttribute('data-original-text', originalText);
+        
+        if (targetLang === 'en') {
+            element.textContent = originalText;
+        } else {
+            element.textContent = this.translate(originalText, 'en', targetLang);
+        }
+    }
+
+    async translatePage(targetLang = 'ka') {
+        // Store original language and set data attribute for CSS
+        currentLanguage = targetLang;
+        document.documentElement.setAttribute('data-lang', targetLang);
+        
+        // Translate tutorial titles in sidebar
+        const tutorialTitles = document.querySelectorAll('.tutorial-title');
+        tutorialTitles.forEach(title => this.translateElement(title, targetLang));
+        
+        // Translate main content
+        const titleElement = document.getElementById('tutorialTitle');
+        const descElement = document.getElementById('tutorialDescription');
+        
+        if (titleElement) this.translateElement(titleElement, targetLang);
+        if (descElement) this.translateElement(descElement, targetLang);
+        
+        // Translate section headers
+        const headers = document.querySelectorAll('h2, h3, h4, h5');
+        headers.forEach(header => this.translateElement(header, targetLang));
+        
+        // Translate buttons and UI elements
+        const buttons = document.querySelectorAll('button, .btn');
+        buttons.forEach(btn => this.translateElement(btn, targetLang));
+        
+        // Translate all text content in tutorial sections
+        const textElements = document.querySelectorAll('.tutorial-content p, .tutorial-content li, .practice-content p, .practice-content li, .practice-task');
+        textElements.forEach(el => this.translateElement(el, targetLang));
+        
+        // Update placeholders
+        const codeEditor = document.getElementById('codeEditor');
+        if (codeEditor && targetLang === 'ka') {
+            const originalPlaceholder = codeEditor.getAttribute('data-original-placeholder') || codeEditor.placeholder;
+            codeEditor.setAttribute('data-original-placeholder', originalPlaceholder);
+            codeEditor.placeholder = this.translate(originalPlaceholder, 'en', 'ka');
+        } else if (codeEditor && targetLang === 'en') {
+            const originalPlaceholder = codeEditor.getAttribute('data-original-placeholder');
+            if (originalPlaceholder) {
+                codeEditor.placeholder = originalPlaceholder;
+            }
+        }
     }
 }
 
+// Initialize services
+const themeManager = new ThemeManager();
 const translationService = new TranslationService();
+
+// Set initial language attribute
+document.documentElement.setAttribute('data-lang', currentLanguage);
 
 // Tutorial Data Structure with multiple languages
 const tutorials = {
@@ -2024,25 +2201,11 @@ async function switchLanguage(lang) {
         }
     });
     
-    // Fast translation with progress indicator
-    if (lang === 'ka') {
-        showTranslationProgress();
-        
-        try {
-            // Translate navigation menu titles first (instant for common terms)
-            await updateNavigationTitles();
-            
-            // Reload current tutorial with new language
-            await loadTutorial(currentTutorial);
-        } catch (error) {
-            console.error('Translation error:', error);
-        } finally {
-            hideTranslationProgress();
-        }
-    } else {
-        // English - just reload without translation
-        await loadTutorial(currentTutorial);
-    }
+    // Use the new comprehensive translation service
+    await translationService.translatePage(lang);
+    
+    // Store language preference
+    localStorage.setItem('preferred-language', lang);
 }
 
 function showTranslationProgress() {
