@@ -60,22 +60,19 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center space-x-3">
-                    <a href="index.html" class="flex items-center space-x-3">
-                        <div class="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                            </svg>
+                    <a href="index.html" class="flex items-center">
+                        <div class="w-16 h-16 rounded-lg overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 flex items-center justify-center">
+                            <img src="andlearn.png" alt="AndLearn" class="w-14 h-14 object-contain">
                         </div>
-                        <span class="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">AndLearn</span>
                     </a>
                     <span class="text-gray-400">/</span>
-                    <span class="text-yellow-600 font-medium">JavaScript</span>
+                    <span class="text-yellow-600 font-medium" data-translate="javascript">JavaScript</span>
                 </div>
 
                 <!-- Navigation Items -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Home</a>
-                    <a href="index.html#categories" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Categories</a>
+                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-translate="nav-home">Home</a>
+                    <a href="index.html#categories" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-translate="nav-categories">Categories</a>
                 </div>
 
                 <!-- Theme & Language Toggle -->
@@ -126,13 +123,13 @@
                         </svg>
                     </div>
                     <div>
-                        <h2 class="text-xl font-bold text-yellow-600">JavaScript</h2>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Interactive Tutorials</p>
+                        <h2 class="text-xl font-bold text-yellow-600" data-translate="javascript">JavaScript</h2>
+                        <p class="text-sm text-gray-600 dark:text-gray-400" data-translate="js-interactive">Interactive Tutorials</p>
                     </div>
                 </div>
                 <div class="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-3 border border-yellow-200 dark:border-yellow-800">
                     <p class="text-sm text-yellow-700 dark:text-yellow-300">
-                        <strong>12 tutorials</strong> to master JavaScript from basics to advanced concepts
+                        <strong>12</strong> <span data-translate="js-progress-text">tutorials to master JavaScript from basics to advanced concepts</span>
                     </p>
                 </div>
             </div>
@@ -142,7 +139,7 @@
                 <div class="mb-6">
                     <div class="flex items-center mb-3">
                         <div class="w-3 h-3 bg-green-400 rounded-full mr-2"></div>
-                        <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">Beginner</span>
+                        <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide" data-translate="beginner">Beginner</span>
                     </div>
                     
                     <div class="tutorial-item flex items-center p-3 rounded-lg cursor-pointer bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 text-blue-700 dark:text-blue-300" data-tutorial="variables">
@@ -150,7 +147,7 @@
                             <span class="text-white text-sm font-bold">1</span>
                         </div>
                         <div class="flex-1">
-                            <div class="tutorial-title font-medium" data-en="Variables & Data Types" data-ka="">Variables & Data Types</div>
+                            <div class="tutorial-title font-medium">Variables & Data Types</div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">Learn the building blocks</div>
                         </div>
                     </div>
@@ -160,7 +157,7 @@
                             <span class="text-white text-sm font-bold">2</span>
                         </div>
                         <div class="flex-1">
-                            <div class="tutorial-title font-medium" data-en="Functions" data-ka="">Functions</div>
+                            <div class="tutorial-title font-medium">Functions</div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">Reusable code blocks</div>
                         </div>
                     </div>
@@ -170,7 +167,7 @@
                             <span class="text-white text-sm font-bold">3</span>
                         </div>
                         <div class="flex-1">
-                            <div class="tutorial-title font-medium" data-en="Control Flow" data-ka="">Control Flow</div>
+                            <div class="tutorial-title font-medium">Control Flow</div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">Making decisions</div>
                         </div>
                     </div>
@@ -180,7 +177,7 @@
                 <div class="mb-6">
                     <div class="flex items-center mb-3">
                         <div class="w-3 h-3 bg-yellow-400 rounded-full mr-2"></div>
-                        <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">Intermediate</span>
+                        <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide" data-translate="intermediate">Intermediate</span>
                     </div>
                     
                     <div class="tutorial-item flex items-center p-3 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" data-tutorial="arrays">
@@ -188,7 +185,7 @@
                             <span class="text-white text-sm font-bold">4</span>
                         </div>
                         <div class="flex-1">
-                            <div class="tutorial-title font-medium" data-en="Arrays & Objects Deep Dive" data-ka="">Arrays & Objects Deep Dive</div>
+                            <div class="tutorial-title font-medium">Arrays & Objects Deep Dive</div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">Data structures</div>
                         </div>
                     </div>
@@ -198,7 +195,7 @@
                             <span class="text-white text-sm font-bold">5</span>
                         </div>
                         <div class="flex-1">
-                            <div class="tutorial-title font-medium" data-en="Functions + Arrays & Objects" data-ka="">Functions + Arrays & Objects</div>
+                            <div class="tutorial-title font-medium">Functions + Arrays & Objects</div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">Combining concepts</div>
                         </div>
                     </div>
@@ -208,7 +205,7 @@
                             <span class="text-white text-sm font-bold">6</span>
                         </div>
                         <div class="flex-1">
-                            <div class="tutorial-title font-medium" data-en="Advanced Array Methods" data-ka="">Advanced Array Methods</div>
+                            <div class="tutorial-title font-medium">Advanced Array Methods</div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">Powerful array tools</div>
                         </div>
                     </div>
@@ -218,7 +215,7 @@
                 <div class="mb-6">
                     <div class="flex items-center mb-3">
                         <div class="w-3 h-3 bg-red-400 rounded-full mr-2"></div>
-                        <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">Advanced</span>
+                        <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide" data-translate="advanced">Advanced</span>
                     </div>
                     
                     <div class="tutorial-item flex items-center p-3 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" data-tutorial="typescript">
@@ -226,7 +223,7 @@
                             <span class="text-white text-sm font-bold">7</span>
                         </div>
                         <div class="flex-1">
-                            <div class="tutorial-title font-medium" data-en="TypeScript Introduction" data-ka="">TypeScript Introduction</div>
+                            <div class="tutorial-title font-medium">TypeScript Introduction</div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">Type-safe JavaScript</div>
                         </div>
                     </div>
@@ -236,7 +233,7 @@
                             <span class="text-white text-sm font-bold">8</span>
                         </div>
                         <div class="flex-1">
-                            <div class="tutorial-title font-medium" data-en="DOM Manipulation" data-ka="">DOM Manipulation</div>
+                            <div class="tutorial-title font-medium">DOM Manipulation</div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">Web page interaction</div>
                         </div>
                     </div>
@@ -246,7 +243,7 @@
                             <span class="text-white text-sm font-bold">9</span>
                         </div>
                         <div class="flex-1">
-                            <div class="tutorial-title font-medium" data-en="Events & Advanced DOM" data-ka="">Events & Advanced DOM</div>
+                            <div class="tutorial-title font-medium">Events & Advanced DOM</div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">User interactions</div>
                         </div>
                     </div>
@@ -256,7 +253,7 @@
                             <span class="text-white text-sm font-bold">10</span>
                         </div>
                         <div class="flex-1">
-                            <div class="tutorial-title font-medium" data-en="Async JavaScript" data-ka="">Async JavaScript</div>
+                            <div class="tutorial-title font-medium">Async JavaScript</div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">Non-blocking code</div>
                         </div>
                     </div>
@@ -266,7 +263,7 @@
                             <span class="text-white text-sm font-bold">11</span>
                         </div>
                         <div class="flex-1">
-                            <div class="tutorial-title font-medium" data-en="API Requests" data-ka="">API Requests</div>
+                            <div class="tutorial-title font-medium">API Requests</div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">Fetching data</div>
                         </div>
                     </div>
@@ -276,7 +273,7 @@
                             <span class="text-white text-sm font-bold">12</span>
                         </div>
                         <div class="flex-1">
-                            <div class="tutorial-title font-medium" data-en="Error Handling" data-ka="">Error Handling</div>
+                            <div class="tutorial-title font-medium">Error Handling</div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">Managing errors</div>
                         </div>
                     </div>
@@ -287,14 +284,14 @@
             <div class="p-4 border-t border-gray-200 dark:border-gray-700">
                 <div class="mb-3">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Progress</span>
+                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300" data-translate="progress-title">Progress</span>
                         <span class="text-sm text-gray-500 dark:text-gray-400">1/12</span>
                     </div>
                     <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                         <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full" style="width: 8.3%"></div>
                     </div>
                 </div>
-                <div class="text-xs text-gray-500 dark:text-gray-400 text-center">
+                <div class="text-xs text-gray-500 dark:text-gray-400 text-center" data-translate="progress-encouragement">
                     Keep going! You're doing great! 🎉
                 </div>
             </div>
@@ -313,7 +310,56 @@
                 <!-- Tutorial Content -->
                 <section class="mb-8">
                     <div class="tutorial-content bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6" id="tutorialContent">
-                        <!-- Dynamic content will be loaded here -->
+                        <!-- Concept Section -->
+                        <div class="content-section mb-8">
+                            <h2 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">📦 What are Variables?</h2>
+                            <div class="content-text prose dark:prose-invert max-w-none">
+                                <p class="text-lg mb-4">Variables are like labeled boxes that store information. Imagine you have boxes in your room - each box has a label and stores something different. Variables work the same way!</p>
+                                
+                                <p class="mb-4">In JavaScript, we create variables using these keywords:</p>
+                                <ul class="list-disc pl-6 mb-4 space-y-2">
+                                    <li><strong class="text-green-600">let</strong> - for things that might change (like your age)</li>
+                                    <li><strong class="text-blue-600">const</strong> - for things that stay the same (like your name)</li>
+                                    <li><strong class="text-gray-500">var</strong> - old way (we don't use this anymore)</li>
+                                </ul>
+                                
+                                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500 mb-6">
+                                    <p class="text-blue-800 dark:text-blue-200">💡 Think of 'let' as a box you can put new things in, and 'const' as a box that's sealed shut!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Example Section -->
+                        <div class="content-section">
+                            <h2 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">🎭 Different Types of Data</h2>
+                            <div class="content-text prose dark:prose-invert max-w-none">
+                                <p class="text-lg mb-4">JavaScript can store different types of information:</p>
+                                
+                                <div class="grid gap-4 mb-6">
+                                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                                        <h4 class="font-bold text-green-800 dark:text-green-200 mb-2">📝 Text (String)</h4>
+                                        <p class="text-gray-700 dark:text-gray-300 mb-2">Words and sentences:</p>
+                                        <code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">const myName = "Luka";</code>
+                                    </div>
+                                    
+                                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                                        <h4 class="font-bold text-blue-800 dark:text-blue-200 mb-2">🔢 Numbers</h4>
+                                        <p class="text-gray-700 dark:text-gray-300 mb-2">Any number:</p>
+                                        <code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">let age = 25;</code>
+                                    </div>
+                                    
+                                    <div class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                                        <h4 class="font-bold text-yellow-800 dark:text-yellow-200 mb-2">✅ True/False (Boolean)</h4>
+                                        <p class="text-gray-700 dark:text-gray-300 mb-2">Yes or no answers:</p>
+                                        <code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">const isStudent = true;</code>
+                                    </div>
+                                </div>
+
+                                <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500 mb-4">
+                                    <p class="text-purple-800 dark:text-purple-200">🤔 Think of it like different types of containers - some hold text, some hold numbers, some hold lists of things!</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -329,7 +375,21 @@
                             <h3 class="text-xl font-bold text-green-800 dark:text-green-200">Practice Task</h3>
                         </div>
                         <div class="practice-content" id="practiceContent">
-                            <!-- Dynamic practice content will be loaded here -->
+                            <h4 class="text-lg font-bold text-green-800 dark:text-green-200 mb-3">💻 Let's Practice!</h4>
+                            <div class="practice-task">
+                                <div class="content-text">
+                                    <p class="mb-4"><strong>Your Task:</strong></p>
+                                    <ol class="list-decimal pl-6 space-y-2 mb-4">
+                                        <li>Create a variable for your name using <code class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">const</code></li>
+                                        <li>Create a variable for your age using <code class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">let</code></li>
+                                        <li>Print both to the console using <code class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">console.log()</code></li>
+                                    </ol>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Try it in the code editor below!</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 italic mt-4">
+                                💡 Remember: There's no right or wrong way - just experiment and have fun learning!
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -413,6 +473,6 @@ console.log('Hello, World!');"
         </main>
     </div>
 
-    <script src="script.js"></script>
+    <script src="tutorial-fix.js"></script>
 </body>
 </html> 
