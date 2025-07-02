@@ -1,6 +1,1445 @@
 // Application State
-let currentLanguage = 'en';
+let currentLanguage = localStorage.getItem('language') || 'en';
 let currentTheme = 'light';
+
+// Complete Translation Data
+const translations = {
+    en: {
+        // UI Elements
+        ui: {
+            title: "AndLearn - Interactive JavaScript Tutorials",
+            creator: "Created by Luka Partenadze",
+            languageName: "English",
+            runCode: "▶️ Run Code",
+            reset: "🔄 Reset",
+            copy: "📋 Copy",
+            clear: "🗑️ Clear",
+            clearConsole: "🧹 Clear",
+            previous: "← Previous",
+            next: "Next →",
+            practiceTask: "🎯 Practice Task",
+            tryItYourself: "💻 Try it Yourself",
+            output: "📺 Output",
+            placeholder: "// Start coding here...\n// Try the examples above or write your own code!\n\nconsole.log('Hello, World!');"
+        },
+        // Tutorial Navigation
+        navigation: {
+            variables: "Variables & Data Types",
+            functions: "Functions",
+            controlflow: "Control Flow", 
+            arrays: "Arrays & Objects Deep Dive",
+            advanced_functions: "Functions + Arrays & Objects",
+            advanced_arrays: "Advanced Array Methods",
+            typescript: "TypeScript Introduction",
+            dom: "DOM Manipulation",
+            events: "Events & Advanced DOM",
+            async: "Async JavaScript",
+            api: "API Requests",
+            error_handling: "Error Handling"
+        },
+        // Tutorial Content
+        tutorials: {
+            variables: {
+                title: "Variables in JavaScript",
+                description: "Learn the fundamentals of JavaScript variables, data types, and basic syntax.",
+                content: {
+                    concept: {
+                        title: "📦 What are Variables?",
+                        text: `Variables are like labeled boxes that store information. Imagine you have boxes in your room. Each box has a label and stores something different. Variables work the same way!
+
+In JavaScript, we create variables using these keywords:
+• **let** - for things that might change (like your age)
+• **const** - for things that stay the same (like your name)  
+• **var** - old way (we don't use this anymore)
+
+Think of 'let' as a box you can put new things in, and 'const' as a box that's sealed shut!`
+                    },
+                    example: {
+                        title: "🎭 Different Types of Data",
+                        text: `JavaScript can store different types of information:
+
+**Text (String)** - Words and sentences:
+\`\`\`javascript
+const myName = "Luka";
+const greeting = "Hello World!";
+\`\`\`
+
+**Numbers** - Any number:
+\`\`\`javascript
+let age = 25;
+const pi = 3.14;
+\`\`\`
+
+**True/False (Boolean)** - Yes or no answers:
+\`\`\`javascript
+const isStudent = true;
+const isRaining = false;
+\`\`\`
+
+**Lists (Array)** - Multiple items:
+\`\`\`javascript
+const colors = ["red", "blue", "green"];
+const numbers = [1, 2, 3, 4, 5];
+\`\`\`
+
+**Objects** - Complex information:
+\`\`\`javascript
+const person = {
+    name: "Luka",
+    age: 25,
+    city: "Tbilisi"
+};
+\`\`\`
+
+Think of it like different types of containers - some hold text, some hold numbers, some hold lists of things!`
+                    },
+                    task: {
+                        title: "💻 Let's Practice!",
+                        text: `**Your Task:**
+1. Create a variable for your name using \`const\`
+2. Create a variable for your age using \`let\`
+3. Print both to the console
+
+Try it in the code editor below!`
+                    }
+                }
+            },
+            functions: {
+                title: "Functions in JavaScript",
+                description: "Functions are like magical recipes - give them ingredients (inputs) and they create something new!",
+                content: {
+                    concept: {
+                        title: "⚡ What are Functions?",
+                        text: `Functions are like magical recipes in JavaScript! You give them ingredients (called parameters), they do something with those ingredients, and then they give you back a result.
+
+Think of a blender:
+• You put in fruits (input)
+• It blends them (process)
+• You get a smoothie (output)
+
+Functions work the same way!`
+                    },
+                    example: {
+                        title: "🍰 Function Examples",
+                        text: `**Simple Function:**
+\`\`\`javascript
+function sayHello() {
+    console.log("Hello!");
+}
+sayHello(); // Calls the function
+\`\`\`
+
+**Function with Parameters:**
+\`\`\`javascript
+function greetPerson(name) {
+    console.log("Hello, " + name + "!");
+}
+greetPerson("Luka"); // Output: "Hello, Luka!"
+\`\`\`
+
+**Function that Returns a Value:**
+\`\`\`javascript
+function addNumbers(a, b) {
+    return a + b;
+}
+const result = addNumbers(5, 3); // result = 8
+\`\`\`
+
+**Modern Arrow Functions:**
+\`\`\`javascript
+const multiply = (x, y) => x * y;
+console.log(multiply(4, 5)); // Output: 20
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 Create Your Own Function",
+                        text: `**Your Task:**
+1. Create a function called \`introduce\` that takes a name and age as parameters
+2. Make it return a string like "Hi, I'm [name] and I'm [age] years old"
+3. Call your function with your own name and age
+4. Print the result to the console`
+                    }
+                }
+            },
+            controlflow: {
+                title: "Control Flow in JavaScript",
+                description: "Learn to make your code smart! Teach it to make decisions and repeat tasks automatically.",
+                content: {
+                    concept: {
+                        title: "🔄 What is Control Flow?",
+                        text: `Control flow is how your code makes decisions and repeats actions. It's like giving your code a brain!
+
+Think of it like traffic lights:
+• **If** the light is green → go
+• **Else if** the light is yellow → slow down  
+• **Else** (red light) → stop
+
+Your code can make similar decisions!`
+                    },
+                    example: {
+                        title: "🚦 Decision Making Examples",
+                        text: `**If Statements:**
+\`\`\`javascript
+let age = 18;
+if (age >= 18) {
+    console.log("You can vote!");
+} else {
+    console.log("Too young to vote");
+}
+\`\`\`
+
+**Loops - Repeating Actions:**
+\`\`\`javascript
+// Count from 1 to 5
+for (let i = 1; i <= 5; i++) {
+    console.log("Count: " + i);
+}
+
+// While loop
+let count = 0;
+while (count < 3) {
+    console.log("Hello " + count);
+    count++;
+}
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 Practice Control Flow",
+                        text: `**Your Task:**
+1. Create a variable for your favorite number
+2. Use an if statement to check if it's greater than 10
+3. Create a loop that counts from 1 to your favorite number
+4. Print each number to the console`
+                    }
+                }
+            },
+            arrays: {
+                title: "Arrays & Objects Deep Dive",
+                description: "Learn to organize and work with collections of data - like digital filing cabinets!",
+                content: {
+                    concept: {
+                        title: "🗂️ What are Arrays and Objects?",
+                        text: `Arrays and Objects are ways to store multiple pieces of information together.
+
+**Arrays** are like numbered lists:
+• Position 0: "Apple"
+• Position 1: "Banana"  
+• Position 2: "Orange"
+
+**Objects** are like labeled containers:
+• name: "Luka"
+• age: 25
+• city: "Tbilisi"`
+                    },
+                    example: {
+                        title: "📚 Array and Object Examples",
+                        text: `**Working with Arrays:**
+\`\`\`javascript
+const fruits = ["apple", "banana", "orange"];
+console.log(fruits[0]); // "apple"
+fruits.push("grape"); // Add new item
+console.log(fruits.length); // 4
+\`\`\`
+
+**Working with Objects:**
+\`\`\`javascript
+const person = {
+    name: "Luka",
+    age: 25,
+    greet: function() {
+        return "Hello, I'm " + this.name;
+    }
+};
+console.log(person.name); // "Luka"
+console.log(person.greet()); // "Hello, I'm Luka"
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 Create Your Data Structures",
+                        text: `**Your Task:**
+1. Create an array of your favorite foods
+2. Create an object representing yourself (name, age, hobby)
+3. Add a new food to your array
+4. Print your object's properties to the console`
+                    }
+                }
+            },
+            advanced_functions: {
+                title: "Functions + Arrays & Objects",
+                description: "Now you're ready for the ultimate combo - functions working with arrays and objects like a pro!",
+                content: {
+                    concept: {
+                        title: "🎯 Advanced Function Techniques",
+                        text: `Now we'll combine functions with arrays and objects to create powerful programs!
+
+Functions can:
+• Take arrays and objects as parameters
+• Return arrays and objects
+• Modify data structures
+• Create new data from existing data`
+                    },
+                    example: {
+                        title: "🚀 Advanced Examples",
+                        text: `**Functions with Arrays:**
+\`\`\`javascript
+function findLongestName(names) {
+    let longest = "";
+    for (let name of names) {
+        if (name.length > longest.length) {
+            longest = name;
+        }
+    }
+    return longest;
+}
+
+const names = ["Alice", "Bob", "Christopher"];
+console.log(findLongestName(names)); // "Christopher"
+\`\`\`
+
+**Functions with Objects:**
+\`\`\`javascript
+function createStudent(name, grade) {
+    return {
+        name: name,
+        grade: grade,
+        isPass: grade >= 60
+    };
+}
+
+const student = createStudent("Luka", 85);
+console.log(student.isPass); // true
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 Advanced Challenge",
+                        text: `**Your Task:**
+1. Create a function that takes an array of numbers and returns the average
+2. Create a function that takes a person object and returns a greeting
+3. Test both functions with your own data`
+                    }
+                }
+            },
+            advanced_arrays: {
+                title: "Advanced Array Methods",
+                description: "Master powerful array methods like map, filter, and reduce - your data manipulation superpowers!",
+                content: {
+                    concept: {
+                        title: "🚀 Array Superpowers",
+                        text: `Modern JavaScript has amazing built-in array methods that make working with data super easy!
+
+• **map()** - Transform every item
+• **filter()** - Keep only items that match criteria
+• **reduce()** - Combine all items into one result
+• **find()** - Find the first matching item`
+                    },
+                    example: {
+                        title: "⚡ Method Examples",
+                        text: `**Map - Transform Data:**
+\`\`\`javascript
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // [2, 4, 6, 8]
+\`\`\`
+
+**Filter - Select Data:**
+\`\`\`javascript
+const ages = [15, 22, 18, 30, 16];
+const adults = ages.filter(age => age >= 18);
+console.log(adults); // [22, 18, 30]
+\`\`\`
+
+**Reduce - Combine Data:**
+\`\`\`javascript
+const prices = [10, 20, 30];
+const total = prices.reduce((sum, price) => sum + price, 0);
+console.log(total); // 60
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 Array Method Challenge",
+                        text: `**Your Task:**
+1. Create an array of numbers
+2. Use map to double each number
+3. Use filter to keep only even numbers
+4. Use reduce to find the sum of all numbers`
+                    }
+                }
+            },
+            typescript: {
+                title: "TypeScript Introduction", 
+                description: "Learn TypeScript - JavaScript with superpowers! Add types to catch errors before they happen.",
+                content: {
+                    concept: {
+                        title: "📘 What is TypeScript?",
+                        text: `TypeScript is JavaScript with types! It helps you catch errors before your code runs.
+
+Think of types like labels on boxes:
+• string: "Hello World"
+• number: 42
+• boolean: true/false
+• array: [1, 2, 3]
+
+TypeScript checks these labels to make sure you're using the right type of data!`
+                    },
+                    example: {
+                        title: "💻 TypeScript Examples",
+                        text: `**Type Annotations:**
+\`\`\`typescript
+let name: string = "Luka";
+let age: number = 25;
+let isStudent: boolean = true;
+
+function greet(person: string): string {
+    return "Hello, " + person;
+}
+\`\`\`
+
+**Interfaces:**
+\`\`\`typescript
+interface Person {
+    name: string;
+    age: number;
+    email?: string; // Optional property
+}
+
+const user: Person = {
+    name: "Luka",
+    age: 25
+};
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 TypeScript Practice",
+                        text: `**Your Task:**
+1. Create a function with typed parameters
+2. Define an interface for a Book (title, author, pages)
+3. Create a book object using your interface
+4. Try the code in the TypeScript playground online!`
+                    }
+                }
+            },
+            dom: {
+                title: "DOM Manipulation",
+                description: "Learn to control web pages! Make your websites interactive by changing content, styles, and responding to user actions.",
+                content: {
+                    concept: {
+                        title: "🌐 What is the DOM?",
+                        text: `The DOM (Document Object Model) is how JavaScript sees and controls web pages.
+
+Think of a web page like a tree:
+• The trunk is the <html> element
+• Branches are <body>, <head>, etc.
+• Leaves are <p>, <div>, <button>, etc.
+
+JavaScript can change any part of this tree!`
+                    },
+                    example: {
+                        title: "🎮 DOM Examples",
+                        text: `**Selecting Elements:**
+\`\`\`javascript
+// Get element by ID
+const title = document.getElementById('title');
+
+// Get elements by class
+const buttons = document.getElementsByClassName('btn');
+
+// Modern way with querySelector
+const firstButton = document.querySelector('.btn');
+\`\`\`
+
+**Changing Content:**
+\`\`\`javascript
+// Change text
+title.textContent = 'New Title!';
+
+// Change HTML
+title.innerHTML = '<strong>Bold Title!</strong>';
+
+// Change styles
+title.style.color = 'blue';
+title.style.fontSize = '24px';
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 DOM Challenge",
+                        text: `**Your Task:**
+1. Create HTML with a heading and button
+2. Use JavaScript to change the heading text when button is clicked
+3. Change the heading color
+4. Add a new paragraph element dynamically`
+                    }
+                }
+            },
+            events: {
+                title: "Events & Advanced DOM",
+                description: "Master advanced DOM techniques! Create, modify, and remove elements dynamically for truly interactive experiences.",
+                content: {
+                    concept: {
+                        title: "🎮 What are Events?",
+                        text: `Events are things that happen in the browser that you can respond to:
+
+• User clicks a button → click event
+• User types in input → input event  
+• Page finishes loading → load event
+• Mouse moves over element → mouseover event
+
+JavaScript can "listen" for these events and respond!`
+                    },
+                    example: {
+                        title: "⚡ Event Examples",
+                        text: `**Event Listeners:**
+\`\`\`javascript
+// Button click
+button.addEventListener('click', function() {
+    alert('Button clicked!');
+});
+
+// Input changes
+input.addEventListener('input', function(event) {
+    console.log('User typed:', event.target.value);
+});
+
+// Modern arrow function syntax
+button.addEventListener('click', () => {
+    console.log('Arrow function click!');
+});
+\`\`\`
+
+**Creating Elements:**
+\`\`\`javascript
+// Create new element
+const newDiv = document.createElement('div');
+newDiv.textContent = 'Hello from JavaScript!';
+newDiv.className = 'my-class';
+
+// Add to page
+document.body.appendChild(newDiv);
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 Event Challenge",
+                        text: `**Your Task:**
+1. Create a form with input and button
+2. Listen for button clicks
+3. When clicked, create a new div with the input text
+4. Add the new div to the page
+5. Bonus: Add a delete button to each new div!`
+                    }
+                }
+            },
+            async: {
+                title: "Async JavaScript",
+                description: "Master asynchronous programming! Handle API calls, promises, and async operations like a pro.",
+                content: {
+                    concept: {
+                        title: "⏰ What is Async?",
+                        text: `Asynchronous code doesn't wait! It lets other code run while waiting for slow operations.
+
+Think of ordering food:
+• **Synchronous**: Wait in line, order, wait for food, then leave
+• **Asynchronous**: Order food, get a number, do other things while waiting
+
+JavaScript can do multiple things at once!`
+                    },
+                    example: {
+                        title: "🔄 Async Examples",
+                        text: `**Promises:**
+\`\`\`javascript
+// Creating a promise
+const fetchData = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('Data loaded!');
+    }, 2000);
+});
+
+fetchData.then(data => {
+    console.log(data); // "Data loaded!" after 2 seconds
+});
+\`\`\`
+
+**Async/Await:**
+\`\`\`javascript
+async function loadUserData() {
+    try {
+        const response = await fetch('/api/user');
+        const data = await response.json();
+        console.log('User data:', data);
+    } catch (error) {
+        console.log('Error:', error);
+    }
+}
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 Async Challenge",
+                        text: `**Your Task:**
+1. Create a function that returns a Promise
+2. Use setTimeout to simulate a delay
+3. Use async/await to call your function
+4. Handle both success and error cases`
+                    }
+                }
+            },
+            api: {
+                title: "API Requests",
+                description: "Learn to fetch data from the internet! Connect your apps to external services and APIs.",
+                content: {
+                    concept: {
+                        title: "🌍 What are APIs?",
+                        text: `APIs (Application Programming Interfaces) let your code talk to other services on the internet.
+
+Think of APIs like waiters in a restaurant:
+• You (your code) ask the waiter (API) for food
+• The waiter goes to the kitchen (external service)
+• The waiter brings back your order (data)
+
+APIs deliver data instead of food!`
+                    },
+                    example: {
+                        title: "📡 API Examples",
+                        text: `**Fetch API:**
+\`\`\`javascript
+// Get data from an API
+fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(users => {
+        console.log('Users:', users);
+    })
+    .catch(error => {
+        console.log('Error:', error);
+    });
+\`\`\`
+
+**With Async/Await:**
+\`\`\`javascript
+async function getUsers() {
+    try {
+        const response = await fetch('/api/users');
+        const users = await response.json();
+        return users;
+    } catch (error) {
+        console.log('Failed to fetch users:', error);
+        return [];
+    }
+}
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 API Challenge",
+                        text: `**Your Task:**
+1. Use fetch to get data from a public API
+2. Display the data on your webpage
+3. Handle loading states
+4. Handle errors gracefully
+5. Try: jsonplaceholder.typicode.com for practice!`
+                    }
+                }
+            },
+            error_handling: {
+                title: "Error Handling",
+                description: "Learn to handle errors gracefully and build robust applications that don't break.",
+                content: {
+                    concept: {
+                        title: "🛡️ What is Error Handling?",
+                        text: `Error handling is preparing for things to go wrong in your code.
+
+Think of error handling like having insurance:
+• You hope nothing bad happens
+• But if it does, you're prepared
+• Your app keeps working instead of crashing
+
+Good error handling makes your code bulletproof!`
+                    },
+                    example: {
+                        title: "🚨 Error Handling Examples",
+                        text: `**Try/Catch:**
+\`\`\`javascript
+try {
+    // Code that might fail
+    const data = JSON.parse(invalidJson);
+    console.log(data);
+} catch (error) {
+    // Handle the error
+    console.log('Oops! Invalid JSON:', error.message);
+}
+\`\`\`
+
+**With Async Functions:**
+\`\`\`javascript
+async function safeApiCall() {
+    try {
+        const response = await fetch('/api/data');
+        if (!response.ok) {
+            throw new Error('API call failed');
+        }
+        return await response.json();
+    } catch (error) {
+        console.log('Error fetching data:', error);
+        return null; // Safe fallback
+    }
+}
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 Error Handling Challenge",
+                        text: `**Your Task:**
+1. Write a function that might throw an error
+2. Wrap it in try/catch
+3. Create different types of errors
+4. Handle each error type appropriately
+5. Always provide user-friendly error messages!`
+                    }
+                }
+            }
+        }
+    },
+    ka: {
+        // UI Elements
+        ui: {
+            title: "AndLearn - ინტერაქტიული JavaScript გაკვეთილები",
+            creator: "შექმნილია ლუკა ფარტენაძის მიერ",
+            languageName: "ქართული",
+            runCode: "▶️ კოდის გაშვება",
+            reset: "🔄 დაბრუნება",
+            copy: "📋 კოპირება",
+            clear: "🗑️ გასუფთავება",
+            clearConsole: "🧹 გასუფთავება",
+            previous: "← წინა",
+            next: "შემდეგი →",
+            practiceTask: "🎯 პრაქტიკული ამოცანა",
+            tryItYourself: "💻 სცადეთ თავად",
+            output: "📺 შედეგი",
+            placeholder: "// დაიწყეთ კოდირება აქ...\n// სცადეთ ზემოთ მოცემული მაგალითები ან დაწერეთ თქვენი კოდი!\n\nconsole.log('გამარჯობა, მსოფლიო!');"
+        },
+        // Tutorial Navigation
+        navigation: {
+            variables: "ცვლადები და მონაცემთა ტიპები",
+            functions: "ფუნქციები",
+            controlflow: "მართვის ნაკადი",
+            arrays: "მასივები და ობიექტები ღრმად",
+            advanced_functions: "ფუნქციები + მასივები და ობიექტები",
+            advanced_arrays: "მასივების გაუმჯობესებული მეთოდები",
+            typescript: "TypeScript-ის შესავალი",
+            dom: "DOM მანიპულირება",
+            events: "მოვლენები და გაუმჯობესებული DOM",
+            async: "ასინქრონული JavaScript",
+            api: "API მოთხოვნები",
+            error_handling: "შეცდომების მართვა"
+        },
+        // Tutorial Content
+        tutorials: {
+            variables: {
+                title: "ცვლადები JavaScript-ში",
+                description: "შეისწავლეთ JavaScript ცვლადების, მონაცემთა ტიპებისა და ძირითადი სინტაქსის საფუძვლები.",
+                content: {
+                    concept: {
+                        title: "📦 რა არის ცვლადები?",
+                        text: `ცვლადები არის ეტიკეტირებული ყუთები, რომლებიც ინახავენ ინფორმაციას. წარმოიდგინეთ, რომ თქვენს ოთახში გაქვთ ყუთები. ყოველ ყუთს აქვს ეტიკეტი და ინახავს რაღაც განსხვავებულს. ცვლადები იგივენაირად მუშაობენ!
+
+JavaScript-ში ცვლადებს ვქმნით ამ საკვანძო სიტყვებით:
+• **let** - რამისთვისაც, რაც შეიძლება შეიცვალოს (როგორც თქვენი ასაკი)
+• **const** - რამისთვისაც, რაც იგივე რჩება (როგორც თქვენი სახელი)
+• **var** - ძველი გზა (ამას ახლა აღარ ვიყენებთ)
+
+წარმოიდგინეთ 'let' როგორც ყუთი, რომელშიც ახალი ნივთების ჩადება შეგიძლიათ, ხოლო 'const' როგორც ყუთი, რომელიც დალუქულია!`
+                    },
+                    example: {
+                        title: "🎭 მონაცემების სხვადასხვა ტიპები",
+                        text: `JavaScript-ს შეუძლია შეინახოს ინფორმაციის სხვადასხვა ტიპები:
+
+**ტექსტი (String)** - სიტყვები და წინადადებები:
+\`\`\`javascript
+const myName = "ლუკა";
+const greeting = "გამარჯობა მსოფლიო!";
+\`\`\`
+
+**რიცხვები** - ნებისმიერი რიცხვი:
+\`\`\`javascript
+let age = 25;
+const pi = 3.14;
+\`\`\`
+
+**მართალი/ცრუ (Boolean)** - კი ან არა პასუხები:
+\`\`\`javascript
+const isStudent = true;
+const isRaining = false;
+\`\`\`
+
+**სიები (Array)** - მრავალი ელემენტი:
+\`\`\`javascript
+const colors = ["წითელი", "ლურჯი", "მწვანე"];
+const numbers = [1, 2, 3, 4, 5];
+\`\`\`
+
+**ობიექტები** - რთული ინფორმაცია:
+\`\`\`javascript
+const person = {
+    name: "ლუკა",
+    age: 25,
+    city: "თბილისი"
+};
+\`\`\`
+
+წარმოიდგინეთ, როგორც კონტეინერების სხვადასხვა ტიპები - ზოგი ინახავს ტექსტს, ზოგი რიცხვებს, ზოგი ნივთების სიებს!`
+                    },
+                    task: {
+                        title: "💻 ვიპრაქტიკოთ!",
+                        text: `**თქვენი ამოცანა:**
+1. შექმენით ცვლადი თქვენი სახელისთვის \`const\`-ის გამოყენებით
+2. შექმენით ცვლადი თქვენი ასაკისთვის \`let\`-ის გამოყენებით
+3. დაპრინტეთ ორივე კონსოლში
+
+სცადეთ ქვემოთ მოცემულ კოდის რედაქტორში!`
+                    }
+                }
+            },
+            functions: {
+                title: "ფუნქციები JavaScript-ში",
+                description: "ფუნქციები არის როგორც მაგიური რეცეპტები - მისცეთ ინგრედიენტები (შეყვანა) და ისინი ახალ რამეს შექმნიან!",
+                content: {
+                    concept: {
+                        title: "⚡ რა არის ფუნქციები?",
+                        text: `ფუნქციები არის როგორც მაგიური რეცეპტები JavaScript-ში! მისცემთ ინგრედიენტებს (რასაც პარამეტრებს ეწოდება), ისინი რაღაცას აკეთებენ ამ ინგრედიენტებით, და შემდეგ გიბრუნებენ შედეგს.
+
+წარმოიდგინეთ ბლენდერი:
+• ჩადებთ ხილს (შეყვანა)
+• ის ააზავებს (პროცესი)
+• იღებთ სმუზის (გამოტანა)
+
+ფუნქციები იგივენაირად მუშაობენ!`
+                    },
+                    example: {
+                        title: "🍰 ფუნქციების მაგალითები",
+                        text: `**მარტივი ფუნქცია:**
+\`\`\`javascript
+function sayHello() {
+    console.log("გამარჯობა!");
+}
+sayHello(); // ფუნქციის გამოძახება
+\`\`\`
+
+**ფუნქცია პარამეტრებით:**
+\`\`\`javascript
+function greetPerson(name) {
+    console.log("გამარჯობა, " + name + "!");
+}
+greetPerson("ლუკა"); // შედეგი: "გამარჯობა, ლუკა!"
+\`\`\`
+
+**ფუნქცია, რომელიც აბრუნებს მნიშვნელობას:**
+\`\`\`javascript
+function addNumbers(a, b) {
+    return a + b;
+}
+const result = addNumbers(5, 3); // result = 8
+\`\`\`
+
+**თანამედროვე Arrow ფუნქციები:**
+\`\`\`javascript
+const multiply = (x, y) => x * y;
+console.log(multiply(4, 5)); // შედეგი: 20
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 შექმენით თქვენი საკუთარი ფუნქცია",
+                        text: `**თქვენი ამოცანა:**
+1. შექმენით ფუნქცია სახელწოდებით \`introduce\`, რომელიც იღებს სახელსა და ასაკს პარამეტრებად
+2. გახადეთ ის დააბრუნოს სტრინგი როგორიცაა "გამარჯობა, მე ვარ [სახელი] და [ასაკი] წლის ვარ"
+3. გამოიძახეთ თქვენი ფუნქცია თქვენი სახელითა და ასაკით
+4. დაპრინტეთ შედეგი კონსოლში`
+                    }
+                }
+            },
+            controlflow: {
+                title: "მართვის ნაკადი JavaScript-ში",
+                description: "ისწავლეთ თქვენი კოდის გონიერად გაკეთება! ასწავლეთ გადაწყვეტილებების მიღება და ამოცანების ავტომატურად გამეორება.",
+                content: {
+                    concept: {
+                        title: "🔄 რა არის მართვის ნაკადი?",
+                        text: `მართვის ნაკადი არის თუ როგორ იღებს თქვენი კოდი გადაწყვეტილებებს და იმეორებს მოქმედებებს. ეს არის როგორც ტვინის მიცემა თქვენს კოდს!
+
+წარმოიდგინეთ სალიგე შუქების მსგავსად:
+• **თუ** შუქი მწვანეა → იარეთ
+• **სხვაგვარად თუ** შუქი ყვითელია → შენელდით  
+• **სხვაგვარად** (წითელი შუქი) → გაჩერდით
+
+თქვენი კოდი შეიძლება მიიღოს მსგავსი გადაწყვეტილებები!`
+                    },
+                    example: {
+                        title: "🚦 გადაწყვეტილების მიღების მაგალითები",
+                        text: `**If განცხადებები:**
+\`\`\`javascript
+let age = 18;
+if (age >= 18) {
+    console.log("შეგიძლიათ ხმის მიცემა!");
+} else {
+    console.log("ძალიან ახალგაზრდა ხართ ხმის მისაცემად");
+}
+\`\`\`
+
+**ციკლები - მოქმედებების გამეორება:**
+\`\`\`javascript
+// დათვალეთ 1-დან 5-მდე
+for (let i = 1; i <= 5; i++) {
+    console.log("რიცხვი: " + i);
+}
+
+// While ციკლი
+let count = 0;
+while (count < 3) {
+    console.log("გამარჯობა " + count);
+    count++;
+}
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 მართვის ნაკადის პრაქტიკა",
+                        text: `**თქვენი ამოცანა:**
+1. შექმენით ცვლადი თქვენი საყვარელი რიცხვისთვის
+2. გამოიყენეთ if განცხადება რომ შეამოწმოთ არის თუ არა 10-ზე მეტი
+3. შექმენით ციკლი რომელიც დათვლის 1-დან თქვენს საყვარელ რიცხვამდე
+4. დაპრინტეთ ყოველი რიცხვი კონსოლში`
+                    }
+                }
+            },
+            arrays: {
+                title: "მასივები და ობიექტები ღრმად",
+                description: "ისწავლეთ მონაცემების კოლექციების ორგანიზება და მუშაობა - როგორც ციფრული საქაღალდე კარადები!",
+                content: {
+                    concept: {
+                        title: "🗂️ რა არის მასივები და ობიექტები?",
+                        text: `მასივები და ობიექტები არის გზები მრავალი ინფორმაციის ერთად შესანახად.
+
+**მასივები** არის როგორც დანომრილი სიები:
+• პოზიცია 0: "ვაშლი"
+• პოზიცია 1: "ბანანი"  
+• პოზიცია 2: "ნარინჯი"
+
+**ობიექტები** არის როგორც ეტიკეტირებული კონტეინერები:
+• name: "ლუკა"
+• age: 25
+• city: "თბილისი"`
+                    },
+                    example: {
+                        title: "📚 მასივებისა და ობიექტების მაგალითები",
+                        text: `**მასივებთან მუშაობა:**
+\`\`\`javascript
+const fruits = ["ვაშლი", "ბანანი", "ნარინჯი"];
+console.log(fruits[0]); // "ვაშლი"
+fruits.push("ყურძენი"); // ახალი ელემენტის დამატება
+console.log(fruits.length); // 4
+\`\`\`
+
+**ობიექტებთან მუშაობა:**
+\`\`\`javascript
+const person = {
+    name: "ლუკა",
+    age: 25,
+    greet: function() {
+        return "გამარჯობა, მე ვარ " + this.name;
+    }
+};
+console.log(person.name); // "ლუკა"
+console.log(person.greet()); // "გამარჯობა, მე ვარ ლუკა"
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 შექმენით მონაცემთა სტრუქტურები",
+                        text: `**თქვენი ამოცანა:**
+1. შექმენით მასივი თქვენი საყვარელი საკვების
+2. შექმენით ობიექტი თქვენს წარმომადგენლობაზე (სახელი, ასაკი, ჰობი)
+3. დაამატეთ ახალი საკვები თქვენს მასივში
+4. დაპრინტეთ თქვენი ობიექტის თვისებები კონსოლში`
+                    }
+                }
+            },
+            advanced_functions: {
+                title: "ფუნქციები + მასივები და ობიექტები",
+                description: "ახლა მზად ხართ საბოლოო კომბინაციისთვის - ფუნქციები მუშაობენ მასივებთან და ობიექტებთან როგორც პროფესიონალები!",
+                content: {
+                    concept: {
+                        title: "🎯 ფუნქციების გაუმჯობესებული ტექნიკები",
+                        text: `ახლა ვაერთიანებთ ფუნქციებს მასივებთან და ობიექტებთან ძლიერი პროგრამების შესაქმნელად!
+
+ფუნქციებს შეუძლიათ:
+• მასივებისა და ობიექტების პარამეტრებად მიღება
+• მასივებისა და ობიექტების დაბრუნება
+• მონაცემთა სტრუქტურების შეცვლა
+• არსებული მონაცემებისგან ახალი მონაცემების შექმნა`
+                    },
+                    example: {
+                        title: "🚀 გაუმჯობესებული მაგალითები",
+                        text: `**ფუნქციები მასივებთან:**
+\`\`\`javascript
+function findLongestName(names) {
+    let longest = "";
+    for (let name of names) {
+        if (name.length > longest.length) {
+            longest = name;
+        }
+    }
+    return longest;
+}
+
+const names = ["ალისა", "ბობი", "ქრისტოფერე"];
+console.log(findLongestName(names)); // "ქრისტოფერე"
+\`\`\`
+
+**ფუნქციები ობიექტებთან:**
+\`\`\`javascript
+function createStudent(name, grade) {
+    return {
+        name: name,
+        grade: grade,
+        isPass: grade >= 60
+    };
+}
+
+const student = createStudent("ლუკა", 85);
+console.log(student.isPass); // true
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 გაუმჯობესებული გამოწვევა",
+                        text: `**თქვენი ამოცანა:**
+1. შექმენით ფუნქცია რომელიც იღებს რიცხვების მასივს და აბრუნებს საშუალოს
+2. შექმენით ფუნქცია რომელიც იღებს ადამიანის ობიექტს და აბრუნებს მისალმებას
+3. გატესტეთ ორივე ფუნქცია თქვენი მონაცემებით`
+                    }
+                }
+            },
+            advanced_arrays: {
+                title: "მასივების გაუმჯობესებული მეთოდები",
+                description: "დაეუფლეთ მასივის ძლიერ მეთოდებს როგორიცაა map, filter და reduce - თქვენი მონაცემების მანიპულირების ზეძალები!",
+                content: {
+                    concept: {
+                        title: "🚀 მასივის ზეძალები",
+                        text: `თანამედროვე JavaScript-ს აქვს შესანიშნავი ჩაშენებული მასივის მეთოდები რომლებიც მონაცემებთან მუშაობას ძალიან მარტივს ხდის!
+
+• **map()** - ყოველი ელემენტის გარდაქმნა
+• **filter()** - მხოლოდ კრიტერიუმებთან შესაბამისი ელემენტების შენახვა
+• **reduce()** - ყველა ელემენტის ერთ შედეგში გაერთიანება
+• **find()** - პირველი შესაბამისი ელემენტის პოვნა`
+                    },
+                    example: {
+                        title: "⚡ მეთოდების მაგალითები",
+                        text: `**Map - მონაცემების გარდაქმნა:**
+\`\`\`javascript
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // [2, 4, 6, 8]
+\`\`\`
+
+**Filter - მონაცემების შერჩევა:**
+\`\`\`javascript
+const ages = [15, 22, 18, 30, 16];
+const adults = ages.filter(age => age >= 18);
+console.log(adults); // [22, 18, 30]
+\`\`\`
+
+**Reduce - მონაცემების გაერთიანება:**
+\`\`\`javascript
+const prices = [10, 20, 30];
+const total = prices.reduce((sum, price) => sum + price, 0);
+console.log(total); // 60
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 მასივის მეთოდების გამოწვევა",
+                        text: `**თქვენი ამოცანა:**
+1. შექმენით რიცხვების მასივი
+2. გამოიყენეთ map ყოველი რიცხვის გასაორმაგებლად
+3. გამოიყენეთ filter მხოლოდ ლუწი რიცხვების შესანარჩუნებლად
+4. გამოიყენეთ reduce ყველა რიცხვის ჯამის საპოვნელად`
+                    }
+                }
+            },
+            typescript: {
+                title: "TypeScript-ის შესავალი",
+                description: "შეისწავლეთ TypeScript - JavaScript ზეძალებით! დაამატეთ ტიპები შეცდომების დაჭერისთვის მანამ სანამ ისინი მოხდება.",
+                content: {
+                    concept: {
+                        title: "📘 რა არის TypeScript?",
+                        text: `TypeScript არის JavaScript ტიპებით! ის დაგეხმარებათ შეცდომების დაჭერაში მანამ სანამ თქვენი კოდი გაეშვება.
+
+წარმოიდგინეთ ტიპები როგორც ეტიკეტები ყუთებზე:
+• string: "გამარჯობა მსოფლიო"
+• number: 42
+• boolean: true/false
+• array: [1, 2, 3]
+
+TypeScript ამოწმებს ამ ეტიკეტებს რომ დარწმუნდეს რომ სწორ ტიპის მონაცემებს იყენებთ!`
+                    },
+                    example: {
+                        title: "💻 TypeScript-ის მაგალითები",
+                        text: `**ტიპის ანოტაციები:**
+\`\`\`typescript
+let name: string = "ლუკა";
+let age: number = 25;
+let isStudent: boolean = true;
+
+function greet(person: string): string {
+    return "გამარჯობა, " + person;
+}
+\`\`\`
+
+**ინტერფეისები:**
+\`\`\`typescript
+interface Person {
+    name: string;
+    age: number;
+    email?: string; // არასავალდებულო თვისება
+}
+
+const user: Person = {
+    name: "ლუკა",
+    age: 25
+};
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 TypeScript-ის პრაქტიკა",
+                        text: `**თქვენი ამოცანა:**
+1. შექმენით ფუნქცია ტიპირებული პარამეტრებით
+2. განსაზღვრეთ ინტერფეისი წიგნისთვის (სათაური, ავტორი, გვერდები)
+3. შექმენით წიგნის ობიექტი თქვენი ინტერფეისის გამოყენებით
+4. სცადეთ კოდი TypeScript-ის ონლაინ პლეიგრაუნდში!`
+                    }
+                }
+            },
+            dom: {
+                title: "DOM მანიპულირება",
+                description: "ისწავლეთ ვებ გვერდების კონტროლი! გახადეთ თქვენი ვებსაიტები ინტერაქტიული კონტენტის, სტილებისა და მომხმარებლის მოქმედებებზე რეაგირებით.",
+                content: {
+                    concept: {
+                        title: "🌐 რა არის DOM?",
+                        text: `DOM (Document Object Model) არის თუ როგორ ხედავს და აკონტროლებს JavaScript ვებ გვერდებს.
+
+წარმოიდგინეთ ვებ გვერდი ხის მსგავსად:
+• ღერო არის <html> ელემენტი
+• ტოტები არის <body>, <head>, და ა.შ.
+• ფოთლები არის <p>, <div>, <button>, და ა.შ.
+
+JavaScript-ს შეუძლია შეცვალოს ამ ხის ნებისმიერი ნაწილი!`
+                    },
+                    example: {
+                        title: "🎮 DOM-ის მაგალითები",
+                        text: `**ელემენტების შერჩევა:**
+\`\`\`javascript
+// ელემენტის მიღება ID-ით
+const title = document.getElementById('title');
+
+// ელემენტების მიღება კლასით
+const buttons = document.getElementsByClassName('btn');
+
+// თანამედროვე გზა querySelector-ით
+const firstButton = document.querySelector('.btn');
+\`\`\`
+
+**კონტენტის შეცვლა:**
+\`\`\`javascript
+// ტექსტის შეცვლა
+title.textContent = 'ახალი სათაური!';
+
+// HTML-ის შეცვლა
+title.innerHTML = '<strong>მუქი სათაური!</strong>';
+
+// სტილების შეცვლა
+title.style.color = 'blue';
+title.style.fontSize = '24px';
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 DOM-ის გამოწვევა",
+                        text: `**თქვენი ამოცანა:**
+1. შექმენით HTML სათაურითა და ღილაკით
+2. გამოიყენეთ JavaScript სათაურის ტექსტის შესაცვლელად ღილაკზე დაჭერისას
+3. შეცვალეთ სათაურის ფერი
+4. დინამიურად დაამატეთ ახალი პარაგრაფის ელემენტი`
+                    }
+                }
+            },
+            events: {
+                title: "მოვლენები და გაუმჯობესებული DOM",
+                description: "დაეუფლეთ DOM-ის პროგრესულ ტექნიკებს! შექმენით, შეცვალეთ და ამოიღეთ ელემენტები დინამიურად ნამდვილად ინტერაქტიული გამოცდილებისთვის.",
+                content: {
+                    concept: {
+                        title: "🎮 რა არის მოვლენები?",
+                        text: `მოვლენები არის რაღაცები რაც ხდება ბრაუზერში რაზეც შეგიძლიათ უპასუხოთ:
+
+• მომხმარებელი აჭერს ღილაკს → click მოვლენა
+• მომხმარებელი იწერს ტექსტში → input მოვლენა  
+• გვერდი სრულდება ჩატვირთვა → load მოვლენა
+• მაუსი მოძრაობს ელემენტზე → mouseover მოვლენა
+
+JavaScript-ს შეუძლია "მოუსმინოს" ამ მოვლენებს და უპასუხოს!`
+                    },
+                    example: {
+                        title: "⚡ მოვლენების მაგალითები",
+                        text: `**მოვლენების მსმენელები:**
+\`\`\`javascript
+// ღილაკზე დაჭერა
+button.addEventListener('click', function() {
+    alert('ღილაკი დაჭერილია!');
+});
+
+// ტექსტის შეცვლა
+input.addEventListener('input', function(event) {
+    console.log('მომხმარებელმა დაწერა:', event.target.value);
+});
+
+// თანამედროვე arrow ფუნქციის სინტაქსი
+button.addEventListener('click', () => {
+    console.log('Arrow ფუნქციის დაჭერა!');
+});
+\`\`\`
+
+**ელემენტების შექმნა:**
+\`\`\`javascript
+// ახალი ელემენტის შექმნა
+const newDiv = document.createElement('div');
+newDiv.textContent = 'გამარჯობა JavaScript-იდან!';
+newDiv.className = 'my-class';
+
+// გვერდზე დამატება
+document.body.appendChild(newDiv);
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 მოვლენების გამოწვევა",
+                        text: `**თქვენი ამოცანა:**
+1. შექმენით ფორმა ტექსტის ველითა და ღილაკით
+2. მოუსმინეთ ღილაკის დაჭერას
+3. როცა დაჭერილია, შექმენით ახალი div ტექსტის ველის შინაარსით
+4. დაამატეთ ახალი div გვერდზე
+5. ბონუსი: დაამატეთ წაშლის ღილაკი ყოველ ახალ div-ზე!`
+                    }
+                }
+            },
+            async: {
+                title: "ასინქრონული JavaScript",
+                description: "დაეუფლეთ ასინქრონულ პროგრამირებას! მართეთ API გამოძახებები, პრომისები და ასინქრონული ოპერაციები როგორც პროფესიონალი.",
+                content: {
+                    concept: {
+                        title: "⏰ რა არის ასინქრონული?",
+                        text: `ასინქრონული კოდი არ ელოდება! ის სხვა კოდს აძლევს შესაძლებლობას გაეშვას ნელი ოპერაციების მოლოდინისას.
+
+წარმოიდგინეთ საკვების შეკვეთა:
+• **სინქრონული**: რიგში დგომა, შეკვეთა, საკვების მოლოდინა, შემდეგ წასვლა
+• **ასინქრონული**: საკვების შეკვეთა, ნომრის მიღება, მოლოდინისას სხვა საქმეების კეთება
+
+JavaScript-ს შეუძლია ერთდროულად რამდენიმე რამის კეთება!`
+                    },
+                    example: {
+                        title: "🔄 ასინქრონული მაგალითები",
+                        text: `**პრომისები:**
+\`\`\`javascript
+// პრომისის შექმნა
+const fetchData = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('მონაცემები ჩაიტვირთა!');
+    }, 2000);
+});
+
+fetchData.then(data => {
+    console.log(data); // "მონაცემები ჩაიტვირთა!" 2 წამის შემდეგ
+});
+\`\`\`
+
+**Async/Await:**
+\`\`\`javascript
+async function loadUserData() {
+    try {
+        const response = await fetch('/api/user');
+        const data = await response.json();
+        console.log('მომხმარებლის მონაცემები:', data);
+    } catch (error) {
+        console.log('შეცდომა:', error);
+    }
+}
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 ასინქრონული გამოწვევა",
+                        text: `**თქვენი ამოცანა:**
+1. შექმენით ფუნქცია რომელიც აბრუნებს Promise-ს
+2. გამოიყენეთ setTimeout დაყოვნების იმიტაციისთვის
+3. გამოიყენეთ async/await თქვენი ფუნქციის გამოსაძახებლად
+4. მოაგვარეთ როგორც წარმატების, ისე შეცდომის შემთხვევები`
+                    }
+                }
+            },
+            api: {
+                title: "API მოთხოვნები",
+                description: "ისწავლეთ ინტერნეტიდან მონაცემების მოტანა! დააკავშირეთ თქვენი აპლიკაციები გარე სერვისებთან და API-ებთან.",
+                content: {
+                    concept: {
+                        title: "🌍 რა არის API-ები?",
+                        text: `API-ები (Application Programming Interfaces) სადაც თქვენი კოდს საშუალება აძლევს ისაუბროს ინტერნეტის სხვა სერვისებთან.
+
+წარმოიდგინეთ API-ები როგორც მიმტანები რესტორანში:
+• თქვენ (თქვენი კოდი) სთხოვთ მიმტანს (API) საკვებს
+• მიმტანი მიდის სამზარეულოში (გარე სერვისი)
+• მიმტანი გიბრუნებთ თქვენს შეკვეთას (მონაცემები)
+
+API-ები მონაცემებს მოგაწვდიან საკვების ნაცვლად!`
+                    },
+                    example: {
+                        title: "📡 API-ის მაგალითები",
+                        text: `**Fetch API:**
+\`\`\`javascript
+// API-დან მონაცემების მოტანა
+fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(users => {
+        console.log('მომხმარებლები:', users);
+    })
+    .catch(error => {
+        console.log('შეცდომა:', error);
+    });
+\`\`\`
+
+**Async/Await-ით:**
+\`\`\`javascript
+async function getUsers() {
+    try {
+        const response = await fetch('/api/users');
+        const users = await response.json();
+        return users;
+    } catch (error) {
+        console.log('მომხმარებლების მოტანა ვერ მოხერხდა:', error);
+        return [];
+    }
+}
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 API-ის გამოწვევა",
+                        text: `**თქვენი ამოცანა:**
+1. გამოიყენეთ fetch საჯარო API-დან მონაცემების მოსატანად
+2. აჩვენეთ მონაცემები თქვენს ვებ გვერდზე
+3. მოაგვარეთ ჩატვირთვის მდგომარეობები
+4. ტანჯვით მოაგვარეთ შეცდომები
+5. სცადეთ: jsonplaceholder.typicode.com პრაქტიკისთვის!`
+                    }
+                }
+            },
+            error_handling: {
+                title: "შეცდომების მართვა",
+                description: "ისწავლეთ შეცდომების გამართულად მოგვარება და მტკიცე აპლიკაციების შენება რომლებიც არ იშლება.",
+                content: {
+                    concept: {
+                        title: "🛡️ რა არის შეცდომების მართვა?",
+                        text: `შეცდომების მართვა არის მზადება იმისთვის რომ რაღაც არასწორად წავიდეს თქვენს კოდში.
+
+წარმოიდგინეთ შეცდომების მართვა როგორც დაზღვევა:
+• იმედოვნებთ რომ ცუდი არაფერი მოხდება
+• მაგრამ თუ მოხდა, მზად ხართ
+• თქვენი აპი გააგრძელებს მუშაობას ნაცვლად დაშლისა
+
+კარგი შეცდომების მართვა თქვენს კოდს ანტისახელურს ხდის!`
+                    },
+                    example: {
+                        title: "🚨 შეცდომების მართვის მაგალითები",
+                        text: `**Try/Catch:**
+\`\`\`javascript
+try {
+    // კოდი რომელიც შეიძლება ჩავარდეს
+    const data = JSON.parse(invalidJson);
+    console.log(data);
+} catch (error) {
+    // შეცდომის მოგვარება
+    console.log('ოჰ! არასწორი JSON:', error.message);
+}
+\`\`\`
+
+**ასინქრონულ ფუნქციებთან:**
+\`\`\`javascript
+async function safeApiCall() {
+    try {
+        const response = await fetch('/api/data');
+        if (!response.ok) {
+            throw new Error('API გამოძახება ჩავარდა');
+        }
+        return await response.json();
+    } catch (error) {
+        console.log('მონაცემების მოტანისას შეცდომა:', error);
+        return null; // უსაფრთხო ალტერნატივა
+    }
+}
+\`\`\``
+                    },
+                    task: {
+                        title: "🎯 შეცდომების მართვის გამოწვევა",
+                        text: `**თქვენი ამოცანა:**
+1. დაწერეთ ფუნქცია რომელიც შეიძლება შეცდომა გააჩინოს
+2. ჩაახვიეთ try/catch-ში
+3. შექმენით სხვადასხვა ტიპის შეცდომები
+4. მოაგვარეთ ყოველი შეცდომის ტიპი შესაბამისად
+5. ყოველთვის მიაწოდეთ მომხმარებელზე ორიენტირებული შეცდომის შეტყობინებები!`
+                    }
+                }
+            }
+        }
+    }
+};
+
+// Enhanced Translation Service
+class TranslationService {
+    constructor() {
+        this.currentLang = currentLanguage;
+        this.translations = translations;
+    }
+
+    // Get translation with fallback to English
+    t(key, lang = this.currentLang) {
+        const keys = key.split('.');
+        let result = this.translations[lang];
+        
+        for (const k of keys) {
+            if (result && result[k]) {
+                result = result[k];
+            } else {
+                // Fallback to English if Georgian translation not found
+                result = this.translations['en'];
+                for (const k of keys) {
+                    if (result && result[k]) {
+                        result = result[k];
+                    } else {
+                        return key; // Return key if not found
+                    }
+                }
+                break;
+            }
+        }
+        
+        return result || key;
+    }
+
+    // Set current language
+    setLanguage(lang) {
+        if (this.translations[lang]) {
+            this.currentLang = lang;
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+            return true;
+        }
+        return false;
+    }
+
+    // Get current language
+    getCurrentLanguage() {
+        return this.currentLang;
+    }
+
+    // Get available languages
+    getAvailableLanguages() {
+        return Object.keys(this.translations);
+    }
+}
+
+// Initialize translation service
+const translationService = new TranslationService();
 
 // Theme Management
 class ThemeManager {
@@ -16,19 +1455,20 @@ class ThemeManager {
 
     applyTheme(theme) {
         this.currentTheme = theme;
-        document.documentElement.setAttribute('data-theme', theme);
+        const toggleSwitch = document.querySelector('.toggle-switch');
+        
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            if (toggleSwitch) toggleSwitch.classList.add('active');
+        } else {
+            document.documentElement.classList.remove('dark');
+            if (toggleSwitch) toggleSwitch.classList.remove('active');
+        }
+        
         localStorage.setItem('theme', theme);
     }
 
     toggle() {
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            themeToggle.classList.add('switching');
-            setTimeout(() => {
-                themeToggle.classList.remove('switching');
-            }, 600);
-        }
-        
         const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
         this.applyTheme(newTheme);
     }
@@ -41,266 +1481,8 @@ class ThemeManager {
     }
 }
 
-// Comprehensive Translation Service
-class TranslationService {
-    constructor() {
-        this.translations = this.initializeTranslations();
-    }
-
-    initializeTranslations() {
-        return {
-            // Navigation and UI
-            'Variables': 'ცვლადები',
-            'Functions': 'ფუნქციები', 
-            'Control Flow': 'მართვის ნაკადი',
-            'Arrays & Objects': 'მასივები და ობიექტები',
-            'Advanced Functions': 'პროგრესული ფუნქციები',
-            'Advanced Arrays': 'პროგრესული მასივები',
-            'TypeScript Basics': 'TypeScript-ის საფუძვლები',
-            'DOM Manipulation': 'DOM მანიპულირება',
-            'Events & Advanced DOM': 'მოვლენები და პროგრესული DOM',
-            'Async JavaScript': 'ასინქრონული JavaScript',
-            
-            // Common UI elements
-            'Practice Task': 'პრაქტიკული ამოცანა',
-            'Try it Yourself': 'სცადეთ თავად',
-            'Output': 'შედეგი',
-            'Run Code': 'კოდის გაშვება',
-            'Reset': 'დაბრუნება',
-            'Copy': 'კოპირება',
-            'Clear': 'გასუფთავება',
-            'Previous': 'წინა',
-            'Next': 'შემდეგი',
-            'Your Task:': 'თქვენი ამოცანა:',
-            
-            // Tutorial descriptions
-            'Learn the fundamentals of JavaScript variables, data types, and basic syntax.': 'შეისწავლეთ JavaScript ცვლადების, მონაცემთა ტიპებისა და ძირითადი სინტაქსის საფუძვლები.',
-            'Functions are like magical recipes - give them ingredients (inputs) and they create something new!': 'ფუნქციები არის როგორც მაგიური რეცეპტები - მისცეთ ინგრედიენტები (შეყვანა) და ისინი ახალ რამეს შექმნიან!',
-            'Learn to make your code smart! Teach it to make decisions and repeat tasks automatically.': 'ისწავლეთ თქვენი კოდის გონიერად გაკეთება! ასწავლეთ გადაწყვეტილებების მიღება და ამოცანების ავტომატურად გამეორება.',
-            'Learn to organize and work with collections of data - like digital filing cabinets!': 'ისწავლეთ მონაცემების კოლექციების ორგანიზება და მუშაობა - როგორც ციფრული საქაღალდე კარადები!',
-            'Now you\'re ready for the ultimate combo - functions working with arrays and objects like a pro!': 'ახლა მზად ხართ საბოლოო კომბინაციისთვის - ფუნქციები მუშაობენ მასივებთან და ობიექტებთან როგორც პროფესიონალები!',
-            'Master powerful array methods like map, filter, and reduce - your data manipulation superpowers!': 'დაეუფლეთ მასივის ძლიერ მეთოდებს როგორიცაა map, filter და reduce - თქვენი მონაცემების მანიპულირების ზეძალები!',
-            'Learn TypeScript - JavaScript with superpowers! Add types to catch errors before they happen.': 'შეისწავლეთ TypeScript - JavaScript ზეძალებით! დაამატეთ ტიპები შეცდომების დაჭერისთვის მანამ სანამ ისინი მოხდება.',
-            'Learn to control web pages! Make your websites interactive by changing content, styles, and responding to user actions.': 'ისწავლეთ ვებ გვერდების კონტროლი! გახადეთ თქვენი ვებსაიტები ინტერაქტიული კონტენტის, სტილებისა და მომხმარებლის მოქმედებებზე რეაგირებით.',
-            'Master advanced DOM techniques! Create, modify, and remove elements dynamically for truly interactive experiences.': 'დაეუფლეთ DOM-ის პროგრესულ ტექნიკებს! შექმენით, შეცვალეთ და ამოიღეთ ელემენტები დინამიურად ნამდვილად ინტერაქტიული გამოცდილებისთვის.',
-            'Master asynchronous programming! Handle API calls, promises, and async operations like a pro.': 'დაეუფლეთ ასინქრონულ პროგრამირებას! მართეთ API გამოძახებები, პრომისები და ასინქრონული ოპერაციები როგორც პროფესიონალი.',
-            
-            // Tutorial content translations
-            'Variables in JavaScript': 'ცვლადები JavaScript-ში',
-            'Let\'s learn about variables - think of them as boxes where you can store different things!': 'ვისწავლოთ ცვლადები - წარმოიდგინეთ ისინი, როგორც ყუთები, სადაც შეგიძლიათ შეინახოთ სხვადასხვა ნივთები!',
-            
-            // Section headers
-            '📦 What are Variables?': '📦 რა არის ცვლადები?',
-            '🎭 Different Types of Data': '🎭 მონაცემების სხვადასხვა ტიპები',
-            '💻 Let\'s Practice!': '💻 ვიპრაქტიკოთ!',
-            
-            // Detailed content
-            'Variables are like labeled boxes that store information': 'ცვლადები არის ეტიკეტირებული ყუთები, რომლებიც ინახავენ ინფორმაციას',
-            'Imagine you have boxes in your room. Each box has a label and stores something different. Variables work the same way!': 'წარმოიდგინეთ, რომ თქვენს ოთახში გაქვთ ყუთები. ყოველ ყუთს აქვს ეტიკეტი და ინახავს რაღაც განსხვავებულს. ცვლადები იგივენაირად მუშაობენ!',
-            'In JavaScript, we create variables using these keywords:': 'JavaScript-ში ცვლადებს ვქმნით ამ საკვანძო სიტყვებით:',
-            'for things that might change (like your age)': 'რამისთვისაც, რაც შეიძლება შეიცვალოს (როგორც თქვენი ასაკი)',
-            'for things that stay the same (like your name)': 'რამისთვისაც, რაც იგივე რჩება (როგორც თქვენი სახელი)',
-            'old way (we don\'t use this anymore)': 'ძველი გზა (ამას ახლა აღარ ვიყენებთ)',
-            'Think of \'let\' as a box you can put new things in, and \'const\' as a box that\'s sealed shut!': 'წარმოიდგინეთ \'let\' როგორც ყუთი, რომელშიც ახალი ნივთების ჩადება შეგიძლიათ, ხოლო \'const\' როგორც ყუთი, რომელიც დალუქულია!',
-            
-            'JavaScript can store different types of information:': 'JavaScript-ს შეუძლია შეინახოს ინფორმაციის სხვადასხვა ტიპები:',
-            'Text (String)': 'ტექსტი (String)',
-            'Words and sentences:': 'სიტყვები და წინადადებები:',
-            'Numbers': 'რიცხვები',
-            'Any number:': 'ნებისმიერი რიცხვი:',
-            'True/False (Boolean)': 'მართალი/ცრუ (Boolean)',
-            'Yes or no answers:': 'კი ან არა პასუხები:',
-            'Lists (Array)': 'სიები (Array)',
-            'Multiple items:': 'მრავალი ელემენტი:',
-            'Objects': 'ობიექტები',
-            'Complex information:': 'რთული ინფორმაცია:',
-            'Think of it like different types of containers - some hold text, some hold numbers, some hold lists of things!': 'წარმოიდგინეთ, როგორც კონტეინერების სხვადასხვა ტიპები - ზოგი ინახავს ტექსტს, ზოგი რიცხვებს, ზოგი ნივთების სიებს!',
-            
-            // Practice content
-            'Create a variable for your name using const': 'შექმენით ცვლადი თქვენი სახელისთვის const-ის გამოყენებით',
-            'Create a variable for your age using let': 'შექმენით ცვლადი თქვენი ასაკისთვის let-ის გამოყენებით',
-            'Print both to the console': 'დაპრინტეთ ორივე კონსოლში',
-            
-            // Common phrases and words
-            'Create': 'შექმენით',
-            'Try': 'სცადეთ',
-            'Example': 'მაგალითი',
-            'Result': 'შედეგი',
-            'Note': 'შენიშვნა',
-            'Important': 'მნიშვნელოვანი',
-            'Remember': 'გახსოვდეთ',
-            'Tip': 'რჩევა',
-            'Exercise': 'ვარჯიში',
-            'Solution': 'გამოსავალი',
-            'Explanation': 'განმარტება',
-            'Code': 'კოდი',
-            'Output': 'გამოტანა',
-            'Input': 'შეყვანა',
-            'Function': 'ფუნქცია',
-            'Variable': 'ცვლადი',
-            'Array': 'მასივი',
-            'Object': 'ობიექტი',
-            'String': 'სტრინგი',
-            'Number': 'რიცხვი',
-            'Boolean': 'ბულეანი',
-            'Error': 'შეცდომა',
-            'Success': 'წარმატება',
-            'Complete': 'დასრულება',
-            'Start': 'დაწყება',
-            'Finish': 'დამთავრება',
-            'Continue': 'გაგრძელება',
-            'Back': 'უკან',
-            'Forward': 'წინ',
-            'Up': 'ზევით',
-            'Down': 'ქვევით',
-            'Left': 'მარცხნივ',
-            'Right': 'მარჯვნივ',
-            'Save': 'შენახვა',
-            'Load': 'ჩატვირთვა',
-            'Edit': 'რედაქტირება',
-            'Delete': 'წაშლა',
-            'Add': 'დამატება',
-            'Remove': 'ამოღება',
-            'Update': 'განახლება',
-            'Refresh': 'განახლება',
-            'Submit': 'გაგზავნა',
-            'Cancel': 'გაუქმება',
-            'Confirm': 'დადასტურება',
-            'Close': 'დახურვა',
-            'Open': 'გახსნა',
-            'Show': 'ჩვენება',
-            'Hide': 'დამალვა',
-            'Enable': 'ჩართვა',
-            'Disable': 'გამორთვა',
-            'On': 'ჩართული',
-            'Off': 'გამორთული',
-            'Yes': 'კი',
-            'No': 'არა',
-            'OK': 'კარგი',
-            'Done': 'დასრულებული',
-            'Loading': 'იტვირთება',
-            'Please wait': 'გთხოვთ, მოითმინოთ',
-            'Thank you': 'გმადლობთ',
-            'Welcome': 'კეთილი იყოს თქვენი მობრძანება',
-            'Hello': 'გამარჯობა',
-            'Goodbye': 'ნახვამდის',
-            'Good morning': 'დილა მშვიდობისა',
-            'Good afternoon': 'დღე მშვიდობისა',
-            'Good evening': 'საღამო მშვიდობისა',
-            'Good night': 'ღამე მშვიდობისა',
-            'Help': 'დახმარება',
-            'About': 'შესახებ',
-            'Contact': 'კონტაქტი',
-            'Home': 'მთავარი',
-            'Profile': 'პროფილი',
-            'Settings': 'პარამეტრები',
-            'Search': 'ძებნა',
-            'Filter': 'ფილტრი',
-            'Sort': 'დალაგება',
-            'View': 'ნახვა',
-            'Print': 'ბეჭდვა',
-            'Download': 'ჩამოტვირთვა',
-            'Upload': 'ატვირთვა',
-            'Share': 'გაზიარება',
-            'Like': 'მოწონება',
-            'Comment': 'კომენტარი',
-            'Reply': 'პასუხი',
-            'Follow': 'გაყოლა',
-            'Unfollow': 'გაყოლის გაუქმება',
-            'Subscribe': 'გამოწერა',
-            'Unsubscribe': 'გამოწერის გაუქმება',
-            
-            // More comprehensive tutorial content
-            'Variables are the building blocks of programming': 'ცვლადები არის პროგრამირების მშენებლობითი ბლოკები',
-            'They allow us to store and manipulate data': 'ისინი საშუალებას გვაძლევს შევინახოთ და ვმართოთ მონაცემები',
-            'Every variable has a name and a value': 'ყოველ ცვლადს აქვს სახელი და მნიშვნელობა',
-            'We can change the value of variables declared with let': 'შეგვიძლია შევცვალოთ let-ით გამოცხადებული ცვლადების მნიშვნელობა',
-            'Variables declared with const cannot be changed': 'const-ით გამოცხადებული ცვლადები არ შეიძლება შეიცვალოს',
-            'Use meaningful names for your variables': 'გამოიყენეთ მნიშვნელოვანი სახელები თქვენი ცვლადებისთვის',
-            'Variable names should describe what they contain': 'ცვლადების სახელები უნდა აღწერდეს იმას, რასაც შეიცავენ',
-            
-            // Theme toggle
-            'Light Mode': 'ღია რეჟიმი',
-            'Dark Mode': 'მუქი რეჟიმი'
-        };
-    }
-
-    translate(text, fromLang = 'en', toLang = 'ka') {
-        if (fromLang === toLang) return text;
-        
-        // Check for exact match
-        if (this.translations[text]) {
-            return this.translations[text];
-        }
-        
-        // Try to find partial matches for longer text
-        let translatedText = text;
-        Object.entries(this.translations).forEach(([en, ka]) => {
-            translatedText = translatedText.replace(new RegExp(en.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), ka);
-        });
-        
-        return translatedText;
-    }
-
-    async translateElement(element, targetLang = 'ka') {
-        if (!element) return;
-        
-        const originalText = element.getAttribute('data-original-text') || element.textContent;
-        element.setAttribute('data-original-text', originalText);
-        
-        if (targetLang === 'en') {
-            element.textContent = originalText;
-        } else {
-            element.textContent = this.translate(originalText, 'en', targetLang);
-        }
-    }
-
-    async translatePage(targetLang = 'ka') {
-        // Store original language and set data attribute for CSS
-        currentLanguage = targetLang;
-        document.documentElement.setAttribute('data-lang', targetLang);
-        
-        // Translate tutorial titles in sidebar
-        const tutorialTitles = document.querySelectorAll('.tutorial-title');
-        tutorialTitles.forEach(title => this.translateElement(title, targetLang));
-        
-        // Translate main content
-        const titleElement = document.getElementById('tutorialTitle');
-        const descElement = document.getElementById('tutorialDescription');
-        
-        if (titleElement) this.translateElement(titleElement, targetLang);
-        if (descElement) this.translateElement(descElement, targetLang);
-        
-        // Translate section headers
-        const headers = document.querySelectorAll('h2, h3, h4, h5');
-        headers.forEach(header => this.translateElement(header, targetLang));
-        
-        // Translate buttons and UI elements
-        const buttons = document.querySelectorAll('button, .btn');
-        buttons.forEach(btn => this.translateElement(btn, targetLang));
-        
-        // Translate all text content in tutorial sections
-        const textElements = document.querySelectorAll('.tutorial-content p, .tutorial-content li, .practice-content p, .practice-content li, .practice-task');
-        textElements.forEach(el => this.translateElement(el, targetLang));
-        
-        // Update placeholders
-        const codeEditor = document.getElementById('codeEditor');
-        if (codeEditor && targetLang === 'ka') {
-            const originalPlaceholder = codeEditor.getAttribute('data-original-placeholder') || codeEditor.placeholder;
-            codeEditor.setAttribute('data-original-placeholder', originalPlaceholder);
-            codeEditor.placeholder = this.translate(originalPlaceholder, 'en', 'ka');
-        } else if (codeEditor && targetLang === 'en') {
-            const originalPlaceholder = codeEditor.getAttribute('data-original-placeholder');
-            if (originalPlaceholder) {
-                codeEditor.placeholder = originalPlaceholder;
-            }
-        }
-    }
-}
-
 // Initialize services
 const themeManager = new ThemeManager();
-const translationService = new TranslationService();
 
 // Set initial language attribute
 document.documentElement.setAttribute('data-lang', currentLanguage);
@@ -2971,60 +4153,93 @@ displayUserProfile(999); // Should show limited profile</code></pre>
 // Application State  
 let currentTutorial = 'variables';
 
-// Language switching functionality with improved performance
-async function getCurrentContent(contentObj) {
-    if (typeof contentObj === 'string') {
-        // For string content, only translate if Georgian is requested
-        if (currentLanguage === 'ka') {
-            try {
-                // Use improved translation service with pre-translated content
-                return await translationService.translate(contentObj, 'en', 'ka');
-            } catch (error) {
-                console.warn('Translation failed, using original text');
-                return contentObj;
-            }
-        }
-        return contentObj;
-    }
-    
-    // If we have the content in the requested language, return it immediately
-    if (contentObj[currentLanguage]) {
-        return contentObj[currentLanguage];
-    }
-    
-    // If switching to Georgian and we don't have translation, auto-translate with improved service
-    if (currentLanguage === 'ka' && contentObj.en) {
-        try {
-            const translation = await translationService.translate(contentObj.en, 'en', 'ka');
-            // Cache the translation in the object for future use
-            contentObj.ka = translation;
-            return translation;
-        } catch (error) {
-            console.warn('Translation failed, using English content');
-            return contentObj.en;
-        }
-    }
-    
-    // Fallback to English
-    return contentObj.en || '';
-}
+
 
 async function switchLanguage(lang) {
+    if (!translations[lang]) {
+        console.warn(`Language ${lang} not supported`);
+        return;
+    }
+
+    // Set language in translation service
+    translationService.setLanguage(lang);
     currentLanguage = lang;
     
     // Update active language option
     document.querySelectorAll('.language-option').forEach(option => {
-        option.classList.remove('active');
         if (option.dataset.lang === lang) {
-            option.classList.add('active');
+            // Active state
+            option.className = 'language-option flex items-center p-3 rounded-lg cursor-pointer bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300';
+        } else {
+            // Inactive state
+            option.className = 'language-option flex items-center p-3 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors';
         }
     });
     
-    // Use the new comprehensive translation service
-    await translationService.translatePage(lang);
+    // Update all UI elements with new language
+    updateUILanguage();
+    
+    // Reload current tutorial with new language
+    await loadTutorial(currentTutorial);
+    
+    // Update navigation titles
+    updateNavigationTitles();
     
     // Store language preference
-    localStorage.setItem('preferred-language', lang);
+    localStorage.setItem('language', lang);
+}
+
+// Update UI elements with current language
+function updateUILanguage() {
+    const lang = currentLanguage;
+    
+    // Update button texts
+    const runCodeBtn = document.getElementById('runCodeBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const copyCodeBtn = document.getElementById('copyCodeBtn');
+    const clearCodeBtn = document.getElementById('clearCodeBtn');
+    const clearConsoleBtn = document.getElementById('clearConsoleBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const codeEditor = document.getElementById('codeEditor');
+
+    if (runCodeBtn) runCodeBtn.querySelector('span').textContent = translationService.t('ui.runCode');
+    if (resetBtn) resetBtn.textContent = translationService.t('ui.reset');
+    if (copyCodeBtn) copyCodeBtn.textContent = translationService.t('ui.copy');
+    if (clearCodeBtn) clearCodeBtn.textContent = translationService.t('ui.clear');
+    if (clearConsoleBtn) clearConsoleBtn.textContent = translationService.t('ui.clearConsole');
+    if (prevBtn) prevBtn.querySelector('span').textContent = translationService.t('ui.previous');
+    if (nextBtn) nextBtn.querySelector('span').textContent = translationService.t('ui.next');
+    if (codeEditor) codeEditor.placeholder = translationService.t('ui.placeholder');
+
+    // Update section headers
+    const practiceHeaders = document.querySelectorAll('h3');
+    practiceHeaders.forEach(header => {
+        if (header.textContent.includes('Practice Task') || header.textContent.includes('პრაქტიკული დავალება')) {
+            header.textContent = translationService.t('ui.practiceTask');
+        }
+        if (header.textContent.includes('Try it Yourself') || header.textContent.includes('თვითონ სცადეთ')) {
+            header.textContent = translationService.t('ui.tryItYourself');
+        }
+        if (header.textContent.includes('Output') || header.textContent.includes('გამოტანა')) {
+            header.textContent = translationService.t('ui.output');
+        }
+    });
+
+    // Update page title
+    document.title = translationService.t('ui.title');
+
+    // Update creator info
+    const creatorInfo = document.querySelector('small');
+    if (creatorInfo && creatorInfo.textContent.includes('Created by')) {
+        creatorInfo.textContent = translationService.t('ui.creator');
+    }
+    
+    // Update app description
+    const appDescription = document.querySelector('p');
+    if (appDescription && appDescription.textContent.includes('Interactive JavaScript Tutorials')) {
+        appDescription.textContent = translationService.t('ui.subtitle');
+    }
 }
 
 function showTranslationProgress() {
@@ -3116,52 +4331,17 @@ function hideTranslationProgress() {
     }
 }
 
-// Update navigation menu titles based on current language with batch translation
-async function updateNavigationTitles() {
+// Update navigation menu titles based on current language
+function updateNavigationTitles() {
     const titleElements = document.querySelectorAll('.tutorial-title');
     
-    if (currentLanguage === 'ka') {
-        // Collect all titles that need translation
-        const titlesToTranslate = [];
-        const elementsToUpdate = [];
-        
-        titleElements.forEach(element => {
-            const englishTitle = element.dataset.en;
-            if (englishTitle) {
-                // Check if we already have a cached translation
-                if (element.dataset.ka) {
-                    element.textContent = element.dataset.ka;
-                } else {
-                    titlesToTranslate.push(englishTitle);
-                    elementsToUpdate.push(element);
-                }
-            }
-        });
-        
-        // Translate all missing titles at once
-        if (titlesToTranslate.length > 0) {
-            try {
-                const translations = await translationService.translateBatch(titlesToTranslate);
-                
-                elementsToUpdate.forEach((element, index) => {
-                    const translation = translations[index];
-                    element.dataset.ka = translation; // Cache it
-                    element.textContent = translation;
-                });
-            } catch (error) {
-                console.warn('Failed to translate navigation titles');
-                // Fallback to English
-                elementsToUpdate.forEach(element => {
-                    element.textContent = element.dataset.en;
-                });
-            }
+    titleElements.forEach(element => {
+        const tutorialKey = element.closest('.tutorial-item')?.dataset.tutorial;
+        if (tutorialKey) {
+            const navigationTitle = translationService.t(`navigation.${tutorialKey}`);
+            element.textContent = navigationTitle;
         }
-    } else {
-        // Use English
-        titleElements.forEach(element => {
-            element.textContent = element.dataset.en;
-        });
-    }
+    });
 }
 
 // DOM Elements
@@ -3183,6 +4363,29 @@ const clearConsoleBtn = document.getElementById('clearConsoleBtn');
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', async function() {
+    // Initialize theme manager
+    new ThemeManager();
+    
+    // Set up initial language
+    const savedLanguage = localStorage.getItem('language') || 'en';
+    if (translations[savedLanguage]) {
+        translationService.setLanguage(savedLanguage);
+        currentLanguage = savedLanguage;
+    }
+    
+    // Update UI with correct language
+    updateUILanguage();
+    updateNavigationTitles();
+    
+    // Set active language option in UI
+    document.querySelectorAll('.language-option').forEach(option => {
+        option.classList.remove('active');
+        if (option.dataset.lang === currentLanguage) {
+            option.classList.add('active');
+        }
+    });
+    
+    // Load first tutorial
     await loadTutorial(currentTutorial);
     setupEventListeners();
 });
@@ -3235,60 +4438,119 @@ function setupEventListeners() {
 }
 
 // Load Tutorial Content
+// Format tutorial text with proper code blocks
+function formatTutorialText(text) {
+    if (!text) return '';
+    
+    // Replace markdown-style code blocks with HTML code blocks
+    const codeBlockRegex = /```(\w+)?\n?([\s\S]*?)```/g;
+    
+    let formattedText = text.replace(codeBlockRegex, (match, language, code) => {
+        const lang = language || 'javascript';
+        const trimmedCode = code.trim();
+        
+        return `
+            <div class="code-block-container">
+                <div class="code-block-header">
+                    <span class="code-block-language">${lang}</span>
+                    <button class="copy-code-btn" onclick="copyCodeBlock(this)" title="Copy code">
+                        Copy
+                    </button>
+                </div>
+                <pre class="code-block"><code class="language-${lang}">${trimmedCode}</code></pre>
+            </div>
+        `;
+    });
+    
+    // Replace inline code with styled spans
+    formattedText = formattedText.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+    
+    // Convert newlines to <br> tags, but preserve structure
+    formattedText = formattedText.replace(/\n/g, '<br>');
+    
+    return formattedText;
+}
+
+// Copy code block content
+function copyCodeBlock(button) {
+    const codeBlock = button.closest('.code-block-container').querySelector('code');
+    const code = codeBlock.textContent;
+    
+    navigator.clipboard.writeText(code).then(() => {
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy code:', err);
+    });
+}
+
 async function loadTutorial(tutorialKey) {
     console.log('Loading tutorial:', tutorialKey);
-    console.log('Available tutorials:', Object.keys(tutorials));
-    const tutorial = tutorials[tutorialKey];
-    if (!tutorial) {
+    
+    // Get tutorial data from translation system
+    const tutorialData = translationService.t(`tutorials.${tutorialKey}`);
+    if (!tutorialData || typeof tutorialData === 'string') {
         console.error('Tutorial not found:', tutorialKey);
         return;
     }
-    console.log('Found tutorial:', tutorial.title);
 
     currentTutorial = tutorialKey;
 
     try {
         // Update header with current language
-        tutorialTitle.textContent = await getCurrentContent(tutorial.title);
-        tutorialDescription.textContent = await getCurrentContent(tutorial.description);
+        tutorialTitle.textContent = tutorialData.title;
+        tutorialDescription.textContent = tutorialData.description;
 
-        // Load tutorial content with current language
+        // Load tutorial content sections
         let contentHTML = '';
-        for (const section of tutorial.content.sections) {
-            const sectionTitle = await getCurrentContent(section.title);
-            const sectionContent = await getCurrentContent(section.content);
+        const content = tutorialData.content;
+        
+        // Build content from the three main sections: concept, example, task
+        if (content.concept) {
             contentHTML += `
                 <div class="content-section">
-                    <h2>${sectionTitle}</h2>
-                    ${sectionContent}
+                    <h2>${content.concept.title}</h2>
+                    <div class="content-text">${formatTutorialText(content.concept.text)}</div>
                 </div>
             `;
         }
+        
+        if (content.example) {
+            contentHTML += `
+                <div class="content-section">
+                    <h2>${content.example.title}</h2>
+                    <div class="content-text">${formatTutorialText(content.example.text)}</div>
+                </div>
+            `;
+        }
+        
         tutorialContent.innerHTML = contentHTML;
 
         // Clear code editor (start fresh)
-        codeEditor.value = tutorial.startingCode;
+        codeEditor.value = translationService.t('ui.placeholder');
 
-        // Load practice task with current language
-        const practiceTitle = await getCurrentContent(tutorial.practice.title);
-        const practiceDescription = await getCurrentContent(tutorial.practice.description);
-        const practiceTask = await getCurrentContent(tutorial.practice.task);
-        
-        const encouragement = currentLanguage === 'ka' ? 
-            "💡 გახსოვდეთ: არასწორი გზა არ არსებობს - უბრალოდ ექსპერიმენტი გააკეთეთ და ისიამოვნეთ სწავლით!" :
-            "💡 Remember: There's no right or wrong way - just experiment and have fun learning!";
-        
-        practiceContent.innerHTML = `
-            <h4>${practiceTitle}</h4>
-            <p class="practice-description">${practiceDescription}</p>
-            <div class="practice-task">
-                <h5>📝 ${currentLanguage === 'ka' ? 'თქვენი ამოცანა:' : 'Your Task:'}</h5>
-                <pre>${practiceTask}</pre>
-            </div>
-            <p style="color: #64748b; font-style: italic; margin-top: 1rem;">
-                ${encouragement}
-            </p>
-        `;
+        // Load practice task
+        if (content.task) {
+            const encouragement = currentLanguage === 'ka' ? 
+                "💡 გახსოვდეთ: არასწორი გზა არ არსებობს - უბრალოდ ექსპერიმენტი გააკეთეთ და ისიამოვნეთ სწავლით!" :
+                "💡 Remember: There's no right or wrong way - just experiment and have fun learning!";
+            
+            practiceContent.innerHTML = `
+                <h4>${content.task.title}</h4>
+                <div class="practice-task">
+                    <div class="content-text">${formatTutorialText(content.task.text)}</div>
+                </div>
+                <p style="color: #64748b; font-style: italic; margin-top: 1rem;">
+                    ${encouragement}
+                </p>
+            `;
+        }
 
         // Clear console
         clearConsole();
@@ -3308,6 +4570,7 @@ async function loadTutorial(tutorialKey) {
         console.error('Error loading tutorial:', error);
         // Fallback to English if translation fails
         if (currentLanguage === 'ka') {
+            translationService.setLanguage('en');
             currentLanguage = 'en';
             await loadTutorial(tutorialKey);
         }
@@ -3322,16 +4585,27 @@ async function switchTutorial(tutorialKey) {
 // Update Active Navigation Item
 function updateActiveItem() {
     document.querySelectorAll('.tutorial-item').forEach(item => {
-        item.classList.remove('active');
+        const dot = item.querySelector('div');
+        
         if (item.dataset.tutorial === currentTutorial) {
-            item.classList.add('active');
+            // Active state
+            item.className = 'tutorial-item flex items-center p-3 rounded-lg cursor-pointer bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 text-blue-700 dark:text-blue-300';
+            if (dot) {
+                dot.className = 'w-2 h-2 bg-blue-500 rounded-full mr-3';
+            }
+        } else {
+            // Inactive state
+            item.className = 'tutorial-item flex items-center p-3 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors';
+            if (dot) {
+                dot.className = 'w-2 h-2 bg-gray-400 rounded-full mr-3';
+            }
         }
     });
 }
 
 // Update Navigation Buttons
 function updateNavigation() {
-    const tutorialKeys = Object.keys(tutorials);
+    const tutorialKeys = Object.keys(translationService.t('tutorials'));
     const currentIndex = tutorialKeys.indexOf(currentTutorial);
     
     prevBtn.disabled = currentIndex === 0;
@@ -3340,7 +4614,7 @@ function updateNavigation() {
 
 // Navigation Functions
 async function previousTutorial() {
-    const tutorialKeys = Object.keys(tutorials);
+    const tutorialKeys = Object.keys(translationService.t('tutorials'));
     const currentIndex = tutorialKeys.indexOf(currentTutorial);
     if (currentIndex > 0) {
         await switchTutorial(tutorialKeys[currentIndex - 1]);
@@ -3348,7 +4622,7 @@ async function previousTutorial() {
 }
 
 async function nextTutorial() {
-    const tutorialKeys = Object.keys(tutorials);
+    const tutorialKeys = Object.keys(translationService.t('tutorials'));
     const currentIndex = tutorialKeys.indexOf(currentTutorial);
     if (currentIndex < tutorialKeys.length - 1) {
         await switchTutorial(tutorialKeys[currentIndex + 1]);
@@ -3404,15 +4678,12 @@ function runCode() {
 
 // Code Management Functions
 function resetCode() {
-    const tutorial = tutorials[currentTutorial];
-    codeEditor.value = tutorial.startingCode;
+    codeEditor.value = translationService.t('ui.placeholder');
     clearConsole();
-    if (tutorial.startingCode.trim()) {
-        const message = currentLanguage === 'ka' ? 
-            'კოდი განულდა საწყის მაგალითზე' : 
-            'Code reset to original example';
-        addToConsole(message, 'info');
-    }
+    const message = currentLanguage === 'ka' ? 
+        'კოდი განულდა საწყის მაგალითზე' : 
+        'Code reset to original example';
+    addToConsole(message, 'info');
 }
 
 function copyCode() {
