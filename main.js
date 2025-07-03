@@ -66,6 +66,7 @@ const translations = {
         'ts-desc': 'Add type safety to your JavaScript. Build more robust applications.',
         'react-title': 'React',
         'react-desc': 'Build modern user interfaces with the most popular JavaScript library.',
+        'react-count': '6 Tutorials',
         'more-title': 'More',
         'more-desc': 'PHP, Python, Laravel, and many more languages coming soon.',
         'coming-soon': 'Coming Soon',
@@ -143,6 +144,7 @@ const translations = {
         'ts-desc': 'დაუმატეთ type safety თქვენს ჯავასკრიპტს. შექმენით უფრო სანდო აპლიკაციები.',
         'react-title': 'რეაქტი',
         'react-desc': 'შექმენით თანამედროვე user interface-ები ყველაზე პოპულარული ჯავასკრიპტ ბიბლიოთეკით.',
+        'react-count': '6 გაკვეთილი',
         'more-title': 'მეტი',
         'more-desc': 'PHP, Python, Laravel და მრავალი სხვა ენა მალე მოვა.',
         'coming-soon': 'მალე',
@@ -343,8 +345,10 @@ function setupCategoryNavigation() {
                 case 'javascript':
                     window.location.href = 'javascript.html';
                     break;
-                case 'typescript':
                 case 'react':
+                    window.location.href = 'react.html';
+                    break;
+                case 'typescript':
                 case 'more':
                     // Show coming soon message
                     showComingSoonMessage(category);

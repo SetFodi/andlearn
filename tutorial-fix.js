@@ -568,9 +568,7 @@ const uiText = {
         'js-progress-text': 'tutorials to master JavaScript from basics to advanced concepts',
         'beginner': 'Beginner',
         'intermediate': 'Intermediate',
-        'advanced': 'Advanced',
-        'progress-title': 'Progress',
-        'progress-encouragement': 'Keep going! You\'re doing great! 🎉'
+        'advanced': 'Advanced'
     },
     ka: {
         'nav-home': 'მთავარი',
@@ -580,9 +578,7 @@ const uiText = {
         'js-progress-text': 'გაკვეთილი ჯავასკრიპტის დასაუფლებლად საწყისებიდან გაღრმავებულ კონცეფციებამდე',
         'beginner': 'დამწყები',
         'intermediate': 'საშუალო', 
-        'advanced': 'გაღრმავებული',
-        'progress-title': 'პროგრესი',
-        'progress-encouragement': 'გააგრძელეთ! შესანიშნავად გერთულებათ! 🎉'
+        'advanced': 'გაღრმავებული'
     }
 };
 
@@ -949,9 +945,6 @@ function setActive(item) {
     });
     
     item.className = 'tutorial-item flex items-center p-3 rounded-lg cursor-pointer bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 text-blue-700 dark:text-blue-300';
-    
-    // Update progress
-    updateProgress();
 }
 
 function updateLanguage() {
@@ -1072,44 +1065,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (prevBtn) prevBtn.addEventListener('click', navigatePrevious);
     if (nextBtn) nextBtn.addEventListener('click', navigateNext);
 });
-
-// Progress tracking
-function updateProgress() {
-    const tutorialOrder = ['variables', 'functions', 'controlflow', 'arrays', 'advanced_functions', 
-                          'advanced_arrays', 'typescript', 'dom', 'events', 'async', 'api', 'error_handling'];
-    const currentIndex = tutorialOrder.indexOf(currentTutorial);
-    const totalTutorials = tutorialOrder.length;
-    
-    // Update progress bar
-    const progressPercentage = ((currentIndex + 1) / totalTutorials) * 100;
-    const progressBar = document.querySelector('.bg-gradient-to-r.from-blue-500.to-purple-500');
-    if (progressBar) {
-        progressBar.style.width = progressPercentage + '%';
-    }
-    
-    // Update progress text
-    const progressText = document.querySelector('.text-sm.text-gray-500.dark\\:text-gray-400');
-    if (progressText) {
-        progressText.textContent = `${currentIndex + 1}/${totalTutorials}`;
-    }
-    
-    // Update navigation counter
-    const currentSpan = document.getElementById('currentTutorial');
-    const totalSpan = document.getElementById('totalTutorials');
-    if (currentSpan) currentSpan.textContent = currentIndex + 1;
-    if (totalSpan) totalSpan.textContent = totalTutorials;
-    
-    // Update navigation buttons
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    
-    if (prevBtn) {
-        prevBtn.disabled = currentIndex === 0;
-    }
-    if (nextBtn) {
-        nextBtn.disabled = currentIndex === totalTutorials - 1;
-    }
-}
 
 // Navigation functions
 function navigatePrevious() {

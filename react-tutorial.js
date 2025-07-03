@@ -42,9 +42,7 @@ const uiText = {
         'react-interactive': 'Interactive Tutorials',
         'react-progress-text': 'tutorials to master React from basics to advanced concepts',
         'beginner': 'Beginner',
-        'intermediate': 'Intermediate',
-        'progress-title': 'Progress',
-        'progress-encouragement': 'Keep going! You\'re doing great! 🎉'
+        'intermediate': 'Intermediate'
     },
     ka: {
         'nav-home': 'მთავარი',
@@ -53,9 +51,7 @@ const uiText = {
         'react-interactive': 'ინტერაქტიული გაკვეთილები',
         'react-progress-text': 'გაკვეთილი React-ის დასაუფლებლად საწყისებიდან გაღრმავებულ კონცეფციებამდე',
         'beginner': 'დამწყები',
-        'intermediate': 'საშუალო',
-        'progress-title': 'პროგრესი',
-        'progress-encouragement': 'გააგრძელეთ! შესანიშნავად გერთულებათ! 🎉'
+        'intermediate': 'საშუალო'
     }
 };
 
@@ -395,9 +391,6 @@ function setActive(item) {
     });
     
     item.className = 'tutorial-item flex items-center p-3 rounded-lg cursor-pointer bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 text-blue-700 dark:text-blue-300';
-    
-    // Update progress
-    updateProgress();
 }
 
 function updateLanguage() {
@@ -428,24 +421,6 @@ function showToast() {
     toast.textContent = msg;
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 2000);
-}
-
-function updateProgress() {
-    const currentIndex = reactTutorialOrder.indexOf(currentTutorial);
-    const totalTutorials = reactTutorialOrder.length;
-    const progressPercentage = ((currentIndex + 1) / totalTutorials) * 100;
-    
-    // Update progress bar
-    const progressBar = document.querySelector('.bg-gradient-to-r');
-    if (progressBar) {
-        progressBar.style.width = `${progressPercentage}%`;
-    }
-    
-    // Update progress text
-    const progressText = document.querySelector('.text-gray-500.dark\\:text-gray-400');
-    if (progressText) {
-        progressText.textContent = `${currentIndex + 1}/${totalTutorials}`;
-    }
 }
 
 function updateNavigationButtons() {
