@@ -7,20 +7,47 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        'inter': ['Inter', 'sans-serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe', 
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0', 
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.5s ease-out',
-                        'gradient': 'gradient 15s ease infinite',
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
                     },
                     keyframes: {
                         float: {
@@ -32,12 +59,12 @@
                             '100%': { opacity: '1' },
                         },
                         slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
                             '100%': { transform: 'translateY(0)', opacity: '1' },
                         },
-                        gradient: {
-                            '0%, 100%': { backgroundPosition: '0% 50%' },
-                            '50%': { backgroundPosition: '100% 50%' },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.3)' },
+                            '100%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.6)' },
                         }
                     }
                 }
@@ -45,45 +72,562 @@
         }
     </script>
     <style>
-        .gradient-bg {
-            background: linear-gradient(-45deg, #667eea, #764ba2, #6B73FF, #000DFF);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+        /* Coding-Themed Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+            overflow: hidden;
         }
+        
+        .loading-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        /* Coding Terminal Loader */
+        .terminal-loader {
+            background: #1e1e1e;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+            min-width: 400px;
+            max-width: 90vw;
+        }
+        
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .terminal-controls {
+            display: flex;
+            gap: 8px;
+            margin-right: 15px;
+        }
+        
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-close { background: #ff5f57; }
+        .dot-minimize { background: #ffbd2e; }
+        .dot-maximize { background: #28ca42; }
+        
+        .terminal-title {
+            color: #999;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .terminal-content {
+            font-family: 'JetBrains Mono', monospace;
+            color: #00ff00;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .loading-line {
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: typeIn 0.8s ease-out forwards;
+        }
+        
+        .loading-line:nth-child(1) { animation-delay: 0.2s; color: #569cd6; }
+        .loading-line:nth-child(2) { animation-delay: 0.6s; color: #dcdcaa; }
+        .loading-line:nth-child(3) { animation-delay: 1.0s; color: #ce9178; }
+        .loading-line:nth-child(4) { animation-delay: 1.4s; color: #4ec9b0; }
+        .loading-line:nth-child(5) { animation-delay: 1.8s; color: #9cdcfe; }
+        
+        .loading-progress {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            opacity: 0;
+            animation: typeIn 0.8s ease-out 2.2s forwards;
+        }
+        
+        .progress-bar-container {
+            flex: 1;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0 10px;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff00, #00d4aa, #0099ff);
+            border-radius: 3px;
+            animation: progressFill 3s ease-out forwards;
+            transform: translateX(-100%);
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+        }
+        
+        .spinner-char {
+            color: #00ff00;
+            animation: spinChar 0.8s linear infinite;
+        }
+        
+        /* Matrix Rain Background */
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+        }
+        
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #00ff00;
+            animation: matrixFall linear infinite;
+        }
+        
+        /* Course Card Simple Glow */
         .card-hover {
-            transition: all 0.3s ease;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
         }
+        
         .card-hover:hover {
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Feature Card Nice Hover */
+        .feature-card {
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+            position: relative;
+        }
+        
+        .feature-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .dark .feature-card:hover {
+            background-color: rgba(55, 65, 81, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Feature card icon styling */
+        .feature-card .w-12 {
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        
+        .feature-card:hover .w-12 {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            transform: scale(1.05);
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .shape {
+            position: absolute;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite;
+        }
+        
+        .shape:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { width: 60px; height: 60px; left: 20%; animation-delay: 2s; }
+        .shape:nth-child(3) { width: 100px; height: 100px; left: 80%; animation-delay: 4s; }
+        .shape:nth-child(4) { width: 40px; height: 40px; left: 70%; animation-delay: 6s; }
+        .shape:nth-child(5) { width: 120px; height: 120px; left: 50%; animation-delay: 8s; }
+        
+        /* Particle Effect */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, #3b82f6, #22c55e);
+            border-radius: 50%;
+            animation: particle 15s linear infinite;
+        }
+        
+        /* Enhanced Card Hover */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+            will-change: transform, box-shadow;
+        }
+        
+        .card-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+            pointer-events: none;
+        }
+        
+        .card-hover:hover::before {
+            left: 100%;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02) translateZ(0);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Morphing Blob */
+        .blob {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: blob 12s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .blob::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        /* Nice Button Hover */
+        .fancy-button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .fancy-button:hover {
+            background: linear-gradient(45deg, #2563eb, #7c3aed);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Text Animations */
+        .text-gradient {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #22c55e, #f59e0b);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradient 6s ease infinite;
+        }
+        
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: revealText 1s ease forwards;
+        }
+        
+        /* Parallax Sections */
+        .parallax-section {
+            transform: translateZ(0);
+            transition: transform 0.1s ease-out;
+        }
+        
+        /* Glass Morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Navigation with Underline */
+        .nav-item {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            color: #3b82f6;
+        }
+        
+        .nav-item:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        
+        /* Keyframe Animations */
+        @keyframes typeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes progressFill {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        
+        @keyframes spinChar {
+            0% { content: '|'; }
+            25% { content: '/'; }
+            50% { content: '-'; }
+            75% { content: '\\'; }
+            100% { content: '|'; }
+        }
+        
+        @keyframes matrixFall {
+            0% { transform: translateY(-100vh); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(30px) rotate(240deg); }
+        }
+        
+        @keyframes particle {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+        
+        @keyframes blob {
+            0%, 100% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+                transform: rotate(0deg);
+            }
+            25% {
+                border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+                transform: rotate(90deg);
+            }
+            50% {
+                border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+                transform: rotate(180deg);
+            }
+            75% {
+                border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+                transform: rotate(270deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.1; }
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes revealText {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Enhancements */
+        @media (max-width: 768px) {
+            .shape { animation-duration: 15s; }
+            .card-hover:hover { transform: translateY(-8px) scale(1.01); }
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+        
+        /* Enhanced Feature Cards */
+        .feature-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .feature-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .feature-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-        .glass-effect {
-            backdrop-filter: blur(16px);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 font-inter transition-colors duration-300">
+<body class="bg-gray-50 dark:bg-gray-900 font-sans transition-colors duration-300">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <!-- Matrix Rain Background -->
+        <div class="matrix-bg" id="matrixBg"></div>
+        
+        <!-- Terminal Loading Interface -->
+        <div class="terminal-loader">
+            <div class="terminal-header">
+                <div class="terminal-controls">
+                    <div class="terminal-dot dot-close"></div>
+                    <div class="terminal-dot dot-minimize"></div>
+                    <div class="terminal-dot dot-maximize"></div>
+                </div>
+                <div class="terminal-title">AndLearn Terminal v2.0</div>
+            </div>
+            
+            <div class="terminal-content">
+                <div class="loading-line">$ npm install @andlearn/platform</div>
+                <div class="loading-line">$ Initializing learning environment...</div>
+                <div class="loading-line">$ Loading JavaScript modules ✓</div>
+                <div class="loading-line">$ Loading React components ✓</div>
+                <div class="loading-line">$ Setting up interactive tutorials ✓</div>
+                
+                <div class="loading-progress">
+                    <div class="loading-spinner">
+                        <span class="spinner-char">|</span>
+                    </div>
+                    <span style="color: #dcdcaa;">Loading</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill"></div>
+                    </div>
+                    <span style="color: #9cdcfe;">100%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll Progress Indicator -->
+    <div id="scrollIndicator" class="scroll-indicator"></div>
+    
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <!-- Floating Shapes -->
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <!-- Particles -->
+        <div id="particles" class="particles"></div>
+    </div>
+    
     <!-- Navigation -->
-    <nav class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
+    <nav class="glass dark:glass-dark border-b border-gray-200/20 dark:border-gray-700/20 sticky top-0 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
-                <div class="flex items-center">
-                    <div class="w-20 h-20 rounded-xl overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 flex items-center justify-center">
-                        <img src="logo.svg" alt="AndLearn" class="w-16 h-16 object-contain">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center">
+                        <img src="logo.svg" alt="AndLearn" class="w-6 h-6 object-contain filter brightness-0 invert">
                     </div>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">AndLearn</span>
                 </div>
 
                 <!-- Navigation Items -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-translate="nav-home">Home</a>
-                    <a href="#categories" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-translate="nav-categories">Categories</a>
-                    <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-translate="nav-about">About</a>
+                    <a href="#" class="nav-item text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium py-2" data-translate="nav-home">Home</a>
+                    <a href="#courses" class="nav-item text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium py-2" data-translate="nav-courses">Courses</a>
+                    <a href="#about" class="nav-item text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium py-2" data-translate="nav-about">About</a>
                 </div>
 
-                <!-- Theme & Language Toggle -->
+                <!-- Controls -->
                 <div class="flex items-center space-x-4">
                     <!-- Language Selector -->
                     <div class="relative">
@@ -94,7 +638,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
-                        <div id="languageDropdown" class="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 hidden">
+                        <div id="languageDropdown" class="absolute right-0 mt-2 w-36 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 hidden">
                             <a href="#" class="language-option flex items-center px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-t-lg" data-lang="en">
                                 <span class="mr-2">🇺🇸</span>
                                 <span class="text-sm">English</span>
@@ -108,10 +652,10 @@
 
                     <!-- Theme Toggle -->
                     <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                        <svg id="sunIcon" class="w-5 h-5 text-yellow-500 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <svg id="sunIcon" class="w-5 h-5 text-yellow-500 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>
                         </svg>
-                        <svg id="moonIcon" class="w-5 h-5 text-blue-400 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                        <svg id="moonIcon" class="w-5 h-5 text-gray-600 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
                         </svg>
                     </button>
@@ -122,49 +666,46 @@
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Animated Background -->
-        <div class="absolute inset-0 gradient-bg opacity-10"></div>
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-20 w-64 h-64 bg-primary-200 dark:bg-primary-900 rounded-full blob opacity-20"></div>
+            <div class="absolute bottom-20 right-20 w-48 h-48 bg-accent-200 dark:bg-accent-900 rounded-full blob opacity-20" style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 left-1/4 w-32 h-32 bg-purple-200 dark:bg-purple-900 rounded-full blob opacity-20" style="animation-delay: 4s;"></div>
+        </div>
         
-        <!-- Floating Elements -->
-        <div class="absolute top-20 left-10 w-20 h-20 bg-blue-400 rounded-full opacity-20 animate-float"></div>
-        <div class="absolute top-40 right-20 w-16 h-16 bg-purple-400 rounded-full opacity-20 animate-float" style="animation-delay: 2s;"></div>
-        <div class="absolute bottom-40 left-20 w-12 h-12 bg-indigo-400 rounded-full opacity-20 animate-float" style="animation-delay: 4s;"></div>
-        
-        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="animate-slide-up">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent" data-translate="hero-title-1">
-                        Master Programming
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center animate-fade-in">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+                    <span class="text-gradient text-transparent reveal-text" data-translate="hero-title">
+                        Learn Programming the Fun Way
                     </span>
-                    <br>
-                    <span class="text-gray-900 dark:text-white" data-translate="hero-title-2">with Interactive Tutorials</span>
                 </h1>
                 
-                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed" data-translate="hero-subtitle">
-                    Learn JavaScript, TypeScript, React, and more through hands-on, beginner-friendly tutorials that make coding fun and easy.
+                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed" data-translate="hero-subtitle">
+                    Master JavaScript, React, TypeScript and more through interactive, hands-on tutorials designed to make coding easy and enjoyable.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                    <button onclick="scrollToCategories()" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300" data-translate="btn-start-learning">
-                        Start Learning Now
+                    <button onclick="scrollToCourses()" class="fancy-button text-white px-8 py-4 rounded-xl font-semibold text-lg" data-translate="btn-start-learning">
+                        Start Learning Free
                     </button>
-                    <button onclick="scrollToAbout()" class="border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300" data-translate="btn-learn-more">
+                    <button onclick="scrollToAbout()" class="glass dark:glass-dark border border-gray-200/30 dark:border-gray-600/30 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100/20 dark:hover:bg-gray-800/20 transition-all duration-300" data-translate="btn-learn-more">
                         Learn More
                     </button>
                 </div>
 
-                <!-- Stats -->
+                <!-- Simple Stats -->
                 <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
                     <div class="text-center">
-                        <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">18+</div>
+                        <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">18+</div>
                         <div class="text-gray-600 dark:text-gray-400" data-translate="stats-tutorials">Tutorials</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-3xl font-bold text-purple-600 dark:text-purple-400">4</div>
-                        <div class="text-gray-600 dark:text-gray-400" data-translate="stats-categories">Categories</div>
+                        <div class="text-3xl font-bold text-accent-600 dark:text-accent-400">Free</div>
+                        <div class="text-gray-600 dark:text-gray-400" data-translate="stats-free">Always</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">∞</div>
+                        <div class="text-3xl font-bold text-purple-600 dark:text-purple-400">∞</div>
                         <div class="text-gray-600 dark:text-gray-400" data-translate="stats-practice">Practice</div>
                     </div>
                 </div>
@@ -172,75 +713,79 @@
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section id="categories" class="py-20 bg-white dark:bg-gray-900">
+    <!-- Courses Section -->
+    <section id="courses" class="py-20 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">
-                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent" data-translate="categories-title">
-                        Choose Your Path
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent" data-translate="courses-title">
+                        Choose Your Learning Path
                     </span>
                 </h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto" data-translate="categories-subtitle">
-                    Start your programming journey with our carefully crafted tutorials. Each category is designed to take you from beginner to proficient.
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto" data-translate="courses-subtitle">
+                    Start with any course that interests you. Each one is designed to take you from beginner to confident programmer.
                 </p>
             </div>
 
-            <!-- Category Cards -->
+            <!-- Course Cards -->
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- JavaScript -->
-                <div class="category-card card-hover bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-2xl p-8 border border-yellow-200 dark:border-yellow-800 cursor-pointer group" data-category="javascript">
+                <div class="course-card card-hover bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 cursor-pointer" data-category="javascript">
                     <div class="text-center">
-                        <div class="w-16 h-16 bg-yellow-400 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M3 3h18v18H3V3zm16.525 13.707c-.131-.821-.666-1.511-2.252-2.155-.552-.259-1.165-.438-1.349-.854-.068-.248-.078-.382-.034-.529.113-.484.687-.629 1.137-.495.293.09.563.315.732.676.775-.507.775-.507 1.316-.844-.203-.314-.304-.451-.439-.586-.473-.528-1.103-.798-2.126-.77l-.528.067c-.507.124-.991.395-1.283.754-.855.968-.608 2.655.427 3.354 1.023.765 2.521.933 2.712 1.653.18.878-.652 1.159-1.475 1.058-.607-.136-.945-.439-1.316-.978l-1.372.788c.157.359.337.517.607.832 1.305 1.316 4.568 1.249 5.153-.754.021-.067.18-.528.056-1.237l.034.049zm-6.737-5.434h-1.686c0 1.453-.007 2.898-.007 4.354 0 .924.047 1.772-.104 2.033-.247.528-.883.487-1.118.034-.297-.302-.078-.729-.102-1.092-.013-.374.003-.741.003-1.12 0-1.373 0-2.746 0-4.12H7.896c0 1.453.013 2.898.013 4.354 0 .924-.047 1.772.104 2.033.247.528.883.487 1.118.034.297-.302.078-.729.102-1.092.013-.375.003-.741.003-1.12 0-1.373 0-2.746 0-4.12z"/>
-                            </svg>
+                        <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-white">JS</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2" data-translate="js-title">JavaScript</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="js-desc">Master the language of the web. From basics to advanced concepts.</p>
-                        <div class="text-sm text-yellow-600 dark:text-yellow-400 font-medium" data-translate="js-count">12 Tutorials</div>
-                    </div>
-                </div>
-
-                <!-- TypeScript -->
-                <div class="category-card card-hover bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8 border border-blue-200 dark:border-blue-800 cursor-pointer group opacity-75" data-category="typescript">
-                    <div class="text-center">
-                        <div class="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/>
-                            </svg>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="js-title">JavaScript</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm" data-translate="js-desc">Learn the language that powers the web. Start from basics to advanced concepts.</p>
+                        <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200" data-translate="js-count">
+                            12 Lessons
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2" data-translate="ts-title">TypeScript</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="ts-desc">Add type safety to your JavaScript. Build more robust applications.</p>
-                        <div class="text-sm text-blue-600 dark:text-blue-400 font-medium" data-translate="coming-soon">Coming Soon</div>
                     </div>
                 </div>
 
                 <!-- React -->
-                <div class="category-card card-hover bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-cyan-900/20 dark:to-teal-900/20 rounded-2xl p-8 border border-cyan-200 dark:border-cyan-800 cursor-pointer group" data-category="react">
+                <div class="course-card card-hover bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 cursor-pointer" data-category="react">
                     <div class="text-center">
-                        <div class="w-16 h-16 bg-cyan-400 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.36-.034-.47 0-.92.014-1.36.034.44-.572.895-1.096 1.36-1.564zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.643-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.788-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.36.034.47 0 .92-.014 1.36-.034-.44.572-.895 1.095-1.36 1.56-.465-.467-.92-.99-1.36-1.56z"/>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2" data-translate="react-title">React</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="react-desc">Build modern user interfaces with the most popular JavaScript library.</p>
-                        <div class="text-sm text-cyan-600 dark:text-cyan-400 font-medium" data-translate="react-count">6 Tutorials</div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="react-title">React</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm" data-translate="react-desc">Build modern user interfaces with the most popular JavaScript library.</p>
+                        <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-cyan-100 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-200" data-translate="react-count">
+                            6 Lessons
+                        </div>
                     </div>
                 </div>
 
-                <!-- More Categories -->
-                <div class="category-card card-hover bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-8 border border-purple-200 dark:border-purple-800 cursor-pointer group opacity-75" data-category="more">
+                <!-- TypeScript -->
+                <div class="course-card card-hover bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 cursor-pointer opacity-75" data-category="typescript">
                     <div class="text-center">
-                        <div class="w-16 h-16 bg-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <span class="text-xl font-bold text-white">TS</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="ts-title">TypeScript</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm" data-translate="ts-desc">Add type safety to JavaScript for more robust applications.</p>
+                        <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300" data-translate="coming-soon">
+                            Coming Soon
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More -->
+                <div class="course-card card-hover bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 cursor-pointer opacity-75" data-category="more">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2" data-translate="more-title">More</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="more-desc">PHP, Python, Laravel, and many more languages coming soon.</p>
-                        <div class="text-sm text-purple-600 dark:text-purple-400 font-medium" data-translate="coming-soon">Coming Soon</div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="more-title">More Languages</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm" data-translate="more-desc">Python, PHP, Laravel and many more coming soon.</p>
+                        <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300" data-translate="coming-soon">
+                            Coming Soon
+                        </div>
                     </div>
                 </div>
             </div>
@@ -250,19 +795,53 @@
     <!-- About Section -->
     <section id="about" class="py-20 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold mb-6">
-                <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent" data-translate="about-title">
-                    About AndLearn
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent" data-translate="about-title">
+                    Why Choose AndLearn?
                 </span>
             </h2>
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed" data-translate="about-desc">
-                AndLearn is designed to make programming accessible and enjoyable for everyone. Our interactive tutorials break down complex concepts into digestible, hands-on lessons that help you learn by doing, not just reading.
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto" data-translate="about-desc">
+                AndLearn makes programming accessible and fun for everyone. Our interactive tutorials break down complex concepts into simple, hands-on lessons that help you learn by doing.
             </p>
-            <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
-                <p class="text-gray-500 dark:text-gray-400 text-sm italic" data-translate="about-quote">
+            
+            <!-- Features -->
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <div class="feature-card glass dark:glass-dark rounded-xl p-6 cursor-pointer">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" data-translate="feature-1-title">Interactive Learning</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm" data-translate="feature-1-desc">Learn by writing real code, not just watching videos.</p>
+                </div>
+                
+                <div class="feature-card glass dark:glass-dark rounded-xl p-6 cursor-pointer">
+                    <div class="w-12 h-12 bg-gradient-to-br from-accent-500 to-accent-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" data-translate="feature-2-title">Beginner Friendly</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm" data-translate="feature-2-desc">Start from zero and become a confident programmer.</p>
+                </div>
+                
+                <div class="feature-card glass dark:glass-dark rounded-xl p-6 cursor-pointer">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" data-translate="feature-3-title">Always Free</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm" data-translate="feature-3-desc">Quality education should be accessible to everyone.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm max-w-2xl mx-auto">
+                <p class="text-gray-600 dark:text-gray-400 text-sm italic mb-4" data-translate="about-quote">
                     "The best way to learn programming is by actually programming. AndLearn makes this possible with interactive, beginner-friendly tutorials."
                 </p>
-                <div class="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300" data-translate="about-author">
+                <div class="text-sm font-medium text-gray-700 dark:text-gray-300" data-translate="about-author">
                     Created with ❤️ by Luka Partenadze
                 </div>
             </div>
@@ -273,12 +852,13 @@
     <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="flex items-center justify-center mb-4">
-                <div class="w-16 h-16 rounded-lg overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 flex items-center justify-center">
-                    <img src="logo.svg" alt="AndLearn" class="w-14 h-14 object-contain">
+                <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center mr-3">
+                    <img src="logo.svg" alt="AndLearn" class="w-5 h-5 object-contain filter brightness-0 invert">
                 </div>
+                <span class="text-lg font-bold text-gray-900 dark:text-white">AndLearn</span>
             </div>
             <p class="text-gray-600 dark:text-gray-400 text-sm" data-translate="footer-text">
-                © 2024 AndLearn. Making programming education accessible to everyone.
+                © 2024 AndLearn. Making programming education accessible and fun for everyone.
             </p>
         </div>
     </footer>
