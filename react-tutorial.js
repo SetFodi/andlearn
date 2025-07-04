@@ -27,11 +27,31 @@ const reactTutorials = {
     react_conditional: { 
         en: { title: "Conditional Rendering", description: "Show different UI based on conditions" },
         ka: { title: "პირობითი რენდერინგი", description: "სხვადასხვა UI-ის ჩვენება პირობების მიხედვით" }
+    },
+    react_lists: { 
+        en: { title: "Lists and Keys", description: "Rendering dynamic lists efficiently" },
+        ka: { title: "სიები და Key-ები", description: "დინამიური სიების ეფექტურად რენდერინგი" }
+    },
+    react_forms: { 
+        en: { title: "Forms & Validation", description: "Handling user input and validation" },
+        ka: { title: "ფორმები და ვალიდაცია", description: "მომხმარებლის შეყვანის დამუშავება და ვალიდაცია" }
+    },
+    react_useeffect: { 
+        en: { title: "useEffect Hook", description: "Side effects and lifecycle" },
+        ka: { title: "useEffect Hook", description: "გვერდითი ეფექტები და ცხოვრების ციკლი" }
+    },
+    react_context: { 
+        en: { title: "Context API", description: "Global state management" },
+        ka: { title: "Context API", description: "გლობალური state-ის მართვა" }
+    },
+    react_router: { 
+        en: { title: "React Router", description: "Navigation and routing" },
+        ka: { title: "React Router", description: "ნავიგაცია და მარშრუტიზაცია" }
     }
 };
 
 // React tutorial order
-const reactTutorialOrder = ['react_basics', 'react_components', 'react_props', 'react_state', 'react_events', 'react_conditional'];
+const reactTutorialOrder = ['react_basics', 'react_components', 'react_props', 'react_state', 'react_events', 'react_conditional', 'react_lists', 'react_forms', 'react_useeffect', 'react_context', 'react_router'];
 
 // UI translations
 const uiText = {
@@ -42,7 +62,8 @@ const uiText = {
         'react-interactive': 'Interactive Tutorials',
         'react-progress-text': 'tutorials to master React from basics to advanced concepts',
         'beginner': 'Beginner',
-        'intermediate': 'Intermediate'
+        'intermediate': 'Intermediate',
+        'advanced': 'Advanced'
     },
     ka: {
         'nav-home': 'მთავარი',
@@ -51,7 +72,8 @@ const uiText = {
         'react-interactive': 'ინტერაქტიული გაკვეთილები',
         'react-progress-text': 'გაკვეთილი React-ის დასაუფლებლად საწყისებიდან გაღრმავებულ კონცეფციებამდე',
         'beginner': 'დამწყები',
-        'intermediate': 'საშუალო'
+        'intermediate': 'საშუალო',
+        'advanced': 'გაღრმავებული'
     }
 };
 
@@ -215,24 +237,24 @@ const reactTutorialContent = {
                     "Create a button that changes the background color when clicked",
                     "Build a form that captures user input and displays it",
                     "Create a controlled input field with a clear button",
-                    "Build a simple calculator with click events for numbers and operations"
+                    "Build a counter with increment, decrement, and reset buttons"
                 ]
             }
         },
         ka: {
-            concept: "Event-ების მართვა React-ში საშუალებას გაძლევთ უპასუხოთ მომხმარებლის ინტერაქციებს როგორიცაა კლიკები, ფორმის გაგზავნები და შეყვანის ცვლილებები. React იყენებს სინთეზურ event-ებს რომლებიც მუშაობენ ერთნაირად სხვადასხვა ბრაუზერებში.",
+            concept: "Event-ების მართვა React-ში საშუალებას გაძლევთ ჩაერთოთ მომხმარებლის ინტერაქციებში როგორიცაა clicks, ფორმის გაგზავნა და შეყვანის ცვლილებები. React იყენებს სინთეტიკ event-ებს რომლებიც ერთნაირად მუშაობენ სხვადასხვა ბრაუზერში.",
             examples: [
-                { title: "Click Event-ები", code: 'function ClickButton() {\n  const handleClick = () => {\n    alert("ღილაკზე დაკლიკდა!");\n  };\n  \n  return (\n    <button onClick={handleClick}>\n      დამაკლიკე!\n    </button>\n  );\n}', desc: "დაამუშავეთ ღილაკის კლიკები" },
-                { title: "ფორმის მართვა", code: 'function ContactForm() {\n  const [email, setEmail] = useState("");\n  \n  const handleSubmit = (e) => {\n    e.preventDefault();\n    console.log("ემაილი:", email);\n  };\n  \n  return (\n    <form onSubmit={handleSubmit}>\n      <input\n        type="email"\n        value={email}\n        onChange={(e) => setEmail(e.target.value)}\n      />\n      <button type="submit">გაგზავნა</button>\n    </form>\n  );\n}', desc: "დაამუშავეთ ფორმის გაგზავნები" },
-                { title: "კონტროლირებადი კომპონენტები", code: 'function ControlledInput() {\n  const [value, setValue] = useState("");\n  \n  return (\n    <div>\n      <input\n        value={value}\n        onChange={(e) => setValue(e.target.value)}\n        placeholder="აქ ჩაწერეთ..."\n      />\n      <button onClick={() => setValue("")}>\n        გასუფთავება\n      </button>\n    </div>\n  );\n}', desc: "კონტროლი შეყვანის ველებზე state-ით" }
+                { title: "Click Event-ები", code: 'function ClickButton() {\n  const handleClick = () => {\n    alert("ღილაკზე დააჭირეს!");\n  };\n  \n  return (\n    <button onClick={handleClick}>\n      დააჭირეთ!\n    </button>\n  );\n}', desc: "ღილაკზე დაჭერის დამუშავება" },
+                { title: "ფორმის მართვა", code: 'function ContactForm() {\n  const [email, setEmail] = useState("");\n  \n  const handleSubmit = (e) => {\n    e.preventDefault();\n    console.log("ემეილი:", email);\n  };\n  \n  return (\n    <form onSubmit={handleSubmit}>\n      <input\n        type="email"\n        value={email}\n        onChange={(e) => setEmail(e.target.value)}\n      />\n      <button type="submit">გაგზავნა</button>\n    </form>\n  );\n}', desc: "ფორმის გაგზავნის დამუშავება" },
+                { title: "კონტროლირებადი კომპონენტები", code: 'function ControlledInput() {\n  const [value, setValue] = useState("");\n  \n  return (\n    <div>\n      <input\n        value={value}\n        onChange={(e) => setValue(e.target.value)}\n        placeholder="აქ ბეჭდეთ..."\n      />\n      <button onClick={() => setValue("")}>\n        გაწმენდა\n      </button>\n    </div>\n  );\n}', desc: "შეყვანის ველების კონტროლი state-ით" }
             ],
             practice: {
-                title: "დაეუფლეთ Event-ების მართვას",
+                title: "დაეუფლეთ Event მართვას",
                 tasks: [
-                    "შექმენით ღილაკი რომელიც კლიკისას ცვლის ფონის ფერს",
+                    "შექმენით ღილაკი რომელიც ცვლის ფონის ფერს დაჭერისას",
                     "ააშენეთ ფორმა რომელიც იღებს მომხმარებლის შეყვანას და აჩვენებს მას",
-                    "შექმენით კონტროლირებადი შეყვანის ველი გასუფთავების ღილაკით",
-                    "ააშენეთ მარტივი კალკულატორი click event-ებით რიცხვებისა და ოპერაციებისთვის"
+                    "შექმენით კონტროლირებადი შეყვანის ველი გაწმენდის ღილაკით",
+                    "ააშენეთ counter გაზრდის, შემცირებისა და ნულზე დაბრუნების ღილაკებით"
                 ]
             }
         }
@@ -250,8 +272,8 @@ const reactTutorialContent = {
                 tasks: [
                     "Create a component that shows different messages for day/night",
                     "Build a toggle component that shows/hides content with a button",
-                    "Create a user profile that shows different info for admin vs regular users",
-                    "Build a loading component that shows a spinner while data is loading"
+                    "Create a user profile that shows different info for admin vs regular user",
+                    "Build a loading component that shows a spinner while data is being fetched"
                 ]
             }
         },
@@ -269,6 +291,186 @@ const reactTutorialContent = {
                     "ააშენეთ toggle კომპონენტი რომელიც აჩვენებს/მალავს შინაარსს ღილაკით",
                     "შექმენით მომხმარებლის პროფილი რომელიც აჩვენებს სხვადასხვა ინფორმაციას ადმინისა და ჩვეულებრივი მომხმარებლისთვის",
                     "ააშენეთ ჩატვირთვის კომპონენტი რომელიც აჩვენებს spinner-ს მონაცემების ჩატვირთვისას"
+                ]
+            }
+        }
+    },
+    react_lists: {
+        en: {
+            concept: "When you need to render multiple items, React requires a unique 'key' prop for each item. Keys help React identify which items have changed, been added, or removed, making updates more efficient.",
+            examples: [
+                { title: "Basic List", code: 'function ItemList() {\n  const items = ["Apple", "Banana", "Cherry"];\n  \n  return (\n    <ul>\n      {items.map((item, index) => (\n        <li key={index}>{item}</li>\n      ))}\n    </ul>\n  );\n}', desc: "Render a simple list with map()" },
+                { title: "List with Objects", code: 'function UserList() {\n  const users = [\n    {id: 1, name: "John", age: 25},\n    {id: 2, name: "Jane", age: 30},\n    {id: 3, name: "Bob", age: 35}\n  ];\n  \n  return (\n    <ul>\n      {users.map(user => (\n        <li key={user.id}>\n          {user.name} (Age: {user.age})\n        </li>\n      ))}\n    </ul>\n  );\n}', desc: "Use unique IDs as keys for better performance" },
+                { title: "Dynamic List with State", code: 'function TodoList() {\n  const [todos, setTodos] = useState([\n    {id: 1, text: "Learn React", done: false},\n    {id: 2, text: "Build a project", done: false}\n  ]);\n  \n  return (\n    <ul>\n      {todos.map(todo => (\n        <li key={todo.id} style={{textDecoration: todo.done ? "line-through" : "none"}}>\n          {todo.text}\n        </li>\n      ))}\n    </ul>\n  );\n}', desc: "Combine lists with state for dynamic content" }
+            ],
+            practice: {
+                title: "Practice with Lists and Keys",
+                tasks: [
+                    "Create a list of your favorite movies with title and year",
+                    "Build a product list component that shows name, price, and description",
+                    "Create a dynamic todo list where you can add and remove items",
+                    "Experiment with filtering lists based on search input"
+                ]
+            }
+        },
+        ka: {
+            concept: "როცა გჭირდებათ მრავალი ელემენტის რენდერი, React მოითხოვს უნიკალურ 'key' prop-ს თითოეული ელემენტისთვის. Key-ები ეხმარება React-ს იდენტიფიცირება რომელი ელემენტები შეიცვალა, დაემატა, ან წაიშალა, რაც განახლებებს უფრო ეფექტურს ხდის.",
+            examples: [
+                { title: "ძირითადი სია", code: 'function ItemList() {\n  const items = ["ვაშლი", "ბანანი", "ალუბალი"];\n  \n  return (\n    <ul>\n      {items.map((item, index) => (\n        <li key={index}>{item}</li>\n      ))}\n    </ul>\n  );\n}', desc: "მარტივი სიის რენდერი map()-ით" },
+                { title: "ობიექტების სია", code: 'function UserList() {\n  const users = [\n    {id: 1, name: "ჯონი", age: 25},\n    {id: 2, name: "ჯეინი", age: 30},\n    {id: 3, name: "ბობი", age: 35}\n  ];\n  \n  return (\n    <ul>\n      {users.map(user => (\n        <li key={user.id}>\n          {user.name} (ასაკი: {user.age})\n        </li>\n      ))}\n    </ul>\n  );\n}', desc: "გამოიყენეთ უნიკალური ID-ები key-ებად უკეთესი პერფორმანსისთვის" },
+                { title: "დინამიური სია State-ით", code: 'function TodoList() {\n  const [todos, setTodos] = useState([\n    {id: 1, text: "ისწავლეთ React", done: false},\n    {id: 2, text: "ააშენეთ პროექტი", done: false}\n  ]);\n  \n  return (\n    <ul>\n      {todos.map(todo => (\n        <li key={todo.id} style={{textDecoration: todo.done ? "line-through" : "none"}}>\n          {todo.text}\n        </li>\n      ))}\n    </ul>\n  );\n}', desc: "შეაერთეთ სიები state-ით დინამიური შინაარსისთვის" }
+            ],
+            practice: {
+                title: "გაივარჯიშეთ სიებსა და Key-ებში",
+                tasks: [
+                    "შექმენით თქვენი საყვარელი ფილმების სია სათაურითა და წლით",
+                    "ააშენეთ პროდუქტების სიის კომპონენტი რომელიც აჩვენებს სახელს, ფასს და აღწერილობას",
+                    "შექმენით დინამიური todo სია სადაც შეგიძლიათ ელემენტების დამატება და წაშლა",
+                    "ექსპერიმენტირებდით სიების ფილტრაციაში საძიებო შეყვანის საფუძველზე"
+                ]
+            }
+        }
+    },
+    react_forms: {
+        en: {
+            concept: "Forms in React use controlled components where form data is handled by React state. This gives you full control over form inputs and enables real-time validation, formatting, and dynamic behavior.",
+            examples: [
+                { title: "Controlled Input", code: 'function NameForm() {\n  const [name, setName] = useState("");\n  \n  return (\n    <form>\n      <input\n        type="text"\n        value={name}\n        onChange={(e) => setName(e.target.value)}\n        placeholder="Enter your name"\n      />\n      <p>Hello, {name}!</p>\n    </form>\n  );\n}', desc: "Control input values with state" },
+                { title: "Form Submission", code: 'function ContactForm() {\n  const [email, setEmail] = useState("");\n  \n  const handleSubmit = (e) => {\n    e.preventDefault();\n    console.log("Email:", email);\n    alert(`Message sent to: ${email}`);\n  };\n  \n  return (\n    <form onSubmit={handleSubmit}>\n      <input\n        type="email"\n        value={email}\n        onChange={(e) => setEmail(e.target.value)}\n        required\n      />\n      <button type="submit">Send</button>\n    </form>\n  );\n}', desc: "Handle form submission with validation" },
+                { title: "Form Validation", code: 'function UserForm() {\n  const [email, setEmail] = useState("");\n  const [error, setError] = useState("");\n  \n  const handleSubmit = (e) => {\n    e.preventDefault();\n    if (!email.includes("@")) {\n      setError("Please enter a valid email");\n    } else {\n      setError("");\n      alert("Form submitted successfully!");\n    }\n  };\n  \n  return (\n    <form onSubmit={handleSubmit}>\n      <input\n        type="email"\n        value={email}\n        onChange={(e) => setEmail(e.target.value)}\n        placeholder="Enter email"\n      />\n      {error && <p style={{color: "red"}}>{error}</p>}\n      <button type="submit">Submit</button>\n    </form>\n  );\n}', desc: "Add custom validation with error messages" }
+            ],
+            practice: {
+                title: "Master React Forms",
+                tasks: [
+                    "Create a login form with username and password fields",
+                    "Build a registration form with multiple fields and validation",
+                    "Create a survey form with different input types (text, radio, checkbox)",
+                    "Build a contact form with real-time character counting"
+                ]
+            }
+        },
+        ka: {
+            concept: "React-ში ფორმები იყენებენ კონტროლირებად კომპონენტებს სადაც ფორმის მონაცემები მართავს React state. ეს გაძლევთ სრულ კონტროლს ფორმის შეყვანებზე და საშუალებას აძლევს რეალურ დროის ვალიდაციას, ფორმატირებას და დინამიურ ქცევას.",
+            examples: [
+                { title: "კონტროლირებადი შეყვანა", code: 'function NameForm() {\n  const [name, setName] = useState("");\n  \n  return (\n    <form>\n      <input\n        type="text"\n        value={name}\n        onChange={(e) => setName(e.target.value)}\n        placeholder="შეიყვანეთ თქვენი სახელი"\n      />\n      <p>გამარჯობა, {name}!</p>\n    </form>\n  );\n}', desc: "შეყვანის მნიშვნელობების კონტროლი state-ით" },
+                { title: "ფორმის გაგზავნა", code: 'function ContactForm() {\n  const [email, setEmail] = useState("");\n  \n  const handleSubmit = (e) => {\n    e.preventDefault();\n    console.log("ემეილი:", email);\n    alert(`შეტყობინება გაიგზავნა: ${email}`);\n  };\n  \n  return (\n    <form onSubmit={handleSubmit}>\n      <input\n        type="email"\n        value={email}\n        onChange={(e) => setEmail(e.target.value)}\n        required\n      />\n      <button type="submit">გაგზავნა</button>\n    </form>\n  );\n}', desc: "ფორმის გაგზავნის დამუშავება ვალიდაციით" },
+                { title: "ფორმის ვალიდაცია", code: 'function UserForm() {\n  const [email, setEmail] = useState("");\n  const [error, setError] = useState("");\n  \n  const handleSubmit = (e) => {\n    e.preventDefault();\n    if (!email.includes("@")) {\n      setError("გთხოვთ შეიყვანოთ სწორი ემეილი");\n    } else {\n      setError("");\n      alert("ფორმა წარმატებით გაიგზავნა!");\n    }\n  };\n  \n  return (\n    <form onSubmit={handleSubmit}>\n      <input\n        type="email"\n        value={email}\n        onChange={(e) => setEmail(e.target.value)}\n        placeholder="შეიყვანეთ ემეილი"\n      />\n      {error && <p style={{color: "red"}}>{error}</p>}\n      <button type="submit">გაგზავნა</button>\n    </form>\n  );\n}', desc: "დაამატეთ მორგებული ვალიდაცია შეცდომების შეტყობინებებით" }
+            ],
+            practice: {
+                title: "დაეუფლეთ React ფორმებს",
+                tasks: [
+                    "შექმენით შესვლის ფორმა მომხმარებლის სახელისა და პაროლის ველებით",
+                    "ააშენეთ რეგისტრაციის ფორმა მრავალი ველითა და ვალიდაციით",
+                    "შექმენით გამოკითხვის ფორმა სხვადასხვა შეყვანის ტიპებით (ტექსტი, რადიო, checkbox)",
+                    "ააშენეთ კონტაქტის ფორმა რეალურ დროის სიმბოლოების დათვლით"
+                ]
+            }
+        }
+    },
+    react_useeffect: {
+        en: {
+            concept: "useEffect is a React Hook that lets you perform side effects in functional components. It serves the same purpose as componentDidMount, componentDidUpdate, and componentWillUnmount combined in class components.",
+            examples: [
+                { title: "Basic useEffect", code: 'import { useState, useEffect } from "react";\n\nfunction DataFetcher() {\n  const [data, setData] = useState(null);\n  \n  useEffect(() => {\n    fetch("https://jsonplaceholder.typicode.com/posts/1")\n      .then(response => response.json())\n      .then(data => setData(data));\n  }, []); // Empty dependency array = runs once\n  \n  return (\n    <div>\n      {data ? <h1>{data.title}</h1> : <p>Loading...</p>}\n    </div>\n  );\n}', desc: "Fetch data when component mounts" },
+                { title: "Cleanup with useEffect", code: 'function Timer() {\n  const [seconds, setSeconds] = useState(0);\n  \n  useEffect(() => {\n    const interval = setInterval(() => {\n      setSeconds(prev => prev + 1);\n    }, 1000);\n    \n    // Cleanup function\n    return () => clearInterval(interval);\n  }, []); // Runs once, cleans up when unmounting\n  \n  return <div>Timer: {seconds} seconds</div>;\n}', desc: "Clean up timers and subscriptions" },
+                { title: "Effect with Dependencies", code: 'function UserProfile({ userId }) {\n  const [user, setUser] = useState(null);\n  \n  useEffect(() => {\n    if (userId) {\n      fetch(`/api/users/${userId}`)\n        .then(response => response.json())\n        .then(userData => setUser(userData));\n    }\n  }, [userId]); // Re-run when userId changes\n  \n  return (\n    <div>\n      {user ? <h1>{user.name}</h1> : <p>Select a user</p>}\n    </div>\n  );\n}', desc: "Run effect when specific values change" }
+            ],
+            practice: {
+                title: "Practice useEffect",
+                tasks: [
+                    "Create a component that fetches weather data on mount",
+                    "Build a timer that counts up and can be paused/resumed",
+                    "Create a window resize listener that updates component state",
+                    "Build a search component that fetches results as user types (with debouncing)"
+                ]
+            }
+        },
+        ka: {
+            concept: "useEffect არის React Hook რომელიც საშუალებას გაძლევთ შეასრულოთ გვერდითი ეფექტები ფუნქციურ კომპონენტებში. ის ასრულებს იმავე მიზანს როგორც componentDidMount, componentDidUpdate და componentWillUnmount ერთად კლასის კომპონენტებში.",
+            examples: [
+                { title: "ძირითადი useEffect", code: 'import { useState, useEffect } from "react";\n\nfunction DataFetcher() {\n  const [data, setData] = useState(null);\n  \n  useEffect(() => {\n    fetch("https://jsonplaceholder.typicode.com/posts/1")\n      .then(response => response.json())\n      .then(data => setData(data));\n  }, []); // ცარიელი dependency array = ერთხელ მუშაობს\n  \n  return (\n    <div>\n      {data ? <h1>{data.title}</h1> : <p>იტვირთება...</p>}\n    </div>\n  );\n}', desc: "მონაცემების მოძიება კომპონენტის mount-ისას" },
+                { title: "გაწმენდა useEffect-ით", code: 'function Timer() {\n  const [seconds, setSeconds] = useState(0);\n  \n  useEffect(() => {\n    const interval = setInterval(() => {\n      setSeconds(prev => prev + 1);\n    }, 1000);\n    \n    // გაწმენდის ფუნქცია\n    return () => clearInterval(interval);\n  }, []); // ერთხელ მუშაობს, იწმინდება unmount-ისას\n  \n  return <div>ტაიმერი: {seconds} წამი</div>;\n}', desc: "ტაიმერებისა და subscription-ების გაწმენდა" },
+                { title: "ეფექტი Dependency-ებით", code: 'function UserProfile({ userId }) {\n  const [user, setUser] = useState(null);\n  \n  useEffect(() => {\n    if (userId) {\n      fetch(`/api/users/${userId}`)\n        .then(response => response.json())\n        .then(userData => setUser(userData));\n    }\n  }, [userId]); // ხელახლა მუშაობს userId-ის შეცვლისას\n  \n  return (\n    <div>\n      {user ? <h1>{user.name}</h1> : <p>აირჩიეთ მომხმარებელი</p>}\n    </div>\n  );\n}', desc: "ეფექტის გაშვება კონკრეტული მნიშვნელობების შეცვლისას" }
+            ],
+            practice: {
+                title: "გაივარჯიშეთ useEffect-ში",
+                tasks: [
+                    "შექმენით კომპონენტი რომელიც mount-ზე იძიებს ამინდის მონაცემებს",
+                    "ააშენეთ ტაიმერი რომელიც ითვლის ზევით და შეიძლება დაპაუზდეს/განახლდეს",
+                    "შექმენით window resize listener რომელიც განაახლებს კომპონენტის state-ს",
+                    "ააშენეთ საძიებო კომპონენტი რომელიც იძიებს შედეგებს მომხმარებლის ბეჭდვისას (debouncing-ით)"
+                ]
+            }
+        }
+    },
+    react_context: {
+        en: {
+            concept: "React Context provides a way to pass data through the component tree without having to pass props down manually at every level. It's designed to share data that can be considered 'global' for a tree of React components.",
+            examples: [
+                { title: "Creating Context", code: 'import { createContext, useContext, useState } from "react";\n\n// Create Context\nconst ThemeContext = createContext();\n\n// Provider Component\nfunction ThemeProvider({ children }) {\n  const [theme, setTheme] = useState("light");\n  \n  const toggleTheme = () => {\n    setTheme(theme === "light" ? "dark" : "light");\n  };\n  \n  return (\n    <ThemeContext.Provider value={{ theme, toggleTheme }}>\n      {children}\n    </ThemeContext.Provider>\n  );\n}', desc: "Create context and provider" },
+                { title: "Using Context", code: 'function ThemeButton() {\n  const { theme, toggleTheme } = useContext(ThemeContext);\n  \n  return (\n    <button\n      onClick={toggleTheme}\n      style={{\n        backgroundColor: theme === "light" ? "#fff" : "#333",\n        color: theme === "light" ? "#333" : "#fff"\n      }}\n    >\n      Toggle Theme (Current: {theme})\n    </button>\n  );\n}', desc: "Consume context with useContext" },
+                { title: "App with Context", code: 'function App() {\n  return (\n    <ThemeProvider>\n      <div>\n        <h1>My App</h1>\n        <ThemeButton />\n        <Content />\n      </div>\n    </ThemeProvider>\n  );\n}\n\nfunction Content() {\n  const { theme } = useContext(ThemeContext);\n  \n  return (\n    <div style={{ color: theme === "light" ? "#333" : "#fff" }}>\n      Content that responds to theme changes!\n    </div>\n  );\n}', desc: "Use context throughout your app" }
+            ],
+            practice: {
+                title: "Practice Context API",
+                tasks: [
+                    "Create a user authentication context with login/logout functions",
+                    "Build a shopping cart context that manages cart items",
+                    "Create a language context for internationalization",
+                    "Build a notification context for app-wide messages"
+                ]
+            }
+        },
+        ka: {
+            concept: "React Context უზრუნველყოფს გზას მონაცემების გადაცემისთვის კომპონენტების ხეზე მანუალურად props-ების გადაცემის გარეშე ყველა დონეზე. ის არის შექმნილი იმ მონაცემების გასაზიარებლად რომლებიც შეიძლება ჩაითვალოს 'გლობალურად' React კომპონენტების ხისთვის.",
+            examples: [
+                { title: "Context-ის შექმნა", code: 'import { createContext, useContext, useState } from "react";\n\n// Context-ის შექმნა\nconst ThemeContext = createContext();\n\n// Provider კომპონენტი\nfunction ThemeProvider({ children }) {\n  const [theme, setTheme] = useState("light");\n  \n  const toggleTheme = () => {\n    setTheme(theme === "light" ? "dark" : "light");\n  };\n  \n  return (\n    <ThemeContext.Provider value={{ theme, toggleTheme }}>\n      {children}\n    </ThemeContext.Provider>\n  );\n}', desc: "შექმენით context და provider" },
+                { title: "Context-ის გამოყენება", code: 'function ThemeButton() {\n  const { theme, toggleTheme } = useContext(ThemeContext);\n  \n  return (\n    <button\n      onClick={toggleTheme}\n      style={{\n        backgroundColor: theme === "light" ? "#fff" : "#333",\n        color: theme === "light" ? "#333" : "#fff"\n      }}\n    >\n      თემის გადართვა (მიმდინარე: {theme})\n    </button>\n  );\n}', desc: "მოიხმარეთ context useContext-ით" },
+                { title: "აპი Context-ით", code: 'function App() {\n  return (\n    <ThemeProvider>\n      <div>\n        <h1>ჩემი აპი</h1>\n        <ThemeButton />\n        <Content />\n      </div>\n    </ThemeProvider>\n  );\n}\n\nfunction Content() {\n  const { theme } = useContext(ThemeContext);\n  \n  return (\n    <div style={{ color: theme === "light" ? "#333" : "#fff" }}>\n      შინაარსი რომელიც რეაგირებს თემის ცვლილებებზე!\n    </div>\n  );\n}', desc: "გამოიყენეთ context მთელ აპში" }
+            ],
+            practice: {
+                title: "გაივარჯიშეთ Context API-ში",
+                tasks: [
+                    "შექმენით მომხმარებლის ავთენტიფიკაციის context შესვლა/გამოსვლის ფუნქციებით",
+                    "ააშენეთ საყიდლების კალათის context რომელიც მართავს კალათის ელემენტებს",
+                    "შექმენით ენის context ინტერნაციონალიზაციისთვის",
+                    "ააშენეთ შეტყობინებების context მთელი აპის შეტყობინებებისთვის"
+                ]
+            }
+        }
+    },
+    react_router: {
+        en: {
+            concept: "React Router enables navigation among views of various components in a React Application, allows changing the browser URL, and keeps the UI in sync with the URL. It's essential for building single-page applications (SPAs).",
+            examples: [
+                { title: "Basic Router Setup", code: 'import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";\n\nfunction App() {\n  return (\n    <Router>\n      <nav>\n        <Link to="/">Home</Link> | \n        <Link to="/about">About</Link> | \n        <Link to="/contact">Contact</Link>\n      </nav>\n      \n      <Routes>\n        <Route path="/" element={<Home />} />\n        <Route path="/about" element={<About />} />\n        <Route path="/contact" element={<Contact />} />\n      </Routes>\n    </Router>\n  );\n}', desc: "Set up basic routing with multiple pages" },
+                { title: "Navigation Components", code: 'function Home() {\n  return <h1>Welcome to Home Page</h1>;\n}\n\nfunction About() {\n  return (\n    <div>\n      <h1>About Us</h1>\n      <p>This is the about page content.</p>\n    </div>\n  );\n}\n\nfunction Contact() {\n  return (\n    <div>\n      <h1>Contact Us</h1>\n      <p>Email: contact@example.com</p>\n    </div>\n  );\n}', desc: "Create different page components" },
+                { title: "Navigation Bar", code: 'function Navbar() {\n  return (\n    <nav style={{ padding: "20px", backgroundColor: "#f0f0f0" }}>\n      <Link to="/" style={{ marginRight: "20px" }}>Home</Link>\n      <Link to="/about" style={{ marginRight: "20px" }}>About</Link>\n      <Link to="/contact">Contact</Link>\n    </nav>\n  );\n}\n\n// Use in App component\nfunction App() {\n  return (\n    <Router>\n      <Navbar />\n      <div style={{ padding: "20px" }}>\n        <Routes>\n          <Route path="/" element={<Home />} />\n          <Route path="/about" element={<About />} />\n          <Route path="/contact" element={<Contact />} />\n        </Routes>\n      </div>\n    </Router>\n  );\n}', desc: "Create a reusable navigation component" }
+            ],
+            practice: {
+                title: "Master React Router",
+                tasks: [
+                    "Create a multi-page portfolio website with Home, Projects, and About pages",
+                    "Build a blog with a list page and individual post pages",
+                    "Create a dashboard with different sections (Profile, Settings, Analytics)",
+                    "Build an e-commerce site with product listing and product detail pages"
+                ]
+            }
+        },
+        ka: {
+            concept: "React Router უზრუნველყოფს ნავიგაციას სხვადასხვა კომპონენტების ხედებს შორის React აპლიკაციაში, საშუალებას აძლევს ბრაუზერის URL-ის შეცვლას, და UI-ს URL-თან სინქრონიზებულად ინახავს. ის აუცილებელია single-page applications (SPAs) ასაშენებლად.",
+            examples: [
+                { title: "ძირითადი Router დაყენება", code: 'import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";\n\nfunction App() {\n  return (\n    <Router>\n      <nav>\n        <Link to="/">მთავარი</Link> | \n        <Link to="/about">ჩვენ შესახებ</Link> | \n        <Link to="/contact">კონტაქტი</Link>\n      </nav>\n      \n      <Routes>\n        <Route path="/" element={<Home />} />\n        <Route path="/about" element={<About />} />\n        <Route path="/contact" element={<Contact />} />\n      </Routes>\n    </Router>\n  );\n}', desc: "მოამზადეთ ძირითადი routing მრავალი გვერდით" },
+                { title: "ნავიგაციის კომპონენტები", code: 'function Home() {\n  return <h1>კეთილი იყოს თქვენი მობრძანება მთავარ გვერდზე</h1>;\n}\n\nfunction About() {\n  return (\n    <div>\n      <h1>ჩვენ შესახებ</h1>\n      <p>ეს არის "ჩვენ შესახებ" გვერდის შინაარსი.</p>\n    </div>\n  );\n}\n\nfunction Contact() {\n  return (\n    <div>\n      <h1>დაგვიკავშირდით</h1>\n      <p>ემეილი: contact@example.com</p>\n    </div>\n  );\n}', desc: "შექმენით სხვადასხვა გვერდის კომპონენტები" },
+                { title: "ნავიგაციის ზოლი", code: 'function Navbar() {\n  return (\n    <nav style={{ padding: "20px", backgroundColor: "#f0f0f0" }}>\n      <Link to="/" style={{ marginRight: "20px" }}>მთავარი</Link>\n      <Link to="/about" style={{ marginRight: "20px" }}>ჩვენ შესახებ</Link>\n      <Link to="/contact">კონტაქტი</Link>\n    </nav>\n  );\n}\n\n// გამოიყენეთ App კომპონენტში\nfunction App() {\n  return (\n    <Router>\n      <Navbar />\n      <div style={{ padding: "20px" }}>\n        <Routes>\n          <Route path="/" element={<Home />} />\n          <Route path="/about" element={<About />} />\n          <Route path="/contact" element={<Contact />} />\n        </Routes>\n      </div>\n    </Router>\n  );\n}', desc: "შექმენით მრავალჯერ გამოსაყენებელი ნავიგაციის კომპონენტი" }
+            ],
+            practice: {
+                title: "დაეუფლეთ React Router-ს",
+                tasks: [
+                    "შექმენით მრავალგვერდიანი პორტფოლიო ვებსაიტი მთავარი, პროექტებისა და \"ჩვენ შესახებ\" გვერდებით",
+                    "ააშენეთ ბლოგი სიის გვერდითა და ინდივიდუალური პოსტების გვერდებით",
+                    "შექმენით დეშბორდი სხვადასხვა სექციებით (პროფილი, პარამეტრები, ანალიტიკა)",
+                    "ააშენეთ ელექტრონული კომერციის საიტი პროდუქტების სიითა და პროდუქტის დეტალების გვერდებით"
                 ]
             }
         }
@@ -313,7 +515,7 @@ function setupNavigation() {
     document.querySelectorAll('.tutorial-item').forEach(item => {
         item.addEventListener('click', function() {
             const tutorial = this.dataset.tutorial;
-            if (reactTutorials[tutorial]) {
+            if (reactTutorialContent[tutorial]) {
                 loadTutorial(tutorial);
                 setActive(this);
             }
@@ -349,7 +551,7 @@ function setupLanguage() {
             currentLanguage = this.dataset.lang;
             localStorage.setItem('language', currentLanguage);
             updateLanguage();
-            if (reactTutorials[currentTutorial]) {
+            if (reactTutorialContent[currentTutorial]) {
                 loadTutorial(currentTutorial);
             }
             if (languageDropdown) {
@@ -362,9 +564,10 @@ function setupLanguage() {
 
 function loadTutorial(name) {
     currentTutorial = name;
-    const content = reactTutorials[name];
+    const titleContent = reactTutorials[name];
+    const detailContent = reactTutorialContent[name];
     
-    if (!content) {
+    if (!titleContent || !detailContent) {
         console.log('Tutorial not found:', name);
         return;
     }
@@ -372,8 +575,8 @@ function loadTutorial(name) {
     const title = document.getElementById('tutorialTitle');
     const desc = document.getElementById('tutorialDescription');
     
-    if (title) title.textContent = content[currentLanguage].title;
-    if (desc) desc.textContent = content[currentLanguage].description;
+    if (title) title.textContent = titleContent[currentLanguage].title;
+    if (desc) desc.textContent = titleContent[currentLanguage].description;
     
     // Update the tutorial content section with dynamic content
     updateTutorialContent(name);
@@ -451,6 +654,13 @@ function updateNavigationButtons() {
     }
 }
 
+// HTML escape function to prevent HTML injection in code examples
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 function updateTutorialContent(tutorialName) {
     const content = reactTutorialContent[tutorialName];
     if (!content) return;
@@ -478,7 +688,7 @@ function updateTutorialContent(tutorialName) {
                         <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
                             <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-2">${example.title}</h4>
                             <p class="text-gray-700 dark:text-gray-300 mb-2">${example.desc}</p>
-                            <pre class="bg-gray-900 text-gray-100 p-3 rounded text-sm overflow-x-auto"><code>${example.code}</code></pre>
+                            <pre class="bg-gray-900 text-gray-100 p-3 rounded text-sm overflow-x-auto"><code>${escapeHtml(example.code)}</code></pre>
                         </div>
                     `).join('')}
                 </div>
@@ -502,7 +712,7 @@ function updatePracticeTask(tutorialName) {
             <div class="content-text">
                 <p class="mb-4"><strong>${currentLanguage === 'ka' ? 'თქვენი დავალება:' : 'Your Task:'}</strong></p>
                 <ol class="list-decimal pl-6 space-y-2 mb-4">
-                    ${langContent.practice.tasks.map(task => `<li>${task}</li>`).join('')}
+                    ${langContent.practice.tasks.map(task => `<li>${escapeHtml(task)}</li>`).join('')}
                 </ol>
                 <p class="text-sm text-gray-600 dark:text-gray-400">${currentLanguage === 'ka' ? 'სცადეთ ქვემოთ მოცემულ კოდის რედაქტორში!' : 'Try it in the code editor below!'}</p>
             </div>
