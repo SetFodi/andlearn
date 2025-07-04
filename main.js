@@ -38,7 +38,7 @@ const translations = {
         
         'react-title': 'React',
         'react-desc': 'Build modern user interfaces with the most popular JavaScript library.',
-        'react-count': '6 Lessons',
+        'react-count': '11 Lessons',
         
         'ts-title': 'TypeScript',
         'ts-desc': 'Add type safety to JavaScript for more robust applications.',
@@ -100,7 +100,7 @@ const translations = {
         
         'react-title': 'React',
         'react-desc': 'შექმენი თანამედროვე მომხმარებლის ინტერფეისები ყველაზე პოპულარული JavaScript ბიბლიოთეკით.',
-        'react-count': '6 გაკვეთილი',
+        'react-count': '11 გაკვეთილი',
         
         'ts-title': 'TypeScript',
         'ts-desc': 'დაამატე ტიპების უსაფრთხოება JavaScript-ს უფრო სანდო აპლიკაციებისთვის.',
@@ -137,14 +137,14 @@ const translations = {
 };
 
 // ====================
-// LOADING SCREEN
+// REVOLUTIONARY LOADING SCREEN
 // ====================
 function initializeLoadingScreen() {
     const loadingScreen = document.getElementById('loadingScreen');
-    const matrixBg = document.getElementById('matrixBg');
+    const cosmicParticles = loadingScreen.querySelector('.cosmic-particles');
     
-    // Create matrix rain effect
-    createMatrixRain(matrixBg);
+    // Create cosmic particle effect
+    createCosmicParticles(cosmicParticles);
     
     // Simulate realistic loading time with steps
     setTimeout(() => {
@@ -156,33 +156,91 @@ function initializeLoadingScreen() {
             initializeAnimations();
             loadingScreen.remove();
         }, 800);
-    }, 3500); // Increased to show the cool terminal effect
+    }, 4000); // Show the cosmic loading effect
 }
 
-function createMatrixRain(container) {
-    const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-    const columns = Math.floor(window.innerWidth / 20);
-    
-    for (let i = 0; i < columns; i++) {
-        const column = document.createElement('div');
-        column.className = 'matrix-column';
-        column.style.left = i * 20 + 'px';
-        column.style.animationDuration = (Math.random() * 3 + 2) + 's';
-        column.style.animationDelay = Math.random() * 2 + 's';
+function createCosmicParticles(container) {
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
         
-        // Add random characters
-        let text = '';
-        for (let j = 0; j < Math.floor(Math.random() * 20 + 10); j++) {
-            text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
-        }
-        column.innerHTML = text;
+        // Random colors for particles
+        const colors = ['#00f5ff', '#ff006e', '#8338ec', '#3a86ff'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.background = `radial-gradient(circle, ${color}, transparent)`;
         
-        container.appendChild(column);
+        container.appendChild(particle);
     }
 }
 
 // ====================
-// PARTICLE SYSTEM
+// REVOLUTIONARY GEOMETRIC SHAPES SYSTEM
+// ====================
+function initializeGeometricShapes() {
+    const container = document.getElementById('geometricShapes');
+    if (!container) return;
+
+    const shapeTypes = ['circle', 'square', 'triangle', 'hexagon'];
+    const colors = [
+        ['#00f5ff', '#ff006e'],
+        ['#8338ec', '#3a86ff'], 
+        ['#22c55e', '#f59e0b'],
+        ['#f472b6', '#a78bfa']
+    ];
+
+    // Create 20 floating geometric shapes
+    for (let i = 0; i < 20; i++) {
+        createFloatingShape(container, shapeTypes, colors);
+    }
+}
+
+function createFloatingShape(container, shapeTypes, colors) {
+    const shapeType = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
+    const colorPair = colors[Math.floor(Math.random() * colors.length)];
+    
+    const shape = document.createElement('div');
+    shape.className = `geo-shape geo-${shapeType}`;
+    
+    // Random positioning and timing
+    const startX = Math.random() * window.innerWidth;
+    const endX = startX + (Math.random() - 0.5) * 200;
+    const duration = Math.random() * 20 + 15; // 15-35 seconds
+    const delay = Math.random() * 10;
+    const size = Math.random() * 40 + 20; // 20-60px
+    
+    // Set CSS custom properties
+    shape.style.setProperty('--start-x', startX + 'px');
+    shape.style.setProperty('--end-x', endX + 'px');
+    shape.style.setProperty('--duration', duration + 's');
+    shape.style.setProperty('--shape-from', colorPair[0]);
+    shape.style.setProperty('--shape-to', colorPair[1]);
+    shape.style.setProperty('--max-opacity', (Math.random() * 0.1 + 0.05).toString());
+    
+    // Size adjustments for different shapes
+    if (shapeType === 'circle' || shapeType === 'square') {
+        shape.style.width = size + 'px';
+        shape.style.height = size + 'px';
+    }
+    
+    shape.style.animationDelay = delay + 's';
+    shape.style.left = startX + 'px';
+    
+    container.appendChild(shape);
+    
+    // Remove and recreate after animation completes
+    setTimeout(() => {
+        if (shape.parentNode) {
+            shape.remove();
+            createFloatingShape(container, shapeTypes, colors);
+        }
+    }, (duration + delay) * 1000);
+}
+
+// ====================
+// ENHANCED COSMIC PARTICLE SYSTEM
 // ====================
 class Particle {
     constructor(container) {
@@ -713,37 +771,120 @@ function showAdvancedNotification(message, icon = '✨') {
 }
 
 // ====================
-// ANIMATIONS INITIALIZATION
+// COSMIC CARD INTERACTIONS
+// ====================
+function initializeCosmicCardEffects() {
+    const cosmicCards = document.querySelectorAll('.cosmic-card');
+    
+    cosmicCards.forEach(card => {
+        // Add click ripple effect
+        card.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Create ripple effect
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: absolute;
+                left: ${x}px;
+                top: ${y}px;
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(0, 245, 255, 0.3), transparent);
+                transform: translate(-50%, -50%);
+                animation: cosmicRipple 0.8s ease-out;
+                pointer-events: none;
+                z-index: 1000;
+            `;
+            
+            this.appendChild(ripple);
+            
+            // Remove ripple after animation
+            setTimeout(() => ripple.remove(), 800);
+            
+            // Navigate to course
+            const category = this.dataset.category;
+            if (category === 'javascript') {
+                showPageTransition(() => {
+                    window.location.href = 'javascript.html';
+                });
+            } else if (category === 'react') {
+                showPageTransition(() => {
+                    window.location.href = 'react.html';
+                });
+            } else {
+                showAdvancedComingSoonModal(category);
+            }
+        });
+        
+        // Enhanced hover effects
+        card.addEventListener('mouseenter', function() {
+            const glow = this.querySelector('.cosmic-card-glow');
+            if (glow) {
+                glow.style.animation = 'cardGlow 1s ease-in-out infinite';
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            const glow = this.querySelector('.cosmic-card-glow');
+            if (glow) {
+                glow.style.animation = 'cardGlow 3s ease-in-out infinite';
+            }
+        });
+    });
+}
+
+// ====================
+// DECORATIVE ELEMENTS
+// ====================
+function createDecorativeDots() {
+    const container = document.getElementById('decorativeDots');
+    if (!container) return;
+    
+    const dotCount = 50;
+    
+    for (let i = 0; i < dotCount; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        dot.style.left = Math.random() * 100 + '%';
+        dot.style.top = Math.random() * 100 + '%';
+        dot.style.opacity = Math.random() * 0.5 + 0.1;
+        container.appendChild(dot);
+    }
+}
+
+// ====================
+// CLEAN ANIMATIONS INITIALIZATION
 // ====================
 function initializeAnimations() {
-    // Add CSS animations class
+    // Add subtle CSS animations
     const style = document.createElement('style');
     style.textContent = `
-        @keyframes bounce {
-            0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
-            40%, 43% { transform: translate3d(0,-20px,0); }
-            70% { transform: translate3d(0,-10px,0); }
-            90% { transform: translate3d(0,-4px,0); }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     `;
     document.head.appendChild(style);
     
-    // Initialize all effect systems
-    initializeParticles();
-    initializeScrollEffects();
+    // Initialize essential effects only
+    createDecorativeDots();
     initializeScrollAnimations();
-    initializeMouseEffects();
 }
 
 // ====================
 // MAIN INITIALIZATION
 // ====================
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('%c🚀 AndLearn Advanced Platform Loading...', 'color: #3b82f6; font-size: 18px; font-weight: bold;');
-    console.log('%c✨ Initializing fancy effects and animations!', 'color: #22c55e; font-size: 14px;');
-    
-    // Start loading screen
-    initializeLoadingScreen();
+    console.log('%c🚀 AndLearn Platform Loading...', 'color: #3b82f6; font-size: 16px; font-weight: bold;');
     
     // Initialize core functionality
     initializeTheme();
@@ -751,13 +892,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setupThemeToggle();
     setupLanguageToggle();
     setupCourseNavigation();
+    initializeAnimations();
     
     // Make global functions available
     window.scrollToCourses = scrollToCourses;
     window.scrollToAbout = scrollToAbout;
     
-    console.log('%c💫 Advanced features activated!', 'color: #8b5cf6; font-size: 14px;');
-    console.log('%c🎨 Enjoy the enhanced experience!', 'color: #f59e0b; font-size: 14px;');
+    console.log('%c✨ Clean design loaded!', 'color: #22c55e; font-size: 14px;');
 });
 
 // Cleanup on page unload

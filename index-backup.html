@@ -73,9 +73,6 @@
     </script>
     <style>
         /* Coding-Themed Loading Screen */
-        html{
-            scroll-behavior: smooth;
-        }
         .loading-screen {
             position: fixed;
             top: 0;
@@ -214,28 +211,15 @@
             animation: matrixFall linear infinite;
         }
         
-        /* Clean Modern Card Design */
-        .modern-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Course Card Simple Glow */
+        .card-hover {
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
             position: relative;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .dark .modern-card {
-            background: rgba(17, 24, 39, 0.8);
-            border: 1px solid rgba(75, 85, 99, 0.3);
-        }
-        
-        .modern-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        .card-hover:hover {
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
             border-color: rgba(59, 130, 246, 0.3);
-        }
-        
-        .dark .modern-card:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
         /* Feature Card Nice Hover */
@@ -264,8 +248,8 @@
             transform: scale(1.05);
         }
         
-        /* Clean Background */
-        .clean-bg {
+        /* Animated Background */
+        .animated-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -273,26 +257,28 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+            overflow: hidden;
         }
         
-        /* Subtle decorative elements */
-        .decorative-dots {
+        .floating-shapes {
             position: absolute;
             width: 100%;
             height: 100%;
-            opacity: 0.3;
         }
         
-        .dot {
+        .shape {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #667eea;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
             border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite;
         }
+        
+        .shape:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { width: 60px; height: 60px; left: 20%; animation-delay: 2s; }
+        .shape:nth-child(3) { width: 100px; height: 100px; left: 80%; animation-delay: 4s; }
+        .shape:nth-child(4) { width: 40px; height: 40px; left: 70%; animation-delay: 6s; }
+        .shape:nth-child(5) { width: 120px; height: 120px; left: 50%; animation-delay: 8s; }
         
         /* Particle Effect */
         .particles {
@@ -373,57 +359,19 @@
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
         
-        /* Clean Text Effects */
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Text Animations */
+        .text-gradient {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #22c55e, #f59e0b);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             background-clip: text;
-            -webkit-text-fill-color: transparent;
+            animation: gradient 6s ease infinite;
         }
         
-        .fade-in {
+        .reveal-text {
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Modern Button */
-        .modern-button {
-            position: relative;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            border-radius: 12px;
-            padding: 16px 32px;
-            color: white;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        
-        .modern-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-        
-        .modern-button-outline {
-            background: transparent;
-            border: 2px solid #667eea;
-            color: #667eea;
-        }
-        
-        .modern-button-outline:hover {
-            background: #667eea;
-            color: white;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            transform: translateY(30px);
+            animation: revealText 1s ease forwards;
         }
         
         /* Parallax Sections */
@@ -605,15 +553,59 @@
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 font-sans transition-colors duration-300">
-
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <!-- Matrix Rain Background -->
+        <div class="matrix-bg" id="matrixBg"></div>
+        
+        <!-- Terminal Loading Interface -->
+        <div class="terminal-loader">
+            <div class="terminal-header">
+                <div class="terminal-controls">
+                    <div class="terminal-dot dot-close"></div>
+                    <div class="terminal-dot dot-minimize"></div>
+                    <div class="terminal-dot dot-maximize"></div>
+                </div>
+                <div class="terminal-title">AndLearn Terminal v2.0</div>
+            </div>
+            
+            <div class="terminal-content">
+                <div class="loading-line">$ npm install @andlearn/platform</div>
+                <div class="loading-line">$ Initializing learning environment...</div>
+                <div class="loading-line">$ Loading JavaScript modules ✓</div>
+                <div class="loading-line">$ Loading React components ✓</div>
+                <div class="loading-line">$ Setting up interactive tutorials ✓</div>
+                
+                <div class="loading-progress">
+                    <div class="loading-spinner">
+                        <span class="spinner-char">|</span>
+                    </div>
+                    <span style="color: #dcdcaa;">Loading</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill"></div>
+                    </div>
+                    <span style="color: #9cdcfe;">100%</span>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- Scroll Progress Indicator -->
     <div id="scrollIndicator" class="scroll-indicator"></div>
     
-    <!-- Clean Background -->
-    <div class="clean-bg">
-        <!-- Subtle decorative dots -->
-        <div class="decorative-dots" id="decorativeDots"></div>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <!-- Floating Shapes -->
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <!-- Particles -->
+        <div id="particles" class="particles"></div>
     </div>
     
     <!-- Navigation -->
@@ -674,40 +666,46 @@
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-20 w-64 h-64 bg-primary-200 dark:bg-primary-900 rounded-full blob opacity-20"></div>
+            <div class="absolute bottom-20 right-20 w-48 h-48 bg-accent-200 dark:bg-accent-900 rounded-full blob opacity-20" style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 left-1/4 w-32 h-32 bg-purple-200 dark:bg-purple-900 rounded-full blob opacity-20" style="animation-delay: 4s;"></div>
+        </div>
         
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center">
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-                    <span class="gradient-text fade-in" data-translate="hero-title">
+            <div class="text-center animate-fade-in">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+                    <span class="text-gradient text-transparent reveal-text" data-translate="hero-title">
                         Learn Programming the Fun Way
                     </span>
                 </h1>
                 
-                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed fade-in" style="animation-delay: 0.2s;" data-translate="hero-subtitle">
+                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed" data-translate="hero-subtitle">
                     Master JavaScript, React, TypeScript and more through interactive, hands-on tutorials designed to make coding easy and enjoyable.
                 </p>
 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 fade-in" style="animation-delay: 0.4s;">
-                    <button onclick="scrollToCourses()" class="modern-button" data-translate="btn-start-learning">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                    <button onclick="scrollToCourses()" class="fancy-button text-white px-8 py-4 rounded-xl font-semibold text-lg" data-translate="btn-start-learning">
                         Start Learning Free
                     </button>
-                    <button onclick="scrollToAbout()" class="modern-button modern-button-outline" data-translate="btn-learn-more">
+                    <button onclick="scrollToAbout()" class="glass dark:glass-dark border border-gray-200/30 dark:border-gray-600/30 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100/20 dark:hover:bg-gray-800/20 transition-all duration-300" data-translate="btn-learn-more">
                         Learn More
                     </button>
                 </div>
 
-                <!-- Clean Stats -->
-                <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto fade-in" style="animation-delay: 0.6s;">
+                <!-- Simple Stats -->
+                <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
                     <div class="text-center">
-                        <div class="text-3xl font-bold gradient-text">23+</div>
+                        <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">23+</div>
                         <div class="text-gray-600 dark:text-gray-400" data-translate="stats-tutorials">Tutorials</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-3xl font-bold gradient-text">Free</div>
+                        <div class="text-3xl font-bold text-accent-600 dark:text-accent-400">Free</div>
                         <div class="text-gray-600 dark:text-gray-400" data-translate="stats-free">Always</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-3xl font-bold gradient-text">∞</div>
+                        <div class="text-3xl font-bold text-purple-600 dark:text-purple-400">∞</div>
                         <div class="text-gray-600 dark:text-gray-400" data-translate="stats-practice">Practice</div>
                     </div>
                 </div>
@@ -732,7 +730,7 @@
             <!-- Course Cards -->
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- JavaScript -->
-                <div class="course-card modern-card rounded-2xl p-6 cursor-pointer" data-category="javascript">
+                <div class="course-card card-hover bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 cursor-pointer" data-category="javascript">
                     <div class="text-center">
                         <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                             <span class="text-2xl font-bold text-white">JS</span>
@@ -746,7 +744,7 @@
                 </div>
 
                 <!-- React -->
-                <div class="course-card modern-card rounded-2xl p-6 cursor-pointer" data-category="react">
+                <div class="course-card card-hover bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 cursor-pointer" data-category="react">
                     <div class="text-center">
                         <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -756,13 +754,13 @@
                         <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-translate="react-title">React</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm" data-translate="react-desc">Build modern user interfaces with the most popular JavaScript library.</p>
                         <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-cyan-100 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-200" data-translate="react-count">
-                            11 Lessons
+                            6 Lessons
                         </div>
                     </div>
                 </div>
 
                 <!-- TypeScript -->
-                <div class="course-card modern-card rounded-2xl p-6 cursor-pointer opacity-75" data-category="typescript">
+                <div class="course-card card-hover bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 cursor-pointer opacity-75" data-category="typescript">
                     <div class="text-center">
                         <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                             <span class="text-xl font-bold text-white">TS</span>
@@ -776,7 +774,7 @@
                 </div>
 
                 <!-- More -->
-                <div class="course-card modern-card rounded-2xl p-6 cursor-pointer opacity-75" data-category="more">
+                <div class="course-card card-hover bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 cursor-pointer opacity-75" data-category="more">
                     <div class="text-center">
                         <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
