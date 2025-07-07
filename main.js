@@ -34,17 +34,19 @@ const translations = {
         // Course Cards
         'js-title': 'JavaScript',
         'js-desc': 'Learn the language that powers the web. Start from basics to advanced concepts.',
-        'js-count': '12 Lessons',
+        'js-count': '18 Lessons',
         
         'react-title': 'React',
         'react-desc': 'Build modern user interfaces with the most popular JavaScript library.',
-        'react-count': '11 Lessons',
+        'react-count': '15 Lessons',
         
         'ts-title': 'TypeScript',
         'ts-desc': 'Add type safety to JavaScript for more robust applications.',
+        'ts-count': '10 Lessons',
         
-        'more-title': 'More Languages',
-        'more-desc': 'Python, PHP, Laravel and many more coming soon.',
+        'python-title': 'Python',
+        'python-desc': 'Learn the most beginner-friendly programming language for data science and web development.',
+        'python-count': '12 Lessons',
         
         'coming-soon': 'Coming Soon',
         
@@ -96,17 +98,19 @@ const translations = {
         // Course Cards
         'js-title': 'JavaScript',
         'js-desc': 'ისწავლე ენა, რომელიც ვებს ამოძრავებს. დაიწყე საფუძვლებიდან მოწინავე კონცეფციებამდე.',
-        'js-count': '12 გაკვეთილი',
+        'js-count': '18 გაკვეთილი',
         
         'react-title': 'React',
         'react-desc': 'შექმენი თანამედროვე მომხმარებლის ინტერფეისები ყველაზე პოპულარული JavaScript ბიბლიოთეკით.',
-        'react-count': '11 გაკვეთილი',
+        'react-count': '15 გაკვეთილი',
         
         'ts-title': 'TypeScript',
         'ts-desc': 'დაამატე ტიპების უსაფრთხოება JavaScript-ს უფრო სანდო აპლიკაციებისთვის.',
+        'ts-count': '10 გაკვეთილი',
         
-        'more-title': 'მეტი ენები',
-        'more-desc': 'Python, PHP, Laravel და სხვა მალე იქნება ხელმისაწვდომი.',
+        'python-title': 'Python',
+        'python-desc': 'ისწავლე ყველაზე დამწყებთათვის მოსახერხებელი პროგრამირების ენა მონაცემთა მეცნიერებისა და ვებ განვითარებისთვის.',
+        'python-count': '12 გაკვეთილი',
         
         'coming-soon': 'მალე',
         
@@ -651,6 +655,14 @@ function setupCourseNavigation() {
                 showPageTransition(() => {
                     window.location.href = 'react.html';
                 });
+            } else if (category === 'typescript') {
+                showPageTransition(() => {
+                    window.location.href = 'typescript.html';
+                });
+            } else if (category === 'python') {
+                showPageTransition(() => {
+                    window.location.href = 'python.html';
+                });
             } else {
                 showAdvancedComingSoonModal(category);
             }
@@ -813,6 +825,14 @@ function initializeCosmicCardEffects() {
             } else if (category === 'react') {
                 showPageTransition(() => {
                     window.location.href = 'react.html';
+                });
+            } else if (category === 'typescript') {
+                showPageTransition(() => {
+                    window.location.href = 'typescript.html';
+                });
+            } else if (category === 'python') {
+                showPageTransition(() => {
+                    window.location.href = 'python.html';
                 });
             } else {
                 showAdvancedComingSoonModal(category);
