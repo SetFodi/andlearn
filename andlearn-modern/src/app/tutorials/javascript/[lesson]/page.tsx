@@ -23,7 +23,7 @@ import {
   ArrowRight
 } from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 
 interface LessonPageProps {
   params: {
@@ -35,7 +35,12 @@ export default function LessonPage({ params }: LessonPageProps) {
   const { language } = useLanguage()
   const [copied, setCopied] = useState(false)
   const [currentTab, setCurrentTab] = useState<'theory' | 'code' | 'practice'>('theory')
-  const lessonId = parseInt(params.lesson)
+  
+  // Safe lesson ID parsing with error handling
+  const lessonId = useMemo(() => {
+    const id = parseInt(params.lesson)
+    return isNaN(id) ? 1 : id // Default to lesson 1 if invalid
+  }, [params.lesson])
 
   // JavaScript lessons data with comprehensive content
   const lessons = [
