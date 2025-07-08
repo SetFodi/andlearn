@@ -47,388 +47,376 @@ export default function LessonPage({ params }: LessonPageProps) {
   const lessons = [
     {
       id: 1,
-      title: {
-        ka: 'ცვლადები და მონაცემთა ტიპები',
-        en: 'Variables and Data Types'
-      },
-      description: {
-        ka: 'ისწავლე ცვლადების შექმნა და მონაცემთა ტიპების გამოყენება Python-ში',
-        en: 'Learn how to create variables and use data types in Python'
-      },
-      duration: 15,
-      difficulty: { ka: 'დამწყები', en: 'Beginner' },
-      keyPoints: [
-        { ka: 'Python-ში ცვლადები არ საჭიროებს ტიპის განსაზღვრას', en: 'Python variables don\'t require type declaration' },
-        { ka: 'დინამიური ტიპისტაცია - ტიპი ავტომატურად განისაზღვრება', en: 'Dynamic typing - type is automatically determined' },
-        { ka: 'ძირითადი ტიპები: int, float, str, bool', en: 'Basic types: int, float, str, bool' },
-        { ka: 'print() ფუნქცია გამოსატანადაა', en: 'print() function is for output' }
-      ],
-      theory: {
-        ka: `
-# ცვლადები Python-ში
-
-Python-ში ცვლადების შექმნა ძალიან მარტივია. თქვენ არ გჭირდებათ ტიპის წინასწარ განსაზღვრა.
-
-## ცვლადების შექმნა
-
-### მარტივი მიღება:
-\`\`\`python
-name = "ლუკა"
-age = 20
-height = 1.75
-is_student = True
-\`\`\`
-
-Python ავტომატურად განსაზღვრავს ცვლადის ტიპს მნიშვნელობის მიხედვით.
-
-## მონაცემთა ტიპები
-
-### 1. Integer (int) - მთელი რიცხვები
-\`\`\`python
-age = 25
-year = 2024
-temperature = -5
-\`\`\`
-
-### 2. Float - ფლობადი მძიმის რიცხვები
-\`\`\`python
-height = 1.75
-price = 99.99
-pi = 3.14159
-\`\`\`
-
-### 3. String (str) - ტექსტი
-\`\`\`python
-name = "ანა"
-message = 'გამარჯობა!'
-long_text = """ეს არის
-მრავალხაზიანი
-ტექსტი"""
-\`\`\`
-
-### 4. Boolean (bool) - ლოგიკური
-\`\`\`python
-is_active = True
-is_complete = False
-\`\`\`
-
-### 5. List - სია
-\`\`\`python
-fruits = ["ვაშლი", "ბანანი", "ნარინჯი"]
-numbers = [1, 2, 3, 4, 5]
-mixed = ["ანა", 25, True, 1.75]
-\`\`\`
-
-### 6. Dictionary - ლექსიკონი
-\`\`\`python
-person = {
-    "name": "გიორგი",
-    "age": 30,
-    "city": "თბილისი"
-}
-\`\`\`
-
-## ტიპის შემოწმება
-
-\`\`\`python
-name = "ანა"
-print(type(name))  # <class 'str'>
-
-age = 25
-print(type(age))   # <class 'int'>
-\`\`\`
-
-## ცვლადების გადაკეთება
-
-\`\`\`python
-x = 10        # int
-x = "გამარჯობა" # str
-x = True      # bool
-\`\`\`
-
-Python-ში ცვლადს შეუძლია ნებისმიერ დროს ტიპის შეცვლა.
-        `,
-        en: `
-# Variables in Python
-
-Creating variables in Python is very simple. You don't need to declare the type beforehand.
-
-## Creating Variables
-
-### Simple assignment:
-\`\`\`python
-name = "Luke"
-age = 20
-height = 1.75
-is_student = True
-\`\`\`
-
-Python automatically determines the variable type based on the value.
-
-## Data Types
-
-### 1. Integer (int) - Whole numbers
-\`\`\`python
-age = 25
-year = 2024
-temperature = -5
-\`\`\`
-
-### 2. Float - Floating point numbers
-\`\`\`python
-height = 1.75
-price = 99.99
-pi = 3.14159
-\`\`\`
-
-### 3. String (str) - Text
-\`\`\`python
-name = "Anna"
-message = 'Hello!'
-long_text = """This is a
-multi-line
-text"""
-\`\`\`
-
-### 4. Boolean (bool) - Logical
-\`\`\`python
-is_active = True
-is_complete = False
-\`\`\`
-
-### 5. List - List
-\`\`\`python
-fruits = ["apple", "banana", "orange"]
-numbers = [1, 2, 3, 4, 5]
-mixed = ["Anna", 25, True, 1.75]
-\`\`\`
-
-### 6. Dictionary - Dictionary
-\`\`\`python
-person = {
-    "name": "George",
-    "age": 30,
-    "city": "Tbilisi"
-}
-\`\`\`
-
-## Type Checking
-
-\`\`\`python
-name = "Anna"
-print(type(name))  # <class 'str'>
-
-age = 25
-print(type(age))   # <class 'int'>
-\`\`\`
-
-## Variable Reassignment
-
-\`\`\`python
-x = 10        # int
-x = "Hello"   # str
-x = True      # bool
-\`\`\`
-
-In Python, a variable can change its type at any time.
-        `
-      },
+      title: { ka: 'ცვლადები და მონაცემთა ტიპები', en: 'Variables and Data Types' },
+      description: { ka: 'ისწავლე ცვლადების შექმნა და მონაცემთა ტიპების გამოყენება Python-ში.', en: 'Learn how to create variables and use data types in Python.' },
+      duration: '15 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
       codeExample: {
-        title: { ka: 'Python ცვლადების მაგალითი', en: 'Python Variables Example' },
-        code: `# ცვლადების შექმნა / Creating variables
-student_name = "ლუკა ფართენაძე"
-student_age = 20
-gpa = 3.8
-is_enrolled = True
-graduation_year = 2025
-
-# სია (List) / List
-subjects = ["მათემატიკა", "ფიზიკა", "ქიმია", "ინფორმატიკა"]
-
-# ლექსიკონი (Dictionary) / Dictionary
-student_info = {
-    "name": student_name,
-    "age": student_age,
-    "gpa": gpa,
-    "is_enrolled": is_enrolled,
-    "subjects": subjects
-}
-
-# ინფორმაციის გამოტანა / Output information
-print("სტუდენტის ინფორმაცია / Student Information:")
-print("-" * 40)
-print(f"სახელი: {student_info['name']}")
-print(f"ასაკი: {student_info['age']} წელი")
-print(f"GPA: {student_info['gpa']}")
-print(f"სტატუსი: {'აქტიური' if student_info['is_enrolled'] else 'არააქტიური'}")
-
-print("\\nსაგნები / Subjects:")
-for i, subject in enumerate(subjects, 1):
-    print(f"{i}. {subject}")
-
-# ტიპების შემოწმება / Type checking
-print("\\nცვლადების ტიპები / Variable Types:")
-print(f"student_name: {type(student_name)}")
-print(f"student_age: {type(student_age)}")
-print(f"gpa: {type(gpa)}")
-print(f"is_enrolled: {type(is_enrolled)}")
-print(f"subjects: {type(subjects)}")
-print(f"student_info: {type(student_info)}")
-
-# მათემატიკური ოპერაციები / Mathematical operations
-current_year = 2024
-years_until_graduation = graduation_year - current_year
-print(f"\\nდარჩენილი წლები დამთავრებამდე: {years_until_graduation}")`
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '# Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
       },
       exercises: [
         {
-          id: 1,
-          title: { ka: 'პირადი ინფორმაცია', en: 'Personal Information' },
-          description: { ka: 'შექმენი ცვლადები შენი პირადი ინფორმაციისთვის', en: 'Create variables for your personal information' },
-          difficulty: { ka: 'მარტივი', en: 'Easy' },
-          starterCode: `# შექმენი ცვლადები შენი ინფორმაციისთვის
-# Create variables for your information
-
-my_name = ""  # შენი სახელი / your name
-my_age = 0    # შენი ასაკი / your age
-my_city = ""  # შენი ქალაქი / your city
-my_hobbies = []  # შენი ჰობები სიის სახით / your hobbies as a list
-
-# შეავსე ცვლადები და დაბეჭდე
-# Fill the variables and print them
-print("ჩემი ინფორმაცია:")
-# დაამატე print განცხადებები...
-`,
-          solution: `my_name = "ანა"
-my_age = 22
-my_city = "თბილისი"
-my_hobbies = ["კითხვა", "სირბილი", "კოდირება", "მუსიკა"]
-
-print("ჩემი ინფორმაცია:")
-print(f"სახელი: {my_name}")
-print(f"ასაკი: {my_age} წელი")
-print(f"ქალაქი: {my_city}")
-print("ჰობები:")
-for hobby in my_hobbies:
-    print(f"- {hobby}")`,
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '# Starter code',
+          solution: '# Solution code',
           hints: [
-            { ka: 'გამოიყენე f-string ფორმატირებისთვის: f"ტექსტი {ცვლადი}"', en: 'Use f-string for formatting: f"text {variable}"' },
-            { ka: 'სიისთვის გამოიყენე [] ფრჩხილები', en: 'Use [] brackets for lists' }
-          ]
-        },
-        {
-          id: 2,
-          title: { ka: 'კალკულატორი', en: 'Calculator' },
-          description: { ka: 'შექმენი მარტივი კალკულატორი რიცხვებისთვის', en: 'Create a simple calculator for numbers' },
-          difficulty: { ka: 'მარტივი', en: 'Easy' },
-          starterCode: `# მარტივი კალკულატორი / Simple calculator
-num1 = 10
-num2 = 5
-
-# შეასრულე ყველა ოპერაცია და დაბეჭდე შედეგები
-# Perform all operations and print results
-
-addition = # დაამატე გამოთვლა
-subtraction = # დაამატე გამოთვლა  
-multiplication = # დაამატე გამოთვლა
-division = # დაამატე გამოთვლა
-
-print(f"{num1} + {num2} = {addition}")
-# დაამატე დანარჩენი print განცხადებები...
-`,
-          solution: `num1 = 10
-num2 = 5
-
-addition = num1 + num2
-subtraction = num1 - num2
-multiplication = num1 * num2
-division = num1 / num2
-
-print(f"{num1} + {num2} = {addition}")
-print(f"{num1} - {num2} = {subtraction}")
-print(f"{num1} * {num2} = {multiplication}")
-print(f"{num1} / {num2} = {division}")
-
-# ბონუსი: ცოტა მეტი ინფორმაცია
-print(f"\\nტიპები:")
-print(f"addition ტიპი: {type(addition)}")
-print(f"division ტიპი: {type(division)}")`,
-          hints: [
-            { ka: '+, -, *, / ოპერატორები მათემატიკური ოპერაციებისთვის', en: '+, -, *, / operators for mathematical operations' },
-            { ka: 'Python-ში გაყოფა ყოველთვის აბრუნებს float-ს', en: 'Division in Python always returns a float' }
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
           ]
         }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
       ]
     },
     {
       id: 2,
-      title: {
-        ka: 'სიები და ციკლები',
-        en: 'Lists and Loops'
-      },
-      description: {
-        ka: 'ისწავლე სიების შექმნა და ციკლების გამოყენება',
-        en: 'Learn how to create lists and use loops'
-      },
-      duration: 20,
-      difficulty: { ka: 'დამწყები', en: 'Beginner' },
-      keyPoints: [
-        { ka: 'სიები არის მონაცემების კოლექცია []', en: 'Lists are collections of data []' },
-        { ka: 'for ციკლი სიის ელემენტებზე გადასავლელად', en: 'for loop to iterate over list elements' },
-        { ka: 'while ციკლი პირობით განმეორებისთვის', en: 'while loop for conditional repetition' },
-        { ka: 'range() ფუნქცია რიცხვთა თანმიმდევრობისთვის', en: 'range() function for number sequences' }
-      ],
-      theory: {
-        ka: 'Lists and Loops theory in Georgian...',
-        en: 'Lists and Loops theory in English...'
-      },
+      title: { ka: 'სიები და ციკლები', en: 'Lists and Loops' },
+      description: { ka: 'ისწავლე სიების შექმნა და ციკლების გამოყენება.', en: 'Learn how to create lists and use loops.' },
+      duration: '20 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
       codeExample: {
-        title: { ka: 'სიები და ციკლები', en: 'Lists and Loops' },
-        code: `# სიების შექმნა / Creating lists
-fruits = ["ვაშლი", "ბანანი", "ნარინჯი", "ყურძენი"]
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-mixed_list = ["ანა", 25, True, 3.14, "გიორგი"]
-
-# for ციკლი სიაზე / for loop over list
-print("ხილი / Fruits:")
-for fruit in fruits:
-    print(f"- {fruit}")
-
-print("\\nრიცხვები / Numbers:")
-for num in numbers:
-    print(f"რიცხვი: {num}, კვადრატი: {num**2}")
-
-# range() ფუნქციის გამოყენება / Using range() function
-print("\\n1-დან 5-მდე:")
-for i in range(1, 6):
-    print(f"ინდექსი: {i}")
-
-# while ციკლი / while loop
-count = 0
-print("\\nwhile ციკლი:")
-while count < 5:
-    print(f"Count: {count}")
-    count += 1
-
-# სიის მეთოდები / List methods
-print(f"\\nსიის სიგრძე: {len(fruits)}")
-fruits.append("ციტრუსი")  # ახალი ელემენტის დამატება
-print(f"ახალი სია: {fruits}")
-
-# ელემენტის ძებნა / Finding element
-if "ვაშლი" in fruits:
-    print("ვაშლი არის სიაში!")
-
-# სიის ინდექსირება / List indexing
-print(f"პირველი ხილი: {fruits[0]}")
-print(f"ბოლო ხილი: {fruits[-1]}")
-print(f"პირველი 3 ხილი: {fruits[:3]}")`
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '# Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
       },
       exercises: [
-        // More exercises would be added here...
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '# Starter code',
+          solution: '# Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 3,
+      title: { ka: 'ფუნქციები და მოდულები', en: 'Functions and Modules' },
+      description: { ka: 'ისწავლე ფუნქციების შექმნა და მოდულების იმპორტი.', en: 'Learn how to create functions and import modules.' },
+      duration: '18 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '# Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '# Starter code',
+          solution: '# Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 4,
+      title: { ka: 'კლასები და ობიექტები', en: 'Classes and Objects' },
+      description: { ka: 'ისწავლე ობიექტზე ორიენტირებული პროგრამირება Python-ში.', en: 'Learn object-oriented programming in Python.' },
+      duration: '25 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '# Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '# Starter code',
+          solution: '# Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 5,
+      title: { ka: 'ფაილებთან მუშაობა', en: 'File Handling' },
+      description: { ka: 'ისწავლე ფაილების წაკითხვა და ჩაწერა.', en: 'Learn how to read and write files.' },
+      duration: '22 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '# Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '# Starter code',
+          solution: '# Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 6,
+      title: { ka: 'შეცდომების დამუშავება', en: 'Error Handling' },
+      description: { ka: 'ისწავლე შეცდომების მართვა და გამონაკლისების დამუშავება.', en: 'Learn how to handle errors and exceptions.' },
+      duration: '20 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '# Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '# Starter code',
+          solution: '# Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 7,
+      title: { ka: 'მონაცემთა სტრუქტურები', en: 'Data Structures' },
+      description: { ka: 'ისწავლე dict, set და tuple სტრუქტურები.', en: 'Learn about dict, set, and tuple structures.' },
+      duration: '18 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '# Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '# Starter code',
+          solution: '# Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 8,
+      title: { ka: 'ვებ API-ებთან მუშაობა', en: 'Working with Web APIs' },
+      description: { ka: 'ისწავლე როგორ მიიღო მონაცემები ინტერნეტიდან.', en: 'Learn how to fetch data from the internet.' },
+      duration: '25 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '# Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '# Starter code',
+          solution: '# Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 9,
+      title: { ka: 'პროგრამირების მოწინავე თემები', en: 'Advanced Programming Topics' },
+      description: { ka: 'ისწავლე გენერატორები, დეკორატორები და სხვა მოწინავე თემები.', en: 'Learn about generators, decorators, and more.' },
+      duration: '22 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '# Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '# Starter code',
+          solution: '# Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 10,
+      title: { ka: 'ტესტირება და დებაგი', en: 'Testing and Debugging' },
+      description: { ka: 'ისწავლე კოდის ტესტირება და შეცდომების პოვნა.', en: 'Learn how to test and debug your code.' },
+      duration: '20 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '# Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '# Starter code',
+          solution: '# Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 11,
+      title: { ka: 'მონაცემთა მეცნიერება და მანქანური სწავლება', en: 'Data Science and Machine Learning' },
+      description: { ka: 'ისწავლე მონაცემთა ანალიზი და ML-ის საფუძვლები.', en: 'Learn data analysis and ML basics.' },
+      duration: '18 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '# Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '# Starter code',
+          solution: '# Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 12,
+      title: { ka: 'პროექტები და Deployment', en: 'Projects and Deployment' },
+      description: { ka: 'ისწავლე რეალური პროექტების შექმნა.', en: 'Learn how to create and deploy a project.' },
+      duration: '18 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '# Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '# Starter code',
+          solution: '# Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
       ]
     }
-    // More lessons would be added here...
   ]
 
   const currentLesson = lessons.find(l => l.id === lessonId)
@@ -521,7 +509,7 @@ print(f"პირველი 3 ხილი: {fruits[:3]}")`
                 <div className="flex items-center gap-2 px-3 py-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
                   <BarChart3 className="w-4 h-4 text-green-600 dark:text-green-400" />
                   <span className="text-green-700 dark:text-green-300">
-                    {currentLesson.difficulty[language]}
+                    {currentLesson.difficulty}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
@@ -640,7 +628,7 @@ print(f"პირველი 3 ხილი: {fruits[:3]}")`
                           {exercise.title[language]}
                         </h3>
                         <span className="px-3 py-1 bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 rounded-full text-sm font-medium">
-                          {exercise.difficulty[language]}
+                          {exercise.difficulty}
                         </span>
                       </div>
                       <p className="text-slate-700 dark:text-slate-300 mt-2 break-words">

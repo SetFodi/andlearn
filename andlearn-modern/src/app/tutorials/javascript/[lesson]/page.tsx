@@ -46,281 +46,562 @@ export default function LessonPage({ params }: LessonPageProps) {
   const lessons = [
     {
       id: 1,
-      title: {
-        ka: 'ცვლადები და მონაცემთა ტიპები',
-        en: 'Variables and Data Types'
-      },
-      description: {
-        ka: 'ისწავლე JavaScript-ის ცვლადების შექმნა და სხვადასხვა მონაცემთა ტიპების გამოყენება',
-        en: 'Learn how to create variables and use different data types in JavaScript'
-      },
-      duration: 15,
-      difficulty: { ka: 'დამწყები', en: 'Beginner' },
-      keyPoints: [
-        { ka: 'let, const, var ცვლადების განსხვავება', en: 'Difference between let, const, var variables' },
-        { ka: 'მონაცემთა ტიპები: string, number, boolean', en: 'Data types: string, number, boolean' },
-        { ka: 'მასივები და ობიექტები', en: 'Arrays and objects' },
-        { ka: 'typeof ოპერატორის გამოყენება', en: 'Using typeof operator' }
-      ],
-      theory: {
-        ka: `
-# ცვლადები JavaScript-ში
-
-ცვლადი არის კონტეინერი, რომელიც ინახავს მონაცემებს. JavaScript-ში ცვლადების შესაქმნელად გვიხდება სამი გზა:
-
-## ცვლადების ტიპები
-
-### let - ბლოკ-სკოპის ცვლადი
-\`let\` კეთილდება ისეთი ცვლადებისთვის, რომლებსაც შეგვიძლია შევცვალოთ მნიშვნელობა:
-
-\`\`\`javascript
-let name = "ლუკა";
-let age = 20;
-name = "ნიკა"; // შეგვიძლია შევცვალოთ
-\`\`\`
-
-### const - მუდმივი ცვლადი
-\`const\` იყენება მუდმივი მნიშვნელობებისთვის:
-
-\`\`\`javascript
-const PI = 3.14159;
-const birthYear = 2000;
-// PI = 3.14; // შეცდომა! ვერ შევცვლით
-\`\`\`
-
-### var - ძველი სტანდარტი
-\`var\` იყო ძველი გზა, რომელიც აღარ ირეკომენდება:
-
-\`\`\`javascript
-var oldVariable = "ეს ძველი სტილია";
-\`\`\`
-
-## მონაცემთა ტიპები
-
-JavaScript-ში არსებობს რამდენიმე მონაცემთა ტიპი:
-
-### 1. String - ტექსტი
-\`\`\`javascript
-let greeting = "გამარჯობა";
-let message = 'როგორ ხარ?';
-let template = \`ჩემი სახელია \${name}\`;
-\`\`\`
-
-### 2. Number - რიცხვები
-\`\`\`javascript
-let age = 25;
-let price = 99.99;
-let temperature = -5;
-\`\`\`
-
-### 3. Boolean - ლოგიკური
-\`\`\`javascript
-let isStudent = true;
-let isComplete = false;
-\`\`\`
-
-### 4. Array - მასივი
-\`\`\`javascript
-let colors = ["წითელი", "ლურჯი", "მწვანე"];
-let numbers = [1, 2, 3, 4, 5];
-\`\`\`
-
-### 5. Object - ობიექტი
-\`\`\`javascript
-let person = {
-  name: "ანა",
-  age: 22,
-  isStudent: true
-};
-\`\`\`
-
-### 6. Special Types
-\`\`\`javascript
-let notDefined; // undefined
-let empty = null; // null
-\`\`\`
-        `,
-        en: `
-# Variables in JavaScript
-
-A variable is a container that stores data. In JavaScript, there are three ways to create variables:
-
-## Variable Types
-
-### let - Block-scoped variable
-\`let\` is used for variables that can be changed:
-
-\`\`\`javascript
-let name = "Luke";
-let age = 20;
-name = "Nick"; // We can change it
-\`\`\`
-
-### const - Constant variable
-\`const\` is used for constant values:
-
-\`\`\`javascript
-const PI = 3.14159;
-const birthYear = 2000;
-// PI = 3.14; // Error! Cannot change
-\`\`\`
-
-### var - Legacy standard
-\`var\` was the old way, no longer recommended:
-
-\`\`\`javascript
-var oldVariable = "This is old style";
-\`\`\`
-
-## Data Types
-
-JavaScript has several data types:
-
-### 1. String - Text
-\`\`\`javascript
-let greeting = "Hello";
-let message = 'How are you?';
-let template = \`My name is \${name}\`;
-\`\`\`
-
-### 2. Number - Numbers
-\`\`\`javascript
-let age = 25;
-let price = 99.99;
-let temperature = -5;
-\`\`\`
-
-### 3. Boolean - Logical
-\`\`\`javascript
-let isStudent = true;
-let isComplete = false;
-\`\`\`
-
-### 4. Array - Array
-\`\`\`javascript
-let colors = ["red", "blue", "green"];
-let numbers = [1, 2, 3, 4, 5];
-\`\`\`
-
-### 5. Object - Object
-\`\`\`javascript
-let person = {
-  name: "Anna",
-  age: 22,
-  isStudent: true
-};
-\`\`\`
-
-### 6. Special Types
-\`\`\`javascript
-let notDefined; // undefined
-let empty = null; // null
-\`\`\`
-        `
-      },
+      title: { ka: 'ცვლადები და მონაცემთა ტიპები', en: 'Variables and Data Types' },
+      description: { ka: 'ისწავლე JavaScript-ის ცვლადების შექმნა და სხვადასხვა მონაცემთა ტიპების გამოყენება', en: 'Learn how to create variables and use different data types in JavaScript' },
+      duration: '15 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
       codeExample: {
-        title: { ka: 'პრაქტიკული მაგალითი', en: 'Practical Example' },
-        code: `// ცვლადების შექმნა / Creating variables
-let studentName = "ლუკა"; // string
-let age = 20; // number
-let isEnrolled = true; // boolean
-
-// მასივი / Array
-let subjects = ["მათემატიკა", "ფიზიკა", "ქიმია"];
-
-// ობიექტი / Object
-let student = {
-    name: studentName,
-    age: age,
-    subjects: subjects,
-    isEnrolled: isEnrolled,
-    getInfo: function() {
-        return \`სტუდენტი: \${this.name}, ასაკი: \${this.age}\`;
-    }
-};
-
-// ცვლადების შეცვლა / Changing variables
-studentName = "ანა";
-age = 19;
-
-// ინფორმაციის გამოტანა / Output information
-console.log(student.getInfo());
-console.log("საგნები:", subjects);
-
-// ტიპების შემოწმება / Check types
-console.log(typeof studentName); // "string"
-console.log(typeof age); // "number"
-console.log(typeof isEnrolled); // "boolean"`
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
       },
       exercises: [
         {
-          id: 1,
-          title: { ka: 'პირადი ინფორმაცია', en: 'Personal Information' },
-          description: { ka: 'შექმენი ცვლადები შენი პირადი ინფორმაციისთვის', en: 'Create variables for your personal information' },
-          difficulty: { ka: 'მარტივი', en: 'Easy' },
-          starterCode: `// შექმენი ცვლადები შენი ინფორმაციისთვის
-// Create variables for your information
-
-let myName = ""; // შენი სახელი / your name
-let myAge = 0; // შენი ასაკი / your age
-let myCity = ""; // შენი ქალაქი / your city
-let myHobbies = []; // შენი ჰობები / your hobbies
-
-// შეავსე ცვლადები და დაბეჭდე
-// Fill the variables and print them
-`,
-          solution: `let myName = "ლუკა";
-let myAge = 20;
-let myCity = "თბილისი";
-let myHobbies = ["ფეხბურთი", "კითხვა", "კოდირება"];
-
-console.log("სახელი:", myName);
-console.log("ასაკი:", myAge);
-console.log("ქალაქი:", myCity);
-console.log("ჰობები:", myHobbies);`,
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
           hints: [
-            { ka: 'გამოიყენე let ცვლადებისთვის', en: 'Use let for variables' },
-            { ka: 'მასივისთვის გამოიყენე [] ფრჩხილები', en: 'Use [] brackets for arrays' }
-          ]
-        },
-        {
-          id: 2,
-          title: { ka: 'ტიპების შემოწმება', en: 'Type Checking' },
-          description: { ka: 'შეამოწმე სხვადასხვა ცვლადის ტიპი', en: 'Check the type of different variables' },
-          difficulty: { ka: 'მარტივი', en: 'Easy' },
-          starterCode: `// შექმენი სხვადასხვა ტიპის ცვლადები
-// Create variables of different types
-
-let text = "JavaScript";
-let number = 42;
-let isTrue = true;
-let list = [1, 2, 3];
-let obj = { name: "ტესტი" };
-
-// გამოიყენე typeof ოპერატორი
-// Use typeof operator
-console.log("text ტიპი:", typeof text);
-// დაამატე დანარჩენი...
-`,
-          solution: `let text = "JavaScript";
-let number = 42;
-let isTrue = true;
-let list = [1, 2, 3];
-let obj = { name: "ტესტი" };
-
-console.log("text ტიპი:", typeof text);
-console.log("number ტიპი:", typeof number);
-console.log("isTrue ტიპი:", typeof isTrue);
-console.log("list ტიპი:", typeof list);
-console.log("obj ტიპი:", typeof obj);`,
-          hints: [
-            { ka: 'typeof ოპერატორი აბრუნებს string-ს', en: 'typeof operator returns a string' },
-            { ka: 'მასივები და ობიექტები ორივე "object" ტიპს აბრუნებს', en: 'Arrays and objects both return "object" type' }
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
           ]
         }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 2,
+      title: { ka: 'ფუნქციები', en: 'Functions' },
+      description: { ka: 'ისწავლე ფუნქციების შექმნა, გამოძახება და პარამეტრების გადაცემა', en: 'Learn how to create, call functions and pass parameters' },
+      duration: '20 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 3,
+      title: { ka: 'პირობითი ლოგიკა', en: 'Control Flow' },
+      description: { ka: 'ისწავლე if/else განცხადებები და პირობითი ლოგიკის გამოყენება', en: 'Learn if/else statements and conditional logic' },
+      duration: '18 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 4,
+      title: { ka: 'მასივები და ობიექტები', en: 'Arrays and Objects' },
+      description: { ka: 'ისწავლე მასივების და ობიექტების შექმნა და მანიპულაცია', en: 'Learn how to create and manipulate arrays and objects' },
+      duration: '25 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 5,
+      title: { ka: 'ფუნქციები მასივებსა და ობიექტებთან', en: 'Functions with Arrays and Objects' },
+      description: { ka: 'მოწინავე ტექნიკები მასივებისა და ობიექტების მუშაობისთვის', en: 'Advanced techniques for working with arrays and objects' },
+      duration: '22 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 6,
+      title: { ka: 'მასივის მოწინავე მეთოდები', en: 'Advanced Array Methods' },
+      description: { ka: 'ისწავლე map, filter, reduce და სხვა მასივის მეთოდები', en: 'Learn map, filter, reduce and other array methods' },
+      duration: '30 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 7,
+      title: { ka: 'TypeScript-ის შესავალი', en: 'Intro to TypeScript' },
+      description: { ka: 'ისწავლე როგორ გამოიყენო TypeScript JavaScript-ში', en: 'Learn how to use TypeScript in JavaScript' },
+      duration: '18 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 8,
+      title: { ka: 'DOM-ის მართვა', en: 'DOM Manipulation' },
+      description: { ka: 'ისწავლე როგორ იმუშაო DOM-თან', en: 'Learn how to work with the DOM' },
+      duration: '25 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 9,
+      title: { ka: 'ღონისძიებების დამუშავება', en: 'Event Handling' },
+      description: { ka: 'ისწავლე ღონისძიებების დამუშავება და მოწინავე ტექნიკები', en: 'Learn event handling and advanced techniques' },
+      duration: '22 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 10,
+      title: { ka: 'ასინქრონული პროგრამირება', en: 'Async Programming' },
+      description: { ka: 'ისწავლე async/await და Promises', en: 'Learn async/await and Promises' },
+      duration: '30 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 11,
+      title: { ka: 'API-ებთან მუშაობა', en: 'Working with APIs' },
+      description: { ka: 'ისწავლე API-ებიდან მონაცემების მიღება', en: 'Learn how to fetch data from APIs' },
+      duration: '25 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 12,
+      title: { ka: 'შეცდომების დამუშავება', en: 'Error Handling' },
+      description: { ka: 'ისწავლე შეცდომების სწორი დამუშავება', en: 'Learn proper error handling techniques' },
+      duration: '20 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 13,
+      title: { ka: 'ES6+ ფუნქციები', en: 'ES6+ Features' },
+      description: { ka: 'ისწავლე თანამედროვე JavaScript-ის ფუნქციები', en: 'Learn modern JavaScript features' },
+      duration: '30 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 14,
+      title: { ka: 'Closure და Scope', en: 'Closures and Scope' },
+      description: { ka: 'ისწავლე closure-ები და ცვლადების ხილვადობა', en: 'Learn closures and variable scope' },
+      duration: '25 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 15,
+      title: { ka: 'კლასები და პროტოტიპები', en: 'Classes and Prototypes' },
+      description: { ka: 'ისწავლე ობიექტ-ორიენტირებული პროგრამირება', en: 'Learn object-oriented programming' },
+      duration: '35 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 16,
+      title: { ka: 'მოდულები', en: 'Modules' },
+      description: { ka: 'ისწავლე კოდის ორგანიზაცია მოდულებით', en: 'Learn code organization with modules' },
+      duration: '28 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 17,
+      title: { ka: 'JSON და Local Storage', en: 'JSON and Local Storage' },
+      description: { ka: 'ისწავლე მონაცემების შენახვა ბრაუზერში', en: 'Learn how to store data in the browser' },
+      duration: '22 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 18,
+      title: { ka: 'რეგულარული გამონათქვამები', en: 'Regular Expressions' },
+      description: { ka: 'ისწავლე ტექსტის დამუშავება რეგულარული გამონათქვამებით', en: 'Learn text processing with regular expressions' },
+      duration: '30 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
       ]
     }
-    // More lessons would be added here...
   ]
 
   const currentLesson = lessons.find(l => l.id === lessonId)
@@ -407,13 +688,13 @@ console.log("obj ტიპი:", typeof obj);`,
                 <div className="flex items-center gap-2 px-3 py-2 bg-slate-100 dark:bg-slate-800 rounded-lg">
                   <Clock className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                   <span className="text-slate-700 dark:text-slate-300">
-                    {currentLesson.duration} {language === 'ka' ? 'წუთი' : 'min'}
+                    {currentLesson.duration}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
                   <BarChart3 className="w-4 h-4 text-green-600 dark:text-green-400" />
                   <span className="text-green-700 dark:text-green-300">
-                    {currentLesson.difficulty[language]}
+                    {currentLesson.difficulty}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
@@ -532,7 +813,7 @@ console.log("obj ტიპი:", typeof obj);`,
                           {exercise.title[language]}
                         </h3>
                         <span className="px-3 py-1 bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 rounded-full text-sm font-medium">
-                          {exercise.difficulty[language]}
+                          {exercise.difficulty}
                         </span>
                       </div>
                       <p className="text-slate-700 dark:text-slate-300 mt-2 break-words">

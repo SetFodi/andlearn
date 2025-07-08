@@ -47,470 +47,314 @@ export default function LessonPage({ params }: LessonPageProps) {
   const lessons = [
     {
       id: 1,
-      title: {
-        ka: 'ტიპების საფუძვლები',
-        en: 'Basic Types'
-      },
-      description: {
-        ka: 'ისწავლე TypeScript-ის ძირითადი ტიპები და მათი გამოყენება',
-        en: 'Learn the basic types in TypeScript and their usage'
-      },
-      duration: 15,
-      difficulty: { ka: 'დამწყები', en: 'Beginner' },
-      keyPoints: [
-        { ka: 'TypeScript არის JavaScript + ტიპები', en: 'TypeScript is JavaScript + types' },
-        { ka: 'ძირითადი ტიპები: string, number, boolean', en: 'Basic types: string, number, boolean' },
-        { ka: 'ტიპის ანოტაცია : ნიშნით', en: 'Type annotation with : symbol' },
-        { ka: 'ტიპის ინფერენცია - ავტომატური დადგენა', en: 'Type inference - automatic detection' }
-      ],
-      theory: {
-        ka: `
-# TypeScript-ის ტიპების საფუძვლები
-
-TypeScript არის JavaScript-ის ზე-მრუნვა (superset), რომელიც ამატებს სტატიკურ ტიპებს.
-
-## რა არის TypeScript?
-
-TypeScript გაძლევს საშუალებას თქვენს JavaScript კოდს დაამატოთ ტიპები, რაც:
-- ამცირებს შეცდომებს
-- აუმჯობესებს კოდის წაკითხვას
-- უზრუნველყოფს უკეთეს IDE მხარდაჭერას
-
-## ძირითადი ტიპები
-
-### String - ტექსტი
-\`\`\`typescript
-let firstName: string = "ლუკა";
-let lastName: string = "ფართენაძე";
-let fullName: string = \`\${firstName} \${lastName}\`;
-\`\`\`
-
-### Number - რიცხვები
-\`\`\`typescript
-let age: number = 20;
-let height: number = 1.75;
-let temperature: number = -5;
-\`\`\`
-
-### Boolean - ლოგიკური
-\`\`\`typescript
-let isStudent: boolean = true;
-let isComplete: boolean = false;
-\`\`\`
-
-### Array - მასივები
-\`\`\`typescript
-// ორი გზა მასივის განსაზღვრისთვის
-let numbers: number[] = [1, 2, 3, 4, 5];
-let names: Array<string> = ["ანა", "გიორგი", "ნინო"];
-\`\`\`
-
-### Any - ნებისმიერი
-\`\`\`typescript
-let anything: any = "ტექსტი";
-anything = 42;
-anything = true;
-// any-ს ერიდეთ, თუ შესაძლებელია
-\`\`\`
-
-### Union Types - გაერთიანებული ტიპები
-\`\`\`typescript
-let id: string | number;
-id = "ABC123";  // შეიძლება
-id = 123;       // ასევე შეიძლება
-// id = true;   // შეცდომა!
-\`\`\`
-
-## ტიპის ინფერენცია
-
-TypeScript შეუძლია ტიპის ავტომატური დადგენა:
-
-\`\`\`typescript
-let name = "ანა";        // string (ავტომატურად)
-let age = 25;            // number (ავტომატურად)
-let isActive = true;     // boolean (ავტომატურად)
-\`\`\`
-
-## ფუნქციების ტიპები
-
-\`\`\`typescript
-function greet(name: string): string {
-    return \`გამარჯობა, \${name}!\`;
-}
-
-// Arrow function
-const add = (a: number, b: number): number => {
-    return a + b;
-};
-\`\`\`
-        `,
-        en: `
-# TypeScript Basic Types
-
-TypeScript is a superset of JavaScript that adds static types.
-
-## What is TypeScript?
-
-TypeScript allows you to add types to your JavaScript code, which:
-- Reduces errors
-- Improves code readability
-- Provides better IDE support
-
-## Basic Types
-
-### String - Text
-\`\`\`typescript
-let firstName: string = "Luke";
-let lastName: string = "Partenadze";
-let fullName: string = \`\${firstName} \${lastName}\`;
-\`\`\`
-
-### Number - Numbers
-\`\`\`typescript
-let age: number = 20;
-let height: number = 1.75;
-let temperature: number = -5;
-\`\`\`
-
-### Boolean - Logical
-\`\`\`typescript
-let isStudent: boolean = true;
-let isComplete: boolean = false;
-\`\`\`
-
-### Array - Arrays
-\`\`\`typescript
-// Two ways to define arrays
-let numbers: number[] = [1, 2, 3, 4, 5];
-let names: Array<string> = ["Anna", "George", "Nina"];
-\`\`\`
-
-### Any - Any type
-\`\`\`typescript
-let anything: any = "text";
-anything = 42;
-anything = true;
-// Avoid any when possible
-\`\`\`
-
-### Union Types - Combined types
-\`\`\`typescript
-let id: string | number;
-id = "ABC123";  // allowed
-id = 123;       // also allowed
-// id = true;   // error!
-\`\`\`
-
-## Type Inference
-
-TypeScript can automatically determine types:
-
-\`\`\`typescript
-let name = "Anna";       // string (automatically)
-let age = 25;            // number (automatically)
-let isActive = true;     // boolean (automatically)
-\`\`\`
-
-## Function Types
-
-\`\`\`typescript
-function greet(name: string): string {
-    return \`Hello, \${name}!\`;
-}
-
-// Arrow function
-const add = (a: number, b: number): number => {
-    return a + b;
-};
-\`\`\`
-        `
-      },
+      title: { ka: 'ტიპების საფუძვლები', en: 'Basic Types' },
+      description: { ka: 'ისწავლე TypeScript-ის ძირითადი ტიპები და მათი გამოყენება', en: 'Learn the basic types in TypeScript.' },
+      duration: '15 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
       codeExample: {
-        title: { ka: 'TypeScript ტიპების მაგალითი', en: 'TypeScript Types Example' },
-        code: `// TypeScript ტიპების მაგალითი / TypeScript Types Example
-
-// ძირითადი ტიპები / Basic types
-let studentName: string = "ლუკა ფართენაძე";
-let studentAge: number = 20;
-let isEnrolled: boolean = true;
-let graduationYear: number = 2025;
-
-// მასივები / Arrays
-let subjects: string[] = ["მათემატიკა", "ფიზიკა", "ქიმია"];
-let grades: number[] = [95, 87, 92, 78, 88];
-
-// Union ტიპები / Union types
-let studentId: string | number = "STU123";
-// studentId = 12345; // ასევე შესაძლებელია
-
-// ობიექტის ტიპი / Object type
-interface Student {
-    name: string;
-    age: number;
-    isEnrolled: boolean;
-    subjects: string[];
-    grades: number[];
-    id: string | number;
-}
-
-// ობიექტის შექმნა / Creating object
-const student: Student = {
-    name: studentName,
-    age: studentAge,
-    isEnrolled: isEnrolled,
-    subjects: subjects,
-    grades: grades,
-    id: studentId
-};
-
-// ფუნქციები ტიპებით / Functions with types
-function calculateAverage(grades: number[]): number {
-    const sum = grades.reduce((acc, grade) => acc + grade, 0);
-    return sum / grades.length;
-}
-
-function getStudentInfo(student: Student): string {
-    const average = calculateAverage(student.grades);
-    const status = student.isEnrolled ? "აქტიური" : "არააქტიური";
-    
-    return \`სტუდენტი: \${student.name}
-ასაკი: \${student.age} წელი
-სტატუსი: \${status}
-საშუალო ქულა: \${average.toFixed(2)}
-საგნების რაოდენობა: \${student.subjects.length}\`;
-}
-
-// ფუნქციების გამოძახება / Function calls
-const averageGrade: number = calculateAverage(grades);
-const studentInfo: string = getStudentInfo(student);
-
-console.log(studentInfo);
-console.log(\`საშუალო ქულა: \${averageGrade.toFixed(2)}\`);
-
-// Optional პარამეტრები / Optional parameters
-function createGreeting(name: string, title?: string): string {
-    if (title) {
-        return \`გამარჯობა, \${title} \${name}!\`;
-    }
-    return \`გამარჯობა, \${name}!\`;
-}
-
-console.log(createGreeting("ანა"));
-console.log(createGreeting("გიორგი", "მისტერ"));`
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
       },
       exercises: [
         {
-          id: 1,
-          title: { ka: 'ტიპების პრაქტიკა', en: 'Types Practice' },
-          description: { ka: 'შექმენი ცვლადები სხვადასხვა ტიპებით', en: 'Create variables with different types' },
-          difficulty: { ka: 'მარტივი', en: 'Easy' },
-          starterCode: `// შექმენი ცვლადები TypeScript ტიპებით
-// Create variables with TypeScript types
-
-// პირადი ინფორმაცია / Personal information
-let myName: string = ""; // შენი სახელი
-let myAge: number = 0;   // შენი ასაკი  
-let isWorking: boolean = false; // მუშაობ თუ არა
-
-// ჰობები მასივის სახით / Hobbies as array
-let hobbies: string[] = []; // დაამატე შენი ჰობები
-
-// კონტაქტი Union ტიპით / Contact with Union type
-let contact: string | number = ""; // ტელეფონი ან email
-
-// შეავსე ყველა ცვლადი და დაბეჭდე
-// Fill all variables and print
-console.log(\`სახელი: \${myName}\`);
-// დაამატე დანარჩენი...
-`,
-          solution: `let myName: string = "ანა";
-let myAge: number = 22;
-let isWorking: boolean = true;
-
-let hobbies: string[] = ["კითხვა", "სპორტი", "კოდირება"];
-
-let contact: string | number = "anna@example.com";
-
-console.log(\`სახელი: \${myName}\`);
-console.log(\`ასაკი: \${myAge} წელი\`);
-console.log(\`მუშაობს: \${isWorking ? "კი" : "არა"}\`);
-console.log(\`ჰობები: \${hobbies.join(", ")}\`);
-console.log(\`კონტაქტი: \${contact}\`);
-
-// ტიპების შემოწმება
-console.log(\`\\nტიპები:\`);
-console.log(\`myName: \${typeof myName}\`);
-console.log(\`myAge: \${typeof myAge}\`);
-console.log(\`isWorking: \${typeof isWorking}\`);`,
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
           hints: [
-            { ka: ': ნიშანი ტიპის განსაზღვრისთვის', en: ': symbol for type definition' },
-            { ka: 'string[] მასივისთვის string ელემენტებით', en: 'string[] for array with string elements' }
-          ]
-        },
-        {
-          id: 2,
-          title: { ka: 'ფუნქციები ტიპებით', en: 'Functions with Types' },
-          description: { ka: 'შექმენი ფუნქციები TypeScript ტიპებით', en: 'Create functions with TypeScript types' },
-          difficulty: { ka: 'მარტივი', en: 'Easy' },
-          starterCode: `// ფუნქციები TypeScript ტიპებით
-// Functions with TypeScript types
-
-// შექმენი ფუნქცია რომელიც მიღებს სახელს და დააბრუნებს მისალმებას
-// Create function that takes name and returns greeting
-function greetUser(name: string): string {
-    // დაამატე კოდი
-}
-
-// შექმენი ფუნქცია ორი რიცხვის შესაკრებად
-// Create function to add two numbers
-function addNumbers(a: number, b: number): number {
-    // დაამატე კოდი
-}
-
-// შექმენი ფუნქცია მასივის ელემენტების გასაშუალებლად
-// Create function to calculate array average
-function calculateAverage(numbers: number[]): number {
-    // დაამატე კოდი
-}
-
-// გამოძახე ფუნქციები / Call functions
-console.log(greetUser("ანა"));
-console.log(addNumbers(5, 3));
-console.log(calculateAverage([80, 90, 85]));`,
-          solution: `function greetUser(name: string): string {
-    return \`გამარჯობა, \${name}! კეთილი იყოს შენი მობრძანება!\`;
-}
-
-function addNumbers(a: number, b: number): number {
-    return a + b;
-}
-
-function calculateAverage(numbers: number[]): number {
-    if (numbers.length === 0) return 0;
-    const sum = numbers.reduce((acc, num) => acc + num, 0);
-    return sum / numbers.length;
-}
-
-// ფუნქციების გამოძახება
-console.log(greetUser("ანა"));
-console.log(\`5 + 3 = \${addNumbers(5, 3)}\`);
-console.log(\`საშუალო: \${calculateAverage([80, 90, 85]).toFixed(2)}\`);
-
-// მეტი ტესტი
-const testScores = [95, 87, 92, 78, 88];
-console.log(\`ტესტის ქულების საშუალო: \${calculateAverage(testScores).toFixed(1)}\`);`,
-          hints: [
-            { ka: 'ფუნქციის პარამეტრები და return ტიპი განისაზღვრება', en: 'Function parameters and return type are defined' },
-            { ka: 'reduce() მეთოდი მასივის ელემენტების შესაკრებად', en: 'reduce() method to sum array elements' }
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
           ]
         }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
       ]
     },
     {
       id: 2,
-      title: {
-        ka: 'ინტერფეისები და ობიექტები',
-        en: 'Interfaces and Objects'
-      },
-      description: {
-        ka: 'ისწავლე ინტერფეისების და ობიექტების გამოყენება',
-        en: 'Learn how to use interfaces and objects'
-      },
-      duration: 20,
-      difficulty: { ka: 'დამწყები', en: 'Beginner' },
-      keyPoints: [
-        { ka: 'ინტერფეისები ობიექტების ფორმას განსაზღვრავს', en: 'Interfaces define the shape of objects' },
-        { ka: 'Optional properties ? ნიშნით', en: 'Optional properties with ? symbol' },
-        { ka: 'Readonly properties წაკითხვისთვის მხოლოდ', en: 'Readonly properties for immutability' },
-        { ka: 'ინტერფეისები შეიძლება extends გააკეთო', en: 'Interfaces can be extended' }
-      ],
-      theory: {
-        ka: 'Interfaces and Objects theory in Georgian...',
-        en: 'Interfaces and Objects theory in English...'
-      },
+      title: { ka: 'ინტერფეისები და ობიექტები', en: 'Interfaces and Objects' },
+      description: { ka: 'ისწავლე ინტერფეისების და ობიექტების გამოყენება.', en: 'Learn how to use interfaces and objects.' },
+      duration: '20 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'ინტერფეისები და ობიექტები (Georgian) - Placeholder', en: 'Interfaces and Objects (English) - Placeholder' },
       codeExample: {
-        title: { ka: 'ინტერფეისები და ობიექტები', en: 'Interfaces and Objects' },
-        code: `// ინტერფეისები და ობიექტები / Interfaces and Objects
-
-// User ინტერფეისი / User interface
-interface User {
-    id: number;
-    name: string;
-    email: string;
-    age?: number; // optional property
-    isActive: boolean;
-    readonly createdAt: Date; // readonly property
-}
-
-// Address ინტერფეისი / Address interface
-interface Address {
-    street: string;
-    city: string;
-    country: string;
-    zipCode?: string;
-}
-
-// გაფართოებული ინტერფეისი / Extended interface
-interface DetailedUser extends User {
-    address: Address;
-    phoneNumber?: string;
-}
-
-// ობიექტების შექმნა / Creating objects
-const user1: User = {
-    id: 1,
-    name: "ანა გელაშვილი",
-    email: "ana@example.com",
-    age: 25,
-    isActive: true,
-    createdAt: new Date()
-};
-
-const address: Address = {
-    street: "რუსთაველის გამზ. 15",
-    city: "თბილისი",
-    country: "საქართველო"
-};
-
-const detailedUser: DetailedUser = {
-    id: 2,
-    name: "გიორგი მამედოვი",
-    email: "giorgi@example.com",
-    isActive: true,
-    createdAt: new Date(),
-    address: address,
-    phoneNumber: "+995555123456"
-};
-
-// ფუნქციები ინტერფეისებით / Functions with interfaces
-function displayUser(user: User): string {
-    const ageText = user.age ? \`, ასაკი: \${user.age}\` : "";
-    const status = user.isActive ? "აქტიური" : "არააქტიური";
-    
-    return \`მომხმარებელი: \${user.name}\${ageText}
-Email: \${user.email}
-სტატუსი: \${status}
-შექმნის თარიღი: \${user.createdAt.toLocaleDateString()}\`;
-}
-
-function displayDetailedUser(user: DetailedUser): string {
-    const basicInfo = displayUser(user);
-    const phoneText = user.phoneNumber ? \`\\nტელეფონი: \${user.phoneNumber}\` : "";
-    
-    return \`\${basicInfo}
-მისამართი: \${user.address.street}, \${user.address.city}, \${user.address.country}\${phoneText}\`;
-}
-
-// გამოყენება / Usage
-console.log(displayUser(user1));
-console.log("\\n" + "=".repeat(50) + "\\n");
-console.log(displayDetailedUser(detailedUser));`
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
       },
       exercises: [
-        // More exercises would be added here...
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 3,
+      title: { ka: 'ფუნქციები და Generic-ები', en: 'Functions and Generics' },
+      description: { ka: 'ისწავლე ფუნქციების და generic-ების შექმნა.', en: 'Learn how to create functions and generics.' },
+      duration: '18 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'ფუნქციები და Generic-ები (Georgian) - Placeholder', en: 'Functions and Generics (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 4,
+      title: { ka: 'კლასები და მემკვიდრეობა', en: 'Classes and Inheritance' },
+      description: { ka: 'ისწავლე კლასების შექმნა და მემკვიდრეობა.', en: 'Learn how to create classes and use inheritance.' },
+      duration: '25 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'კლასები და მემკვიდრეობა (Georgian) - Placeholder', en: 'Classes and Inheritance (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 5,
+      title: { ka: 'Enums და ტიპები', en: 'Enums and Types' },
+      description: { ka: 'ისწავლე enums და ტიპების გამოყენება.', en: 'Learn how to use enums and types.' },
+      duration: '22 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'Enums და ტიპები (Georgian) - Placeholder', en: 'Enums and Types (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Intermediate',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 6,
+      title: { ka: 'მოდულები და სახელების სივრცეები', en: 'Modules and Namespaces' },
+      description: { ka: 'ისწავლე მოდულების და სახელების სივრცეების გამოყენება.', en: 'Learn how to use modules and namespaces.' },
+      duration: '20 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'მოდულები და სახელების სივრცეები (Georgian) - Placeholder', en: 'Modules and Namespaces (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Intermediate',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 7,
+      title: { ka: 'ასინქრონული პროგრამირება', en: 'Async Programming' },
+      description: { ka: 'ისწავლე async/await და Promises TypeScript-ში.', en: 'Learn async/await and Promises in TypeScript.' },
+      duration: '18 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'ასინქრონული პროგრამირება (Georgian) - Placeholder', en: 'Async Programming (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Intermediate',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 8,
+      title: { ka: 'Utility ტიპები', en: 'Utility Types' },
+      description: { ka: 'ისწავლე TypeScript-ის სასარგებლო ტიპები.', en: 'Learn about TypeScript utility types.' },
+      duration: '25 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'Utility ტიპები (Georgian) - Placeholder', en: 'Utility Types (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Intermediate',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 9,
+      title: { ka: 'ტესტირება და დებაგი', en: 'Testing and Debugging' },
+      description: { ka: 'ისწავლე კოდის ტესტირება და შეცდომების პოვნა.', en: 'Learn how to test and debug your code.' },
+      duration: '22 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'ტესტირება და დებაგი (Georgian) - Placeholder', en: 'Testing and Debugging (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Advanced',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 10,
+      title: { ka: 'მოწინავე პატერნები', en: 'Advanced Patterns' },
+      description: { ka: 'ისწავლე მოწინავე TypeScript პატერნები.', en: 'Learn advanced TypeScript patterns.' },
+      duration: '20 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'მოწინავე პატერნები (Georgian) - Placeholder', en: 'Advanced Patterns (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Advanced',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
       ]
     }
-    // More lessons would be added here...
   ]
 
   const currentLesson = lessons.find(l => l.id === lessonId)
@@ -603,7 +447,7 @@ console.log(displayDetailedUser(detailedUser));`
                 <div className="flex items-center gap-2 px-3 py-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
                   <BarChart3 className="w-4 h-4 text-green-600 dark:text-green-400" />
                   <span className="text-green-700 dark:text-green-300">
-                    {currentLesson.difficulty[language]}
+                    {currentLesson.difficulty}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
@@ -722,7 +566,7 @@ console.log(displayDetailedUser(detailedUser));`
                           {exercise.title[language]}
                         </h3>
                         <span className="px-3 py-1 bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 rounded-full text-sm font-medium">
-                          {exercise.difficulty[language]}
+                          {exercise.difficulty}
                         </span>
                       </div>
                       <p className="text-slate-700 dark:text-slate-300 mt-2 break-words">

@@ -47,402 +47,345 @@ export default function LessonPage({ params }: LessonPageProps) {
   const lessons = [
     {
       id: 1,
-      title: {
-        ka: 'React-ის შესავალი',
-        en: 'Introduction to React'
-      },
-      description: {
-        ka: 'ისწავლე React-ის საფუძვლები და კომპონენტების შექმნა',
-        en: 'Learn React fundamentals and how to create components'
-      },
-      duration: 20,
-      difficulty: { ka: 'დამწყები', en: 'Beginner' },
-      keyPoints: [
-        { ka: 'React არის ბიბლიოთეკა UI შესაქმნელად', en: 'React is a library for building UI' },
-        { ka: 'JSX სინტაქსი HTML-ის მსგავსია', en: 'JSX syntax is similar to HTML' },
-        { ka: 'კომპონენტები არის React-ის ძირითადი ელემენტები', en: 'Components are the main building blocks of React' },
-        { ka: 'Virtual DOM-ი უზრუნველყოფს სწრაფობას', en: 'Virtual DOM ensures performance' }
-      ],
-      theory: {
-        ka: `
-# React-ის შესავალი
-
-React არის JavaScript ბიბლიოთეკა, რომელიც შექმნილია ინტერაქტიული მომხმარებლის ინტერფეისების (UI) ასაშენებლად.
-
-## რა არის React?
-
-React-ი შეიქმნა Facebook-ის მიერ 2013 წელს და მას შემდეგ გახდა ერთ-ერთი ყველაზე პოპულარული ფრონტენდ ბიბლიოთეკა.
-
-### React-ის უპირატესობები:
-
-- **კომპონენტზე ორიენტირებული**: ყველაფერი არის კომპონენტი
-- **Declarative**: აღწერ რა გინდა, არა როგორ
-- **Virtual DOM**: სწრაფი რენდერინგი
-- **One-way Data Flow**: მონაცემების ნაკადი მარტივია
-
-## JSX - JavaScript XML
-
-JSX არის სინტაქსის გაფართოება JavaScript-ისთვის, რომელიც საშუალებას გვაძლევს დავწეროთ HTML-ის მსგავსი კოდი JavaScript-ში.
-
-\`\`\`jsx
-const element = <h1>გამარჯობა, სამყარო!</h1>;
-\`\`\`
-
-### JSX-ის წესები:
-
-1. ყველა ტეგი უნდა იყოს დახურული
-2. camelCase მახასიათებლებისთვის
-3. className class-ის ნაცვლად
-4. {} JavaScript გამოსახულებებისთვის
-
-## კომპონენტები
-
-კომპონენტი არის JavaScript ფუნქცია, რომელიც აბრუნებს JSX-ს.
-
-### ფუნქციური კომპონენტი:
-\`\`\`jsx
-function Welcome(props) {
-  return <h1>გამარჯობა, {props.name}!</h1>;
-}
-\`\`\`
-
-### Arrow Function კომპონენტი:
-\`\`\`jsx
-const Welcome = (props) => {
-  return <h1>გამარჯობა, {props.name}!</h1>;
-};
-\`\`\`
-
-## Props - მონაცემების გადაცემა
-
-Props არის გზა მშობელი კომპონენტისგან შვილ კომპონენტში მონაცემების გადასაცემად.
-
-\`\`\`jsx
-function App() {
-  return (
-    <div>
-      <Welcome name="ანა" />
-      <Welcome name="გიორგი" />
-    </div>
-  );
-}
-\`\`\`
-        `,
-        en: `
-# Introduction to React
-
-React is a JavaScript library designed for building interactive user interfaces (UI).
-
-## What is React?
-
-React was created by Facebook in 2013 and has since become one of the most popular frontend libraries.
-
-### React Advantages:
-
-- **Component-Based**: Everything is a component
-- **Declarative**: Describe what you want, not how
-- **Virtual DOM**: Fast rendering
-- **One-way Data Flow**: Simple data flow
-
-## JSX - JavaScript XML
-
-JSX is a syntax extension for JavaScript that allows us to write HTML-like code in JavaScript.
-
-\`\`\`jsx
-const element = <h1>Hello, World!</h1>;
-\`\`\`
-
-### JSX Rules:
-
-1. All tags must be closed
-2. camelCase for attributes
-3. className instead of class
-4. {} for JavaScript expressions
-
-## Components
-
-A component is a JavaScript function that returns JSX.
-
-### Function Component:
-\`\`\`jsx
-function Welcome(props) {
-  return <h1>Hello, {props.name}!</h1>;
-}
-\`\`\`
-
-### Arrow Function Component:
-\`\`\`jsx
-const Welcome = (props) => {
-  return <h1>Hello, {props.name}!</h1>;
-};
-\`\`\`
-
-## Props - Passing Data
-
-Props are a way to pass data from parent to child components.
-
-\`\`\`jsx
-function App() {
-  return (
-    <div>
-      <Welcome name="Anna" />
-      <Welcome name="George" />
-    </div>
-  );
-}
-\`\`\`
-        `
-      },
+      title: { ka: 'შესავალი React-ში', en: 'Introduction to React' },
+      description: { ka: 'გაიგე რა არის React და რატომ არის ის პოპულარული.', en: 'Learn what React is and why it is popular.' },
+      duration: '15 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
       codeExample: {
-        title: { ka: 'პირველი React კომპონენტი', en: 'First React Component' },
-        code: `// პირველი React კომპონენტი / First React Component
-import React from 'react';
-
-// მარტივი კომპონენტი / Simple component
-function Greeting(props) {
-  return (
-    <div className="greeting">
-      <h1>გამარჯობა, {props.name}!</h1>
-      <p>კეთილი იყოს შენი მობრძანება React-ში!</p>
-    </div>
-  );
-}
-
-// მთავარი App კომპონენტი / Main App component
-function App() {
-  const userName = "ლუკა";
-  const isLoggedIn = true;
-
-  return (
-    <div className="app">
-      <header>
-        <h1>ჩემი React აპლიკაცია</h1>
-      </header>
-      
-      <main>
-        {isLoggedIn ? (
-          <Greeting name={userName} />
-        ) : (
-          <p>გთხოვთ შეხვიდეთ სისტემაში</p>
-        )}
-        
-        <ul>
-          <li>React ისწავლე</li>
-          <li>კომპონენტები შექმენი</li>
-          <li>JSX გამოიყენე</li>
-        </ul>
-      </main>
-    </div>
-  );
-}
-
-export default App;`
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
       },
       exercises: [
         {
-          id: 1,
-          title: { ka: 'პირველი კომპონენტი', en: 'First Component' },
-          description: { ka: 'შექმენი მარტივი React კომპონენტი', en: 'Create a simple React component' },
-          difficulty: { ka: 'მარტივი', en: 'Easy' },
-          starterCode: `import React from 'react';
-
-// შექმენი PersonCard კომპონენტი
-// Create PersonCard component
-function PersonCard(props) {
-  return (
-    <div className="person-card">
-      {/* დაამატე სახელი, ასაკი და ქალაქი */}
-      {/* Add name, age and city */}
-    </div>
-  );
-}
-
-// App კომპონენტი / App component
-function App() {
-  return (
-    <div>
-      <PersonCard name="ანა" age={25} city="თბილისი" />
-      <PersonCard name="გიორგი" age={30} city="ბათუმი" />
-    </div>
-  );
-}
-
-export default App;`,
-          solution: `import React from 'react';
-
-function PersonCard(props) {
-  return (
-    <div className="person-card">
-      <h2>{props.name}</h2>
-      <p>ასაკი: {props.age}</p>
-      <p>ქალაქი: {props.city}</p>
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <div>
-      <PersonCard name="ანა" age={25} city="თბილისი" />
-      <PersonCard name="გიორგი" age={30} city="ბათუმი" />
-    </div>
-  );
-}
-
-export default App;`,
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
           hints: [
-            { ka: 'გამოიყენე props ობიექტი', en: 'Use the props object' },
-            { ka: '{} ფრჩხილები JavaScript-ისთვის', en: '{} brackets for JavaScript' }
-          ]
-        },
-        {
-          id: 2,
-          title: { ka: 'პირობითი რენდერინგი', en: 'Conditional Rendering' },
-          description: { ka: 'ისწავლე პირობითი რენდერინგი JSX-ში', en: 'Learn conditional rendering in JSX' },
-          difficulty: { ka: 'მარტივი', en: 'Easy' },
-          starterCode: `import React from 'react';
-
-function UserStatus(props) {
-  const { isOnline, userName } = props;
-  
-  return (
-    <div className="user-status">
-      <h3>{userName}</h3>
-      {/* დაამატე პირობითი რენდერინგი isOnline მდგომარეობისთვის */}
-      {/* Add conditional rendering for isOnline status */}
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <div>
-      <UserStatus userName="ანა" isOnline={true} />
-      <UserStatus userName="გიორგი" isOnline={false} />
-    </div>
-  );
-}
-
-export default App;`,
-          solution: `import React from 'react';
-
-function UserStatus(props) {
-  const { isOnline, userName } = props;
-  
-  return (
-    <div className="user-status">
-      <h3>{userName}</h3>
-      {isOnline ? (
-        <span style={{color: 'green'}}>ონლაინ</span>
-      ) : (
-        <span style={{color: 'red'}}>ოფლაინ</span>
-      )}
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <div>
-      <UserStatus userName="ანა" isOnline={true} />
-      <UserStatus userName="გიორგი" isOnline={false} />
-    </div>
-  );
-}
-
-export default App;`,
-          hints: [
-            { ka: 'გამოიყენე ternary ოპერატორი ? :', en: 'Use the ternary operator ? :' },
-            { ka: 'შეგიძლია && ოპერატორიც გამოიყენო', en: 'You can also use the && operator' }
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
           ]
         }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
       ]
     },
     {
       id: 2,
-      title: {
-        ka: 'კომპონენტები და Props',
-        en: 'Components and Props'
-      },
-      description: {
-        ka: 'ისწავლე კომპონენტების შექმნა და Props-ების გამოყენება',
-        en: 'Learn how to create components and use Props'
-      },
-      duration: 25,
-      difficulty: { ka: 'დამწყები', en: 'Beginner' },
-      keyPoints: [
-        { ka: 'Props-ები არის მონაცემები კომპონენტებისთვის', en: 'Props are data for components' },
-        { ka: 'კომპონენტები უნდა იყოს რეუზიბალური', en: 'Components should be reusable' },
-        { ka: 'Props არის read-only', en: 'Props are read-only' },
-        { ka: 'Destructuring-ი აადვილებს Props-ებთან მუშაობას', en: 'Destructuring makes working with props easier' }
-      ],
-      theory: {
-        ka: 'Components and Props theory in Georgian...',
-        en: 'Components and Props theory in English...'
-      },
+      title: { ka: 'კომპონენტები', en: 'Components' },
+      description: { ka: 'ისწავლე კომპონენტების შექმნა და გამოყენება.', en: 'Learn how to create and use components.' },
+      duration: '20 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
       codeExample: {
-        title: { ka: 'კომპონენტები Props-ებით', en: 'Components with Props' },
-        code: `// კომპონენტები Props-ებით / Components with Props
-import React from 'react';
-
-// UserCard კომპონენტი / UserCard component
-function UserCard({ name, email, avatar, isActive }) {
-  return (
-    <div className="user-card">
-      <img src={avatar} alt={name} className="avatar" />
-      <div className="user-info">
-        <h3>{name}</h3>
-        <p>{email}</p>
-        <span className={\`status \${isActive ? 'active' : 'inactive'}\`}>
-          {isActive ? 'აქტიური' : 'არააქტიური'}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-// App კომპონენტი / App component
-function App() {
-  const users = [
-    {
-      id: 1,
-      name: "ანა გელაშვილი",
-      email: "ana@example.com",
-      avatar: "https://example.com/ana.jpg",
-      isActive: true
-    },
-    {
-      id: 2,
-      name: "გიორგი მამედოვი",
-      email: "giorgi@example.com", 
-      avatar: "https://example.com/giorgi.jpg",
-      isActive: false
-    }
-  ];
-
-  return (
-    <div className="app">
-      <h1>მომხმარებლების სია</h1>
-      <div className="users-grid">
-        {users.map(user => (
-          <UserCard
-            key={user.id}
-            name={user.name}
-            email={user.email}
-            avatar={user.avatar}
-            isActive={user.isActive}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}`
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
       },
       exercises: [
-        // More exercises...
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 3,
+      title: { ka: 'JSX სინტაქსი', en: 'JSX Syntax' },
+      description: { ka: 'ისწავლე JSX-ის გამოყენება React-ში.', en: 'Learn how to use JSX in React.' },
+      duration: '18 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 4,
+      title: { ka: 'Props და State', en: 'Props and State' },
+      description: { ka: 'ისწავლე მონაცემების გადაცემა და მდგომარეობის მართვა.', en: 'Learn how to pass data and manage state.' },
+      duration: '25 min',
+      difficulty: 'Beginner',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 5,
+      title: { ka: 'Hooks', en: 'Hooks' },
+      description: { ka: 'ისწავლე useState, useEffect და სხვა hooks.', en: 'Learn useState, useEffect, and other hooks.' },
+      duration: '22 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 6,
+      title: { ka: 'Routing React-ში', en: 'Routing in React' },
+      description: { ka: 'ისწავლე გვერდებს შორის ნავიგაცია.', en: 'Learn how to navigate between pages.' },
+      duration: '20 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 7,
+      title: { ka: 'ფორმები და ინპუტები', en: 'Forms and Inputs' },
+      description: { ka: 'ისწავლე ფორმების დამუშავება React-ში.', en: 'Learn how to handle forms in React.' },
+      duration: '18 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 8,
+      title: { ka: 'Context API', en: 'Context API' },
+      description: { ka: 'ისწავლე გლობალური მდგომარეობის მართვა.', en: 'Learn how to manage global state.' },
+      duration: '25 min',
+      difficulty: 'Intermediate',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 9,
+      title: { ka: 'Custom Hooks', en: 'Custom Hooks' },
+      description: { ka: 'ისწავლე საკუთარი hooks-ის შექმნა.', en: 'Learn how to create your own hooks.' },
+      duration: '22 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 10,
+      title: { ka: 'Performance Optimization', en: 'Performance Optimization' },
+      description: { ka: 'ისწავლე როგორ გააუმჯობესო აპლიკაციის მუშაობა.', en: 'Learn how to optimize your app performance.' },
+      duration: '20 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
+      ]
+    },
+    {
+      id: 11,
+      title: { ka: 'Deploying React App', en: 'Deploying React App' },
+      description: { ka: 'ისწავლე როგორ განათავსო შენი აპლიკაცია ინტერნეტში.', en: 'Learn how to deploy your app online.' },
+      duration: '18 min',
+      difficulty: 'Advanced',
+      completed: false,
+      theory: { ka: 'თეორია (Georgian) - Placeholder', en: 'Theory (English) - Placeholder' },
+      codeExample: {
+        title: { ka: 'კოდის მაგალითი', en: 'Code Example' },
+        code: '// Example code here',
+        description: { ka: 'კოდის აღწერა (Georgian)', en: 'Code description (English)' }
+      },
+      exercises: [
+        {
+          id: 'ex1',
+          title: { ka: 'ვარჯიში 1', en: 'Exercise 1' },
+          description: { ka: 'ვარჯიშის აღწერა (Georgian)', en: 'Exercise description (English)' },
+          difficulty: 'Beginner',
+          starterCode: '// Starter code',
+          solution: '// Solution code',
+          hints: [
+            { ka: 'მინიშნება 1 (Georgian)', en: 'Hint 1 (English)' }
+          ]
+        }
+      ],
+      keyPoints: [
+        { ka: 'მთავარი პუნქტი 1', en: 'Key Point 1' },
+        { ka: 'მთავარი პუნქტი 2', en: 'Key Point 2' }
       ]
     }
-    // More lessons would be added here...
   ]
 
   const currentLesson = lessons.find(l => l.id === lessonId)
@@ -535,7 +478,7 @@ function App() {
                 <div className="flex items-center gap-2 px-3 py-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
                   <BarChart3 className="w-4 h-4 text-green-600 dark:text-green-400" />
                   <span className="text-green-700 dark:text-green-300">
-                    {currentLesson.difficulty[language]}
+                    {currentLesson.difficulty}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
@@ -655,7 +598,7 @@ function App() {
                           {exercise.title[language]}
                         </h3>
                         <span className="px-3 py-1 bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 rounded-full text-sm font-medium">
-                          {exercise.difficulty[language]}
+                          {exercise.difficulty}
                         </span>
                       </div>
                       <p className="text-slate-700 dark:text-slate-300 mt-2 break-words">
