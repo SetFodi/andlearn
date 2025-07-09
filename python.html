@@ -445,47 +445,7 @@
                 <!-- Tutorial Content -->
                 <section class="mb-8">
                     <div class="tutorial-content bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6" id="tutorialContent">
-                        <!-- Welcome Message -->
-                        <div class="content-section mb-8">
-                            <h2 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">🐍 Welcome to Python!</h2>
-                            <div class="content-text prose dark:prose-invert max-w-none">
-                                <p class="text-lg mb-4">Python is a powerful, easy-to-learn programming language that's perfect for beginners and professionals alike. Let's start your Python journey!</p>
-                                
-                                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500 mb-6">
-                                    <p class="text-blue-800 dark:text-blue-200">💡 <strong>მივიღოთ სტარტი Python-ით!</strong> - Python არის მარტივი და ძლიერი პროგრამირების ენა.</p>
-                                </div>
-
-                                <h3 class="text-xl font-semibold mb-3">What You'll Learn:</h3>
-                                <ul class="list-disc pl-6 mb-4 space-y-2">
-                                    <li>Variables and data types</li>
-                                    <li>String operations and f-strings</li>
-                                    <li>Numbers and mathematical operations</li>
-                                    <li>User input and output</li>
-                                    <li>Comments and documentation</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Interactive Code Example -->
-                        <div class="content-section">
-                            <h2 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">💻 Try It Now!</h2>
-                            <div class="code-block rounded-lg p-4 mb-4">
-                                <pre class="text-sm overflow-x-auto"><code># Your first Python variables
-name = "ლუკა"  # String variable
-age = 20       # Integer variable
-is_student = True  # Boolean variable
-
-# Print the variables
-print(f"Hello, {name}!")
-print(f"You are {age} years old")
-print(f"Student status: {is_student}")
-
-# Basic math
-score = 95.5
-percentage = score / 100
-print(f"Your score: {percentage:.2%}")</code></pre>
-                            </div>
-                        </div>
+                        <!-- Content will be loaded dynamically by python-tutorial.js -->
                     </div>
                 </section>
 
@@ -501,18 +461,7 @@ print(f"Your score: {percentage:.2%}")</code></pre>
                             <h3 class="text-xl font-bold text-green-800 dark:text-green-200">Practice Challenge</h3>
                         </div>
                         <div class="practice-content" id="practiceContent">
-                            <h4 class="text-lg font-bold text-green-800 dark:text-green-200 mb-3">🎯 Your Mission:</h4>
-                            <div class="practice-task">
-                                <div class="content-text">
-                                    <ol class="list-decimal pl-6 space-y-2 mb-4">
-                                        <li>Create variables for your name, age, and favorite programming language</li>
-                                        <li>Use f-strings to create a personalized message</li>
-                                        <li>Calculate how many days old you are (age × 365)</li>
-                                        <li>Print everything in both English and Georgian</li>
-                                    </ol>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Experiment with different data types and operations!</p>
-                                </div>
-                            </div>
+                            <!-- Practice content will be loaded dynamically -->
                         </div>
                     </div>
                 </section>
@@ -588,15 +537,14 @@ print(f"Your score: {percentage:.2%}")</code></pre>
                 localStorage.setItem('language', lang);
                 window.currentLanguage = lang;
                 
-                // Wait for python-tutorial.js to load, then call its functions
-                setTimeout(() => {
-                    if (typeof window.updateLanguage === 'function') {
-                        window.updateLanguage();
-                    }
-                    if (typeof window.loadTutorial === 'function') {
-                        window.loadTutorial(window.currentTutorial || 'variables');
-                    }
-                }, 100);
+                // Call the python-tutorial.js language switching logic
+                if (typeof window.updateLanguage === 'function') {
+                    window.currentLanguage = lang;
+                    window.updateLanguage();
+                }
+                if (typeof window.loadTutorial === 'function') {
+                    window.loadTutorial(window.currentTutorial || 'variables');
+                }
             });
         });
 
