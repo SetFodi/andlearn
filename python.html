@@ -466,6 +466,56 @@
                     </div>
                 </section>
 
+                <!-- Interactive Code Editor -->
+                <section class="mb-8">
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                        <div class="flex items-center justify-between p-4 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Try it Yourself</h3>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button id="runCodeBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Run</span>
+                                </button>
+                                <button id="resetBtn" class="bg-gray-500 hover:bg-gray-600 text-white px-3 py-2 rounded-lg font-medium transition-colors">Reset</button>
+                                <button id="copyCodeBtn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg font-medium transition-colors">Copy</button>
+                                <button id="clearCodeBtn" class="bg-red-100 dark:bg-red-900/20 hover:bg-red-200 dark:hover:bg-red-900/40 text-red-600 dark:text-red-400 px-3 py-2 rounded-lg font-medium transition-colors">Clear</button>
+                            </div>
+                        </div>
+                        <div class="p-0">
+                            <textarea id="codeEditor" class="w-full h-64 p-4 bg-gray-900 text-gray-100 font-mono text-sm resize-none focus:outline-none" placeholder="# Start coding here...\nprint(\"Hello, Python!\")"></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Console Output -->
+                <section class="mb-8">
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                        <div class="flex items-center justify-between p-4 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Output</h3>
+                            </div>
+                            <button id="clearConsoleBtn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 px-3 py-2 rounded-lg font-medium transition-colors">Clear</button>
+                        </div>
+                        <div id="consoleOutput" class="p-4 min-h-32 max-h-48 overflow-y-auto bg-gray-900 text-gray-100 font-mono text-sm">
+                            <div class="text-gray-500"># Console output will appear here...</div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- Navigation -->
                 <section class="mb-8">
                     <div class="flex justify-between items-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
@@ -570,6 +620,9 @@
     </script>
     
     <!-- Python Tutorial JavaScript -->
+    <!-- Skulpt (in-browser Python) -->
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
     <script src="python-tutorial.js"></script>
 </body>
 </html> 

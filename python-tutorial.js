@@ -158,34 +158,92 @@ const pythonTutorialContent = {
     // Add minimal content for other tutorials to prevent errors
     functions_modules: {
         en: {
-            concept: "Functions in Python are reusable blocks of code that perform specific tasks. They help organize code and avoid repetition.",
+            concept: "Functions are named, reusable blocks of code that let you break large problems into smaller steps, keep your programs DRY (Don't Repeat Yourself) and communicate intent clearly. Modules act like **tool-boxes** – standalone `.py` files that group related functions, classes and variables so they can be imported wherever you need them. Together they help you build well-structured, maintainable Python projects.",
             examples: [
-                { title: "Basic Function", code: 'def greet(name):\n    return f"Hello, {name}!"\n\nresult = greet("Python")\nprint(result)', desc: "Creating and calling a simple function" }
+                { title: "Basic Function", code: 'def greet(name):\n    """Say hello to someone."""\n    return f"Hello, {name}!"\n\nprint(greet("Python"))', desc: "Defining and calling a simple function with a docstring" },
+                { title: "Function With Defaults & Return Type", code: 'def power(base, exponent=2):\n    """Return base raised to the given power (defaults to square)."""\n    return base ** exponent\n\nprint(power(3))   # 9\nprint(power(2, 3)) # 8', desc: "Using default parameters and a return value" },
+                { title: "Importing From a Module", code: 'import math\n\nnumber = 25\nroot = math.sqrt(number)\nprint(f"The square root of {number} is {root}")', desc: "Re-using functionality from the built-in math module" }
             ],
-            practice: { title: "Practice Functions", tasks: ["Create a function that adds two numbers", "Create a function that checks if a number is even"] }
+            practice: {
+                title: "Practice Functions & Modules",
+                tasks: [
+                    "Write a function `is_prime(n)` that returns True if `n` is a prime number.",
+                    "Create a module `geometry.py` with an `area_circle(r)` function, then import and use it in another script.",
+                    "Refactor any repetitive code from a previous exercise into a reusable function.",
+                    "Add meaningful docstrings to all of your functions and view them with `help()`."
+                ]
+            }
         },
         ka: {
-            concept: "Python-ის ფუნქციები არის კოდის მრავალჯერ გამოსაყენებელი ბლოკები რომლებიც ასრულებენ კონკრეტულ ამოცანებს.",
+            concept: "ფუნქციები არის დასახელებული, მრავალჯერ გამოსაყენებელი კოდის ბლოკები, რომლებიც გეხმარებათ დიდი პრობლემის გაყოფაში პატარა ნაბიჯებად და კოდის გამეორების თავიდან აცილებაში (DRY პრინციპი). მოდულები კი **ხელსაწყოების ყუთებია** — ცალკე `.py` ფაილები, რომლებიც აერთიანებს დაკავშირებულ ფუნქციებს, კლასებსა და ცვლადებს, რათა ისინი მარტივად გამოიყენოთ სხვისგან. ერთად ისინი ქმნიან კარგად სტრუქტურიან, ადვილად გასაუარე Python პროექტებს.",
             examples: [
-                { title: "ძირითადი ფუნქცია", code: 'def greet(name):\n    return f"გამარჯობა, {name}!"\n\nresult = greet("Python")\nprint(result)', desc: "მარტივი ფუნქციის შექმნა და გამოძახება" }
+                { title: "ძირითადი ფუნქცია", code: 'def greet(name):\n    """პრინტავს მოგესალმებით ტექსტს."""\n    return f"გამარჯობა, {name}!"\n\nprint(greet("Python"))', desc: "მარტივი ფუნქციის განსაზღვრა და გამოძახება docstring-ით" },
+                { title: "ნაგულისხმები პარამეტრები", code: 'def power(base, exponent=2):\n    """აბრუნებს base-ის exponent ხარისხს (სტანდარტულად კვადრატი)."""\n    return base ** exponent\n\nprint(power(3))   # 9\nprint(power(2, 3)) # 8', desc: "ნაგულისხმები არგუმენტებისა და დაბრუნებული მნიშვნელობის გამოყენება" },
+                { title: "მოდულიდან იმპორტი", code: 'import math\n\nnumber = 25\nroot = math.sqrt(number)\nprint(f"{number}-ის კვედრეულის ფესვი არის {root}")', desc: "math მოდულის ფუნქციის გამოყენება კოდის ხელახლა წერის გარეშე" }
             ],
-            practice: { title: "ივარჯიშეთ ფუნქციებში", tasks: ["შექმენით ფუნქცია რომელიც ორ რიცხვს დაამატებს", "შექმენით ფუნქცია რომელიც შეამოწმებს რიცხვი ლუწია თუ არა"] }
+            practice: {
+                title: "ივარჯიშეთ ფუნქციებსა და მოდულებში",
+                tasks: [
+                    "`is_prime(n)` ფუნქციის დაწერა, რომელიც prime რიცხვს ამოწმებს.",
+                    "შექმენით `geometry.py` მოდული `area_circle(r)` ფუნქციით და გამოიძახეთ იგი სხვა სკრიპტიდან.",
+                    "გადაიტანეთ გამეორებადი კოდი წინა სავარჯიშოებიდან ცალკე ფუნქციაში.",
+                    "ყველა თქვენს ფუნქციას დაუმატეთ დეტალური docstring-ები და გაუშვით `help()`-ით."
+                ]
+            }
         }
     },
     classes_objects: {
         en: {
-            concept: "Classes are blueprints for creating objects. Objects are instances of classes that contain data and methods.",
+            concept: "Classes are blueprints that describe the data (attributes) and behaviour (methods) of something in the real world. When you *instantiate* a class you create an **object** — a specific, live example of that blueprint. This is the heart of Object-Oriented Programming and lets you model complex systems in an intuitive, reusable way.",
             examples: [
-                { title: "Basic Class", code: 'class Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n    \n    def introduce(self):\n        return f"Hi, I\'m {self.name} and I\'m {self.age} years old"\n\nperson = Person("Luka", 25)\nprint(person.introduce())', desc: "Creating a simple class with methods" }
+                { title: "Simple Class", code: `class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def introduce(self):
+        return f"Hi, I'm {self.name} and I'm {self.age} years old"
+
+luka = Person("Luka", 25)
+print(luka.introduce())`, desc: "Creating and using an object" },
+                { title: "Inheritance", code: 'class Vehicle:\n    def __init__(self, make, model):\n        self.make = make\n        self.model = model\n\nclass Car(Vehicle):\n    def honk(self):\n        return "Beep beep!"\n\nmy_car = Car("Tesla", "Model 3")\nprint(my_car.honk())', desc: "Reusing behaviour with subclassing" },
+                { title: "Special Methods (__str__)", code: 'class Book:\n    def __init__(self, title):\n        self.title = title\n\n    def __str__(self):\n        return f"📖 {self.title}"\n\nprint(Book("Clean Code"))', desc: "Make your objects print nicely with dunder methods" }
             ],
-            practice: { title: "Practice Classes", tasks: ["Create a Car class with make, model, and year attributes", "Add a method to display car information"] }
+            practice: {
+                title: "Practice Classes & Objects",
+                tasks: [
+                    "Design a `BankAccount` class with `deposit()` and `withdraw()` methods and a `balance` attribute.",
+                    "Create a `Student` subclass that extends `Person` with a `grade` attribute and override `introduce()`.",
+                    "Implement a `__str__` method for the `Car` class that returns something like \"Tesla Model 3\".",
+                    "Make a list of `Book` objects and write a loop that prints them one per line."
+                ]
+            }
         },
         ka: {
-            concept: "კლასები არის ობიექტების შექმნის გეგმები. ობიექტები არის კლასების ინსტანციები რომლებიც შეიცავენ მონაცემებსა და მეთოდებს.",
+            concept: "კლასები არის გეგმები, რომლებიც აღწერენ მონაცემებს (ატრიბუტები) და ქცევას (მეთოდები) რეალური სამყაროს ობიექტებისთვის. კლასის *ინსტანციაციის* დროს მიიღება **ობიექტი** — ამ გეგმის კონკრეტული მაგალითი. ეს არის ობიექტზე ორიენტირებული პროგრამირების გული და საშუალებას გაძლევთ ინტუიტიურად, ხელახალი გამოყენების გზით ჩამოაყალიბოთ რთული სისტემები.",
             examples: [
-                { title: "ძირითადი კლასი", code: 'class Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n    \n    def introduce(self):\n        return f"გამარჯობა, მე ვარ {self.name} და {self.age} წლის ვარ"\n\nperson = Person("ლუკა", 25)\nprint(person.introduce())', desc: "მარტივი კლასის შექმნა მეთოდებით" }
+                { title: "მარტივი კლასი", code: `class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def introduce(self):
+        return f"გამარჯობა, მე ვარ {self.name} და {self.age} წლის ვარ"
+
+luka = Person("ლუკა", 25)
+print(luka.introduce())`, desc: "ობიექტის შექმნა და გამოყენება" },
+                { title: "მემკვიდრეობა", code: 'class Vehicle:\n    def __init__(self, make, model):\n        self.make = make\n        self.model = model\n\nclass Car(Vehicle):\n    def honk(self):\n        return "ბიპ ბიპ!"\n\nmy_car = Car("Tesla", "Model 3")\nprint(my_car.honk())', desc: "ქცევის ხელახალი გამოყენება ქვეკლასით" },
+                { title: "სპეციალური მეთოდი (__str__)", code: 'class Book:\n    def __init__(self, title):\n        self.title = title\n\n    def __str__(self):\n        return f"📖 {self.title}"\n\nprint(Book("Clean Code"))', desc: "ობიექტების ლამაზად დაბეჭდვა dunder მეთოდებით" }
             ],
-            practice: { title: "ივარჯიშეთ კლასებში", tasks: ["შექმენით Car კლასი make, model და year ატრიბუტებით", "დაამატეთ მეთოდი მანქანის ინფორმაციის საჩვენებლად"] }
+            practice: {
+                title: "ივარჯიშეთ კლასებსა და ობიექტებში",
+                tasks: [
+                    "`BankAccount` კლასის შექმნა `deposit()` და `withdraw()` მეთოდებით და `balance` ატრიბუტით.",
+                    "`Student` ქვეკლასის შექმნა, რომელიც `Person`-ს ადიდებს `grade` ატრიბუტით და გადაფარეთ introduce().",
+                    "`Car` კლასისთვის `__str__` მეთოდის განხორციელება, რომელიც აბრუნებს მაგალითად \"Tesla Model 3\".",
+                    "შექმენით `Book` ობიექტების სია და დაბეჭდეთ თითოეული ცალკე სტრიქონზე."
+                ]
+            }
         }
     },
     file_handling: {
@@ -332,6 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupLanguage();
     updateLanguage();
     setupThemeToggle();
+    setupCodeEditor();
     
     // Apply saved theme
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -610,11 +669,79 @@ function navigateNext() {
     }
 }
 
-// Scroll progress indicator
-const scrollIndicator = document.getElementById('scrollIndicator');
-window.addEventListener('scroll', () => {
-    const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    if (scrollIndicator) {
-        scrollIndicator.style.width = scrollPercent + '%';
-    }
-}); 
+// Scroll progress indicator (use a unique variable name to avoid clashes with inline script)
+if (!window.__pythonScrollIndicatorAttached) {
+    const pyScrollIndicator = document.getElementById('scrollIndicator');
+    window.addEventListener('scroll', () => {
+        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        if (pyScrollIndicator) {
+            pyScrollIndicator.style.width = scrollPercent + '%';
+        }
+    });
+    window.__pythonScrollIndicatorAttached = true;
+} 
+
+// === Code Editor Utilities ===
+function runPythonCode() {
+    const codeInput = document.getElementById('codeEditor');
+    const consoleOutput = document.getElementById('consoleOutput');
+    if (!codeInput || !consoleOutput || typeof Sk === 'undefined') return;
+
+    // Clear previous output
+    consoleOutput.innerHTML = '';
+
+    // Helper to write output
+    const outf = (text) => {
+        const line = document.createElement('div');
+        line.textContent = text;
+        consoleOutput.appendChild(line);
+    };
+
+    const builtinRead = (x) => {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined) {
+            throw `File not found: '${x}'`;
+        }
+        return Sk.builtinFiles['files'][x];
+    };
+
+    Sk.configure({ output: outf, read: builtinRead, execLimit: 10000 });
+
+    (async () => {
+        try {
+            await Sk.misceval.asyncToPromise(() => Sk.importMainWithBody('<stdin>', false, codeInput.value, true));
+        } catch (err) {
+            outf(err.toString());
+        }
+    })();
+}
+
+function resetCode() {
+    const codeInput = document.getElementById('codeEditor');
+    if (codeInput) codeInput.value = '';
+    clearConsole();
+}
+
+function clearConsole() {
+    const consoleOutput = document.getElementById('consoleOutput');
+    if (consoleOutput) consoleOutput.innerHTML = '';
+}
+
+function setupCodeEditor() {
+    const runBtn        = document.getElementById('runCodeBtn');
+    const resetBtn      = document.getElementById('resetBtn');
+    const copyBtn       = document.getElementById('copyCodeBtn');
+    const clearCodeBtn  = document.getElementById('clearCodeBtn');
+    const clearConsoleB = document.getElementById('clearConsoleBtn');
+
+    if (runBtn)        runBtn.addEventListener('click', runPythonCode);
+    if (resetBtn)      resetBtn.addEventListener('click', resetCode);
+    if (clearConsoleB) clearConsoleB.addEventListener('click', clearConsole);
+    if (clearCodeBtn)  clearCodeBtn.addEventListener('click', () => {
+        const codeInput = document.getElementById('codeEditor');
+        if (codeInput) codeInput.value = '';
+    });
+    if (copyBtn)  copyBtn.addEventListener('click', () => {
+        const codeInput = document.getElementById('codeEditor');
+        if (codeInput) navigator.clipboard.writeText(codeInput.value || '');
+    });
+} 
