@@ -545,24 +545,16 @@ print(f"Your score: {percentage:.2%}")</code></pre>
 
     <!-- Scripts -->
     <script>
-        // Theme toggle functionality
+        // Theme toggle
         const themeToggle = document.getElementById('themeToggle');
-        const sunIcon = document.getElementById('sunIcon');
-        const moonIcon = document.getElementById('moonIcon');
+        const html = document.documentElement;
         
         themeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            const isDark = document.documentElement.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
         });
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.documentElement.classList.add('dark');
-        }
-
-        // Language toggle functionality
+        // Language handling
         const languageBtn = document.getElementById('languageBtn');
         const languageDropdown = document.getElementById('languageDropdown');
         const currentFlag = document.getElementById('currentFlag');
@@ -579,20 +571,32 @@ print(f"Your score: {percentage:.2%}")</code></pre>
             }
         });
 
-        // Language selection
+        // Language selection - properly use python-tutorial.js functions
         document.querySelectorAll('.language-option').forEach(option => {
             option.addEventListener('click', (e) => {
                 e.preventDefault();
                 const lang = option.dataset.lang;
+                
+                // Update flag and label for UI
                 const flag = option.querySelector('span').textContent;
                 const langText = lang === 'en' ? 'EN' : 'KA';
-                
                 currentFlag.textContent = flag;
                 currentLang.textContent = langText;
                 languageDropdown.classList.add('hidden');
                 
-                // Here you would implement actual language switching
-                console.log('Language switched to:', lang);
+                // Use the python-tutorial.js logic to update language and reload content
+                localStorage.setItem('language', lang);
+                window.currentLanguage = lang;
+                
+                // Wait for python-tutorial.js to load, then call its functions
+                setTimeout(() => {
+                    if (typeof window.updateLanguage === 'function') {
+                        window.updateLanguage();
+                    }
+                    if (typeof window.loadTutorial === 'function') {
+                        window.loadTutorial(window.currentTutorial || 'variables');
+                    }
+                }, 100);
             });
         });
 
@@ -603,63 +607,17 @@ print(f"Your score: {percentage:.2%}")</code></pre>
             scrollIndicator.style.width = scrollPercent + '%';
         });
 
-        // Tutorial navigation
-        const tutorialItems = document.querySelectorAll('.tutorial-item[data-tutorial]');
-        const tutorialTitle = document.getElementById('tutorialTitle');
-        const tutorialDescription = document.getElementById('tutorialDescription');
-        const tutorialContent = document.getElementById('tutorialContent');
-
-        const tutorials = {
-            variables: {
-                title: "Python Variables & Basics",
-                description: "Master Python fundamentals with variables, data types, and core programming concepts.",
-                content: "Variables and basic Python concepts"
-            },
-            lists_loops: {
-                title: "Lists & Loops",
-                description: "Learn to work with Python lists and control flow with loops.",
-                content: "Lists, loops, and data collections"
-            },
-            functions_modules: {
-                title: "Functions & Modules",
-                description: "Create reusable code with functions and organize projects with modules.",
-                content: "Functions, modules, and code organization"
-            }
-            // Add more tutorials as needed
-        };
-
-        tutorialItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const tutorialKey = item.dataset.tutorial;
-                const tutorial = tutorials[tutorialKey];
-                
-                if (tutorial) {
-                    // Remove active state from all items
-                    tutorialItems.forEach(t => {
-                        t.classList.remove('border-blue-500', 'text-blue-700', 'dark:text-blue-300');
-                        t.classList.add('hover:bg-gray-100', 'dark:hover:bg-gray-700');
-                    });
-                    
-                    // Add active state to current item
-                    item.classList.add('border-blue-500', 'text-blue-700', 'dark:text-blue-300');
-                    item.classList.remove('hover:bg-gray-100', 'dark:hover:bg-gray-700');
-                    
-                    // Update content
-                    tutorialTitle.textContent = tutorial.title;
-                    tutorialDescription.textContent = tutorial.description;
-                }
-            });
-        });
-
-        // Navigation buttons
+        // Navigation buttons - use python-tutorial.js functions
         document.getElementById('nextBtn')?.addEventListener('click', () => {
-            // Navigate to next lesson
-            console.log('Next lesson');
+            if (typeof window.navigateNext === 'function') {
+                window.navigateNext();
+            }
         });
 
         document.getElementById('prevBtn')?.addEventListener('click', () => {
-            // Navigate to previous lesson
-            console.log('Previous lesson');
+            if (typeof window.navigatePrevious === 'function') {
+                window.navigatePrevious();
+            }
         });
     </script>
     

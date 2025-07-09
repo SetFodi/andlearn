@@ -154,9 +154,177 @@ const pythonTutorialContent = {
                 ]
             }
         }
+    },
+    // Add minimal content for other tutorials to prevent errors
+    functions_modules: {
+        en: {
+            concept: "Functions in Python are reusable blocks of code that perform specific tasks. They help organize code and avoid repetition.",
+            examples: [
+                { title: "Basic Function", code: 'def greet(name):\n    return f"Hello, {name}!"\n\nresult = greet("Python")\nprint(result)', desc: "Creating and calling a simple function" }
+            ],
+            practice: { title: "Practice Functions", tasks: ["Create a function that adds two numbers", "Create a function that checks if a number is even"] }
+        },
+        ka: {
+            concept: "Python-ის ფუნქციები არის კოდის მრავალჯერ გამოსაყენებელი ბლოკები რომლებიც ასრულებენ კონკრეტულ ამოცანებს.",
+            examples: [
+                { title: "ძირითადი ფუნქცია", code: 'def greet(name):\n    return f"გამარჯობა, {name}!"\n\nresult = greet("Python")\nprint(result)', desc: "მარტივი ფუნქციის შექმნა და გამოძახება" }
+            ],
+            practice: { title: "ივარჯიშეთ ფუნქციებში", tasks: ["შექმენით ფუნქცია რომელიც ორ რიცხვს დაამატებს", "შექმენით ფუნქცია რომელიც შეამოწმებს რიცხვი ლუწია თუ არა"] }
+        }
+    },
+    classes_objects: {
+        en: {
+            concept: "Classes are blueprints for creating objects. Objects are instances of classes that contain data and methods.",
+            examples: [
+                { title: "Basic Class", code: 'class Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n    \n    def introduce(self):\n        return f"Hi, I\'m {self.name} and I\'m {self.age} years old"\n\nperson = Person("Luka", 25)\nprint(person.introduce())', desc: "Creating a simple class with methods" }
+            ],
+            practice: { title: "Practice Classes", tasks: ["Create a Car class with make, model, and year attributes", "Add a method to display car information"] }
+        },
+        ka: {
+            concept: "კლასები არის ობიექტების შექმნის გეგმები. ობიექტები არის კლასების ინსტანციები რომლებიც შეიცავენ მონაცემებსა და მეთოდებს.",
+            examples: [
+                { title: "ძირითადი კლასი", code: 'class Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n    \n    def introduce(self):\n        return f"გამარჯობა, მე ვარ {self.name} და {self.age} წლის ვარ"\n\nperson = Person("ლუკა", 25)\nprint(person.introduce())', desc: "მარტივი კლასის შექმნა მეთოდებით" }
+            ],
+            practice: { title: "ივარჯიშეთ კლასებში", tasks: ["შექმენით Car კლასი make, model და year ატრიბუტებით", "დაამატეთ მეთოდი მანქანის ინფორმაციის საჩვენებლად"] }
+        }
+    },
+    file_handling: {
+        en: {
+            concept: "File handling in Python allows you to read from and write to files, enabling data persistence in your applications.",
+            examples: [
+                { title: "Reading Files", code: '# Reading a file\nwith open("example.txt", "r") as file:\n    content = file.read()\n    print(content)\n\n# Reading line by line\nwith open("example.txt", "r") as file:\n    for line in file:\n        print(line.strip())', desc: "Different ways to read files" }
+            ],
+            practice: { title: "Practice File Handling", tasks: ["Create a text file and write your favorite quotes", "Read the file and display each quote"] }
+        },
+        ka: {
+            concept: "Python-ში ფაილების მართვა საშუალებას გაძლევთ წაიკითხოთ და ჩაწეროთ ფაილები, რაც უზრუნველყოფს მონაცემების შენარჩუნებას თქვენს აპლიკაციებში.",
+            examples: [
+                { title: "ფაილების კითხვა", code: '# ფაილის კითხვა\nwith open("example.txt", "r") as file:\n    content = file.read()\n    print(content)\n\n# ხაზ-ხაზ კითხვა\nwith open("example.txt", "r") as file:\n    for line in file:\n        print(line.strip())', desc: "ფაილების კითხვის სხვადასხვა გზები" }
+            ],
+            practice: { title: "ივარჯიშეთ ფაილების მართვაში", tasks: ["შექმენით ტექსტური ფაილი და ჩაწერეთ თქვენი საყვარელი ციტატები", "წაიკითხეთ ფაილი და აჩვენეთ თითოეული ციტატა"] }
+        }
+    },
+    error_handling: {
+        en: {
+            concept: "Error handling helps your programs gracefully deal with unexpected situations using try-except blocks.",
+            examples: [
+                { title: "Basic Try-Except", code: 'try:\n    number = int(input("Enter a number: "))\n    result = 10 / number\n    print(f"Result: {result}")\nexcept ValueError:\n    print("That\'s not a valid number!")\nexcept ZeroDivisionError:\n    print("Cannot divide by zero!")', desc: "Handling different types of errors" }
+            ],
+            practice: { title: "Practice Error Handling", tasks: ["Create a program that safely converts user input to integers", "Handle file not found errors when reading files"] }
+        },
+        ka: {
+            concept: "შეცდომების მართვა ეხმარება თქვენს პროგრამებს ლამაზად გაუმკლავდნენ მოულოდნელ სიტუაციებს try-except ბლოკების გამოყენებით.",
+            examples: [
+                { title: "ძირითადი Try-Except", code: 'try:\n    number = int(input("შეიყვანეთ რიცხვი: "))\n    result = 10 / number\n    print(f"შედეგი: {result}")\nexcept ValueError:\n    print("ეს არ არის სწორი რიცხვი!")\nexcept ZeroDivisionError:\n    print("ნულზე გაყოფა შეუძლებელია!")', desc: "სხვადასხვა ტიპის შეცდომების მართვა" }
+            ],
+            practice: { title: "ივარჯიშეთ შეცდომების მართვაში", tasks: ["შექმენით პროგრამა რომელიც უსაფრთხოდ გარდაქმნის მომხმარებლის შეყვანას მთელ რიცხვებად", "მართეთ ფაილის ვერ იპოვნება შეცდომები ფაილების კითხვისას"] }
+        }
+    },
+    data_structures: {
+        en: {
+            concept: "Python offers various data structures like dictionaries, sets, and tuples for efficient data organization.",
+            examples: [
+                { title: "Dictionaries", code: 'student = {\n    "name": "Ana",\n    "age": 20,\n    "grades": [95, 87, 92]\n}\n\nprint(student["name"])\nstudent["major"] = "Computer Science"\nprint(student)', desc: "Using dictionaries to store key-value pairs" }
+            ],
+            practice: { title: "Practice Data Structures", tasks: ["Create a dictionary to store information about your favorite book", "Use sets to find unique elements in a list"] }
+        },
+        ka: {
+            concept: "Python გთავაზობთ სხვადასხვა მონაცემთა სტრუქტურებს როგორიცაა ლექსიკონები, სეტები და tuple-ები ეფექტური მონაცემთა ორგანიზაციისთვის.",
+            examples: [
+                { title: "ლექსიკონები", code: 'student = {\n    "name": "ანა",\n    "age": 20,\n    "grades": [95, 87, 92]\n}\n\nprint(student["name"])\nstudent["major"] = "კომპიუტერული მეცნიერება"\nprint(student)', desc: "ლექსიკონების გამოყენება key-value წყვილების შესანახად" }
+            ],
+            practice: { title: "ივარჯიშეთ მონაცემთა სტრუქტურებში", tasks: ["შექმენით ლექსიკონი თქვენი საყვარელი წიგნის ინფორმაციის შესანახად", "გამოიყენეთ სეტები სიაში უნიკალური ელემენტების საპოვნელად"] }
+        }
+    },
+    web_apis: {
+        en: {
+            concept: "Learn to interact with web APIs and build web applications using Python frameworks.",
+            examples: [
+                { title: "HTTP Requests", code: 'import requests\n\nresponse = requests.get("https://api.github.com/users/octocat")\ndata = response.json()\nprint(f"User: {data[\'login\']}")\nprint(f"Repos: {data[\'public_repos\']}")', desc: "Making HTTP requests to APIs" }
+            ],
+            practice: { title: "Practice Web APIs", tasks: ["Make a request to a weather API", "Parse JSON data from an API response"] }
+        },
+        ka: {
+            concept: "ისწავლეთ ვებ API-ებთან ინტერაქცია და ვებ აპლიკაციების აშენება Python ჩარჩოების გამოყენებით.",
+            examples: [
+                { title: "HTTP მოთხოვნები", code: 'import requests\n\nresponse = requests.get("https://api.github.com/users/octocat")\ndata = response.json()\nprint(f"მომხმარებელი: {data[\'login\']}")\nprint(f"რეპოზიტორიები: {data[\'public_repos\']}")', desc: "HTTP მოთხოვნების გაკეთება API-ებისთვის" }
+            ],
+            practice: { title: "ივარჯიშეთ ვებ API-ებში", tasks: ["გააკეთეთ მოთხოვნა ამინდის API-სთვის", "გააანალიზეთ JSON მონაცემები API-ს პასუხიდან"] }
+        }
+    },
+    advanced_topics: {
+        en: {
+            concept: "Explore advanced Python concepts like decorators, generators, and context managers.",
+            examples: [
+                { title: "Decorators", code: 'def my_decorator(func):\n    def wrapper():\n        print("Before function")\n        func()\n        print("After function")\n    return wrapper\n\n@my_decorator\ndef say_hello():\n    print("Hello!")\n\nsay_hello()', desc: "Using decorators to modify function behavior" }
+            ],
+            practice: { title: "Practice Advanced Topics", tasks: ["Create a decorator that measures function execution time", "Write a generator that yields fibonacci numbers"] }
+        },
+        ka: {
+            concept: "შეისწავლეთ Python-ის გაღრმავებული კონცეფციები როგორიცაა დეკორატორები, გენერატორები და კონტექსტის მენეჯერები.",
+            examples: [
+                { title: "დეკორატორები", code: 'def my_decorator(func):\n    def wrapper():\n        print("ფუნქციის წინ")\n        func()\n        print("ფუნქციის შემდეგ")\n    return wrapper\n\n@my_decorator\ndef say_hello():\n    print("გამარჯობა!")\n\nsay_hello()', desc: "დეკორატორების გამოყენება ფუნქციის ქცევის შესაცვლელად" }
+            ],
+            practice: { title: "ივარჯიშეთ გაღრმავებულ თემებში", tasks: ["შექმენით დეკორატორი რომელიც იზომავს ფუნქციის შესრულების დროს", "დაწერეთ გენერატორი რომელიც აბრუნებს ფიბონაჩის რიცხვებს"] }
+        }
+    },
+    testing_debugging: {
+        en: {
+            concept: "Learn to write tests and debug your Python code effectively using testing frameworks and debugging tools.",
+            examples: [
+                { title: "Unit Testing", code: 'import unittest\n\ndef add_numbers(a, b):\n    return a + b\n\nclass TestMath(unittest.TestCase):\n    def test_add_numbers(self):\n        self.assertEqual(add_numbers(2, 3), 5)\n        self.assertEqual(add_numbers(-1, 1), 0)\n\nif __name__ == "__main__":\n    unittest.main()', desc: "Writing unit tests for your functions" }
+            ],
+            practice: { title: "Practice Testing", tasks: ["Write tests for a calculator function", "Use debugging techniques to find and fix bugs"] }
+        },
+        ka: {
+            concept: "ისწავლეთ ტესტების წერა და თქვენი Python კოდის ეფექტური გამართვა ტესტირების ჩარჩოებისა და დებაგინგ ინსტრუმენტების გამოყენებით.",
+            examples: [
+                { title: "Unit Testing", code: 'import unittest\n\ndef add_numbers(a, b):\n    return a + b\n\nclass TestMath(unittest.TestCase):\n    def test_add_numbers(self):\n        self.assertEqual(add_numbers(2, 3), 5)\n        self.assertEqual(add_numbers(-1, 1), 0)\n\nif __name__ == "__main__":\n    unittest.main()', desc: "თქვენი ფუნქციებისთვის unit ტესტების წერა" }
+            ],
+            practice: { title: "ივარჯიშეთ ტესტირებაში", tasks: ["დაწერეთ ტესტები კალკულატორის ფუნქციისთვის", "გამოიყენეთ დებაგინგ ტექნიკები ბაგების საპოვნელად და გამოსასწორებლად"] }
+        }
+    },
+    data_science_ml: {
+        en: {
+            concept: "Introduction to data science and machine learning concepts using Python libraries like pandas and scikit-learn.",
+            examples: [
+                { title: "Data Analysis", code: 'import pandas as pd\n\n# Create a simple dataset\ndata = {\n    "name": ["Alice", "Bob", "Charlie"],\n    "age": [25, 30, 35],\n    "salary": [50000, 60000, 70000]\n}\n\ndf = pd.DataFrame(data)\nprint(df)\nprint(f"Average age: {df[\'age\'].mean()}")', desc: "Basic data analysis with pandas" }
+            ],
+            practice: { title: "Practice Data Science", tasks: ["Analyze a dataset and find basic statistics", "Create visualizations of your data"] }
+        },
+        ka: {
+            concept: "შესავალი მონაცემთა მეცნიერებისა და მანქანური სწავლების კონცეფციებში Python ბიბლიოთეკების როგორიცაა pandas და scikit-learn გამოყენებით.",
+            examples: [
+                { title: "მონაცემთა ანალიზი", code: 'import pandas as pd\n\n# მარტივი მონაცემთა ნაკრების შექმნა\ndata = {\n    "name": ["ალისა", "ბობი", "ჩარლი"],\n    "age": [25, 30, 35],\n    "salary": [50000, 60000, 70000]\n}\n\ndf = pd.DataFrame(data)\nprint(df)\nprint(f"საშუალო ასაკი: {df[\'age\'].mean()}")', desc: "ძირითადი მონაცემთა ანალიზი pandas-ით" }
+            ],
+            practice: { title: "ივარჯიშეთ მონაცემთა მეცნიერებაში", tasks: ["გააანალიზეთ მონაცემთა ნაკრები და იპოვეთ ძირითადი სტატისტიკა", "შექმენით თქვენი მონაცემების ვიზუალიზაცია"] }
+        }
+    },
+    projects_deployment: {
+        en: {
+            concept: "Learn to build complete Python projects and deploy them to production environments.",
+            examples: [
+                { title: "Simple Web App", code: 'from flask import Flask\n\napp = Flask(__name__)\n\n@app.route("/")\ndef hello():\n    return "Hello, World!"\n\n@app.route("/user/<name>")\ndef user(name):\n    return f"Hello, {name}!"\n\nif __name__ == "__main__":\n    app.run(debug=True)', desc: "Creating a simple web application with Flask" }
+            ],
+            practice: { title: "Practice Projects", tasks: ["Build a simple web application", "Deploy your application to a cloud platform"] }
+        },
+        ka: {
+            concept: "ისწავლეთ სრული Python პროექტების აშენება და მათი გაშლა საწარმოო გარემოებში.",
+            examples: [
+                { title: "მარტივი ვებ აპლიკაცია", code: 'from flask import Flask\n\napp = Flask(__name__)\n\n@app.route("/")\ndef hello():\n    return "გამარჯობა, მსოფლიო!"\n\n@app.route("/user/<name>")\ndef user(name):\n    return f"გამარჯობა, {name}!"\n\nif __name__ == "__main__":\n    app.run(debug=True)', desc: "მარტივი ვებ აპლიკაციის შექმნა Flask-ით" }
+            ],
+            practice: { title: "ივარჯიშეთ პროექტებში", tasks: ["ააშენეთ მარტივი ვებ აპლიკაცია", "გაშალეთ თქვენი აპლიკაცია ღრუბლოვან პლატფორმაზე"] }
+        }
     }
-    // Additional tutorial content would continue here...
 };
+
+// Expose functions to window object so they can be called from HTML
+window.currentTutorial = currentTutorial;
+window.currentLanguage = currentLanguage;
+window.loadTutorial = loadTutorial;
+window.updateLanguage = updateLanguage;
+window.navigateNext = navigateNext;
+window.navigatePrevious = navigatePrevious;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
