@@ -6,7 +6,7 @@ let currentLanguage = localStorage.getItem('language') || 'en';
 const tutorialContent = {
     variables: {
         en: {
-            concept: "Variables are like labeled boxes that store information. In JavaScript, we create variables using 'let' for changeable values and 'const' for constant values.",
+            concept: "Variables are like labeled boxes that store information. In JavaScript, we create variables using 'let' for changeable values and 'const' for constant values. They can hold numbers, text, booleans and even complex data like arrays or objects. Choosing clear names and the right keyword (const by default, let when you really need to re-assign) makes your code easier to read and prevents accidental bugs. Think of variables as your program's memory – you label a drawer, put something inside, and later open it to reuse or update that value.",
             examples: [
                 { title: "Text (String)", code: 'const myName = "Luka";', desc: "Store text in quotes" },
                 { title: "Numbers", code: 'let age = 25;', desc: "Store any number" },
@@ -23,7 +23,7 @@ const tutorialContent = {
             }
         },
         ka: {
-            concept: "ცვლადები არის დასახელებული ყუთების მსგავსი რომლებიც ინახავენ ინფორმაციას. JavaScript-ში ვქმნით ცვლადებს 'let'-ით ცვალებადი მნიშვნელობებისთვის და 'const'-ით მუდმივი მნიშვნელობებისთვის.",
+            concept: "ცვლადები წარმოდგენილია დასახელებული უჯრების სახით, რომელშიც ინახება ინფორმაცია. JavaScript-ში მუდმივ მნიშვნელობებს ვქმნით const-ით, ხოლო ცვლადებს let-ით. ცვლადები შეიძლება შეიცავდეს რიცხვებს, ტექსტს, ბულიანებს და უფრო რთულ სტრუქტურებს, მაგალითად მასივებსა და ობიექტებს. სწორი საკვანძო სიტყვის არჩევა (ყოველთვის const, თუ ნამდვილად არ გჭირდებათ გადათავსება let-ზე) და გააზრებული სახელები დაგეხმარებათ გაუგებრობების თავიდან აცილებაში. წარმოიდგინეთ სანომრე თარო – დააწერეთ ეტიკეტი, ჩადეთ მონაცემი და გამოიყენეთ როცა დაგჭირდებათ.",
             examples: [
                 { title: "ტექსტი (String)", code: 'const myName = "ლუკა";', desc: "ინახეთ ტექსტი따옴표ებში" },
                 { title: "რიცხვები", code: 'let age = 25;', desc: "ინახეთ ნებისმიერი რიცხვი" },
@@ -42,7 +42,7 @@ const tutorialContent = {
     },
     functions: {
         en: {
-            concept: "Functions are reusable blocks of code that perform specific tasks. Think of them as recipes - you give them ingredients (parameters) and they produce a result.",
+            concept: "Functions are reusable blocks of logic that take input, process it, and optionally return output – just like kitchen recipes: ingredients in, delicious cake out! They help you avoid repetition and keep code organised. In modern JavaScript we prefer 'function' declarations or arrow-functions. Naming a function with a verb (calculateTax, fetchUsers) describes what it does and makes programs self-documenting. By combining parameters and return values you can build pipelines that transform data step by step.",
             examples: [
                 { title: "Simple Function", code: 'function greet() {\n  console.log("Hello!");\n}', desc: "A function that prints hello" },
                 { title: "Function with Parameters", code: 'function greet(name) {\n  console.log("Hello " + name);\n}', desc: "A function that takes input" },
@@ -58,7 +58,7 @@ const tutorialContent = {
             }
         },
         ka: {
-            concept: "ფუნქციები არის კოდის მეორადი გამოყენების ბლოკები რომლებიც ასრულებენ კონკრეტულ დავალებებს. იფიქრეთ მათზე როგორც რეცეპტებზე - მისცემთ მათ ინგრედიენტებს (პარამეტრებს) და ისინი აწარმოებენ შედეგს.",
+            concept: "ფუნქციები წარმოადგენს ხელახალ გამოსაყენებელ ლოგიკას, რომელიც იღებს პარამეტრებს, ამუშავებს მათ და შეიძლება დააბრუნოს შედეგი – როგორც რეცეპტი: ინგრედიენტები შედის, გემოიანი ნამცხვარი გამოდის! ასე თავიდან ავიცილებთ კოდის კოპირებას და შევიტანთ წესრიგს. თანამედროვე JavaScript-ში ვიყენებთ function განცხადებებს ან arrow-ფუნქციებს. ფუნქციის ზმნური სახელწოდება (calculateTax, fetchUsers) აღწერს მის დანიშნულებას და კოდს ხდის თვით-დოკუმენტირებულს. პარამეტრებისა და დაბრუნებული მნიშვნელობების კომბინაციით შეგვიძლია ავაშენოთ მონაცემთა დამუშავების ჯაჭვი.",
             examples: [
                 { title: "მარტივი ფუნქცია", code: 'function greet() {\n  console.log("გამარჯობა!");\n}', desc: "ფუნქცია რომელიც ბეჭდავს გამარჯობას" },
                 { title: "ფუნქცია პარამეტრებით", code: 'function greet(name) {\n  console.log("გამარჯობა " + name);\n}', desc: "ფუნქცია რომელიც იღებს შეყვანას" },
@@ -76,7 +76,7 @@ const tutorialContent = {
     },
     controlflow: {
         en: {
-            concept: "Control flow lets you make decisions in your code using if/else statements and repeat actions using loops. It's like giving your program a brain!",
+            concept: "Control flow gives your programs decision-making powers (if/else, switch) and the ability to repeat work (for, while, do…while). Picture a GPS that chooses a route based on traffic and loops through turns until destination – that's control flow in action. Learning truthy / falsy values, comparison operators (== vs ===), and loop pitfalls (infinite loops!) prepares you for solving real-world problems where tasks depend on conditions.",
             examples: [
                 { title: "If Statement", code: 'if (age >= 18) {\n  console.log("Adult");\n} else {\n  console.log("Minor");\n}', desc: "Make decisions based on conditions" },
                 { title: "For Loop", code: 'for (let i = 0; i < 5; i++) {\n  console.log(i);\n}', desc: "Repeat code a specific number of times" },
@@ -92,7 +92,7 @@ const tutorialContent = {
             }
         },
         ka: {
-            concept: "მართვის ნაკადი საშუალებას გაძლევთ მიიღოთ გადაწყვეტილებები კოდში if/else განცხადებების გამოყენებით და გაიმეოროთ მოქმედებები ციკლების გამოყენებით. ეს არის როგორც პროგრამისთვის ტვინის მიცემა!",
+            concept: "მართვის ნაკადი თქვენს კოდს აძლევს გადაწყვეტილებების მიღების უნარს (if/else, switch) და მოქმედებების გამეორებას (for, while, do…while). წარმოიდგინეთ GPS, რომელიც არჩევს გზას საცობის მიხედვით და უხვევს მანამ, სანამ მიზანს მიაღწევს – ეს control flow-ის მუშაობაა. გქონდეთ წარმოდგენა truthy / falsy მნიშვნელობებზე, შედარების ოპერატორებზე (== და ===) და უსასრულო ციკლების საფრთხეებზე, რათა დაწეროთ საიმედო ალგორითმები.",
             examples: [
                 { title: "If განცხადება", code: 'if (age >= 18) {\n  console.log("უფროსი");\n} else {\n  console.log("არასრულწლოვანი");\n}', desc: "მიიღეთ გადაწყვეტილებები პირობების საფუძველზე" },
                 { title: "For ციკლი", code: 'for (let i = 0; i < 5; i++) {\n  console.log(i);\n}', desc: "გაიმეორეთ კოდი კონკრეტული რაოდენობით" },
@@ -110,7 +110,7 @@ const tutorialContent = {
     },
     arrays: {
         en: {
-            concept: "Arrays store multiple values in a single variable, like a list. Objects store related data as key-value pairs, like a profile card with different properties.",
+            concept: "Arrays let you group related values, while objects bundle properties under a single name. Together they form the backbone of real applications – shopping carts, user profiles, chat messages. Understanding index order, common methods (push, pop, splice) and object property access (dot vs bracket) equips you to model any data. Remember: arrays are ordered lists, objects are labelled collections, and you can nest them to build rich structures.",
             examples: [
                 { title: "Creating Arrays", code: 'const fruits = ["apple", "banana", "orange"];\nconst numbers = [1, 2, 3, 4, 5];', desc: "Store multiple items in order" },
                 { title: "Creating Objects", code: 'const person = {\n  name: "John",\n  age: 25,\n  city: "Tbilisi"\n};', desc: "Store related properties together" },
@@ -127,7 +127,7 @@ const tutorialContent = {
             }
         },
         ka: {
-            concept: "მასივები ინახავენ მრავალ მნიშვნელობას ერთ ცვლადში, როგორც სია. ობიექტები ინახავენ დაკავშირებულ მონაცემებს key-value წყვილებად, როგორც პროფილის ბარათი სხვადასხვა თვისებებით.",
+            concept: "მასივები გაძლევთ საშუალებას შეკრიბოთ დაკავშირებული მნიშვნელობები, ხოლო ობიექტები აერთიანებს თვისებებს ერთ სახელის ქვეშ. სწორედ ისინი წამყვან როლს ასრულებენ აპლიკაციების უმეტეს ნაწილში – საკალათო პროდუქტი, მომხმარებლის პროფილი, ჩატის შეტყობინება. ისწავლეთ ინდექსების მიმდევრობა, ძირითადი მეთოდები (push, pop, splice) და ობიექტის property-ზე წვდომა (dot vs bracket), რათა მოირგოთ ნებისმიერი მონაცემი. დაიმახსოვრეთ: მასივები აწყობილი სიებია, ობიექტები – ნიშანდებული კოლექციები; მათი ჩადგმით კი მიიღებთ მდიდარ სტრუქტურებს.",
             examples: [
                 { title: "მასივების შექმნა", code: 'const fruits = ["ვაშლი", "ბანანი", "ნარინჯი"];\nconst numbers = [1, 2, 3, 4, 5];', desc: "შეინახეთ მრავალი ელემენტი თანმიმდევრობით" },
                 { title: "ობიექტების შექმნა", code: 'const person = {\n  name: "ჯონი",\n  age: 25,\n  city: "თბილისი"\n};', desc: "შეინახეთ დაკავშირებული თვისებები ერთად" },
@@ -146,7 +146,7 @@ const tutorialContent = {
     },
     advanced_functions: {
         en: {
-            concept: "Combining functions with arrays and objects creates powerful programs. Functions can process arrays, modify objects, and work with complex data structures.",
+            concept: "Combining arrays, objects and functions unlocks patterns like higher-order functions (map, filter), callbacks and reusable helpers. Imagine a restaurant POS: an array of orders processed by a calculateTotal function returning an object receipt – that's advanced functions at work. Learning scope, return value best-practices and side-effect free pure functions will help you write maintainable code.",
             examples: [
                 { title: "Function with Array", code: 'function getTotal(prices) {\n  let total = 0;\n  for (let price of prices) {\n    total += price;\n  }\n  return total;\n}', desc: "Process array data in functions" },
                 { title: "Function with Object", code: 'function greetPerson(person) {\n  return `Hello ${person.name}, you are ${person.age} years old!`;\n}', desc: "Work with object properties" },
@@ -182,7 +182,7 @@ const tutorialContent = {
     },
     advanced_arrays: {
         en: {
-            concept: "Advanced array methods like map, filter, and reduce are powerful tools that make working with arrays easier and more elegant. They help you transform, filter, and combine array data.",
+            concept: "Advanced array methods (map, filter, reduce, find, some, every) let you transform, search and summarise data declaratively – no manual for-loops required. They follow the same rules as Lego: snap pieces together to build complex queries while keeping each step clear. Mastering immutability (returning new arrays) prevents sneaky bugs and prepares you for functional paradigms like React state updates.",
             examples: [
                 { title: "Map Method", code: 'const numbers = [1, 2, 3, 4];\nconst doubled = numbers.map(x => x * 2);\n// [2, 4, 6, 8]', desc: "Transform each element" },
                 { title: "Filter Method", code: 'const ages = [15, 22, 18, 30, 16];\nconst adults = ages.filter(age => age >= 18);\n// [22, 18, 30]', desc: "Keep elements that match condition" },
@@ -199,7 +199,7 @@ const tutorialContent = {
             }
         },
         ka: {
-            concept: "მასივების გაღრმავებული მეთოდები როგორიცაა map, filter და reduce არის ძლიერი ხელსაწყოები რომლებიც მასივებთან მუშაობას ხდის უფრო ადვილს და ელეგანტურს. ისინი გეხმარებათ გარდაქმნათ, გაფილტროთ და გააერთიანოთ მასივის მონაცემები.",
+            concept: "მასივების გაღრმავებული მეთოდები (map, filter, reduce, find, some, every) გაძლევთ შესაძლებლობას დეკლარაციულად გარდაქმნათ, გაფილტროთ და შეაჯამოთ მონაცემები – for-ციკლების გარეშე. ეს მსგავსია ლეგოს: დააწყვეთ კუბიკები, რომ შექმნათ რთული ოპერაციები, თითოეული ნაბიჯი ნათლად. თავიდან აიცილეთ მასივის პირდაპირი შეცვლა (immutability) და მოემზადეთ ფუნქციური პარადიგმებისთვის, როგორიცაა React-ის state განახლებები.",
             examples: [
                 { title: "Map მეთოდი", code: 'const numbers = [1, 2, 3, 4];\nconst doubled = numbers.map(x => x * 2);\n// [2, 4, 6, 8]', desc: "გარდაქმენით თითოეული ელემენტი" },
                 { title: "Filter მეთოდი", code: 'const ages = [15, 22, 18, 30, 16];\nconst adults = ages.filter(age => age >= 18);\n// [22, 18, 30]', desc: "შეინარჩუნეთ ელემენტები რომლებიც აკმაყოფილებენ პირობას" },
@@ -254,7 +254,7 @@ const tutorialContent = {
      },
      dom: {
          en: {
-             concept: "DOM (Document Object Model) lets you interact with web pages - change text, add elements, modify styles, and make your pages dynamic and interactive.",
+             concept: "Think of a web page as a living tree of nodes. The Document Object Model (DOM) is the in-memory representation of that tree that JavaScript can read and change on the fly. By selecting nodes (getElementById, querySelector) you can alter text, attributes, styles, or even grow completely new branches — giving users instant feedback without reloading the page.",
              examples: [
                  { title: "Select Elements", code: 'const title = document.getElementById("title");\nconst buttons = document.querySelectorAll(".btn");\nconst firstP = document.querySelector("p");', desc: "Find elements on your web page" },
                  { title: "Change Content", code: 'title.textContent = "New Title";\ntitle.innerHTML = "<strong>Bold Title</strong>";\ntitle.style.color = "blue";', desc: "Modify text, HTML, and styles" },
@@ -271,7 +271,7 @@ const tutorialContent = {
              }
          },
          ka: {
-             concept: "DOM (Document Object Model) საშუალებას გაძლევთ იმოქმედოთ ვებ გვერდებთან - შეცვალოთ ტექსტი, დაამატოთ ელემენტები, შეცვალოთ სტილები და გახადოთ თქვენი გვერდები დინამიური და ინტერაქტიული.",
+             concept: "DOM-ი (Document Object Model) ვებ-გვერდს წარმოაჩენს როგორც \"ცოცხალი\" ელემენტების ხეს, რომელსაც JavaScript რეალურ დროში კითხულობს და ცვლის. ელემენტების არჩევით (getElementById, querySelector) შეგიძლიათ შეცვალოთ ტექსტი, ატრიბუტები, სტილები, ან დაამატოთ სრულიად ახალი ფილიალები ისე, რომ გვერდი თავიდან არ ჩაიტვირთოს — რაც მყისიერ, ინტერაქტიულ გამოცდილებას იძლევა.",
              examples: [
                  { title: "ელემენტების არჩევა", code: 'const title = document.getElementById("title");\nconst buttons = document.querySelectorAll(".btn");\nconst firstP = document.querySelector("p");', desc: "იპოვეთ ელემენტები თქვენს ვებ გვერდზე" },
                  { title: "შინაარსის შეცვლა", code: 'title.textContent = "ახალი სათაური";\ntitle.innerHTML = "<strong>მუქი სათაური</strong>";\ntitle.style.color = "blue";', desc: "შეცვალეთ ტექსტი, HTML და სტილები" },
@@ -290,10 +290,10 @@ const tutorialContent = {
      },
      events: {
          en: {
-             concept: "Events let you respond to user interactions like clicks, typing, and mouse movements. They make your websites interactive and responsive to user actions.",
+             concept: "Web pages come alive through events — signals that something happened (a click, a key press, a network request finishing). Attaching handlers with addEventListener is like giving your page eyes and ears. Understanding bubbling vs capturing, preventing default behaviour, and throttling or debouncing rapid events lets you craft smooth, accessible interactions.",
              examples: [
-                 { title: "Click Events", code: 'button.addEventListener("click", function() {\n  alert("Button clicked!");\n});\n\n// Or with arrow function\nbutton.addEventListener("click", () => {\n  console.log("Clicked!");\n});', desc: "Respond to button clicks" },
-                 { title: "Input Events", code: 'input.addEventListener("input", (e) => {\n  console.log("User typed:", e.target.value);\n});\n\nform.addEventListener("submit", (e) => {\n  e.preventDefault();\n  console.log("Form submitted");\n});', desc: "Handle form inputs and submissions" },
+                 { title: "Click Events", code: 'function ClickButton() {\n  const handleClick = () => {\n    alert("Button clicked!");\n  };\n  \n  return (\n    <button onClick={handleClick}>\n      დამაკლიკე!\n    </button>\n  );\n}', desc: "Handle button clicks" },
+                 { title: "Input Events", code: 'function ContactForm() {\n  const [email, setEmail] = useState("");\n  \n  const handleSubmit = (e) => {\n    e.preventDefault();\n    console.log("Email:", email);\n  };\n  \n  return (\n    <form onSubmit={handleSubmit}>\n      <input\n        type="email"\n        value={email}\n        onChange={(e) => setEmail(e.target.value)}\n      />\n      <button type="submit">გაგზავნა</button>\n    </form>\n  );\n}', desc: "Handle form submissions" },
                  { title: "Mouse Events", code: 'div.addEventListener("mouseenter", () => {\n  div.style.backgroundColor = "yellow";\n});\n\ndiv.addEventListener("mouseleave", () => {\n  div.style.backgroundColor = "white";\n});', desc: "Respond to mouse movements" }
              ],
              practice: {
@@ -307,26 +307,26 @@ const tutorialContent = {
              }
          },
          ka: {
-             concept: "Events საშუალებას გაძლევთ უპასუხოთ მომხმარებლის ინტერაქციებს როგორიცაა კლიკები, ტაიპინგი და მაუსის მოძრაობები. ისინი ხდიან თქვენს ვებსაიტებს ინტერაქტიულს და მოქნილს მომხმარებლის მოქმედებებზე.",
+             concept: "ივენთები აცოცხლებს ვებ-გვერდს — ეს არის სიგნალი, რომ მოხდა რაღაც (დაკლიკება, კლავიატურის დაჭერა, ფორმის გაგზავნა). addEventListener-ის მეშვეობით გვაკავშირებთ ყური და თვალი ჩვენს ელემენტებზე. ბაბლინგისა და კეპჩერინგის, default ქცევის აღკვეთის და ხშირი მოვლენების (scroll, resize) დამუხრუჭება/დაბალანსება (throttle, debounce) საშუალებას გვაძლევს შევქმნათ გლუვი და ხელმისაწვდომი UI.",
              examples: [
-                 { title: "Click Events", code: 'button.addEventListener("click", function() {\n  alert("ღილაკზე დაკლიკდა!");\n});\n\n// ან arrow function-ით\nbutton.addEventListener("click", () => {\n  console.log("დაკლიკდა!");\n});', desc: "უპასუხეთ ღილაკის კლიკებს" },
-                 { title: "Input Events", code: 'input.addEventListener("input", (e) => {\n  console.log("მომხმარებელმა დაბეჭდა:", e.target.value);\n});\n\nform.addEventListener("submit", (e) => {\n  e.preventDefault();\n  console.log("ფორმა გაიგზავნა");\n});', desc: "დაამუშავეთ ფორმის შეყვანები და გაგზავნები" },
-                 { title: "Mouse Events", code: 'div.addEventListener("mouseenter", () => {\n  div.style.backgroundColor = "ყვითელი";\n});\n\ndiv.addEventListener("mouseleave", () => {\n  div.style.backgroundColor = "თეთრი";\n});', desc: "უპასუხეთ მაუსის მოძრაობებს" }
+                 { title: "Click Event-ები", code: 'function ClickButton() {\n  const handleClick = () => {\n    alert("ღილაკზე დაკლიკდა!");\n  };\n  \n  return (\n    <button onClick={handleClick}>\n      დამაკლიკე!\n    </button>\n  );\n}', desc: "დაამუშავეთ ღილაკის კლიკები" },
+                 { title: "ფორმის მართვა", code: 'function ContactForm() {\n  const [email, setEmail] = useState("");\n  \n  const handleSubmit = (e) => {\n    e.preventDefault();\n    console.log("ემაილი:", email);\n  };\n  \n  return (\n    <form onSubmit={handleSubmit}>\n      <input\n        type="email"\n        value={email}\n        onChange={(e) => setEmail(e.target.value)}\n      />\n      <button type="submit">გაგზავნა</button>\n    </form>\n  );\n}', desc: "დაამუშავეთ ფორმის გაგზავნები" },
+                 { title: "კონტროლირებადი კომპონენტები", code: 'function ControlledInput() {\n  const [value, setValue] = useState("");\n  \n  return (\n    <div>\n      <input\n        value={value}\n        onChange={(e) => setValue(e.target.value)}\n        placeholder="აქ ჩაწერეთ..."\n      />\n      <button onClick={() => setValue("")}>\n        გასუფთავება\n      </button>\n    </div>\n  );\n}', desc: "კონტროლი შეყვანის ველებზე state-ით" }
              ],
              practice: {
-                 title: "დაამუშავეთ მომხმარებლის Events",
+                 title: "დაეუფლეთ Event-ების მართვას",
                  tasks: [
-                     "დაამატეთ click event ღილაკზე რომელიც შეცვლის გვერდის ფონის ფერს",
-                     "შექმენით input ველი რომელიც რეალურ დროში აჩვენებს რასაც ბეჭდავთ",
-                     "დაამატეთ მაუსის hover ეფექტები ელემენტის გარეგნობის შესაცვლელად",
-                     "შექმენით ფორმა რომელიც ავარიდებს ნაგულისხმევ გაგზავნას და აჩვენებს მორგებულ შეტყობინებას"
+                     "შექმენით ღილაკი რომელიც კლიკისას ცვლის ფონის ფერს",
+                     "ააშენეთ ფორმა რომელიც იღებს მომხმარებლის შეყვანას და აჩვენებს მას",
+                     "შექმენით კონტროლირებადი შეყვანის ველი გასუფთავების ღილაკით",
+                     "ააშენეთ მარტივი კალკულატორი click event-ებით რიცხვებისა და ოპერაციებისთვის"
                  ]
              }
          }
      },
      async: {
          en: {
-             concept: "Asynchronous JavaScript lets you handle time-consuming tasks without blocking your program. Perfect for fetching data, timers, and other operations that take time.",
+             concept: "JavaScript executes on a single thread, yet asynchronous programming lets you wait for time-consuming tasks without freezing the UI. The event loop schedules callbacks, Promises model future values, and async/await wraps them in clean, synchronous-looking syntax. Master these building blocks to fetch data, delay actions, and coordinate multiple tasks in parallel.",
              examples: [
                  { title: "Promises", code: 'const promise = new Promise((resolve, reject) => {\n  setTimeout(() => {\n    resolve("Data loaded!");\n  }, 2000);\n});\n\npromise.then(result => console.log(result));', desc: "Handle delayed operations" },
                  { title: "Async/Await", code: 'async function fetchData() {\n  try {\n    const result = await promise;\n    console.log(result);\n  } catch (error) {\n    console.log("Error:", error);\n  }\n}', desc: "Cleaner syntax for promises" },
@@ -362,7 +362,7 @@ const tutorialContent = {
      },
      api: {
          en: {
-             concept: "APIs let you fetch data from external services and servers. Learn how to get weather data, user information, or any other data from the internet.",
+             concept: "An API (Application Programming Interface) is a contract for exchanging data. Using the Fetch API you can read (GET), create (POST), update (PUT/PATCH), and delete (DELETE) resources on remote servers — unlocking live weather, payments, or social feeds for your app. Knowing status codes, JSON parsing, CORS, and authentication tokens prepares you for real-world integrations.",
              examples: [
                  { title: "Basic Fetch", code: 'fetch("https://api.example.com/users")\n  .then(response => response.json())\n  .then(data => console.log(data))\n  .catch(error => console.error(error));', desc: "Get data from an API" },
                  { title: "Async Fetch", code: 'async function getWeather() {\n  try {\n    const response = await fetch("/api/weather");\n    const weather = await response.json();\n    return weather;\n  } catch (error) {\n    console.error("Failed to fetch:", error);\n  }\n}', desc: "Modern way to fetch data" },
@@ -379,7 +379,7 @@ const tutorialContent = {
              }
          },
          ka: {
-             concept: "API-ები საშუალებას გაძლევთ მოიტანოთ მონაცემები გარე სერვისებიდან და სერვერებიდან. ისწავლეთ როგორ მიიღოთ ამინდის მონაცემები, მომხმარებლის ინფორმაცია, ან ნებისმიერი სხვა მონაცემები ინტერნეტიდან.",
+             concept: "API (Application Programming Interface) არის შეთანხმება მონაცემების გაცვლის შესახებ. Fetch API-ს გამოყენებით შეგიძლიათ რესურსების წაკითხვა (GET), შექმნა (POST), განახლება (PUT/PATCH) და წაშლა (DELETE) დისტანციურ სერვერზე, რითაც თქვენს აპს რეალურ დროში ამინდი, გადახდები თუ სოციალური ნიუსფიდი ემატება. სტატუს-კოდების, JSON-ის, CORS-ისა და ავტორიზაციის ტოკენების ცოდნა რეალური ინტეგრაციების საფუძველია.",
              examples: [
                  { title: "ძირითადი Fetch", code: 'fetch("https://api.example.com/users")\n  .then(response => response.json())\n  .then(data => console.log(data))\n  .catch(error => console.error(error));', desc: "მიიღეთ მონაცემები API-დან" },
                  { title: "Async Fetch", code: 'async function getWeather() {\n  try {\n    const response = await fetch("/api/weather");\n    const weather = await response.json();\n    return weather;\n  } catch (error) {\n    console.error("ვერ მოვიტანე:", error);\n  }\n}', desc: "თანამედროვე გზა მონაცემების მოტანისთვის" },
@@ -398,7 +398,7 @@ const tutorialContent = {
      },
      error_handling: {
          en: {
-             concept: "Error handling helps you manage problems gracefully when things go wrong in your code. Instead of crashing, your app can show helpful messages and recover.",
+             concept: "Bugs, bad input, shaky networks — something will eventually fail. Robust error handling with try/catch, throw, and finally keeps your app standing and guides users toward recovery. Combine clear messages, custom Error classes, validation, and async error strategies to create fault-tolerant experiences that build user trust.",
              examples: [
                  { title: "Try-Catch", code: 'try {\n  const result = riskyOperation();\n  console.log(result);\n} catch (error) {\n  console.error("Something went wrong:", error.message);\n}', desc: "Handle errors that might occur" },
                  { title: "Async Error Handling", code: 'async function fetchData() {\n  try {\n    const response = await fetch("/api/data");\n    if (!response.ok) {\n      throw new Error("Network error");\n    }\n    return await response.json();\n  } catch (error) {\n    console.error("Fetch failed:", error);\n    return null;\n  }\n}', desc: "Handle async operation errors" },
@@ -415,7 +415,7 @@ const tutorialContent = {
              }
          },
          ka: {
-             concept: "შეცდომების მართვა გეხმარებათ ელეგანტურად მართოთ პრობლემები როდესაც რაღაც ცუდად დასრულდება თქვენს კოდში. კრაშის ნაცვლად, თქვენი აპი შეძლებს გამოაჩინოს სასარგებლო შეტყობინებები და აღდგეს.",
+             concept: "შეცდომები გარდაუვალია: ქსელი ითიშება, მომხმარებელი არასწორს წერს, ლოგიკა კუთხის შემთხვევებში იქცევა. ძლიერი შეცდომების მართვა try/catch-ით, throw-ით და finally-ით პროგრამას კრაფშისგან იცავს და მომხმარებელს გამოსავლის გზას აჩვენებს. მკაფიო მესიჯების, custom Error კლასებისა და async შეცდომების სტრატეგიების კომბინაცია საიმედო გამოცდილებას უზრუნველყოფს.",
              examples: [
                  { title: "Try-Catch", code: 'try {\n  const result = riskyOperation();\n  console.log(result);\n} catch (error) {\n  console.error("რაღაც არასწორად წავიდა:", error.message);\n}', desc: "დაამუშავეთ შეცდომები რომლებიც შეიძლება მოხდეს" },
                  { title: "Async შეცდომების მართვა", code: 'async function fetchData() {\n  try {\n    const response = await fetch("/api/data");\n    if (!response.ok) {\n      throw new Error("ქსელის შეცდომა");\n    }\n    return await response.json();\n  } catch (error) {\n    console.error("Fetch ჩავარდა:", error);\n    return null;\n  }\n}', desc: "დაამუშავეთ async ოპერაციების შეცდომები" },
@@ -434,7 +434,7 @@ const tutorialContent = {
      },
      es6_features: {
          en: {
-             concept: "ES6+ features brought modern JavaScript capabilities like template literals, destructuring, spread operator, and arrow functions. These features make your code more readable, concise, and powerful.",
+             concept: "ES6 and beyond super-charged JavaScript with template literals, destructuring, arrow functions, default/rest/spread parameters, classes, modules, promises, and much more. Each feature trims boilerplate, clarifies intent, and enables patterns long enjoyed in other languages. Embracing them will level-up your productivity and keep your codebase future-proof.",
              examples: [
                  { title: "Template Literals", code: 'let name = "Luka";\nlet age = 20;\n\n// Instead of: "Hello " + name + "!"\nlet greeting = `Hello ${name}! You are ${age} years old.`;\n\n// Multi-line strings\nlet message = `\n    Welcome to AndLearn!\n    Start learning programming today.\n`;', desc: "Use backticks for string interpolation and multi-line strings" },
                  { title: "Destructuring", code: '// Array destructuring\nlet colors = ["red", "green", "blue"];\nlet [first, second, third] = colors;\n\n// Object destructuring\nlet person = {name: "Luka", age: 20, city: "Tbilisi"};\nlet {name, age, city} = person;', desc: "Extract values from arrays and objects easily" },
@@ -451,7 +451,7 @@ const tutorialContent = {
              }
          },
          ka: {
-             concept: "ES6+ ფუნქციებმა მოიტანა თანამედროვე JavaScript-ის შესაძლებლობები როგორიცაა template literals, destructuring, spread operator და arrow ფუნქციები. ეს ფუნქციები ხდის თქვენს კოდს უფრო წაკითხვადს, შემოკლებულს და ძლიერს.",
+             concept: "ES6-მა და შემდეგმა ვერსიებმა JavaScript-ს მრავალი სიახლე შემატა: template literals, destructuring, arrow ფუნქციები, default/rest/spread პარამეტრები, კლასები, მოდულები, Promises და სხვა. ეს შესაძლებლობები ამცირებს ზედმეტ კოდს, ამარტივებს იდეის გადაცემას და ხდის პროგრამას თანამედროვე სტანდარტებთან თავსებადს.",
              examples: [
                  { title: "Template Literals", code: 'let name = "ლუკა";\nlet age = 20;\n\n// ნაცვლად: "გამარჯობა " + name + "!"\nlet greeting = `გამარჯობა ${name}! თქვენ ხართ ${age} წლის.`;\n\n// მრავალხაზიანი სტრინგები\nlet message = `\n    კეთილი იყოს თქვენი მობრძანება AndLearn-ზე!\n    დაიწყეთ პროგრამირების სწავლა დღესვე.\n`;', desc: "გამოიყენეთ backtick-ები სტრინგის ინტერპოლაციისთვის და მრავალხაზიანი სტრინგებისთვის" },
                  { title: "Destructuring", code: '// მასივის destructuring\nlet colors = ["წითელი", "მწვანე", "ლურჯი"];\nlet [first, second, third] = colors;\n\n// ობიექტის destructuring\nlet person = {name: "ლუკა", age: 20, city: "თბილისი"};\nlet {name, age, city} = person;', desc: "მარტივად ამოიღეთ მნიშვნელობები მასივებიდან და ობიექტებიდან" },
