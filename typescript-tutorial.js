@@ -8,10 +8,11 @@ const tutorialContent = {
         en: {
             title: "Basic Types",
             description: "Learn TypeScript's fundamental type system and static typing benefits.",
-            concept: "TypeScript adds static typing to JavaScript, making your code more predictable and easier to debug.",
+            concept: "In TypeScript every value has a precise type. By explicitly describing that type—string, number, boolean, etc.—you give the compiler super-powers: it warns you about typos, missing properties and silly maths on strings *before* the browser even runs your code. The main primitive types you will meet are `string`, `number`, `boolean`, `null`, and `undefined`. You can also build richer types such as arrays (`string[]`), tuples (`[number, string]`) and custom objects. Mastering these basics is the very first step toward confident, bug-free code!",
             examples: [
-                { title: "Basic Type Annotations", code: 'let name: string = "TypeScript";\nlet age: number = 5;\nlet isAwesome: boolean = true;', desc: "Explicitly declare types for variables." },
-                { title: "Function Types", code: 'function greet(name: string): string {\n    return `Hello, ${name}!`;\n}', desc: "Functions can have typed parameters and return values." }
+                { title: "Primitive Types", code: 'let username: string = "Luka";\nlet score: number = 42;\nlet isOnline: boolean = true;', desc: "Give every variable a clear, descriptive type." },
+                { title: "Arrays & Tuples", code: 'const colors: string[] = ["red", "green", "blue"];\nconst point: [number, number] = [10, 20];', desc: "Use [] for arrays and () for fixed-length tuples." },
+                { title: "Type Errors Caught Early", code: 'let age: number = 25;\nage = "twenty-five"; // ❌ TypeScript error – a string is not a number', desc: "The compiler stops many bugs right here." }
             ],
             practice: {
                 title: "Practice Basics",
@@ -21,10 +22,11 @@ const tutorialContent = {
         ka: {
             title: "ძირითადი ტიპები",
             description: "ისწავლეთ TypeScript-ის ძირითადი ტიპების სისტემა და სტატიკური ტიპიზების უპირატესობები.",
-            concept: "TypeScript-ი ამატებს სტატიკურ ტიპიზაციას JavaScript-ში, რაც კოდს უფრო პროგნოზირებადს და გამართვადს ხდის.",
+            concept: "TypeScript-ი ყოველი ცვლადის ტიპს ზუსტად აღწერს. როდესაც \u201Cage\u201D-ს `number` ტიპად ავნიშნავთ ან \u201Cname\u201D-ს `string`-ად, კომპილატორი თავიდან გვარიდებს შეცდომებს, რომლებიც სხვა შემთხვევაში მხოლოდ ბრაუზერში გამოჩნდებოდა. ყველაზე გავრცელებული ძირითადი ტიპებია `string`, `number`, `boolean`, `null` და `undefined`. ასევე შეგიძლიათ შექმნათ მასივები (`string[]`), ტაფლები (`[number, string]`) და საკუთარი ობიექტები. ამ საფუძვლების ცოდნა გადაგაქცევთ უფრო თავდაჯერებულ, შეცდომაგამოცდილ პროგრამისტად!",
             examples: [
-                { title: "ტიპების ანოტაციები", code: 'let name: string = "ტაიპსკრიპტი";\nlet age: number = 5;\nlet isAwesome: boolean = true;', desc: "ცვლადებისთვის ტიპების 명시적 선언." },
-                { title: "ფუნქციის ტიპები", code: 'function greet(name: string): string {\n    return `გამარჯობა, ${name}!`;\n}', desc: "ფუნქციებს შეიძლება ჰქონდეთ ტიპიზირებული პარამეტრები და დასაბრუნებელი მნიშვნელობები." }
+                { title: "პრიმიტიული ტიპები", code: 'let username: string = "ლუკა";\nlet score: number = 42;\nlet isOnline: boolean = true;', desc: "მიანიჭეთ თითოეულ ცვლადს მკაფიო ტიპი." },
+                { title: "მასივები და ტაფლები", code: 'const colors: string[] = ["წითელი", "მწვანე", "ლურჯი"];\nconst point: [number, string] = [10, "Y"]', desc: "გამოიყენეთ [] მასივებისთვის და () განსაზღვრული ზომის ტაფლებისთვის." },
+                { title: "აზეახსნილი შეცდომები", code: 'let age: number = 25;\nage = "ოცდახუთი"; // ❌ TypeScript-ის შეცდომა – სტრიქონი არ არის რიცხვი', desc: "კომპილატორი დროულად გვაფრთხილებს პრობლემებზე." }
             ],
             practice: {
                 title: "ივარჯიშეთ საფუძვლებში",
@@ -36,9 +38,10 @@ const tutorialContent = {
         en: {
             title: "Interfaces & Objects",
             description: "Master object typing with interfaces and type definitions.",
-            concept: "Interfaces define the structure of objects, ensuring they have the correct properties and types.",
+            concept: "Interfaces act like blueprints for objects. They describe exactly which properties an object must have and of which type. This guarantees that any object you create (or receive from an API) matches the expected structure. You can also extend interfaces to keep your code DRY.",
             examples: [
-                { title: "Defining an Interface", code: 'interface User {\n    name: string;\n    age: number;\n}\n\nconst user: User = { name: "Alice", age: 30 };', desc: "Use interfaces to create reusable type definitions for objects." },
+                { title: "Simple Interface", code: 'interface User {\n  id: number;\n  name: string;\n}\n\nconst me: User = { id: 1, name: "Luka" };', desc: "Objects must implement every property defined by the interface." },
+                { title: "Extending Interfaces", code: 'interface Animal { name: string; }\ninterface Dog extends Animal { breed: string; }\n\nconst rex: Dog = { name: "Rex", breed: "Labrador" };', desc: "Reuse and grow interfaces by extending them." }
             ],
             practice: {
                 title: "Create a User Profile",
@@ -62,25 +65,37 @@ const tutorialContent = {
         en: {
             title: "Functions & Generics",
             description: "Create flexible, reusable code with function types and generics.",
-            concept: "Generics allow you to create reusable components that work with multiple types while maintaining type safety.",
+            concept: "Generics let you write a *single* function or class that works with many different types while preserving type safety. Think of it as a cookie-cutter where you can pour in any dough (type) yet still get perfectly shaped cookies!",
             examples: [
-                { title: "Generic Functions", code: 'function identity<T>(arg: T): T {\n    return arg;\n}\n\nlet output = identity<string>("myString");', desc: "A simple generic function." }
+                { title: "Generic Identity Function", code: 'function identity<T>(arg: T): T {\n  return arg;\n}\n\nconst num   = identity<number>(7);     // 7\nconst uname = identity<string>("Luka"); // "Luka"', desc: "Same function reused for numbers, strings, anything!" },
+                { title: "Generic Interface", code: 'interface ApiResponse<T> {\n  data: T;\n  status: number;\n}\n\nconst userResponse: ApiResponse<{id: number; name: string}> = {\n  data: { id: 1, name: "Luka" },\n  status: 200\n};', desc: "Describe \"data\" without losing its shape." },
+                { title: "Generic Constraints", code: 'function longest<T extends { length: number }>(a: T, b: T) {\n  return a.length >= b.length ? a : b;\n}\n\nlongest([1,2,3], [4,5]); // ✅ arrays have length\nlongest("hello", "hi"); // ✅ strings too\n// longest(10, 20); // ❌ numbers lack length', desc: "Constrain generics to particular capabilities (here: having length)." }
             ],
             practice: {
                 title: "Practice Generics",
-                tasks: ["Write a generic function to reverse an array of any type."]
+                tasks: [
+                    "Write a generic function filterGreaterThan that filters an array of numbers or strings based on a threshold.",
+                    "Create a generic Stack<T> class with push, pop, and peek methods.",
+                    "Add a constraint to ensure Stack<T> cannot accept null or undefined values."
+                ]
             }
         },
         ka: {
             title: "ფუნქციები და გენერიკები",
             description: "შექმენით მოქნილი, მრავალჯერადი კოდი ფუნქციების ტიპებითა და გენერიკებით.",
-            concept: "გენერიკები გაძლევთ საშუალებას შექმნათ მრავალჯერადი კომპონენტები, რომლებიც მუშაობენ სხვადასხვა ტიპებთან, ტიპების უსაფრთხოების შენარჩუნებით.",
+            concept: "გენერიკები გაძლევთ საშუალებას დაწეროთ *ერთი* ფუნქცია ან კლასი, რომელიც მუშაობს სხვადასხვა ტიპებთან და მაინც ინარჩუნებს ტიპის უსაფრთხოებას. წარმოიდგინეთ ნამცხვრის ფორმა, რომელშიც ნებისმიერი ცომი (ტიპი) შეგიძლიათ ჩაასხათ და მაინც მიიღოთ იდეალურად ფორმირებული ნამცხვარი!",
             examples: [
-                { title: "გენერიკული ფუნქციები", code: 'function identity<T>(arg: T): T {\n    return arg;\n}\n\nlet output = identity<string>("ჩემი სტრიქონი");', desc: "მარტივი გენერიკული ფუნქცია." }
+                { title: "გენერიკული Identity ფუნქცია", code: 'function identity<T>(arg: T): T {\n  return arg;\n}\n\nconst num   = identity<number>(7);     // 7\nconst uname = identity<string>("ლუკა"); // "ლუკა"', desc: "ერთი და იგივე ფუნქცია გამოიყენება სხვადასხვა ტიპებისთვის." },
+                { title: "გენერიკული ინტერფეისი", code: 'interface ApiResponse<T> {\n  data: T;\n  status: number;\n}\n\nconst userResponse: ApiResponse<{id: number; name: string}> = {\n  data: { id: 1, name: "ლუკა" },\n  status: 200\n};', desc: "აღწერეთ \"data\" ისე, რომ ფორმა არ დაკარგოთ." },
+                { title: "გენერიკული შეზღუდვები", code: 'function longest<T extends { length: number }>(a: T, b: T) {\n  return a.length >= b.length ? a : b;\n}\n\nlongest([1,2,3], [4,5]); // ✅ მასივებს length აქვთ\nlongest("hello", "hi"); // ✅ სტრიქონებსაც\n// longest(10, 20); // ❌ რიცხვებს length არ აქვთ', desc: "შეზღუდეთ გენერიკები კონკრეტულ შესაძლებლობებზე (აქ: length)." }
             ],
             practice: {
                 title: "ივარჯიშეთ გენერიკებში",
-                tasks: ["დაწერეთ გენერიკული ფუნქცია, რომელიც აბრუნებს ნებისმიერი ტიპის მასივს შებრუნებულად."]
+                tasks: [
+                    "დაწერეთ გენერიკული ფუნქცია filterGreaterThan, რომელიც ფილტრავს რიცხვების ან სტრიქონების მასივს ზღვრის მიხედვით.",
+                    "შექმენით გენერიკული Stack<T> კლასი push, pop და peek მეთოდებით.",
+                    "დაამატეთ შეზღუდვა, რომ Stack<T>-ში null ან undefined არ ჩავარდეს."
+                ]
             }
         }
     },
@@ -88,25 +103,37 @@ const tutorialContent = {
         en: {
             title: "Classes & Inheritance",
             description: "Build robust object-oriented applications with typed classes.",
-            concept: "TypeScript classes support object-oriented programming principles like inheritance.",
+            concept: "Classes bundle data *and* behaviour together. With TypeScript you can declare the exact shape of properties, their visibility (public, private, protected) and build hierarchies via *extends*. This helps you model real-world entities (Car, Animal) in an organised, reusable way.",
             examples: [
-                { title: "Class Inheritance", code: 'class Animal {\n    move(distance: number = 0) {\n        console.log(`Animal moved ${distance}m.`);\n    }\n}\n\nclass Dog extends Animal {\n    bark() {\n        console.log("Woof! Woof!");\n    }\n}', desc: "A class can inherit properties and methods from another class." }
+                { title: "Base & Derived Class", code: 'class Animal {\n  constructor(public name: string) {}\n  move(distance = 0) {\n    console.log(`${this.name} moved ${distance}m`);\n  }\n}\n\nclass Dog extends Animal {\n  bark() { console.log("Woof!"); }\n}\n\nconst rex = new Dog("Rex");\nrex.bark();\nrex.move(10);', desc: "Dog inherits properties & methods from Animal." },
+                { title: "Access Modifiers", code: 'class BankAccount {\n  public owner: string;\n  private balance = 0;\n\n  constructor(owner: string) {\n    this.owner = owner;\n  }\n\n  deposit(amount: number) {\n    this.balance += amount;\n  }\n\n  getBalance() {\n    return this.balance;\n  }\n}', desc: "private keeps balance inaccessible outside the class." },
+                { title: "Abstract Classes", code: 'abstract class Shape {\n  abstract area(): number;\n}\n\nclass Square extends Shape {\n  constructor(private side: number) { super(); }\n  area() { return this.side * this.side; }\n}', desc: "Abstract classes define contracts for subclasses." }
             ],
             practice: {
                 title: "Practice Inheritance",
-                tasks: ["Create a 'Car' class that extends a 'Vehicle' class."]
+                tasks: [
+                    "Design a Vehicle base class and extend it with Car and Bicycle.",
+                    "Add protected speed property and accelerate() method.",
+                    "Create an abstract class Employee with an abstract method getSalary()."
+                ]
             }
         },
         ka: {
             title: "კლასები და მემკვიდრეობა",
             description: "ააშენეთ მძლავრი ობიექტზე ორიენტირებული აპლიკაციები ტიპიზებული კლასებით.",
-            concept: "TypeScript კლასები მხარს უჭერს ობიექტზე ორიენტირებული პროგრამირების პრინციპებს, როგორიცაა მემკვიდრეობა.",
+            concept: "კლასები აერთიანებს მონაცემებს *და* ქცევას. TypeScript-ში შეგიძლიათ აღწეროთ თვისებების ზუსტი ფორმა, მათი ხილვადობა (public, private, protected) და ააშენოთ იერარქიები *extends*-ის საშუალებით. ეს დაგეხმარებათ რეალური სამყაროს ობიექტების (Car, Animal) მოდელირებაში ორგანიზებულად და მრავალჯერადად.",
             examples: [
-                { title: "კლასის მემკვიდრეობა", code: 'class Animal {\n    move(distance: number = 0) {\n        console.log(`ცხოველი გადაადგილდა ${distance} მეტრით.`);\n    }\n}\n\nclass Dog extends Animal {\n    bark() {\n        console.log("ვუფ! ვუფ!");\n    }\n}', desc: "კლასს შეუძლია მემკვიდრეობით მიიღოს თვისებები და მეთოდები სხვა კლასისგან." }
+                { title: "საბაზისო და მიღებული კლასი", code: 'class Animal {\n  constructor(public name: string) {}\n  move(distance = 0) {\n    console.log(`${this.name} გადავიდა ${distance} მეტრი`);\n  }\n}\n\nclass Dog extends Animal {\n  bark() { console.log("ვუფ!"); }\n}\n\nconst rex = new Dog("რექსი");\nrex.bark();\nrex.move(10);', desc: "Dog იღებს თვისებებსა და მეთოდებს Animal-ისგან." },
+                { title: "წვდომის მოდიფიკატორები", code: 'class BankAccount {\n  public owner: string;\n  private balance = 0;\n\n  constructor(owner: string) {\n    this.owner = owner;\n  }\n\n  deposit(amount: number) {\n    this.balance += amount;\n  }\n\n  getBalance() {\n    return this.balance;\n  }\n}', desc: "private balance დაუმალავს მნიშვნელობას კლასის გარეთ." },
+                { title: "აბსტრაქტული კლასები", code: 'abstract class Shape {\n  abstract area(): number;\n}\n\nclass Square extends Shape {\n  constructor(private side: number) { super(); }\n  area() { return this.side * this.side; }\n}', desc: "აბსტრაქტული კლასი განსაზღვრავს კონტრაქტს შვილებისთვის." }
             ],
             practice: {
                 title: "ივარჯიშეთ მემკვიდრეობაში",
-                tasks: ["შექმენით 'Car' კლასი, რომელიც აფართოებს 'Vehicle' კლასს."]
+                tasks: [
+                    "დაპროექტეთ Vehicle საბაზისო კლასი და გააფართოვეთ Car-ით და Bicycle-ით.",
+                    "დაამატეთ protected speed თვისება და accelerate() მეთოდი.",
+                    "შექმენით Employee აბსტრაქტული კლასი getSalary() აბსტრაქტული მეთოდით."
+                ]
             }
         }
     },
@@ -114,25 +141,37 @@ const tutorialContent = {
         en: {
             title: "Enums & Advanced Types",
             description: "Explore enums, union types, and advanced type features.",
-            concept: "Enums allow a developer to define a set of named constants.",
+            concept: "Enums group related constants under a friendly name, while union / intersection / literal types let you describe precise sets of allowed values. These tools make your code *self-documenting* and safer.",
             examples: [
-                { title: "Enums", code: 'enum Direction {\n    Up = 1,\n    Down,\n    Left,\n    Right,\n}', desc: "Numeric enums are number-based." }
+                { title: "Numeric Enum", code: 'enum Direction {\n  Up = 1,\n  Down,\n  Left,\n  Right\n}\n\nconst move = Direction.Left;', desc: "Automatically increments values (1,2,3,4)." },
+                { title: "String Enum", code: 'enum Status {\n  Pending = "PENDING",\n  Success = "SUCCESS",\n  Error = "ERROR"\n}\n\nfunction setStatus(s: Status) {\n  // ...\n}', desc: "Keeps the emitted JS readable." },
+                { title: "Union Type", code: 'type RGB = "red" | "green" | "blue";\nlet color: RGB = "red";\n// color = "pink"; // ❌ not allowed', desc: "Only listed values are permitted." }
             ],
             practice: {
-                title: "Practice Enums",
-                tasks: ["Create a string-based enum for 'UserRole' (e.g., Admin, Editor, Viewer)."]
+                title: "Practice Enums & Unions",
+                tasks: [
+                    "Create a string-based enum Difficulty with Easy | Medium | Hard.",
+                    "Write a function that accepts a union type Shape = Circle | Square | Rectangle and logs area().",
+                    "Change union to a discriminated union with a kind field."
+                ]
             }
         },
         ka: {
             title: "Enum-ები და გაღრმავებული ტიპები",
-            description: "შეისწავლეთ enum-ები, გაერთიანებული ტიპები და გაღრმავებული ტიპების ფუნქციები.",
-            concept: "Enum-ები დეველოპერს საშუალებას აძლევს განსაზღვროს დასახელებული კონსტანტების ნაკრები.",
+            description: "შეისწავლეთ enum-ები, გაერთიანებული (union) და კვეთის (intersection) ტიპები, ასევე literal ტიპები, რომ დაწეროთ უფრო მკაფიო და უსაფრთხო კოდი.",
+            concept: "Enum-ები გაერთიანებული და დასახელებული კონსტანტების ჯგუფებია (მაგ.: Season, Status). Union / intersection / literal ტიპები საშუალებას გაძლევთ ზუსტად აღწეროთ რა მნიშვნელობებია დაშვებული. ეს ხდის კოდს უფრო მკითხვადს და ამცირებს შეცდომებს კომპილაციის ეტაპზე.",
             examples: [
-                { title: "Enum-ები", code: 'enum Direction {\n    Up = 1,\n    Down,\n    Left,\n    Right,\n}', desc: "რიცხვითი enum-ები რიცხვებზეა დაფუძნებული." }
+                { title: "რიცხვითი Enum", code: 'enum Direction {\n  Up = 1,\n  Down,\n  Left,\n  Right\n}\n\nconst move = Direction.Left;', desc: "მნიშვნელობები ავტომატურად ინკრემენტირდება (1,2,3,4)." },
+                { title: "სტრიქონული Enum", code: 'enum Status {\n  Pending = "PENDING",\n  Success = "SUCCESS",\n  Error = "ERROR"\n}\n\nfunction setStatus(s: Status) {\n  // ...\n}', desc: "გამოუშვებელ JavaScript კოდში დარჩება მკითხვადი სტრიქონები." },
+                { title: "Union ტიპი", code: 'type RGB = "red" | "green" | "blue";\nlet color: RGB = "red";\n// color = "pink"; // ❌ არ არის დაშვებული', desc: "მხოლოდ განსაზღვრული მნიშვნელობებია ნებადართული." }
             ],
             practice: {
-                title: "ივარჯიშეთ Enum-ებში",
-                tasks: ["შექმენით სტრიქონზე დაფუძნებული enum 'UserRole'-ისთვის (მაგ., Admin, Editor, Viewer)."]
+                title: "ივარჯიშეთ Enum-ებსა და Union-ებში",
+                tasks: [
+                    "შექმენით Enum Difficulty მნიშვნელობებით Easy | Medium | Hard.",
+                    "დაწერეთ ფუნქცია, რომელიც იღებს Shape = Circle | Square | Rectangle და აბრუნებს ფართობს.",
+                    "გაერთიანეთ Shape კავშირი (union) დიფერენცირებული union-სავით kind ველით."
+                ]
             }
         }
     },
@@ -140,27 +179,37 @@ const tutorialContent = {
         en: {
             title: "Modules & Namespaces",
             description: "Organize code with modules, namespaces, and import/export.",
-            concept: "Modules are executed within their own scope, not in the global scope.",
+            concept: "Modules split your program into files with *private* scope. Anything you want to share must be exported. Namespaces (older pattern) wrap related declarations in a single global identifier. Prefer ES modules + import/export for modern projects.",
             examples: [
-                { title: "Exporting a module", code: '// validation.ts\nexport interface StringValidator { isAcceptable(s: string): boolean; }', desc: "Use 'export' to make components available to other modules." },
-                { title: "Importing a module", code: '// app.ts\nimport { StringValidator } from "./validation";', desc: "Use 'import' to access exported components." }
+                { title: "Exporting & Importing", code: '// math.ts\nexport function add(a: number, b: number) { return a + b; }\n\n// app.ts\nimport { add } from "./math";\nconsole.log(add(2,3));', desc: "Explicitly list what you share." },
+                { title: "Default Export", code: '// logger.ts\nexport default function log(msg: string) {\n  console.log(`[LOG] ${msg}`);\n}\n\n// app.ts\nimport log from "./logger";', desc: "One file, one main export." },
+                { title: "Namespace (legacy)", code: 'namespace Geometry {\n  export function areaSquare(s: number) { return s * s; }\n}\n\nconsole.log(Geometry.areaSquare(5));', desc: "Wraps helpers under Geometry.*" }
             ],
             practice: {
                 title: "Practice Modules",
-                tasks: ["Create two files, export a function from one and import it in the other."]
+                tasks: [
+                    "დაახლ. Split a simple To-Do app into modules: storage.ts, ui.ts, main.ts.",
+                    "Use a namespace LegacyUtils with a function greet(name).",
+                    "Refactor namespace code into ES modules."
+                ]
             }
         },
         ka: {
             title: "მოდულები და Namespace-ები",
-            description: "მოაწყვეთ კოდი მოდულებით, namespace-ებითა და import/export-ით.",
-            concept: "მოდულები სრულდება საკუთარ სკოპში და არა გლობალურ სკოპში.",
+            description: "დააჯგუფეთ კოდი მოდულებად, namespace-ებად და import/export-ით.",
+            concept: "მოდულები თითოეულ ფაილს საკუთარი სკოპით აძლევენ, ხოლო Namespace-ები (ძველი მეთოდი) უკავშირდებიან გლობალურ სკოპს ერთ სახელით. თანამედროვე პროექტებში გამოიყენეთ ES მოდულები და import/export.",
             examples: [
-                { title: "მოდულის ექსპორტი", code: '// validation.ts\nexport interface StringValidator { isAcceptable(s: string): boolean; }', desc: "გამოიყენეთ 'export', რომ კომპონენტები ხელმისაწვდომი გახადოთ სხვა მოდულებისთვის." },
-                { title: "მოდულის იმპორტი", code: '// app.ts\nimport { StringValidator } from "./validation";', desc: "გამოიყენეთ 'import' ექსპორტირებულ კომპონენტებზე წვდომისთვის." }
+                { title: "Export / Import", code: '// math.ts\nexport function add(a: number, b: number) { return a + b; }\n\n// app.ts\nimport { add } from "./math";\nconsole.log(add(2,3));', desc: "დააყენეთ ზუსტად რა უნდა გავიდეს ფაილიდან." },
+                { title: "ნაგულისხმევი Export", code: '// logger.ts\nexport default function log(msg: string) {\n  console.log(`[LOG] ${msg}`);\n}\n\n// app.ts\nimport log from "./logger";', desc: "ერთი ფაილი – ერთი მთავარი export." },
+                { title: "Namespace (მემკვიდრე)", code: 'namespace Geometry {\n  export function areaSquare(s: number) { return s * s; }\n}\n\nconsole.log(Geometry.areaSquare(5));', desc: "Geometry.areaSquare(…) გამოყენება." }
             ],
             practice: {
                 title: "ივარჯიშეთ მოდულებში",
-                tasks: ["შექმენით ორი ფაილი, გააკეთეთ ფუნქციის ექსპორტი ერთიდან და იმპორტი მეორეში."]
+                tasks: [
+                    "გაყოფეთ მარტივი To-Do აპი მოდულებად: storage.ts, ui.ts, main.ts.",
+                    "შექმენით namespace LegacyUtils მისალმების ფუნქციით greet(name).",
+                    "გადაიტანეთ namespace-ის კოდი ES მოდულებად."
+                ]
             }
         }
     },
@@ -168,25 +217,37 @@ const tutorialContent = {
         en: {
             title: "Async & Promises",
             description: "Handle asynchronous operations with Promise types and async/await.",
-            concept: "Async/await is a modern way to deal with asynchronous code, making it look and behave more like synchronous code.",
+            concept: "Promises represent a future value. async/await lets you *write* asynchronous code that *looks* synchronous, making it easier to reason about chains of operations (fetch → parse → render).",
             examples: [
-                { title: "Async Function", code: 'async function getPosts() {\n    const response = await fetch("https://jsonplaceholder.typicode.com/posts");\n    const data = await response.json();\n    return data;\n}', desc: "The 'async' keyword makes a function return a Promise." }
+                { title: "Fetching Data", code: 'async function getUsers() {\n  const res  = await fetch("https://jsonplaceholder.typicode.com/users");\n  const data = await res.json();\n  return data;\n}\n\ngetUsers().then(console.log);', desc: "await pauses until the Promise resolves." },
+                { title: "Error Handling", code: 'async function safeGet() {\n  try {\n    await fetch("/not-found");\n  } catch (e) {\n    console.error("Request failed", e);\n  }\n}', desc: "Use try/catch around await." },
+                { title: "Promise.all", code: 'const urls = ["/a","/b","/c"];\nconst results = await Promise.all(urls.map(u => fetch(u)));', desc: "Run requests in parallel." }
             ],
             practice: {
                 title: "Practice Async/Await",
-                tasks: ["Write an async function to fetch user data from a public API."]
+                tasks: [
+                    "Write an async function fetchPost(id) that returns post data.",
+                    "Add loading / error handling with try/catch.",
+                    "Use Promise.all to fetch posts 1-5 concurrently."
+                ]
             }
         },
         ka: {
             title: "Async და Promise-ები",
-            description: "მართეთ ასინქრონული ოპერაციები Promise ტიპებითა და async/await-ით.",
-            concept: "Async/await არის თანამედროვე გზა ასინქრონულ კოდთან სამუშაოდ, რაც მას უფრო სინქრონული კოდივით აჩენს და იქცევა.",
+            description: "მართეთ ასინქრონული ოპერაციები Promise-ების და async/await-ით.",
+            concept: "Promise წარმოადგენს მომავალ მნიშვნელობას. async/await საშუალებას გაძლევთ დაწეროთ ასინქრონული კოდი სინქრონულის მსგავსი სტილით, რაც ამარტივებს, მაგალითად, მოთხოვნა → დამუშავება → რენდერინგის ლოგიკის გაგებას.",
             examples: [
-                { title: "ასინქრონული ფუნქცია", code: 'async function getPosts() {\n    const response = await fetch("https://jsonplaceholder.typicode.com/posts");\n    const data = await response.json();\n    return data;\n}', desc: "'async' საკვანძო სიტყვა ფუნქციას Promise-ს აბრუნებინებს." }
+                { title: "მონაცემების წამოღება", code: 'async function getUsers() {\n  const res  = await fetch("https://jsonplaceholder.typicode.com/users");\n  const data = await res.json();\n  return data;\n}\n\ngetUsers().then(console.log);', desc: "await აჩერებს შესრულებას სანამ Promise დასრულდება." },
+                { title: "შეცდომების დამუშავება", code: 'async function safeGet() {\n  try {\n    await fetch("/not-found");\n  } catch (e) {\n    console.error("მოთხოვნა ჩავარდა", e);\n  }\n}', desc: "გამოიყენეთ try/catch await-ის გარშემო." },
+                { title: "Promise.all", code: 'const urls = ["/a","/b","/c"];\nconst results = await Promise.all(urls.map(u => fetch(u)));', desc: "გაუშვით მოთხოვნები პარალელურად." }
             ],
             practice: {
                 title: "ივარჯიშეთ Async/Await-ში",
-                tasks: ["დაწერეთ ასინქრონული ფუნქცია მომხმარებლის მონაცემების წამოსაღებად საჯარო API-დან."]
+                tasks: [
+                    "დაწერეთ async ფუნქცია fetchPost(id) რომელიც აბრუნებს პოსტის მონაცემებს.",
+                    "დაამატეთ ჩატვირთვის / შეცდომის დამუშავება try/catch-ით.",
+                    "გამოიყენეთ Promise.all პოსტების 1-5 ერთად მოსატანად."
+                ]
             }
         }
     },
@@ -194,25 +255,37 @@ const tutorialContent = {
         en: {
             title: "Utility Types",
             description: "Leverage built-in utility types for powerful type transformations.",
-            concept: "Utility types help in common type transformations.",
+            concept: "Utility types such as Partial<T>, Readonly<T>, Record<K,T> etc. let you transform existing types rather than redefining them, reducing duplication and mistakes.",
             examples: [
-                { title: "Partial<T>", code: 'interface Todo {\n    title: string;\n    description: string;\n}\n\nfunction updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {\n    return { ...todo, ...fieldsToUpdate };\n}', desc: "Partial<T> makes all properties of T optional." }
+                { title: "Partial<T>", code: 'interface Todo {\n  title: string;\n  completed: boolean;\n}\n\nfunction updateTodo(todo: Todo, fields: Partial<Todo>) {\n  return { ...todo, ...fields };\n}', desc: "Makes every property optional." },
+                { title: "Readonly<T>", code: 'interface Config { host: string; port: number; }\nconst cfg: Readonly<Config> = { host: "localhost", port: 8080 };\n// cfg.host = "127.0.0.1"; // ❌ cannot assign', desc: "Locks object for mutation." },
+                { title: "Record<K,T>", code: 'type Fruit = "apple" | "banana" | "orange";\nconst colors: Record<Fruit, string> = {\n  apple: "red",\n  banana: "yellow",\n  orange: "orange"\n};', desc: "Create a map with fixed keys." }
             ],
             practice: {
                 title: "Practice Utility Types",
-                tasks: ["Use the 'Readonly<T>' utility type to create a readonly version of a user profile object."]
+                tasks: [
+                    "Convert an existing interface User into Readonly<User> when exposed outside module.",
+                    "Use Record<string, number> to store product stock counts.",
+                    "Rewrite updateTodo to accept Pick<Todo, 'title'> instead of Partial<Todo>."
+                ]
             }
         },
         ka: {
             title: "დამხმარე ტიპები",
             description: "გამოიყენეთ ჩაშენებული დამხმარე ტიპები ძლიერი ტიპის ტრანსფორმაციებისთვის.",
-            concept: "დამხმარე ტიპები ეხმარება გავრცელებულ ტიპის ტრანსფორმაციებში.",
+            concept: "დამხმარე ტიპები (Partial<T>, Readonly<T>, Record<K,T> და სხვ.) საშუალებას გაძლევთ შეცვალოთ არსებული ტიპები მათი თავიდან აღწერის გარეშე, ამცირებთ კოპირებას და შეცდომებს.",
             examples: [
-                { title: "Partial<T>", code: 'interface Todo {\n    title: string;\n    description: string;\n}\n\nfunction updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {\n    return { ...todo, ...fieldsToUpdate };\n}', desc: "Partial<T> ხდის T-ის ყველა თვისებას არასავალდებულოდ." }
+                { title: "Partial<T>", code: 'interface Todo {\n  title: string;\n  completed: boolean;\n}\n\nfunction updateTodo(todo: Todo, fields: Partial<Todo>) {\n  return { ...todo, ...fields };\n}', desc: "კეთებს ყველა property-ს არასავალდებულოდ." },
+                { title: "Readonly<T>", code: 'interface Config { host: string; port: number; }\nconst cfg: Readonly<Config> = { host: "localhost", port: 8080 };\n// cfg.host = "127.0.0.1"; // ❌ შეცვლა შეუძლებელია', desc: "კრძალავს ობიექტის ცვლილებას." },
+                { title: "Record<K,T>", code: 'type Fruit = "apple" | "banana" | "orange";\nconst colors: Record<Fruit, string> = {\n  apple: "red",\n  banana: "yellow",\n  orange: "orange"\n};', desc: "შექმენით map ფიქსირებული key-ებით." }
             ],
             practice: {
                 title: "ივარჯიშეთ დამხმარე ტიპებში",
-                tasks: ["გამოიყენეთ 'Readonly<T>' დამხმარე ტიპი, რომ შექმნათ მომხმარებლის პროფილის ობიექტის მხოლოდ წასაკითხი ვერსია."]
+                tasks: [
+                    "გადაიყვანეთ User ინტერფეისი Readonly<User>-ად მოდულის გარეთ გამოსატანად.",
+                    "გამოიყენეთ Record<string, number> პროდუქტების მარაგის ჩასაწერად.",
+                    "გადაწერეთ updateTodo ისე, რომ მიიღოს Pick<Todo, 'title'> Partial-ის ნაცვლად."
+                ]
             }
         }
     },
@@ -220,25 +293,37 @@ const tutorialContent = {
         en: {
             title: "Testing & Debugging",
             description: "Test TypeScript code and debug with proper tooling.",
-            concept: "Effective testing and debugging are crucial for building robust applications.",
+            concept: "Automated tests (Jest, Vitest) catch regressions. Source maps and modern debuggers let you set breakpoints in TS and step through generated JS seamlessly.",
             examples: [
-                { title: "A simple test", code: '// math.ts\nexport function add(a: number, b: number) { return a + b; }\n\n// math.test.ts\nimport { add } from "./math";\n\nif (add(2, 2) !== 4) {\n    throw new Error("Test failed!");\n}', desc: "Basic testing can be done with simple checks." }
+                { title: "Jest + ts-jest", code: 'npm install --save-dev jest ts-jest @types/jest\n\n// jest.config.js\nmodule.exports = { preset: "ts-jest", testEnvironment: "node" };', desc: "Configure Jest for TypeScript." },
+                { title: "Simple Test", code: '// math.ts\nexport const add = (a: number, b: number) => a + b;\n\n// math.test.ts\nimport { add } from "./math";\n\nexpect(add(2, 3)).toBe(5);', desc: "Basic assertion." },
+                { title: "Debugger", code: '// VSCode launch.json snippet\n{"type":"pwa-node","request":"launch","name":"Debug TS","program":"${workspaceFolder}/src/index.ts","preLaunchTask":"tsc: build - tsconfig.json"}', desc: "Debug TS directly in VSCode." }
             ],
             practice: {
-                title: "Practice Testing",
-                tasks: ["Set up a testing framework like Jest for your TypeScript project."]
+                title: "Practice Testing & Debugging",
+                tasks: [
+                    "Install Vitest and write tests for a calculator module.",
+                    "Create a failing test first (TDD).",
+                    "Set a breakpoint and step through add(), subtract() functions."
+                ]
             }
         },
         ka: {
             title: "ტესტირება და გამართვა",
             description: "ტესტირება TypeScript კოდისა და გამართვა შესაბამისი ხელსაწყოებით.",
-            concept: "ეფექტური ტესტირება და გამართვა გადამწყვეტია მძლავრი აპლიკაციების შესაქმნელად.",
+            concept: "ავტომატური ტესტები (Jest, Vitest) აფიქსირებს რეგრესიებს. Source map-ები და თანამედროვე დებაგერები საშუალებას გაძლევთ დააყენოთ breakpoints TS კოდში და ნაბიჯ-ნაბიჯ მიჰყვეთ გენერირებულ JS-ს.",
             examples: [
-                { title: "მარტივი ტესტი", code: '// math.ts\nexport function add(a: number, b: number) { return a + b; }\n\n// math.test.ts\nimport { add } from "./math";\n\nif (add(2, 2) !== 4) {\n    throw new Error("ტესტი ჩავარდა!");\n}', desc: "ძირითადი ტესტირება შეიძლება გაკეთდეს მარტივი შემოწმებებით." }
+                { title: "Jest + ts-jest", code: 'npm install --save-dev jest ts-jest @types/jest\n\n// jest.config.js\nmodule.exports = { preset: "ts-jest", testEnvironment: "node" };', desc: "დააკონფიგურირეთ Jest TypeScript-თვის." },
+                { title: "მარტივი ტესტი", code: '// math.ts\nexport const add = (a: number, b: number) => a + b;\n\n// math.test.ts\nimport { add } from "./math";\n\nexpect(add(2, 3)).toBe(5);', desc: "ძირითადი assert." },
+                { title: "Debugger", code: '// VSCode launch.json\n{"type":"pwa-node","request":"launch","name":"Debug TS","program":"${workspaceFolder}/src/index.ts","preLaunchTask":"tsc: build - tsconfig.json"}', desc: "დებაგი პირდაპირ TS-ში VSCode-ის საშუალებით." }
             ],
             practice: {
-                title: "ივარჯიშეთ ტესტირებაში",
-                tasks: ["დააყენეთ ტესტირების ფრეიმვორკი, როგორიცაა Jest, თქვენი TypeScript პროექტისთვის."]
+                title: "ივარჯიშეთ ტესტირებაში & გამართვაში",
+                tasks: [
+                    "დააყენეთ Vitest და დაწერეთ ტესტები calculator მოდულისთვის.",
+                    "შექმენით დასაწყისში ჩამჭრელი ტესტი (TDD).",
+                    "დაყენეთ breakpoint და ნაბიჯ-ნაბიჯ გაიარეთ add(), subtract() ფუნქციებზე."
+                ]
             }
         }
     },
@@ -246,25 +331,37 @@ const tutorialContent = {
         en: {
             title: "Advanced Patterns",
             description: "Master advanced TypeScript patterns and architectural concepts.",
-            concept: "Advanced patterns like Decorators provide a way to add annotations and a meta-programming syntax for classes and class members.",
+            concept: "Decorators, mixins, conditional types, mapped types and other advanced features unlock meta-programming super-powers allowing you to write expressive and DRY code.",
             examples: [
-                { title: "Class Decorator", code: '@sealed\nclass Greeter {\n    greeting: string;\n    constructor(message: string) {\n        this.greeting = message;\n    }\n    greet() {\n        return "Hello, " + this.greeting;\n    }\n}\nfunction sealed(constructor: Function) {\n    Object.seal(constructor);\n    Object.seal(constructor.prototype);\n}', desc: "Decorators are a stage 2 proposal for JavaScript and are available as an experimental feature of TypeScript." }
+                { title: "Class Decorator", code: '@sealed\nclass Greeter {\n  greeting: string;\n  constructor(msg: string) { this.greeting = msg; }\n  greet() { return "Hello, " + this.greeting; }\n}\n\nfunction sealed(constructor: Function) {\n  Object.seal(constructor);\n  Object.seal(constructor.prototype);\n}', desc: "Prevents further subclassing / extension." },
+                { title: "Conditional Type", code: 'type IsString<T> = T extends string ? "Yes" : "No";\n\ntype A = IsString<string>; // "Yes"\ntype B = IsString<number>; // "No"', desc: "Types that depend on other types." },
+                { title: "Mapped Type", code: 'type Nullable<T> = { [K in keyof T]: T[K] | null };\ninterface User { id: number; name: string; }\nconst maybeUser: Nullable<User> = { id: 1, name: null };', desc: "Transform properties en-masse." }
             ],
             practice: {
-                title: "Practice Decorators",
-                tasks: ["Create a method decorator that logs the arguments of the decorated method."]
+                title: "Practice Advanced Patterns",
+                tasks: [
+                    "Implement a method decorator that logs arguments & return value.",
+                    "Create a mixin that adds timestamp property to any class.",
+                    "Use conditional types to create Result<T> = Success<T> | Failure."
+                ]
             }
         },
         ka: {
             title: "გაღრმავებული ნიმუშები",
             description: "დაეუფლეთ TypeScript-ის გაღრმავებულ ნიმუშებს და არქიტექტურული კონცეფციებს.",
-            concept: "გაღრმავებული ნიმუშები, როგორიცაა დეკორატორები, უზრუნველყოფს ანოტაციების და მეტა-პროგრამირების სინტაქსის დამატების გზას კლასებისა და კლასის წევრებისთვის.",
+            concept: "დეკორატორები, მიქსინები, პირობითი და რეგულარული ტიპები გაძლევთ მეტა-პროგრამირების შესაძლებლობებს, რომ დაწეროთ გამdruck and DRY კოდი.",
             examples: [
-                { title: "კლასის დეკორატორი", code: '@sealed\nclass Greeter {\n    greeting: string;\n    constructor(message: string) {\n        this.greeting = message;\n    }\n    greet() {\n        return "Hello, " + this.greeting;\n    }\n}\nfunction sealed(constructor: Function) {\n    Object.seal(constructor);\n    Object.seal(constructor.prototype);\n}', desc: "დეკორატორები არის JavaScript-ის მე-2 ეტაპის წინადადება და ხელმისაწვდომია TypeScript-ის ექსპერიმენტულ ფუნქციად." }
+                { title: "კლასის დეკორატორი", code: '@sealed\nclass Greeter {\n  greeting: string;\n  constructor(msg: string) { this.greeting = msg; }\n  greet() { return "გამარჯობა, " + this.greeting; }\n}\n\nfunction sealed(constructor: Function) {\n  Object.seal(constructor);\n  Object.seal(constructor.prototype);\n}', desc: "შეზღუდავს შემდგომ გაფართოებას." },
+                { title: "პირობითი ტიპი", code: 'type IsString<T> = T extends string ? "Yes" : "No";\n\ntype A = IsString<string>; // "Yes"\ntype B = IsString<number>; // "No"', desc: "ტიპები, რომლებიც სხვა ტიპებზეა დამოკიდებული." },
+                { title: "ვამო ტიპი", code: 'type Nullable<T> = { [K in keyof T]: T[K] | null };\ninterface User { id: number; name: string; }\nconst maybeUser: Nullable<User> = { id: 1, name: null };', desc: "ერთი მოქმედებით შეცვლილი თვისებები." }
             ],
             practice: {
-                title: "ივარჯიშეთ დეკორატორებში",
-                tasks: ["შექმენით მეთოდის დეკორატორი, რომელიც ალოგინებს დეკორირებული მეთოდის არგუმენტებს."]
+                title: "ივარჯიშეთ გაღრმავებულ ნიმუშებში",
+                tasks: [
+                    "განახორციელეთ მეთოდის დეკორატორი, რომელიც ალოგინებს არგუმენტებს და შედეგს.",
+                    "შექმენით მიქსინი, რომელიც ნებისმიერ კლასს ამატებს timestamp-ს.",
+                    "გამოიყენეთ პირობითი ტიპები Result<T> = Success<T> | Failure-ს შესაქმნელად."
+                ]
             }
         }
     }
