@@ -791,7 +791,16 @@ console.log('Hello, World!');"
         });
     </script>
     
+    <!-- Helper to provide tutorial order for navigation -->
+    <script>
+      window.getJsTutorialOrder = function() {
+        return Array.from(document.querySelectorAll('.tutorial-item'))
+          .map(item => item.dataset.tutorial)
+          .filter(Boolean);
+      };
+    </script>
+    
     <script src="sw-register.js"></script>
-    <script src="javascript-tutorial.js"></script>
+    <script src="script.js"></script>
 </body>
 </html> 

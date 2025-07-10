@@ -22,6 +22,7 @@
 - **18+ Hands-on Tutorials** - Learn by writing real code, not just watching videos
 - **Progressive Difficulty** - Start from zero and become a confident programmer
 - **Instant Feedback** - See your code results immediately
+- **Dynamic Progress Tracking** - Your progress bar & lesson counter update automatically as you move through the tutorials
 
 ### 🎨 **Modern UI/UX**
 - **Glass Morphism Design** - Beautiful, modern interface with backdrop blur effects
@@ -37,10 +38,11 @@
 
 | Course | Lessons | Status | Description |
 |--------|---------|--------|-------------|
-| **JavaScript** | 12 | ✅ Available | Master the language that powers the web |
+| **JavaScript** | 18 | ✅ Available | Master the language that powers the web |
+| **Python** | 12 | ✅ Available | Comprehensive programming with Python |
 | **React** | 6 | ✅ Available | Build modern user interfaces |
 | **TypeScript** | TBD | 🚧 Coming Soon | Add type safety to JavaScript |
-| **More Languages** | TBD | 🚧 Coming Soon | Python, PHP, Laravel and more |
+| **More Languages** | TBD | 🚧 Coming Soon | PHP, Laravel and more |
 
 ---
 

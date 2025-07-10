@@ -856,7 +856,7 @@ console.log(multiply(4, 5)); // შედეგი: 20
                 content: {
                     concept: {
                         title: "🔄 რა არის მართვის ნაკადი?",
-                        text: `მართვის ნაკადი არის თუ როგორ იღებს თქვენი კოდი გადაწყვეტილებებს და იმეორებს მოქმედებებს. ეს არის როგორც ტვინის მიცემა თქვენს კოდს!
+                        text: `მართვის ნაკადი არის თუ როგორ იღებს თქვენი კოდი გადაწყვეტილებს და იმეორებს მოქმედებებს. ეს არის როგორც ტვინის მიცემა თქვენს კოდს!
 
 წარმოიდგინეთ სალიგე შუქების მსგავსად:
 • **თუ** შუქი მწვანეა → იარეთ
@@ -1843,7 +1843,7 @@ while (energy > 0) {
                 {
                     title: {
                         en: "🤔 Making Smart Decisions",
-                        ka: "🤔 გონიერი გადაწყვეტილებების მიღება"
+                        ka: "🤔 გონიერი გადაწყვეტილების მიღება"
                     },
                     content: {
                         en: `
@@ -2920,492 +2920,7 @@ incrementBtn.addEventListener('click', () => {
         counter.style.color = "gold";
         counter.textContent = count + " 🎉";
     }
-});</code></pre>
-                            <p>🎯 <em>Event listeners are like having ears on your webpage - they hear user actions!</em></p>
-                        `
-                    }
-                }
-            ]
-        },
-        startingCode: ``,
-        practice: {
-            title: {
-                en: "Build Interactive Elements!"
-            },
-            description: {
-                en: "Create dynamic webpage elements that respond to user interactions!"
-            },
-            task: {
-                en: "1. Create a button that changes a paragraph's text when clicked\n2. Make an input field that shows what you type in real-time\n3. Create a color changer that changes the background color\n4. Build a simple counter with + and - buttons\n5. Make a toggle button that hides/shows content"
-            }
-        }
-    },
-
-    events: {
-        title: {
-            en: "Events & Advanced DOM"
-        },
-        description: {
-            en: "Master advanced DOM techniques! Create, modify, and remove elements dynamically for truly interactive experiences."
-        },
-        content: {
-            sections: [
-                {
-                    title: {
-                        en: "⚡ Advanced Event Handling"
-                    },
-                    content: {
-                        en: `
-                            <h3>Master different types of events and the event object!</h3>
-                            
-                            <pre><code class="language-javascript">// Different event types
-let button = document.getElementById('myButton');
-let input = document.getElementById('myInput');
-
-// Click events
-button.addEventListener('click', () => {
-    console.log("Button clicked!");
 });
-
-// Input events (real-time typing)
-input.addEventListener('input', (event) => {
-    console.log("User typed:", event.target.value);
-});
-
-// Mouse events
-button.addEventListener('mouseenter', () => {
-    button.style.backgroundColor = 'lightblue';
-});
-
-button.addEventListener('mouseleave', () => {
-    button.style.backgroundColor = '';
-});
-
-// Using the event object
-button.addEventListener('click', (event) => {
-    console.log("Event object:", event);
-    console.log("Clicked element:", event.target);
-    console.log("Click position:", event.clientX, event.clientY);
-    
-    // Prevent default behavior (useful for forms)
-    event.preventDefault();
-});</code></pre>
-                            <p>⚡ <em>Events carry lots of useful information - like a detailed report of what happened!</em></p>
-                        `
-                    }
-                },
-                {
-                    title: {
-                        en: "🏗️ Creating Elements Dynamically"
-                    },
-                    content: {
-                        en: `
-                            <h3>Build and modify page elements on the fly!</h3>
-                            
-                            <pre><code class="language-javascript">// Creating new elements
-let newDiv = document.createElement('div');
-newDiv.textContent = "I'm a new div!";
-newDiv.style.padding = "10px";
-newDiv.style.backgroundColor = "lightgreen";
-
-// Add the new element to the page
-document.body.appendChild(newDiv);
-
-// Creating more complex elements
-let newCard = document.createElement('div');
-newCard.className = 'card';
-newCard.innerHTML = \`
-    <h3>Dynamic Card</h3>
-    <p>This card was created by JavaScript!</p>
-    <button onclick="alert('Hello!')">Click me!</button>
-\`;
-
-// Insert it into a specific container
-let container = document.getElementById('container');
-container.appendChild(newCard);
-
-// Removing elements
-let elementToRemove = document.getElementById('removeMe');
-elementToRemove.remove(); // Simple removal
-
-// Or remove from parent
-let parent = elementToRemove.parentNode;
-parent.removeChild(elementToRemove);</code></pre>
-                            <p>🏗️ <em>You're now a webpage architect - building and demolishing as needed!</em></p>
-                        `
-                    }
-                },
-                {
-                    title: {
-                        en: "📝 Real Example: Dynamic To-Do List"
-                    },
-                    content: {
-                        en: `
-                            <h3>Put it all together with a working to-do list!</h3>
-                            
-                            <pre><code class="language-javascript">// To-Do List Implementation
-let addButton = document.getElementById('addTaskButton');
-let taskInput = document.getElementById('taskInput');
-let taskList = document.getElementById('taskList');
-
-// Add new task function
-function addTask() {
-    let taskText = taskInput.value.trim();
-    
-    if (taskText === '') {
-        alert('Please enter a task!');
-        return;
-    }
-    
-    // Create task element
-    let taskItem = document.createElement('li');
-    taskItem.className = 'task-item';
-    
-    taskItem.innerHTML = \`
-        <span class="task-text">\${taskText}</span>
-        <button class="complete-btn">✓</button>
-        <button class="delete-btn">✗</button>
-    \`;
-    
-    // Add event listeners to new buttons
-    let completeBtn = taskItem.querySelector('.complete-btn');
-    let deleteBtn = taskItem.querySelector('.delete-btn');
-    
-    completeBtn.addEventListener('click', () => {
-        taskItem.classList.toggle('completed');
-    });
-    
-    deleteBtn.addEventListener('click', () => {
-        taskItem.remove();
-    });
-    
-    // Add to list and clear input
-    taskList.appendChild(taskItem);
-    taskInput.value = '';
-}
-
-// Event listeners
-addButton.addEventListener('click', addTask);
-
-taskInput.addEventListener('keypress', (event) => {
-    if (event.key === 'Enter') {
-        addTask();
-    }
-});
-
-console.log("To-Do List is ready!");</code></pre>
-                            <p>📝 <em>Now you can create fully interactive web applications!</em></p>
-                        `
-                    }
-                }
-            ]
-        },
-        startingCode: ``,
-        practice: {
-            title: {
-                en: "Build Dynamic Web Apps!"
-            },
-            description: {
-                en: "Create interactive applications that users can modify in real-time!"
-            },
-            task: {
-                en: "1. Build a dynamic shopping list where users can add and remove items\n2. Create a photo gallery where clicking images shows them larger\n3. Make a simple calculator with clickable number buttons\n4. Build a comment system where users can add and delete comments\n5. Create a color palette generator with clickable color squares"
-            }
-        }
-    },
-
-    async: {
-        title: {
-            en: "Async JavaScript"
-        },
-        description: {
-            en: "Master asynchronous programming! Handle API calls, promises, and async operations like a pro."
-        },
-        content: {
-            sections: [
-                {
-                    title: {
-                        en: "⏰ Understanding Asynchronous Code"
-                    },
-                    content: {
-                        en: `
-                            <h3>Async code is like ordering food delivery while doing other things!</h3>
-                            <p>Instead of waiting at the restaurant, you order online and continue your day. When food arrives, you handle it!</p>
-                            
-                            <h4>🔄 Why Async?</h4>
-                            <ul>
-                                <li>Don't freeze the webpage while waiting for data</li>
-                                <li>Handle multiple operations at once</li>
-                                <li>Better user experience</li>
-                                <li>Load data from servers without blocking</li>
-                            </ul>
-                            
-                            <pre><code class="language-javascript">// Synchronous (blocking) - Bad!
-console.log("Start");
-// Imagine this takes 3 seconds...
-// User can't do anything during this time!
-console.log("End");
-
-// Asynchronous (non-blocking) - Good!
-console.log("Start");
-setTimeout(() => {
-    console.log("This happens after 2 seconds");
-}, 2000);
-console.log("End"); // This runs immediately!
-
-// Real example: Loading data
-console.log("Requesting weather data...");
-fetch('https://api.weather.com/data')
-    .then(response => response.json())
-    .then(data => {
-        console.log("Weather loaded:", data);
-    });
-console.log("Doing other things while waiting...");</code></pre>
-                            <p>⏰ <em>Async is like being a master multitasker - doing many things without waiting!</em></p>
-                        `
-                    }
-                },
-                {
-                    title: {
-                        en: "🤝 Promises - Your Async Helpers"
-                    },
-                    content: {
-                        en: `
-                            <h3>Promises are like IOUs for future results!</h3>
-                            <p>When you order food, you get a receipt (promise) that says "food will come." Later, you either get food (resolve) or a refund (reject)!</p>
-                            
-                            <pre><code class="language-javascript">// Creating a promise
-let myPromise = new Promise((resolve, reject) => {
-    let success = Math.random() > 0.5; // 50% chance
-    
-    setTimeout(() => {
-        if (success) {
-            resolve('Success! Data loaded! 🎉');
-        } else {
-            reject('Oops! Something went wrong! 😅');
-        }
-    }, 2000);
-});
-
-// Using the promise
-myPromise
-    .then((result) => {
-        console.log("Good news:", result);
-    })
-    .catch((error) => {
-        console.log("Bad news:", error);
-    })
-    .finally(() => {
-        console.log("Either way, we're done!");
-    });
-
-// Real example: Fetching user data
-function loadUserProfile(userId) {
-    return new Promise((resolve, reject) => {
-        // Simulate API call
-        setTimeout(() => {
-            if (userId > 0) {
-                resolve({
-                    id: userId,
-                    name: "Luka Partenadze",
-                    email: "luka@example.com"
-                });
-            } else {
-                reject("Invalid user ID");
-            }
-        }, 1500);
-    });
-}
-
-// Using our function
-loadUserProfile(123)
-    .then(user => {
-        console.log("User loaded:", user.name);
-        console.log("Email:", user.email);
-    })
-    .catch(error => {
-        console.log("Failed to load user:", error);
-    });</code></pre>
-                            <p>🤝 <em>Promises help you handle success and failure gracefully!</em></p>
-                        `
-                    }
-                },
-                {
-                    title: {
-                        en: "🚀 Async/Await - The Modern Way"
-                    },
-                    content: {
-                        en: `
-                            <h3>Async/await makes asynchronous code look synchronous!</h3>
-                            <p>It's like having a personal assistant who waits for things so you don't have to think about callbacks!</p>
-                            
-                            <pre><code class="language-javascript">// Old way with .then()
-function loadDataOldWay() {
-    fetch('https://jsonplaceholder.typicode.com/posts/1')
-        .then(response => response.json())
-        .then(data => {
-            console.log("Post title:", data.title);
-            return fetch('https://jsonplaceholder.typicode.com/users/' + data.userId);
-        })
-        .then(response => response.json())
-        .then(user => {
-            console.log("Author:", user.name);
-        })
-        .catch(error => {
-            console.log("Error:", error);
-        });
-}
-
-// New way with async/await
-async function loadDataNewWay() {
-    try {
-        console.log("Loading post...");
-        let postResponse = await fetch('https://jsonplaceholder.typicode.com/posts/1');
-        let post = await postResponse.json();
-        console.log("Post title:", post.title);
-        
-        console.log("Loading author...");
-        let userResponse = await fetch('https://jsonplaceholder.typicode.com/users/' + post.userId);
-        let user = await userResponse.json();
-        console.log("Author:", user.name);
-        
-        return { post, user };
-    } catch (error) {
-        console.log("Something went wrong:", error);
-    }
-}
-
-// Using async/await
-async function displayPostWithAuthor() {
-    console.log("Starting to load...");
-    
-    let result = await loadDataNewWay();
-    
-    if (result) {
-        console.log("Success! Got post by", result.user.name);
-    }
-    
-    console.log("All done!");
-}
-
-// Run it
-displayPostWithAuthor();
-
-// Multiple async operations
-async function loadMultipleUsers() {
-    try {
-        let user1Promise = fetch('https://jsonplaceholder.typicode.com/users/1');
-        let user2Promise = fetch('https://jsonplaceholder.typicode.com/users/2');
-        let user3Promise = fetch('https://jsonplaceholder.typicode.com/users/3');
-        
-        // Wait for all to complete
-        let responses = await Promise.all([user1Promise, user2Promise, user3Promise]);
-        
-        console.log("All users loaded!");
-        for (let response of responses) {
-            let user = await response.json();
-            console.log("User:", user.name);
-        }
-    } catch (error) {
-        console.log("Failed to load users:", error);
-    }
-}</code></pre>
-                            <p>🚀 <em>Async/await is like having superpowers - complex async operations become simple!</em></p>
-                        `
-                    }
-                }
-            ]
-        },
-        startingCode: ``,
-        practice: {
-            title: {
-                en: "Master Async Programming!"
-            },
-            description: {
-                en: "Build applications that handle real-world data loading and API interactions!"
-            },
-            task: {
-                en: "1. Create a promise that resolves with your favorite quote after 2 seconds\n2. Use fetch to load data from a public API (like JSONPlaceholder)\n3. Write an async function that loads and displays user information\n4. Handle errors gracefully with try/catch\n5. Load multiple pieces of data simultaneously with Promise.all"
-            }
-        }
-    },
-
-    advanced_arrays: {
-        title: {
-            en: "Advanced Array Methods"
-        },
-        description: {
-            en: "Master powerful array methods like map, filter, and reduce - your data manipulation superpowers!"
-        },
-        content: {
-            sections: [
-                {
-                    title: {
-                        en: "🚀 The Power Trio: map, filter, reduce"
-                    },
-                    content: {
-                        en: `
-                            <h3>These three methods will change how you think about arrays!</h3>
-                            <p>Think of them as your personal data assistants - each one specializes in a different task!</p>
-                            
-                            <h4>🗺️ map() - The Transformer</h4>
-                            <p>Takes every item and transforms it into something new. Like a factory conveyor belt!</p>
-                            
-                            <h4>🔍 filter() - The Selector</h4>
-                            <p>Keeps only the items that pass your test. Like a quality control inspector!</p>
-                            
-                            <h4>🔄 reduce() - The Combiner</h4>
-                            <p>Takes all items and combines them into a single result. Like a blender!</p>
-                            
-                            <pre><code class="language-javascript">// Example: Working with numbers
-let numbers = [1, 2, 3, 4, 5];
-
-// map: Square each number
-let squared = numbers.map(num => num * num);
-console.log("Original:", numbers);     // [1, 2, 3, 4, 5]
-console.log("Squared:", squared);      // [1, 4, 9, 16, 25]
-
-// filter: Keep only even numbers
-let evens = numbers.filter(num => num % 2 === 0);
-console.log("Even numbers:", evens);   // [2, 4]
-
-// reduce: Add all numbers together
-let total = numbers.reduce((sum, num) => sum + num, 0);
-console.log("Total:", total);          // 15</code></pre>
-                            <p>✨ <em>These methods don't change the original array - they create new ones!</em></p>
-                        `
-                    }
-                },
-                {
-                    title: {
-                        en: "💡 Real-World Examples"
-                    },
-                    content: {
-                        en: `
-                            <h3>See how powerful these methods are with real scenarios!</h3>
-                            
-                            <pre><code class="language-javascript">// Working with shopping prices
-let prices = [90, 45, 30, 120, 75];
-
-// Apply 10% discount to all prices
-let discounted = prices.map(price => price * 0.9);
-console.log("Discounted prices:", discounted);
-
-// Find expensive items (over $50)
-let expensive = prices.filter(price => price > 50);
-console.log("Expensive items:", expensive);
-
-// Calculate total cost
-let totalCost = prices.reduce((total, price) => total + price, 0);
-console.log("Total cost:", totalCost);
-
-// Working with people data
-let people = [
-    { name: "Luka", age: 20, hobby: "coding" },
-    { name: "Anna", age: 17, hobby: "music" },
-    { name: "Sami", age: 22, hobby: "sports" },
-    { name: "Toni", age: 16, hobby: "art" }
-];
 
 // Get just the names
 let names = people.map(person => person.name);
@@ -4187,6 +3702,12 @@ async function switchLanguage(lang) {
     
     // Store language preference
     localStorage.setItem('language', lang);
+    
+    // Close language dropdown after selecting
+    const dropdown = document.getElementById('languageDropdown');
+    if (dropdown) {
+        dropdown.classList.add('hidden');
+    }
 }
 
 // Update UI elements with current language
@@ -4239,6 +3760,19 @@ function updateUILanguage() {
     const appDescription = document.querySelector('p');
     if (appDescription && appDescription.textContent.includes('Interactive JavaScript Tutorials')) {
         appDescription.textContent = translationService.t('ui.subtitle');
+    }
+
+    // --- refresh flag/icon on language button ---
+    const flagEl = document.getElementById('currentFlag');
+    const langEl = document.getElementById('currentLang');
+    if (flagEl && langEl) {
+        if (lang === 'ka') {
+            flagEl.textContent = '🇬🇪';
+            langEl.textContent = 'KA';
+        } else {
+            flagEl.textContent = '🇺🇸';
+            langEl.textContent = 'EN';
+        }
     }
 }
 
@@ -4388,6 +3922,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Load first tutorial
     await loadTutorial(currentTutorial);
     setupEventListeners();
+    setupLanguageDropdown();
 });
 
 // Setup Event Listeners
@@ -4442,32 +3977,33 @@ function setupEventListeners() {
 function formatTutorialText(text) {
     if (!text) return '';
     
-    // Replace markdown-style code blocks with HTML code blocks
+    // Replace markdown code blocks with styled HTML blocks
     const codeBlockRegex = /```(\w+)?\n?([\s\S]*?)```/g;
-    
     let formattedText = text.replace(codeBlockRegex, (match, language, code) => {
-        const lang = language || 'javascript';
+        const lang = (language || 'javascript').toLowerCase();
         const trimmedCode = code.trim();
-        
         return `
-            <div class="code-block-container">
-                <div class="code-block-header">
-                    <span class="code-block-language">${lang}</span>
-                    <button class="copy-code-btn" onclick="copyCodeBlock(this)" title="Copy code">
-                        Copy
-                    </button>
+            <div class="code-block-container my-4 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                <div class="code-block-header flex items-center justify-between bg-gray-50 dark:bg-gray-800 px-3 py-2 text-xs font-mono">
+                    <span class="code-block-language uppercase tracking-wider text-blue-600 dark:text-blue-400">${lang}</span>
+                    <button class="copy-code-btn text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors" onclick="copyCodeBlock(this)" title="Copy code">Copy</button>
                 </div>
-                <pre class="code-block"><code class="language-${lang}">${trimmedCode}</code></pre>
+                <pre class="code-block bg-white dark:bg-gray-900 p-4 overflow-x-auto"><code class="language-${lang}">${trimmedCode}</code></pre>
             </div>
         `;
     });
-    
-    // Replace inline code with styled spans
+
+    // Bold **text** -> <strong>
+    formattedText = formattedText.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    // Italic *text* -> <em>
+    formattedText = formattedText.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    // Inline `code` -> styled span
     formattedText = formattedText.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
-    
-    // Convert newlines to <br> tags, but preserve structure
+
+    // Convert newlines to <br>
     formattedText = formattedText.replace(/\n/g, '<br>');
-    
+
     return formattedText;
 }
 
@@ -4585,19 +4121,22 @@ async function switchTutorial(tutorialKey) {
 // Update Active Navigation Item
 function updateActiveItem() {
     document.querySelectorAll('.tutorial-item').forEach(item => {
-        const dot = item.querySelector('div');
-        
-        if (item.dataset.tutorial === currentTutorial) {
-            // Active state
-            item.className = 'tutorial-item flex items-center p-3 rounded-lg cursor-pointer bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 text-blue-700 dark:text-blue-300';
-            if (dot) {
-                dot.className = 'w-2 h-2 bg-blue-500 rounded-full mr-3';
+        const iconBox = item.querySelector('div');
+        const isActive = item.dataset.tutorial === currentTutorial;
+
+        if (isActive) {
+            // Active styling
+            item.className = 'tutorial-item flex items-center p-4 rounded-xl cursor-pointer glass border-l-4 border-blue-500 text-blue-700 dark:text-blue-300 shadow-lg';
+            if (iconBox) {
+                iconBox.classList.remove('bg-gray-400');
+                iconBox.classList.add('bg-gradient-to-br', 'from-blue-500', 'to-blue-600', 'shadow-lg');
             }
         } else {
-            // Inactive state
+            // Inactive styling
             item.className = 'tutorial-item flex items-center p-3 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors';
-            if (dot) {
-                dot.className = 'w-2 h-2 bg-gray-400 rounded-full mr-3';
+            if (iconBox) {
+                iconBox.classList.remove('bg-gradient-to-br', 'from-blue-500', 'to-blue-600', 'shadow-lg');
+                iconBox.classList.add('bg-gray-400');
             }
         }
     });
@@ -4605,16 +4144,31 @@ function updateActiveItem() {
 
 // Update Navigation Buttons
 function updateNavigation() {
-    const tutorialKeys = Object.keys(translationService.t('tutorials'));
+    const tutorialKeys = getJsTutorialOrder();
     const currentIndex = tutorialKeys.indexOf(currentTutorial);
     
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex === tutorialKeys.length - 1;
+    
+    // NEW: Progress update for JS tutorials
+    const totalLessons = tutorialKeys.length;
+    const progressFill = document.querySelector('.progress-bar > div');
+    if (progressFill) {
+        progressFill.style.width = `${((currentIndex + 1) / totalLessons) * 100}%`;
+    }
+    const progressNumber = document.querySelector('.glass.rounded-xl span.text-xs');
+    if (progressNumber) {
+        progressNumber.textContent = `${currentIndex + 1}/${totalLessons}`;
+    }
+    const lessonCounter = document.querySelector('.text-center span');
+    if (lessonCounter) {
+        lessonCounter.textContent = `Lesson ${currentIndex + 1} of ${totalLessons}`;
+    }
 }
 
 // Navigation Functions
 async function previousTutorial() {
-    const tutorialKeys = Object.keys(translationService.t('tutorials'));
+    const tutorialKeys = getJsTutorialOrder();
     const currentIndex = tutorialKeys.indexOf(currentTutorial);
     if (currentIndex > 0) {
         await switchTutorial(tutorialKeys[currentIndex - 1]);
@@ -4622,7 +4176,7 @@ async function previousTutorial() {
 }
 
 async function nextTutorial() {
-    const tutorialKeys = Object.keys(translationService.t('tutorials'));
+    const tutorialKeys = getJsTutorialOrder();
     const currentIndex = tutorialKeys.indexOf(currentTutorial);
     if (currentIndex < tutorialKeys.length - 1) {
         await switchTutorial(tutorialKeys[currentIndex + 1]);
@@ -4728,3 +4282,28 @@ function addToConsole(message, type = 'normal') {
     consoleOutput.appendChild(line);
     consoleOutput.scrollTop = consoleOutput.scrollHeight;
 } 
+
+// === Language dropdown behaviour ===
+function setupLanguageDropdown() {
+    const languageBtn = document.getElementById('languageBtn');
+    const languageDropdown = document.getElementById('languageDropdown');
+    if (!languageBtn || !languageDropdown) return;
+
+    // Toggle dropdown on button click
+    languageBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        languageDropdown.classList.toggle('hidden');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!languageDropdown.contains(e.target) && !languageBtn.contains(e.target)) {
+            languageDropdown.classList.add('hidden');
+        }
+    });
+
+    // Ensure dropdown hides after a language is selected
+    languageDropdown.querySelectorAll('.language-option').forEach(opt => {
+        opt.addEventListener('click', () => languageDropdown.classList.add('hidden'));
+    });
+}

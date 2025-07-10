@@ -627,6 +627,8 @@ function showToast() {
 }
 
 function updateNavigationButtons() {
+    const totalLessons = reactTutorialOrder.length;
+    ensureProgressUI(totalLessons);
     const currentIndex = reactTutorialOrder.indexOf(currentTutorial);
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -651,6 +653,20 @@ function updateNavigationButtons() {
             nextBtn.className = 'flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors';
             nextBtn.disabled = false;
         }
+    }
+
+    // NEW: Progress update
+    const progressFill = document.getElementById('reactProgressFill');
+    if (progressFill) {
+        progressFill.style.width = `${((currentIndex + 1) / totalLessons) * 100}%`;
+    }
+    const progressNumber = document.getElementById('reactProgressNumber');
+    if (progressNumber) {
+        progressNumber.textContent = `${currentIndex + 1}/${totalLessons}`;
+    }
+    const lessonCounter = document.querySelector('.text-center span');
+    if (lessonCounter) {
+        lessonCounter.textContent = `Lesson ${currentIndex + 1} of ${totalLessons}`;
     }
 }
 
@@ -836,5 +852,32 @@ function navigateNext() {
         if (nextTutorialItem) {
             setActive(nextTutorialItem);
         }
+    }
+}
+
+function ensureProgressUI(totalLessons) {
+    // Container where progress should live (inside sidebar p-6)
+    const sidebarHeader = document.querySelector('nav.w-80 .p-6');
+    if (!sidebarHeader) return;
+    // Look for existing progress glass container
+    let progressBox = sidebarHeader.querySelector('.glass.rounded-xl');
+    if (!progressBox) {
+        // Build new container to match other pages
+        progressBox = document.createElement('div');
+        progressBox.className = 'glass rounded-xl p-4 border border-blue-200/30 dark:border-blue-800/30 enhanced-hover';
+        progressBox.innerHTML = `
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-semibold text-blue-700 dark:text-blue-300">Progress</span>
+                <span class="text-xs text-blue-600 dark:text-blue-400" id="reactProgressNumber">1/${totalLessons}</span>
+            </div>
+            <div class="progress-bar h-2 mb-2" style="width:100%">
+                <div class="h-full bg-blue-400 rounded-full" id="reactProgressFill" style="width:${(1/totalLessons)*100}%"></div>
+            </div>
+            <p class="text-sm text-blue-700 dark:text-blue-300">
+                <strong>${totalLessons}</strong> <span data-translate="react-progress-text">tutorials to master React from basics to advanced concepts</span>
+            </p>`;
+        // Replace old static paragraph if exists
+        const oldPara = sidebarHeader.querySelector('div.bg-blue-50');
+        if (oldPara) oldPara.replaceWith(progressBox); else sidebarHeader.appendChild(progressBox);
     }
 }

@@ -742,6 +742,21 @@ function updateNavButtons() {
         nextBtn.disabled = currentIndex >= tutorialOrder.length - 1;
         nextBtn.classList.toggle('opacity-50', nextBtn.disabled);
     }
+
+    // NEW: Progress update
+    const totalLessons = tutorialOrder.length;
+    const progressFill = document.querySelector('.progress-bar > div');
+    if (progressFill) {
+        progressFill.style.width = `${((currentIndex + 1) / totalLessons) * 100}%`;
+    }
+    const progressNumber = document.querySelector('.glass.rounded-xl span.text-xs');
+    if (progressNumber) {
+        progressNumber.textContent = `${currentIndex + 1}/${totalLessons}`;
+    }
+    const lessonCounter = document.querySelector('.text-center span');
+    if (lessonCounter) {
+        lessonCounter.textContent = `Lesson ${currentIndex + 1} of ${totalLessons}`;
+    }
 }
 
 // Expose functions to global scope for HTML integration if needed

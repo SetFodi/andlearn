@@ -681,6 +681,25 @@ function updateNavigationButtons() {
             nextBtn.querySelector('span').textContent = `Next: ${nextTitle.split(' ')[0]}`;
         }
     }
+
+    // NEW: Update sidebar progress & lesson counter
+    const totalLessons = pythonTutorialOrder.length;
+    // Progress bar fill element (inner div of .progress-bar)
+    const progressFill = document.querySelector('.progress-bar > div');
+    if (progressFill) {
+        const percentage = ((currentIndex + 1) / totalLessons) * 100;
+        progressFill.style.width = `${percentage}%`;
+    }
+    // Numeric progress text (e.g., "3/12") – assume first .glass progress container span.text-xs
+    const progressNumber = document.querySelector('.glass.rounded-xl span.text-xs');
+    if (progressNumber) {
+        progressNumber.textContent = `${currentIndex + 1}/${totalLessons}`;
+    }
+    // Bottom lesson counter ("Lesson X of Y") inside navigation section
+    const lessonCounter = document.querySelector('.text-center span');
+    if (lessonCounter) {
+        lessonCounter.textContent = `Lesson ${currentIndex + 1} of ${totalLessons}`;
+    }
 }
 
 function escapeHtml(text) {
