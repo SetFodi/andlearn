@@ -4,30 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TypeScript Tutorials - AndLearn</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/tailwind.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                    animation: {
-                        'slide-up': 'slideUp 0.5s ease-out',
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                    },
-                    keyframes: {
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
+        if (window.tailwind) {
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            'inter': ['Inter', 'sans-serif'],
                         },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
+                        animation: {
+                            'slide-up': 'slideUp 0.5s ease-out',
+                            'fade-in': 'fadeIn 0.5s ease-in-out',
+                        },
+                        keyframes: {
+                            slideUp: {
+                                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                                '100%': { transform: 'translateY(0)', opacity: '1' },
+                            },
+                            fadeIn: {
+                                '0%': { opacity: '0' },
+                                '100%': { opacity: '1' },
+                            }
                         }
                     }
                 }
@@ -306,13 +308,13 @@
                 <div class="glass rounded-xl p-4 border border-yellow-200/30 dark:border-yellow-800/30 enhanced-hover">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-sm font-semibold text-yellow-700 dark:text-yellow-300">Progress</span>
-                        <span class="text-xs text-yellow-600 dark:text-yellow-400">1/18</span>
+                        <span class="text-xs text-yellow-600 dark:text-yellow-400">1/10</span>
                     </div>
                     <div class="progress-bar h-2 mb-2" style="width: 100%;">
-                        <div class="h-full bg-yellow-400 rounded-full" style="width: 5.56%;"></div>
+                        <div class="h-full bg-yellow-400 rounded-full" style="width: 10%;"></div>
                     </div>
                     <p class="text-sm text-yellow-700 dark:text-yellow-300">
-                        <strong>18</strong> <span data-translate="js-progress-text">tutorials to master TypeScript from basics to advanced concepts</span>
+                        <strong>10</strong> <span data-translate="js-progress-text">tutorials to master TypeScript from basics to advanced concepts</span>
                     </p>
                 </div>
             </div>

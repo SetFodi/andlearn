@@ -38,7 +38,7 @@ const translations = {
         
         'react-title': 'React',
         'react-desc': 'Build modern user interfaces with the most popular JavaScript library.',
-        'react-count': '15 Lessons',
+        'react-count': '11 Lessons',
         
         'ts-title': 'TypeScript',
         'ts-desc': 'Add type safety to JavaScript for more robust applications.',
@@ -102,7 +102,7 @@ const translations = {
         
         'react-title': 'React',
         'react-desc': 'შექმენი თანამედროვე მომხმარებლის ინტერფეისები ყველაზე პოპულარული JavaScript ბიბლიოთეკით.',
-        'react-count': '15 გაკვეთილი',
+        'react-count': '11 გაკვეთილი',
         
         'ts-title': 'TypeScript',
         'ts-desc': 'დაამატე ტიპების უსაფრთხოება JavaScript-ს უფრო სანდო აპლიკაციებისთვის.',
