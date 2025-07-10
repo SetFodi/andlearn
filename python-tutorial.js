@@ -248,112 +248,161 @@ print(luka.introduce())`, desc: "ობიექტის შექმნა დ
     },
     file_handling: {
         en: {
-            concept: "File handling in Python allows you to read from and write to files, enabling data persistence in your applications.",
+            concept: "Files allow programs to remember information even after they stop running. In Python you open a file object with `open()`, read or write its contents, and finally close it (or better—let a `with` block close it for you). You'll meet the modes `'r'` (read), `'w'` (write / truncate), `'a'` (append) and `'b'` (binary). Mastering file I/O is the first step toward log processing, data pipelines and more.",
             examples: [
-                { title: "Reading Files", code: '# Reading a file\nwith open("example.txt", "r") as file:\n    content = file.read()\n    print(content)\n\n# Reading line by line\nwith open("example.txt", "r") as file:\n    for line in file:\n        print(line.strip())', desc: "Different ways to read files" }
+                { title: "Reading a Text File", code: 'with open("notes.txt", "r", encoding="utf-8") as f:\n    data = f.read()\nprint(data)', desc: "Safely reads the whole file and auto-closes it" },
+                { title: "Writing Lines", code: 'lines = ["First\n", "Second\n", "Third\n"]\nwith open("output.txt", "w", encoding="utf-8") as f:\n    f.writelines(lines)', desc: "Creates / truncates a file and writes multiple lines" },
+                { title: "CSV with the csv Module", code: 'import csv\nrows = [["name", "age"], ["Ana", 22], ["Giorgi", 24]]\nwith open("people.csv", "w", newline="", encoding="utf-8") as f:\n    writer = csv.writer(f)\n    writer.writerows(rows)', desc: "Structured file output using the standard library" }
             ],
-            practice: { title: "Practice File Handling", tasks: ["Create a text file and write your favorite quotes", "Read the file and display each quote"] }
+            practice: {
+                title: "Practice File Handling",
+                tasks: [
+                    "Create a diary.txt file and append a new line with today's date and mood.",
+                    "Write a script that counts how many lines are in any file path you pass.",
+                    "Read people.csv and print the names only.",
+                    "Use `with` + `open` to copy the contents of one file into another." ]
+            }
         },
         ka: {
-            concept: "Python-ში ფაილების მართვა საშუალებას გაძლევთ წაიკითხოთ და ჩაწეროთ ფაილები, რაც უზრუნველყოფს მონაცემების შენარჩუნებას თქვენს აპლიკაციებში.",
+            concept: "ფაილები პროგრამებს აძლევს საშუალებას შეინარჩუნონ ინფორმაცია გაშვების დასრულების შემდეგ. Python-ში ისინი იხსნება `open()` ფუნქციით, შემდეგ კითხულობთ ან წერთ, ბოლოს კი ხურავთ (ან `with` ბლოკი თვითონ ხურავს). მთავარი რეჟიმებია `'r'` (წაკითხვა), `'w'` (ჩაწერა / წაშლა), `'a'` (მიმატება) და `'b'` (ბინარული). ფაილური I/O აუცილებელი საფუძველია ლოგების დამუშავებისა და მონაცემთა пайპლაინებისთვის.",
             examples: [
-                { title: "ფაილების კითხვა", code: '# ფაილის კითხვა\nwith open("example.txt", "r") as file:\n    content = file.read()\n    print(content)\n\n# ხაზ-ხაზ კითხვა\nwith open("example.txt", "r") as file:\n    for line in file:\n        print(line.strip())', desc: "ფაილების კითხვის სხვადასხვა გზები" }
+                { title: "ტექსტური ფაილის წაკითხვა", code: 'with open("notes.txt", "r", encoding="utf-8") as f:\n    data = f.read()\nprint(data)', desc: "ფაილის უსაფრთხოდ წაკითხვა და ავტომატური დახურვა" },
+                { title: "ხაზი ხაზზე ჩაწერა", code: 'lines = ["First\n", "Second\n", "Third\n"]\nwith open("output.txt", "w", encoding="utf-8") as f:\n    f.writelines(lines)', desc: "ახალი ფაილის შექმნა და რამდენიმე ხაზის ჩაწერა" },
+                { title: "CSV ‑ csv მოდულით", code: 'import csv\nrows = [["name", "age"], ["Ana", 22], ["Giorgi", 24]]\nwith open("people.csv", "w", newline="", encoding="utf-8") as f:\n    writer = csv.writer(f)\n    writer.writerows(rows)', desc: "სტრუქტურირებული ფაილის ჩაწერა სტანდარტული ბიბლიოთეკით" }
             ],
-            practice: { title: "ივარჯიშეთ ფაილების მართვაში", tasks: ["შექმენით ტექსტური ფაილი და ჩაწერეთ თქვენი საყვარელი ციტატები", "წაიკითხეთ ფაილი და აჩვენეთ თითოეული ციტატა"] }
+            practice: {
+                title: "ივარჯიშეთ ფაილებზე მუშაობაში",
+                tasks: [
+                    "შექმენით diary.txt და დაამატეთ დღიურის ახალი ხაზი დღევანდელი თარიღით.",
+                    "დაწერეთ სკრიპტი, რომელიც კითხულობს სტრიქონების რაოდენობას ფაილში (ფაილის გზა გადაეცით).",
+                    "წაიკითხეთ people.csv და დაბეჭდეთ მხოლოდ სახელები.",
+                    "გამოიყენეთ `with` და `open` ერთი ფაილის შინაარსის მეორეში ასაკოპირებლად." ]
+            }
         }
     },
     error_handling: {
         en: {
-            concept: "Error handling helps your programs gracefully deal with unexpected situations using try-except blocks.",
+            concept: "Errors are inevitable—handling them gracefully keeps your program from crashing and gives users helpful feedback. In Python you wrap risky code in a `try`-`except` block, possibly adding `else` (no-error path) and `finally` (always runs). You can raise your own exceptions with `raise` and create custom exception classes for precise signalling.",
             examples: [
-                { title: "Basic Try-Except", code: 'try:\n    number = int(input("Enter a number: "))\n    result = 10 / number\n    print(f"Result: {result}")\nexcept ValueError:\n    print("That\'s not a valid number!")\nexcept ZeroDivisionError:\n    print("Cannot divide by zero!")', desc: "Handling different types of errors" }
+                { title: "Basic try / except", code: 'try:\n    num = int(input("Enter a number: "))\n    print(10 / num)\nexcept (ValueError, ZeroDivisionError) as e:\n    print("Problem:", e)', desc: "Catches conversion mistakes and division by zero" },
+                { title: "Custom Exception", code: 'class TooSmallError(Exception):\n    pass\n\nvalue = 3\nif value < 5:\n    raise TooSmallError("Value must be >= 5")', desc: "Define and raise a domain-specific error" },
+                { title: "try / except / else / finally", code: 'try:\n    f = open("data.txt")\nexcept FileNotFoundError:\n    print("File missing!")\nelse:\n    print("File has", len(f.read()), "bytes")\nfinally:\n    if "f" in locals():\n        f.close()', desc: "Clean-up code with finally" }
             ],
-            practice: { title: "Practice Error Handling", tasks: ["Create a program that safely converts user input to integers", "Handle file not found errors when reading files"] }
+            practice: {
+                title: "Practice Error Handling",
+                tasks: [
+                    "Wrap a square-root calculation in try/except to catch negative inputs.",
+                    "Create and raise `PasswordTooShortError` if a password < 8 chars.",
+                    "Add an `else` clause that runs when no exception occurs.",
+                    "Use a `finally` block to always close a file or DB connection." ]
+            }
         },
         ka: {
-            concept: "შეცდომების მართვა ეხმარება თქვენს პროგრამებს ლამაზად გაუმკლავდნენ მოულოდნელ სიტუაციებს try-except ბლოკების გამოყენებით.",
+            concept: "შეცდომები გარდაუვალია — მათი მართვა პროგრამას ავარიული დახურვისგან იცავს და მომხმარებელს სასარგებლო შეტყობინებას აძლევს. Python-ში საშიში კოდი `try`-`except` ბლოკში შეფუთეთ, სურვილისამებრ დაუმატეთ `else` (შეცდომის გარეშე გზა) და `finally` (ყოველთვის შესრულდება). შეგიძლიათ საკუთარი გამონაკლისის აგდებაც (`raise`).",
             examples: [
-                { title: "ძირითადი Try-Except", code: 'try:\n    number = int(input("შეიყვანეთ რიცხვი: "))\n    result = 10 / number\n    print(f"შედეგი: {result}")\nexcept ValueError:\n    print("ეს არ არის სწორი რიცხვი!")\nexcept ZeroDivisionError:\n    print("ნულზე გაყოფა შეუძლებელია!")', desc: "სხვადასხვა ტიპის შეცდომების მართვა" }
+                { title: "საბაზისო try / except", code: 'try:\n    num = int(input("შეიყვანეთ რიცხვი: "))\n    print(10 / num)\nexcept (ValueError, ZeroDivisionError) as e:\n    print("პრობლემა:", e)', desc: "კ catches კონვერტაციის შეცდომასა და ნულზე გაყოფას" },
+                { title: "საკუთარი გამონაკლისი", code: 'class TooSmallError(Exception):\n    pass\n\nvalue = 3\nif value < 5:\n    raise TooSmallError("მნიშვნელობა უნდა იყოს >= 5")', desc: "დაუმატეთ დომენის სპეციფიკური შეცდომა" },
+                { title: "try / except / else / finally", code: 'try:\n    f = open("data.txt")\nexcept FileNotFoundError:\n    print("ფაილი ვერ მოიძებნა!")\nelse:\n    print("ფაილის ბაიტი:", len(f.read()))\nfinally:\n    if "f" in locals():\n        f.close()', desc: "კოდის დასუფთავება finally-ით" }
             ],
-            practice: { title: "ივარჯიშეთ შეცდომების მართვაში", tasks: ["შექმენით პროგრამა რომელიც უსაფრთხოდ გარდაქმნის მომხმარებლის შეყვანას მთელ რიცხვებად", "მართეთ ფაილის ვერ იპოვნება შეცდომები ფაილების კითხვისას"] }
+            practice: { title: "ივარჯიშეთ შეცდომების მართვაში", tasks: [ "დაიჭირეთ უარყოფითი რიცხვის კვესის შემთხვევა.", "შექმენით `PasswordTooShortError` < 8 სიმბოლოზე.", "დაამატეთ `else` რომელიც შესრულდება შეცდომის გარეშე.", "გამოიყენეთ `finally` ფაილის დასახურად." ] }
         }
     },
     data_structures: {
         en: {
-            concept: "Python offers various data structures like dictionaries, sets, and tuples for efficient data organization.",
+            concept: "Beyond lists and dicts, Python ships with powerful built-ins in `collections`—`namedtuple`, `deque`, `defaultdict`, `Counter`—plus sets, tuples and even frozen sets. Choosing the right structure makes code faster, clearer and less bug-prone.",
             examples: [
-                { title: "Dictionaries", code: 'student = {\n    "name": "Ana",\n    "age": 20,\n    "grades": [95, 87, 92]\n}\n\nprint(student["name"])\nstudent["major"] = "Computer Science"\nprint(student)', desc: "Using dictionaries to store key-value pairs" }
+                { title: "Counter", code: 'from collections import Counter\ntext = "banana"\nprint(Counter(text))  # {"b":1,"a":3,"n":2}', desc: "Count frequencies with one line" },
+                { title: "defaultdict", code: 'from collections import defaultdict\nwords = ["apple","banana","cherry","apricot"]\nby_letter = defaultdict(list)\nfor w in words:\n    by_letter[w[0]].append(w)\nprint(by_letter)', desc: "Group words without KeyError boilerplate" },
+                { title: "deque", code: 'from collections import deque\nqueue = deque([1,2,3])\nqueue.append(4)\nqueue.popleft()  # 1\nprint(queue)', desc: "Fast queue operations on both ends" }
             ],
-            practice: { title: "Practice Data Structures", tasks: ["Create a dictionary to store information about your favorite book", "Use sets to find unique elements in a list"] }
+            practice: { title: "Practice Data Structures", tasks: [ "Use Counter to find the 3 most common letters in a string.", "Rewrite a list-build loop using list-comprehension.", "Store student grades in a dict and compute the average.", "Create a set of unique words from a sentence." ] }
         },
         ka: {
-            concept: "Python გთავაზობთ სხვადასხვა მონაცემთა სტრუქტურებს როგორიცაა ლექსიკონები, სეტები და tuple-ები ეფექტური მონაცემთა ორგანიზაციისთვის.",
+            concept: "სიებსა და ლექსიკონებზე მეტიც: Python-ს აქვს `collections` მოდულის ძლიერი სტრუქტურები — `namedtuple`, `deque`, `defaultdict`, `Counter` — ასევე set-ები, tuple-ები და frozen set-ები. სწორი სტრუქტურის არჩევა კოდს უფრო სწრაფს და გასაგებს ხდის.",
             examples: [
-                { title: "ლექსიკონები", code: 'student = {\n    "name": "ანა",\n    "age": 20,\n    "grades": [95, 87, 92]\n}\n\nprint(student["name"])\nstudent["major"] = "კომპიუტერული მეცნიერება"\nprint(student)', desc: "ლექსიკონების გამოყენება key-value წყვილების შესანახად" }
+                { title: "Counter", code: 'from collections import Counter\ntext = "banana"\nprint(Counter(text))', desc: "სიმბოლოების სიხშირის დათვლა" },
+                { title: "defaultdict", code: 'from collections import defaultdict\nwords = ["apple","banana","cherry","apricot"]\nby_letter = defaultdict(list)\nfor w in words:\n    by_letter[w[0]].append(w)\nprint(by_letter)', desc: "სიტყვების დალაგება პირველი ასოთი" },
+                { title: "deque", code: 'from collections import deque\nqueue = deque([1,2,3])\nqueue.append(4)\nqueue.popleft()\nprint(queue)', desc: "სწრაფი რიგი ორმხრივი ოპერაციებით" }
             ],
-            practice: { title: "ივარჯიშეთ მონაცემთა სტრუქტურებში", tasks: ["შექმენით ლექსიკონი თქვენი საყვარელი წიგნის ინფორმაციის შესანახად", "გამოიყენეთ სეტები სიაში უნიკალური ელემენტების საპოვნელად"] }
+            practice: { title: "ივარჯიშეთ მონაცემთა სტრუქტურებში", tasks: [ "Counter-ით იპოვეთ 3 ყველაზე ხშირი სიმბოლო.", "გადაწერეთ loop-ი list-comprehension-ად.", "შეინახეთ სტუდენტის ქულები dict-ში და გამოთვალეთ საშუალო.", "სტრიქონიდან შექმენით უნიკალური სიტყვების set." ] }
         }
     },
     web_apis: {
         en: {
-            concept: "Learn to interact with web APIs and build web applications using Python frameworks.",
+            concept: "The `requests` library makes HTTP calls dead simple. Combine it with JSON parsing and you can integrate any REST API in minutes. Learn GET vs POST, status codes, headers and timeouts.",
             examples: [
-                { title: "HTTP Requests", code: 'import requests\n\nresponse = requests.get("https://api.github.com/users/octocat")\ndata = response.json()\nprint(f"User: {data[\'login\']}")\nprint(f"Repos: {data[\'public_repos\']}")', desc: "Making HTTP requests to APIs" }
+                { title: "Simple GET", code: 'import requests\nresp = requests.get("https://api.github.com/repos/python/cpython")\nprint(resp.status_code, resp.json()["stargazers_count"])', desc: "Fetch public repo data" },
+                { title: "POST a JSON payload", code: 'payload = {"name": "Luka", "age": 25}\nrequests.post("https://httpbin.org/post", json=payload)', desc: "Send JSON with one line" },
+                { title: "Timeouts & Errors", code: 'try:\n    requests.get("https://example.com", timeout=0.5)\nexcept requests.Timeout:\n    print("Server too slow!")', desc: "Never hang forever" }
             ],
-            practice: { title: "Practice Web APIs", tasks: ["Make a request to a weather API", "Parse JSON data from an API response"] }
+            practice: { title: "Practice Web APIs", tasks: [ "Call a public API (e.g., cat facts) and print one fact.", "POST form data to httpbin.org/post and print the JSON response.", "Handle a 404 error gracefully.", "Add a 1-second timeout to all your requests." ] }
         },
         ka: {
-            concept: "ისწავლეთ ვებ API-ებთან ინტერაქცია და ვებ აპლიკაციების აშენება Python ჩარჩოების გამოყენებით.",
+            concept: "`requests` ბიბლიოთეკა HTTP მოთხოვნებს ძალიან მარტივს ხდის. JSON-ის დამუშავებით minutes-ში ინტეგრირებთ ნებისმიერ REST API-ს. ისწავლეთ GET / POST, სტატუს კოდები, ჰედერები და timeouts.",
             examples: [
-                { title: "HTTP მოთხოვნები", code: 'import requests\n\nresponse = requests.get("https://api.github.com/users/octocat")\ndata = response.json()\nprint(f"მომხმარებელი: {data[\'login\']}")\nprint(f"რეპოზიტორიები: {data[\'public_repos\']}")', desc: "HTTP მოთხოვნების გაკეთება API-ებისთვის" }
+                { title: "მარტივი GET", code: 'import requests\nresp = requests.get("https://api.github.com/repos/python/cpython")\nprint(resp.status_code, resp.json()["stargazers_count"])', desc: "გithub API-ს გამოძახება" },
+                { title: "POST JSON მონაცემი", code: 'payload = {"name": "Luka", "age": 25}\nrequests.post("https://httpbin.org/post", json=payload)', desc: "JSON გაგზავნა ერთ ხაზში" },
+                { title: "Timeout & შეცდომები", code: 'try:\n    requests.get("https://example.com", timeout=0.5)\nexcept requests.Timeout:\n    print("სერვერი ძალიან ნელია")', desc: "არასოდეს დაელოდოთ უსასრულოდ" }
             ],
-            practice: { title: "ივარჯიშეთ ვებ API-ებში", tasks: ["გააკეთეთ მოთხოვნა ამინდის API-სთვის", "გააანალიზეთ JSON მონაცემები API-ს პასუხიდან"] }
+            practice: { title: "ივარჯიშეთ Web API-ებში", tasks: [ "გამოიძახეთ საჯარო API და დაბეჭდეთ ერთი ფაქტი.", "POST-ით გააგზავნეთ ფორმის მონაცემები httpbin-ზე.", "მართეთ 404 შეცდომა ელეგანტურად.", "ყველა request-ს დაურთეთ 1-წამიანი timeout." ] }
         }
     },
     advanced_topics: {
         en: {
-            concept: "Explore advanced Python concepts like decorators, generators, and context managers.",
+            concept: "Decorators, generators and context managers let you write concise yet powerful abstractions. A decorator wraps a function to add behaviour, a generator yields values lazily, and a context manager guarantees clean-up.",
             examples: [
-                { title: "Decorators", code: 'def my_decorator(func):\n    def wrapper():\n        print("Before function")\n        func()\n        print("After function")\n    return wrapper\n\n@my_decorator\ndef say_hello():\n    print("Hello!")\n\nsay_hello()', desc: "Using decorators to modify function behavior" }
+                { title: "Simple Decorator", code: 'def debug(fn):\n    def wrapper(*a, **kw):\n        print("Calling", fn.__name__)\n        return fn(*a, **kw)\n    return wrapper\n\n@debug\ndef add(a,b): return a+b\nadd(2,3)', desc: "Prints every invocation" },
+                { title: "Generator", code: 'def count_up(limit):\n    n=0\n    while n<limit:\n         yield n\n         n+=1\nprint(list(count_up(5)))', desc: "Produces numbers on demand" },
+                { title: "Context Manager", code: 'from contextlib import contextmanager\n@contextmanager\ndef open_upper(path):\n    f = open(path)\n    try: yield (line.upper() for line in f)\n    finally: f.close()', desc: "Custom `with` block" }
             ],
-            practice: { title: "Practice Advanced Topics", tasks: ["Create a decorator that measures function execution time", "Write a generator that yields fibonacci numbers"] }
+            practice: { title: "Practice Advanced Topics", tasks: [ "Write a decorator that memoizes function results.", "Create a generator that produces even numbers up to N.", "Build a context manager that times a code block.", "Combine all three in a mini-project." ] }
         },
         ka: {
-            concept: "შეისწავლეთ Python-ის გაღრმავებული კონცეფციები როგორიცაა დეკორატორები, გენერატორები და კონტექსტის მენეჯერები.",
+            concept: "დეკორატორები, გენერატორები და context მენეჯერები concise მაგრამ ძლიერ აბსტრაქციებს ქმნის. დეკორატორი ფუნქციას დამატებით ქცევას მატებს, გენერატორი მნიშვნელობებს მოზომილად აბრუნებს, context მენეჯერი კი რესურსს ყოველთვის ხურავს.",
             examples: [
-                { title: "დეკორატორები", code: 'def my_decorator(func):\n    def wrapper():\n        print("ფუნქციის წინ")\n        func()\n        print("ფუნქციის შემდეგ")\n    return wrapper\n\n@my_decorator\ndef say_hello():\n    print("გამარჯობა!")\n\nsay_hello()', desc: "დეკორატორების გამოყენება ფუნქციის ქცევის შესაცვლელად" }
+                { title: "მარტივი დეკორატორი", code: 'def debug(fn):\n    def wrapper(*a, **kw):\n        print("Calling", fn.__name__)\n        return fn(*a, **kw)\n    return wrapper', desc: "ფუნქციის გამოძახების დაბეჭდვა" },
+                { title: "გენერატორი", code: 'def count_up(limit):\n    n=0\n    while n<limit:\n         yield n\n         n+=1', desc: "lazy რიცხვების გენერაცია" },
+                { title: "Context Manager", code: 'from contextlib import contextmanager\n@contextmanager\ndef open_upper(path):\n    f = open(path)\n    try: yield (line.upper() for line in f)\n    finally: f.close()', desc: "საკუთარი `with` ბლოკი" }
             ],
-            practice: { title: "ივარჯიშეთ გაღრმავებულ თემებში", tasks: ["შექმენით დეკორატორი რომელიც იზომავს ფუნქციის შესრულების დროს", "დაწერეთ გენერატორი რომელიც აბრუნებს ფიბონაჩის რიცხვებს"] }
+            practice: { title: "გაღრმავებული თემების პრაქტიკა", tasks: [ "დაწერეთ memoization დეკორატორი.", "გენერატორი ლუწ რიცხვებზე.", "დაკონფიგურირეთ context მენეჯერი ტაიმერით.", "შეუთავსეთ სამივე ერთ პროექტში." ] }
         }
     },
     testing_debugging: {
         en: {
-            concept: "Learn to write tests and debug your Python code effectively using testing frameworks and debugging tools.",
+            concept: "Automated tests catch regressions before users do. Python's built-in `unittest` and third-party `pytest` let you write repeatable tests. For debugging, builtin `pdb` or IDE breakpoints allow step-through execution.",
             examples: [
-                { title: "Unit Testing", code: 'import unittest\n\ndef add_numbers(a, b):\n    return a + b\n\nclass TestMath(unittest.TestCase):\n    def test_add_numbers(self):\n        self.assertEqual(add_numbers(2, 3), 5)\n        self.assertEqual(add_numbers(-1, 1), 0)\n\nif __name__ == "__main__":\n    unittest.main()', desc: "Writing unit tests for your functions" }
+                { title: "unittest example", code: 'import unittest\nfrom mymath import add\nclass TestAdd(unittest.TestCase):\n    def test_add(self):\n        self.assertEqual(add(2,3),5)\nif __name__=="__main__":\n    unittest.main()', desc: "Minimal test case" },
+                { title: "pytest assert", code: 'def add(a,b): return a+b\\n\\n# test function using pytest\\n\\n\\ndef test_add():\\n    assert add(2,3) == 5', desc: "Pytest style" },
+                { title: "Using pdb", code: 'import pdb\nvalue=42\npdb.set_trace()  # drops into interactive debugger', desc: "Set breakpoint programmatically" }
             ],
-            practice: { title: "Practice Testing", tasks: ["Write tests for a calculator function", "Use debugging techniques to find and fix bugs"] }
+            practice: { title: "Practice Testing & Debugging", tasks: [ "Write tests for a calculator module.", "Configure pytest to run on every save.", "Use pdb to inspect a bug in list manipulation.", "Add type hints then run mypy for static errors." ] }
         },
         ka: {
-            concept: "ისწავლეთ ტესტების წერა და თქვენი Python კოდის ეფექტური გამართვა ტესტირების ჩარჩოებისა და დებაგინგ ინსტრუმენტების გამოყენებით.",
+            concept: "ავტომატური ტესტები ბაგებს გამოშვებამდე იჭერს. გამოიყენეთ `unittest` ან `pytest` გამეორებადი ტესტებისთვის. Debug-ისთვის კი `pdb` ან IDE-ს breakpoints-ები.",
             examples: [
-                { title: "Unit Testing", code: 'import unittest\n\ndef add_numbers(a, b):\n    return a + b\n\nclass TestMath(unittest.TestCase):\n    def test_add_numbers(self):\n        self.assertEqual(add_numbers(2, 3), 5)\n        self.assertEqual(add_numbers(-1, 1), 0)\n\nif __name__ == "__main__":\n    unittest.main()', desc: "თქვენი ფუნქციებისთვის unit ტესტების წერა" }
+                { title: "unittest", code: 'import unittest\nclass TestSomething(unittest.TestCase):\n    ...', desc: "მინიმალური ტესტი" },
+                { title: "pytest assert", code: 'def add(a,b): return a+b\\n\\n# pytest ტესტი\\n\\n\\ndef test_add():\\n    assert add(2,3) == 5', desc: "pytest სტილი" },
+                { title: "pdb დაკვირვება", code: 'import pdb; pdb.set_trace()', desc: "debug breakpoint" }
             ],
-            practice: { title: "ივარჯიშეთ ტესტირებაში", tasks: ["დაწერეთ ტესტები კალკულატორის ფუნქციისთვის", "გამოიყენეთ დებაგინგ ტექნიკები ბაგების საპოვნელად და გამოსასწორებლად"] }
+            practice: { title: "ივარჯიშეთ ტესტირებასა და debug-ში", tasks: [ "შექმენით ტესტები კალკულატორზე.", "pytest ავტომატურად გაუშვით.", "გამოიყენეთ pdb ბაგის საპოვნელად.", "ჩამატეთ type hints და გაუშვით mypy." ] }
         }
     },
     data_science_ml: {
         en: {
-            concept: "Introduction to data science and machine learning concepts using Python libraries like pandas and scikit-learn.",
+            concept: "Pandas, NumPy and scikit-learn form the foundation of the Python data-science stack. You'll learn DataFrames, vectorized math and training simple machine-learning models.",
             examples: [
-                { title: "Data Analysis", code: 'import pandas as pd\n\n# Create a simple dataset\ndata = {\n    "name": ["Alice", "Bob", "Charlie"],\n    "age": [25, 30, 35],\n    "salary": [50000, 60000, 70000]\n}\n\ndf = pd.DataFrame(data)\nprint(df)\nprint(f"Average age: {df[\'age\'].mean()}")', desc: "Basic data analysis with pandas" }
+                { title: "Pandas DataFrame", code: 'import pandas as pd\nprint(pd.DataFrame({"a":[1,2],"b":[3,4]}))', desc: "Tabular data in two lines" },
+                { title: "NumPy mean", code: 'import numpy as np\narr = np.array([1,2,3])\nprint(arr.mean())', desc: "Fast math on arrays" },
+                { title: "scikit-learn model", code: 'from sklearn.linear_model import LinearRegression\nimport numpy as np\nX = np.array([[1],[2],[3]])\ny = np.array([2,4,6])\nprint(LinearRegression().fit(X,y).predict([[4]]))', desc: "Tiny linear model" }
             ],
-            practice: { title: "Practice Data Science", tasks: ["Analyze a dataset and find basic statistics", "Create visualizations of your data"] }
+            practice: { title: "Practice Data Science", tasks: [ "Load a CSV into a DataFrame and print summary stats.", "Plot a bar chart with matplotlib.", "Train a LinearRegression on dummy data.", "Compute the correlation matrix of a DataFrame." ] }
         },
         ka: {
-            concept: "შესავალი მონაცემთა მეცნიერებისა და მანქანური სწავლების კონცეფციებში Python ბიბლიოთეკების როგორიცაა pandas და scikit-learn გამოყენებით.",
+            concept: "Pandas, NumPy და scikit-learn ქმნიან Python-ის მონაცემთა მეცნიერების ბირთვს. ისწავლეთ DataFrame-ები, ვექტორული მათემატიკა და მარტივი ML მოდელები.",
             examples: [
-                { title: "მონაცემთა ანალიზი", code: 'import pandas as pd\n\n# მარტივი მონაცემთა ნაკრების შექმნა\ndata = {\n    "name": ["ალისა", "ბობი", "ჩარლი"],\n    "age": [25, 30, 35],\n    "salary": [50000, 60000, 70000]\n}\n\ndf = pd.DataFrame(data)\nprint(df)\nprint(f"საშუალო ასაკი: {df[\'age\'].mean()}")', desc: "ძირითადი მონაცემთა ანალიზი pandas-ით" }
+                { title: "Pandas DataFrame", code: 'import pandas as pd\nprint(pd.DataFrame({"a":[1,2],"b":[3,4]}))', desc: "ცხრილის ფორმის მონაცემები" },
+                { title: "NumPy საშუალო", code: 'import numpy as np\narr = np.array([1,2,3])\nprint(arr.mean())', desc: "სწრაფი მათემატიკა" },
+                { title: "scikit-learn მოდელი", code: 'from sklearn.linear_model import LinearRegression\nimport numpy as np\n...', desc: "ლინექსური მათემატიკა და მარტივი ML მოდელები" }
             ],
             practice: { title: "ივარჯიშეთ მონაცემთა მეცნიერებაში", tasks: ["გააანალიზეთ მონაცემთა ნაკრები და იპოვეთ ძირითადი სტატისტიკა", "შექმენით თქვენი მონაცემების ვიზუალიზაცია"] }
         }
