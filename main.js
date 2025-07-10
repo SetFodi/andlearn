@@ -17,7 +17,7 @@ const translations = {
         'nav-about': 'About',
         
         // Hero Section
-        'hero-title': 'Learn Programming the Fun Way',
+        'hero-title': 'Learn Programming the Easy Way',
         'hero-subtitle': 'Master JavaScript, React, TypeScript and more through interactive, hands-on tutorials designed to make coding easy and enjoyable.',
         'btn-start-learning': 'Start Learning Free',
         'btn-learn-more': 'Learn More',
@@ -81,7 +81,7 @@ const translations = {
         'nav-about': 'ჩვენ შესახებ',
         
         // Hero Section
-        'hero-title': 'ისწავლე პროგრამირება სახალისოდ',
+        'hero-title': 'ისწავლე პროგრამირება მარტივად',
         'hero-subtitle': 'დაეუფლე JavaScript-ს, React-ს, TypeScript-ს და სხვას ინტერაქტიული გაკვეთილების მეშვეობით, რომლებიც კოდირებას მარტივს და სახალისოს ხდის.',
         'btn-start-learning': 'დაიწყე სწავლა უფასოდ',
         'btn-learn-more': 'გაიგე მეტი',
