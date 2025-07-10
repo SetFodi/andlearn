@@ -11,6 +11,7 @@
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Available-green?style=for-the-badge)](https://andlearn.dev)
 [![License](https://img.shields.io/badge/📄_License-MIT-blue?style=for-the-badge)](LICENSE)
 [![Made with ❤️](https://img.shields.io/badge/Made_with-❤️-red?style=for-the-badge)](https://github.com/lukafartenadze)
+[![Deploy to Vercel](https://img.shields.io/badge/▲_Deploy_to_Vercel-000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/new/git/external?repository-url=https://github.com/lukafartenadze/andlearn)
 
 </div>
 
@@ -41,7 +42,7 @@
 | **JavaScript** | 18 | ✅ Available | Master the language that powers the web |
 | **Python** | 12 | ✅ Available | Comprehensive programming with Python |
 | **React** | 6 | ✅ Available | Build modern user interfaces |
-| **TypeScript** | TBD | 🚧 Coming Soon | Add type safety to JavaScript |
+| **TypeScript** | 10 | ✅ Available | Add type safety to JavaScript |
 | **More Languages** | TBD | 🚧 Coming Soon | PHP, Laravel and more |
 
 ---
@@ -90,6 +91,44 @@
 3. **Visit the application**
    - Direct: `file:///path/to/index.html`
    - Server: `http://localhost:8000`
+
+---
+
+## ⚡ Production Deployment (Vercel)
+
+Deploying AndLearn to the cloud is friction-less thanks to [Vercel](https://vercel.com).
+
+### One-click Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/lukafartenadze/andlearn)
+
+1. Click the button above and follow the prompts.
+2. Vercel will fork the repository, configure automatic deployments, and build the project.
+3. Once the build is finished your production URL is live – share it with the world!
+
+### Manual Deploy
+
+```bash
+# Install the Vercel CLI globally
+npm i -g vercel
+
+# Initialize project (first time only)
+vercel
+
+# Deploy a production version
+vercel --prod
+```
+
+No additional environment variables are required. All pages are static so the default configuration works out of the box.
+
+If you need SPA-style routing fallback (e.g. `/react` → `react.html`) add a `vercel.json` file to the project root:
+
+```json
+{
+  "cleanUrls": true,
+  "rewrites": [{ "source": "/*", "destination": "/index.html" }]
+}
+```
 
 ---
 
