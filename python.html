@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Tutorials - AndLearn</title>
     <link rel="stylesheet" href="styles/tailwind.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3b82f6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -261,7 +263,7 @@
             <div class="p-6 border-b border-gray-200 dark:border-gray-700">
                 <div class="flex items-center space-x-3 mb-4">
                     <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-7 h-7">
+                        <img src="assets/icons/python.svg" alt="Python" class="w-7 h-7">
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-blue-600" data-translate="python">Python</h2>
@@ -549,6 +551,7 @@
     <!-- Skulpt (in-browser Python) -->
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <script src="sw-register.js"></script>
     <script src="python-tutorial.js"></script>
 </body>
 </html> 

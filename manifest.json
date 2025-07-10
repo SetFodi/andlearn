@@ -1,0 +1,17 @@
+{
+  "name": "AndLearn",
+  "short_name": "AndLearn",
+  "description": "Interactive, bilingual programming tutorials (JavaScript, React, TypeScript, Python)",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "assets/icons/react.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    }
+  ]
+} 
